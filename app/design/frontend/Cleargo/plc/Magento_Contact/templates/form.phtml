@@ -1,0 +1,172 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<script
+    src="http://maps.googleapis.com/maps/api/js">
+</script>
+
+<script>
+    function changeCenterAndMarker(position,location){
+        map.setCenter(position);
+        marker.setPosition(position);
+
+        changeDescription(location);
+    }
+
+    function changeDescription(location){
+        jQuery('#descriptionContainer').find('.heading').html(location.title);
+        jQuery('#descriptionContainer').find('.address').html(location.address);
+        jQuery('#descriptionContainer').find('.tele').html(location.telephone);
+        jQuery('#descriptionContainer').find('.fax').html(location.fax);
+        jQuery('#descriptionContainer').find('.email').html(location.email);
+        jQuery('#descriptionContainer').find('.office_hour').html(location.office_hour);
+        jQuery('#descriptionContainer').find('.lunch_time').html(location.lunch_time);
+       
+    }
+
+    function initialize() {
+        var mapProp = {
+            center:new google.maps.LatLng(<?php $block->getDefaultLocation()?>),
+            zoom:5,
+            mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
+        map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        // }
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(<?php $block->getDefaultLocation()?>),
+            title:"Hello World!"
+        });
+
+        // To add the marker to the map, call setMap();
+        marker.setMap(map);
+        changeDescription(<?php echo json_encode($block->getDefaultDescription()) ?>);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+<div>
+    <div id="googleMap" style="width:1000px;height:380px;"></div>
+
+    <div id="descriptionContainer">
+        <div class="heading"></div>
+        <div class="address"></div>
+        <div class="contact">
+            T:<span class="tele"></span><br/>
+            F:<span class="fax"></span><br/>
+            <span class="email"></span>
+        </div>
+        <div class="office-hour-container">
+            Office Hours:<br/>
+            <span class="office_hour"></span>
+        </div>
+        <div class="lunch-time-container">
+            Lunch Time:<br/>
+            <span class="lunch_time"></span>
+        </div>
+    </div>
+
+    <div id="buttonContainer">
+        <?php $block->showLocationButtons();?>
+    </div>
+</div>
+
+<form class="form contact"
+      action="<?php /* @escapeNotVerified */ echo $block->getFormAction(); ?>"
+      id="contact-form"
+      method="post"
+      data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>"
+      data-mage-init='{"validation":{}}'>
+
+
+    <fieldset class="fieldset">
+
+        <!--
+        <legend class="legend"><span><?php /* echo __('Write Us') */?></span></legend><br />
+        <div class="field note no-label"><?php /*/ echo __('Jot us a note and we’ll get back to you as quickly as possible.') */?></div>
+        -->
+
+        <div class="field name required">
+            <label class="label" for="name"><span><?php /* @escapeNotVerified */ echo __('Name') ?></span></label>
+            <div class="control">
+                <input name="name" id="name" title="<?php /* @escapeNotVerified */ echo __('Name') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field email required">
+            <label class="label" for="email"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
+            <div class="control">
+                <input name="email" id="email" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+            </div>
+        </div>
+        <div class="field country required">
+            <label class="label" for="country"><span><?php  echo __('Country') ?></span></label>
+            <div class="control">
+
+                <select name="country" id="country" >
+                    <?php
+                    $om = \Magento\Framework\App\ObjectManager::getInstance();
+                    /** @var \Magento\Framework\Locale\Resolver $resolver */
+                    $resolver = $om->get('\Magento\Directory\Model\Country');
+                    $myHelper = $this->helper('Magento\Directory\Helper\Data')->getCountryCollection();
+                    foreach ($myHelper as $as){
+                        echo '<option value='.$resolver->loadByCode($as->getCountryId())->getName().'>';
+                        echo $resolver->loadByCode($as->getCountryId())->getName();
+                        echo '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+        <div class="field enquiry required">
+            <label class="label" for="enquiry"><span><?php  echo __('Your enquiry is about:') ?></span></label>
+            <div class="control">
+
+                <select name="enquiry" id="enquiry" >
+                    <option value="product">Product</option>
+                </select>
+            </div>
+        </div>
+        <div class="field youare required">
+            <label class="label" for="youare"><span><?php  echo __('You are') ?></span></label>
+            <div class="control">
+
+                <select name="youare" id="youare" >
+                    <option value="customer">Customer</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="field company">
+            <label class="label" for="company"><span><?php /* @escapeNotVerified */ echo __('Company') ?></span></label>
+            <div class="control">
+                <input name="company" id="company" title="<?php /* @escapeNotVerified */ echo __('Company') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field telephone">
+            <label class="label" for="telephone"><span><?php /* @escapeNotVerified */ echo __('Phone Number') ?></span></label>
+            <div class="control">
+                <input name="telephone" id="telephone" title="<?php /* @escapeNotVerified */ echo __('Phone Number') ?>" value="" class="input-text" type="text" />
+            </div>
+        </div>
+        <div class="field comment required">
+            <label class="label" for="comment"><span><?php /* @escapeNotVerified */ echo __('What’s on your mind?') ?></span></label>
+            <div class="control">
+                <textarea name="comment" id="comment" title="<?php /* @escapeNotVerified */ echo __('What’s on your mind?') ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
+            </div>
+        </div>
+        <?php echo $block->getChildHtml('form.additional.info'); ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?php /* @escapeNotVerified */ echo __('Submit') ?>" class="action submit primary">
+                <span><?php /* @escapeNotVerified */ echo __('Submit') ?></span>
+            </button>
+        </div>
+    </div>
+</form>

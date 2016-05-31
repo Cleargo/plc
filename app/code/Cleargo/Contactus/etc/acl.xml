@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <!--<resource id="Magento_Backend::content">-->
+                <resource id="Cleargo_Contactus::manager" title="Contact Us" sortOrder="100" >
+                    <resource id="Cleargo_Contactus::add_row" title="Map Manager" sortOrder="10">
+                        <resource id="Cleargo_Contactus::grid_save" title="Save Grid Manager" sortOrder="10" />
+                        <resource id="Cleargo_Contactus::grid_delete" title="Delete Grid Manager" sortOrder="20" />
+                    </resource>
+                </resource>
+                <!--</resource>-->
+            </resource>
+        </resources>
+    </acl>
+</config>
