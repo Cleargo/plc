@@ -1,0 +1,63 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<script
+    src="http://maps.googleapis.com/maps/api/js">
+</script>
+
+<script>
+    function changeCenterAndMarker(position,location){
+        map.setCenter(position);
+        marker.setPosition(position);
+
+        changeDescription(location);
+    }
+
+    function changeDescription(location){
+        jQuery('#descriptionContainer').find('.heading').html(location.title);
+        jQuery('#descriptionContainer').find('.address').html(location.address);
+        jQuery('#descriptionContainer').find('.tele').html(location.telephone);
+        jQuery('#descriptionContainer').find('.fax').html(location.fax);
+        jQuery('#descriptionContainer').find('.email').html(location.email);
+        jQuery('#descriptionContainer').find('.office_hour').html(location.office_hour);
+        jQuery('#descriptionContainer').find('.lunch_time').html(location.lunch_time);
+
+    }
+
+    function initialize() {
+        var mapProp = {
+            center:new google.maps.LatLng(<?php $block->getDefaultLocation()?>),
+            zoom:5,
+            mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
+        map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        // }
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(<?php $block->getDefaultLocation()?>),
+            title:"Hello World!"
+        });
+
+        // To add the marker to the map, call setMap();
+        marker.setMap(map);
+
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+<div>
+    <div id="googleMap" style="width:1000px;height:380px;"></div>
+
+
+
+    <div id="buttonContainer">
+        <?php $block->showLocationButtons();?>
+    </div>
+</div>
+
+

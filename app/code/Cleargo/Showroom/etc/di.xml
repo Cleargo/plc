@@ -1,0 +1,36 @@
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <virtualType name="ShowroomGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Cleargo\Showroom\Model\Resource\Grid\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">ShowroomGridFilterPool</argument> <!-- Define new object for filters -->
+        </arguments>
+    </virtualType>
+
+    <!-- Create our type ShowroomGridFilterPool -->
+    <virtualType name="ShowroomGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Type for jobs_department_listing_data_source -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="showroom_grid_listing_data_source" xsi:type="string">Cleargo\Showroom\Model\ResourceModel\Grid\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Simulate our class Cleargo\Showroom\Model\ResourceModel\Grid\Grid\Collection -->
+    <virtualType name="Cleargo\Showroom\Model\ResourceModel\Grid\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">showroom_location</argument>
+            <argument name="resourceModel" xsi:type="string">Cleargo\Showroom\Model\ResourceModel\Grid</argument>
+        </arguments>
+    </virtualType>
+</config>
