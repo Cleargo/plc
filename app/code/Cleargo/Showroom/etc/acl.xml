@@ -5,7 +5,7 @@
             <resource id="Magento_Backend::admin">
                 <!--<resource id="Magento_Backend::content">-->
 
-                    <resource id="Cleargo_Showroom::add_row" title="Map Manager"  sortOrder="10">
+                    <resource id="Cleargo_Showroom::add_row" title="Showroom Manager"  sortOrder="10">
                         <resource id="Cleargo_Showroom::grid_save" title="Save Grid Manager" sortOrder="10" />
                         <resource id="Cleargo_Showroom::grid_delete" title="Delete Grid Manager" sortOrder="20" />
                     </resource>
