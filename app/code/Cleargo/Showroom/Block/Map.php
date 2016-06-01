@@ -28,7 +28,7 @@ class Map extends \Magento\Framework\View\Element\Template
 
         foreach ($collection as $ttt){
             $location = $ttt->get();
-            if(in_array($location["entity_id"],$locationArr)){
+            if(in_array($location["location_id"],$locationArr)){
                 $coordinates = $location["xcoordinates"].','.$location["ycoordinates"];
                 echo $coordinates;
                 break;
@@ -44,7 +44,7 @@ class Map extends \Magento\Framework\View\Element\Template
 
         foreach ($collection as $ttt){
             $location = $ttt->get();
-            if(in_array($location["entity_id"],$locationArr)){
+            if(in_array($location["location_id"],$locationArr)){
                 break;
             }
         }
@@ -104,7 +104,7 @@ class Map extends \Magento\Framework\View\Element\Template
 
         foreach ($collection as $ttt){
             $location = $ttt->get();
-            if(in_array($location["entity_id"],$locationArr)&&in_array($location["entity_id"],$this->getTypeArray(1))){
+            if(in_array($location["location_id"],$locationArr)&&in_array($location["location_id"],$this->getTypeArray(1))){
                 $coordinates = $location["xcoordinates"].','.$location["ycoordinates"];
 
                 echo "<span  style=\"display:inline-block; margin-right:15px;\" onclick='changeCenterAndMarker(new google.maps.LatLng(";
@@ -127,7 +127,7 @@ class Map extends \Magento\Framework\View\Element\Template
         $this->echoHeading(2,'Type B Product',$locationArr);
         foreach ($collection as $ttt){
             $location = $ttt->get();
-            if(in_array($location["entity_id"],$locationArr)&&in_array($location["entity_id"],$this->getTypeArray(2))){
+            if(in_array($location["location_id"],$locationArr)&&in_array($location["location_id"],$this->getTypeArray(2))){
                 $coordinates = $location["xcoordinates"].','.$location["ycoordinates"];
 
                 echo "<span  style=\"display:inline-block; margin-right:15px;\" onclick='changeCenterAndMarker(new google.maps.LatLng(";
@@ -150,7 +150,7 @@ class Map extends \Magento\Framework\View\Element\Template
 
         foreach ($collection as $ttt){
             $location = $ttt->get();
-            if(in_array($location["entity_id"],$locationArr)&&in_array($location["entity_id"],$this->getTypeArray(3))){
+            if(in_array($location["location_id"],$locationArr)&&in_array($location["location_id"],$this->getTypeArray(3))){
                 $coordinates = $location["xcoordinates"].','.$location["ycoordinates"];
 
                 echo "<span  style=\"display:inline-block; margin-right:15px;\" onclick='changeCenterAndMarker(new google.maps.LatLng(";

@@ -8,7 +8,7 @@ use \Magento\Framework\Model\ResourceModel\Db\AbstractDb;
  */
 class Grid extends AbstractDb
 {
-    const GRID_ID = 'entity_id'; // We define the id fieldname
+    const GRID_ID = 'location_id'; // We define the id fieldname
 
     /**
      * Prefix of model events names
@@ -61,7 +61,7 @@ class Grid extends AbstractDb
     }
     protected function _construct()
     {
-        $this->_init('showroom_location', 'entity_id');
+        $this->_init('showroom_location', 'location_id');
     }
 
     protected function _afterLoad(\Magento\Framework\Model\AbstractModel $object)

@@ -35,7 +35,7 @@ class Edit extends Container
      */
     protected function _construct()
     {
-        $this->_objectId = 'entity_id';
+        $this->_objectId = 'location_id';
         $this->_blockGroup = 'Cleargo_Showroom';
         $this->_controller = 'adminhtml_grid';
 

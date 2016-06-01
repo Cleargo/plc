@@ -64,7 +64,7 @@ class Form extends Generic
         );
 
         if ($model->getId()) {
-            $fieldset->addField('entity_id', 'hidden', ['name' => 'entity_id']);
+            $fieldset->addField('location_id', 'hidden', ['name' => 'location_id']);
         }
 
         if (!$this->_storeManager->isSingleStoreMode()) {

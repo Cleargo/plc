@@ -117,7 +117,72 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
         }
         parent::_renderFiltersBefore();
     }
+    protected function performAfterLoad($tableName, $columnName)
+    {
+        $items = $this->getColumnValues($columnName);
+        if (count($items)) {
+            $connection = $this->getConnection();
+            $select = $connection->select()->from(['dealer_entity_store' => $this->getTable($tableName)])
+                ->where('dealer_entity_store.' . $columnName . ' IN (?)', $items);
+            $result = $connection->fetchPairs($select);
+            if ($result) {
+                foreach ($this as $item) {
+                    $entityId = $item->getData($columnName);
+                    if (!isset($result[$entityId])) {
+                        continue;
+                    }
+                    if ($result[$entityId] == 0) {
+                        $stores = $this->storeManager->getStores(false, true);
+                        $storeId = current($stores)->getId();
+                        $storeCode = key($stores);
+                    } else {
+                        $storeId = $result[$item->getData($columnName)];
+                        $storeCode = $this->storeManager->getStore($storeId)->getCode();
+                    }
+                    $item->setData('_first_store_id', $storeId);
+                    $item->setData('store_code', $storeCode);
+                    $item->setData('store_id', [$result[$entityId]]);
+                }
+            }
+        }
+    }
 
+    protected function performAfterLoadForType($tableName, $columnName)
+    {
+        $idArr = [];
+        $test =0 ;
+        $items = $this->getColumnValues($columnName);
+        if (count($items)) {
+            $connection = $this->getConnection();
+            $select = $connection->select()->from(['dealer_entity_store' => $this->getTable($tableName)])
+                ->where('dealer_entity_store.' . $columnName . ' IN (?)', $items);
+            $result = $connection->fetchAll($select);
+            if ($result) {
+                foreach ($this as $item) {
+                    $entityId = $item->getData($columnName);
+                    if (!isset($result[$entityId])) {
+                        continue;
+                    }
+
+                    $storeId = $result[$item->getData($columnName)];
+
+
+                    $item->setData('_first_type_id', $storeId["type_id"]);
+                    foreach ($result as $row){
+                        if($entityId ==$row["location_id"] ){
+                            $idArr[] = $row["type_id"];
+                        }
+                    }
+                    $item->setData('type_id', $idArr);
+                    $idArr =[];
+                }
+
+            }
+
+
+
+        }
+    }
     /**
      * Get SQL for get record count
      *

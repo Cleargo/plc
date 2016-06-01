@@ -7,8 +7,8 @@ use Cleargo\Showroom\Api\Data\GridInterface;
 
 class Grid extends \Magento\Framework\Model\AbstractModel
 {
-    const GRID_ID = 'entity_id'; // We define the id fieldname
-    const DEPARTMENT_ID = 'entity_id'; // We define the id fieldname
+    const GRID_ID = 'location_id'; // We define the id fieldname
+    const DEPARTMENT_ID = 'location_id'; // We define the id fieldname
 
     /**
      * Prefix of model events names

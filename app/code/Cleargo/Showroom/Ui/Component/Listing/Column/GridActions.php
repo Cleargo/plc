@@ -51,7 +51,7 @@ class GridActions extends Column
                 $item[$this->getData('name')]['edit'] = [
                     'href' => $this->urlBuilder->getUrl(
                         'showroom/grid/edit',
-                        ['id' => $item['entity_id']]
+                        ['id' => $item['location_id']]
                     ),
                     'label' => __('Edit'),
                     'hidden' => false,
@@ -59,7 +59,7 @@ class GridActions extends Column
                 $item[$this->getData('name')]['delete'] = [
                     'href' => $this->urlBuilder->getUrl(
                         'showroom/grid/delete',
-                        ['id' => $item['entity_id']]
+                        ['id' => $item['location_id']]
                     ),
                     'label' => __('Delete'),
                     'hidden' => false,
