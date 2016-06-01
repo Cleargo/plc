@@ -23,7 +23,7 @@ class InstallSchema implements InstallSchemaInterface
             $table = $installer->getConnection()
                 ->newTable($tableName)
                 ->addColumn(
-                    'entity_id',
+                    'location_id',
                     Table::TYPE_INTEGER,
                     null,
                     [

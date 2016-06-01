@@ -29,10 +29,12 @@
     </type>
 
     <!-- Simulate our class Cleargo\Contactus\Model\ResourceModel\Grid\Grid\Collection -->
-    <virtualType name="Cleargo\Contactus\Model\ResourceModel\Grid\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+    <type name="Cleargo\Contactus\Model\ResourceModel\Grid\Grid\Collection">
         <arguments>
             <argument name="mainTable" xsi:type="string">contactus_map_location</argument>
+            <argument name="eventPrefix" xsi:type="string">contactus_grid_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">grid_grid_collection</argument>
             <argument name="resourceModel" xsi:type="string">Cleargo\Contactus\Model\ResourceModel\Grid</argument>
         </arguments>
-    </virtualType>
+    </type>
 </config>

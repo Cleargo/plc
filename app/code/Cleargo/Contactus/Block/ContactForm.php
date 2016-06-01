@@ -28,7 +28,7 @@ class ContactForm extends \Magento\Contact\Block\ContactForm
 
         foreach ($collection as $ttt){
             $location = $ttt->get();
-            if(in_array($location["entity_id"],$locationArr)){
+            if(in_array($location["location_id"],$locationArr)){
                 $coordinates = $location["xcoordinates"].','.$location["ycoordinates"];
                 echo $coordinates;
                 break;
@@ -44,7 +44,7 @@ class ContactForm extends \Magento\Contact\Block\ContactForm
 
         foreach ($collection as $ttt){
             $location = $ttt->get();
-            if(in_array($location["entity_id"],$locationArr)){
+            if(in_array($location["location_id"],$locationArr)){
                 break;
             }
         }
@@ -72,7 +72,7 @@ class ContactForm extends \Magento\Contact\Block\ContactForm
         $collection = $this->locationFactory->create();
         foreach ($collection as $ttt){
             $location = $ttt->get();
-            if(in_array($location["entity_id"],$locationArr)){
+            if(in_array($location["location_id"],$locationArr)){
                 $coordinates = $location["xcoordinates"].','.$location["ycoordinates"];
 
                 echo "<span style=\"margin-right:15px;\" onclick='changeCenterAndMarker(new google.maps.LatLng(";

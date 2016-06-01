@@ -24,7 +24,7 @@
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">ContactusGridDataProvider</argument> <!-- Data provider class -->
             <argument name="name" xsi:type="string">contactus_grid_listing_data_source</argument> <!-- provider defined above -->
-            <argument name="primaryFieldName" xsi:type="string">entity_id</argument> <!-- Primary key -->
+            <argument name="primaryFieldName" xsi:type="string">location_id</argument> <!-- Primary key -->
             <argument name="requestFieldName" xsi:type="string">id</argument> <!-- URL name parameter -->
 
             <argument name="data" xsi:type="array">
@@ -33,7 +33,7 @@
                     <item name="update_url" xsi:type="url" path="mui/index/render"/>
                     <item name="storageConfig" xsi:type="array">
                         <!-- Primary key column name -->
-                        <item name="indexField" xsi:type="string">entity_id</item>
+                        <item name="indexField" xsi:type="string">location_id</item>
                     </item>
                 </item>
             </argument>
@@ -90,7 +90,7 @@
             <filterRange name="grid_id">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
-                        <item name="dataScope" xsi:type="string">entity_id</item> <!-- Column name in DB -->
+                        <item name="dataScope" xsi:type="string">location_id</item> <!-- Column name in DB -->
                         <item name="label" xsi:type="string" translate="true">ID</item> <!-- Label on grid -->
                         <item name="childDefaults" xsi:type="array">
                             <item name="provider" xsi:type="string">contactus_grid_listing.contactus_grid_listing.listing_top.listing_filters</item>
@@ -130,7 +130,7 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="selectProvider" xsi:type="string">contactus_grid_listing.contactus_grid_listing.contactus_grid_columns.ids</item>
-                    <item name="indexField" xsi:type="string">entity_id</item>
+                    <item name="indexField" xsi:type="string">location_id</item>
                 </item>
             </argument>
             <action name="delete">
@@ -187,12 +187,12 @@
                 <item name="config" xsi:type="array">
                     <item name="resizeEnabled" xsi:type="boolean">false</item>
                     <item name="resizeDefaultWidth" xsi:type="string">55</item>
-                    <item name="indexField" xsi:type="string">entity_id</item>
+                    <item name="indexField" xsi:type="string">location_id</item>
                 </item>
             </argument>
         </selectionsColumn>
         <!-- ID Column -->
-        <column name="entity_id">
+        <column name="location_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">textRange</item>
@@ -202,7 +202,7 @@
             </argument>
         </column>
 
-        <column name="store_id" ><!--class="Magento\Store\Ui\Component\Listing\Column\Store"-->
+        <column name="store_id" class="Magento\Store\Ui\Component\Listing\Column\Store"><!--class="Magento\Store\Ui\Component\Listing\Column\Store"-->
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
@@ -278,7 +278,7 @@
                 <item name="config" xsi:type="array">
                     <item name="resizeEnabled" xsi:type="boolean">false</item>
                     <item name="resizeDefaultWidth" xsi:type="string">107</item>
-                    <item name="indexField" xsi:type="string">entity_id</item>
+                    <item name="indexField" xsi:type="string">location_id</item>
                 </item>
             </argument>
         </actionsColumn>
