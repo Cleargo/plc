@@ -91,16 +91,17 @@ class Form extends Generic
             );
             $model->setStoreId($this->_storeManager->getStore(true)->getId());
         }
-$testing = [[
-    'label' => "Type A",
-    'value' => 1
-],[
-    'label' => "Type B",
-    'value' => 2
-],[
-    'label' => "Type C",
-    'value' => 3
-]];
+
+        $typeArray = [[
+            'label' => "Type A",
+            'value' => 1
+        ],[
+            'label' => "Type B",
+            'value' => 2
+        ],[
+            'label' => "Type C",
+            'value' => 3
+        ]];
 
         $field = $fieldset->addField(
             'type_id',
@@ -110,7 +111,7 @@ $testing = [[
                 'label' => __('Type'),
                 'title' => __('Type'),
                 'required' => true,
-                'values' => $testing
+                'values' => $typeArray
             ]
         );
         $renderer = $this->getLayout()->createBlock(
@@ -125,25 +126,30 @@ $testing = [[
         );
 
         $fieldset->addField(
-            'xcoordinates',
+            'xcoordinates', 
             'text',
-            ['name' => 'xcoordinates', 'label' => __('xcoordinates'), 'title' => __('xcoordinates'), 'required' => true]
-        );
-        $fieldset->addField(
-            'ycoordinates',
-            'text',
-            ['name' => 'ycoordinates', 'label' => __('ycoordinates'), 'title' => __('ycoordinates'), 'required' => true]
+            ['name' => 'xcoordinates', 'label' => __('X coordinate'), 'title' => __('X coordinate'), 'required' => true]
         );
 
         $fieldset->addField(
+            'ycoordinates',
+            'text',
+            ['name' => 'ycoordinates', 'label' => __('Y coordinate'), 'title' => __('Y coordinate'), 'required' => true]
+        );
+        $fieldset->addField(
+            'sort_order',
+            'text',
+            ['name' => 'sort_order', 'label' => __('Sort Order'), 'title' => __('Sort Order'), 'required' => true]
+        );
+        $fieldset->addField(
             'telephone',
             'text',
-            ['name' => 'telephone', 'label' => __('telephone'), 'title' => __('telephone'), 'required' => true]
+            ['name' => 'telephone', 'label' => __('Telephone'), 'title' => __('Telephone'), 'required' => true]
         );
          $fieldset->addField(
             'whatsapp',
             'text',
-            ['name' => 'whatsapp', 'label' => __('whatsapp'), 'title' => __('whatsapp'), 'required' => true]
+            ['name' => 'whatsapp', 'label' => __('Whatsapp'), 'title' => __('Whatsapp'), 'required' => true]
         );
 
 
@@ -151,7 +157,7 @@ $testing = [[
         $fieldset->addField(
             'office_hour',
             'text',
-            ['name' => 'office_hour', 'label' => __('office_hour'), 'title' => __('office_hour'), 'required' => true]
+            ['name' => 'office_hour', 'label' => __('Office hour'), 'title' => __('Office hour'), 'required' => true]
         );
 
 
