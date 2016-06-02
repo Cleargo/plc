@@ -63,6 +63,12 @@ class InstallSchema implements InstallSchemaInterface
                     'y-Coordinates'
                 )
                 ->addColumn(
+                    'sort_order',
+                    Table::TYPE_INTEGER,
+                    null,
+                    ['nullable' => false, 'default' => 0],
+                    'Sort Order'
+                )->addColumn(
                     'telephone',
                     Table::TYPE_TEXT,
                     30,
