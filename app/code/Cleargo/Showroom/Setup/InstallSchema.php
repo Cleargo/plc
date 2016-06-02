@@ -54,6 +54,12 @@ class InstallSchema implements InstallSchemaInterface
                     [10,7],
                     ['nullable' => false, 'default' => 0],
                     'y-Coordinates'
+                )->addColumn(
+                    'sort_order',
+                    Table::TYPE_INTEGER,
+                    null,
+                    ['nullable' => false, 'default' => 0],
+                    'Sort Order'
                 )
                 ->addColumn(
                     'telephone',

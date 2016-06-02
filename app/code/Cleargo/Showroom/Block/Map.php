@@ -39,7 +39,7 @@ class Map extends \Magento\Framework\View\Element\Template
     public function getDefaultDescription(){
         $locationArr = $this->getLocationArray();
         $collection = $this->locationFactory->create();
-
+        $collection->setOrder('sort_order','ASC');
 
 
         foreach ($collection as $ttt){
@@ -99,7 +99,7 @@ class Map extends \Magento\Framework\View\Element\Template
         $locationArr = $this->getLocationArray();
 
         $collection = $this->locationFactory->create();
-
+        $collection->setOrder('sort_order','ASC');
         $this->echoHeading(1,'Type A Product',$locationArr);
 
         foreach ($collection as $ttt){

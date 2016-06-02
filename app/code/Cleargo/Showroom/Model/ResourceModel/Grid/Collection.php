@@ -26,7 +26,7 @@ class Collection extends AbstractCollection
     }
     protected function _afterLoad()
     {
-
+        $this->setOrder('sort_order','ASC');
         $this->performAfterLoad('showroom_location_store', 'location_id');
         $this->performAfterLoadForType('showroom_location_type', 'location_id');
 
