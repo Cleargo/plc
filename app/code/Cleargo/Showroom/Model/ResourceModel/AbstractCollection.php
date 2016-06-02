@@ -124,24 +124,33 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
             $connection = $this->getConnection();
             $select = $connection->select()->from(['dealer_entity_store' => $this->getTable($tableName)])
                 ->where('dealer_entity_store.' . $columnName . ' IN (?)', $items);
-            $result = $connection->fetchPairs($select);
+            $result = $connection->fetchAll($select);
             if ($result) {
                 foreach ($this as $item) {
                     $entityId = $item->getData($columnName);
-                    if (!isset($result[$entityId])) {
-                        continue;
+                    $checkIsset = false;
+                    $storeIds = array();
+                    foreach($result as $sub_result) {
+                        if($sub_result[$columnName] == $entityId) {
+                            $checkIsset = true;
+
+                            if($sub_result[$columnName] == 0) {
+                                $stores = $this->storeManager->getStores(false, true);
+                                $storeId = current($stores)->getId();
+                                $storeCode = key($stores);
+                            } else {
+                                $storeId = $sub_result[array_keys($sub_result)[1]];
+                                $storeCode = $this->storeManager->getStore($storeId)->getCode();
+                                $storeIds[] = $sub_result[array_keys($sub_result)[1]];
+                            }
+                        }
                     }
-                    if ($result[$entityId] == 0) {
-                        $stores = $this->storeManager->getStores(false, true);
-                        $storeId = current($stores)->getId();
-                        $storeCode = key($stores);
-                    } else {
-                        $storeId = $result[$item->getData($columnName)];
-                        $storeCode = $this->storeManager->getStore($storeId)->getCode();
+                    if(!$checkIsset) {
+                        continue;
                     }
                     $item->setData('_first_store_id', $storeId);
                     $item->setData('store_code', $storeCode);
-                    $item->setData('store_id', [$result[$entityId]]);
+                    $item->setData('store_id', $storeIds);
                 }
             }
         }
