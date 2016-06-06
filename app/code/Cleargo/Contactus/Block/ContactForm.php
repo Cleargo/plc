@@ -24,6 +24,7 @@ class ContactForm extends \Magento\Contact\Block\ContactForm
 
     public function getDefaultLocation(){
         $collection = $this->locationFactory->create();
+        $collection->setOrder('sort_order','ASC');
         $locationArr = $this->getLocationArray();
 
         foreach ($collection as $ttt){
@@ -39,7 +40,7 @@ class ContactForm extends \Magento\Contact\Block\ContactForm
     public function getDefaultDescription(){
         $locationArr = $this->getLocationArray();
         $collection = $this->locationFactory->create();
-
+        $collection->setOrder('sort_order','ASC');
 
 
         foreach ($collection as $ttt){
@@ -70,6 +71,7 @@ class ContactForm extends \Magento\Contact\Block\ContactForm
         $locationArr = $this->getLocationArray();
 
         $collection = $this->locationFactory->create();
+        $collection->setOrder('sort_order','ASC');
         foreach ($collection as $ttt){
             $location = $ttt->get();
             if(in_array($location["location_id"],$locationArr)){

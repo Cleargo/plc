@@ -129,4 +129,38 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 
         return parent::_prepareColumns();
     }
+
+    protected function _afterLoadCollection()
+    {
+        $this->getCollection()->walk('afterLoad');
+        parent::_afterLoadCollection();
+    }
+
+    /**
+     * Filter store condition
+     *
+     * @param \Magento\Framework\Data\Collection $collection
+     * @param \Magento\Framework\DataObject $column
+     * @return void
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    protected function _filterStoreCondition($collection, \Magento\Framework\DataObject $column)
+    {
+        if (!($value = $column->getFilter()->getValue())) {
+            return;
+        }
+
+        $this->getCollection()->addStoreFilter($value);
+    }
+
+    /**
+     * Row click url
+     *
+     * @param \Magento\Framework\DataObject $row
+     * @return string
+     */
+    public function getRowUrl($row)
+    {
+        return $this->getUrl('*/*/edit', ['page_id' => $row->getId()]);
+    }
 }

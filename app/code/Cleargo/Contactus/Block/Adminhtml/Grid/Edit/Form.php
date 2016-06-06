@@ -95,53 +95,58 @@ class Form extends Generic
         $fieldset->addField(
             'title',
             'text',
-            ['name' => 'title', 'label' => __('title'), 'title' => __('title'), 'required' => true]
+            ['name' => 'title', 'label' => __('Title'), 'title' => __('Title'), 'required' => true]
         );
 
         $fieldset->addField(
             'address',
             'text',
-            ['name' => 'address', 'label' => __('address'), 'title' => __('address'), 'required' => true]
+            ['name' => 'address', 'label' => __('Address'), 'title' => __('Address'), 'required' => true]
         );
 
         $fieldset->addField(
             'xcoordinates',
             'text',
-            ['name' => 'xcoordinates', 'label' => __('xcoordinates'), 'title' => __('xcoordinates'), 'required' => true]
+            ['name' => 'xcoordinates', 'label' => __('X coordinate'), 'title' => __('X coordinate'), 'required' => true]
         );
         $fieldset->addField(
             'ycoordinates',
             'text',
-            ['name' => 'ycoordinates', 'label' => __('ycoordinates'), 'title' => __('ycoordinates'), 'required' => true]
+            ['name' => 'ycoordinates', 'label' => __('Y coordinate'), 'title' => __('Y coordinate'), 'required' => true]
+        );
+        $fieldset->addField(
+            'sort_order',
+            'text',
+            ['name' => 'sort_order', 'label' => __('Sort Order'), 'title' => __('Sort Order'), 'required' => true]
         );
 
         $fieldset->addField(
             'telephone',
             'text',
-            ['name' => 'telephone', 'label' => __('telephone'), 'title' => __('telephone'), 'required' => true]
+            ['name' => 'telephone', 'label' => __('Telephone'), 'title' => __('Telephone'), 'required' => true]
         );
          $fieldset->addField(
             'fax',
             'text',
-            ['name' => 'fax', 'label' => __('fax'), 'title' => __('fax'), 'required' => true]
+            ['name' => 'fax', 'label' => __('Fax'), 'title' => __('Fax'), 'required' => false]
         );
 
         $fieldset->addField(
             'email',
             'text',
-            ['name' => 'email', 'label' => __('email'), 'title' => __('email'), 'required' => true]
+            ['name' => 'email', 'label' => __('Email'), 'title' => __('Email'), 'required' => false]
         );
 
  $fieldset->addField(
             'office_hour',
             'textarea',
-            ['name' => 'office_hour', 'label' => __('office_hour'), 'title' => __('office_hour'), 'required' => true]
+            ['name' => 'office_hour', 'label' => __('Office hour'), 'title' => __('Office hour'), 'required' => false]
         );
 
  $fieldset->addField(
             'lunch_time',
             'textarea',
-            ['name' => 'lunch_time', 'label' => __('lunch_time'), 'title' => __('lunch_time'), 'required' => true]
+            ['name' => 'lunch_time', 'label' => __('Lunch time'), 'title' => __('Lunch time'), 'required' => false]
         );
 
 
