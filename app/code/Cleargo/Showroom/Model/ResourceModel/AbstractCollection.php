@@ -117,6 +117,22 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
         }
         parent::_renderFiltersBefore();
     }
+
+    protected function joinTypeRelationTable($tableName, $columnName)
+    {
+        if ($this->getFilter('type')) {
+            $this->getSelect()->join(
+                ['type_table' => $this->getTable($tableName)],
+                'main_table.' . $columnName . ' = type_table.' . $columnName,
+                []
+            )->group(
+                'main_table.' . $columnName
+            );
+        }
+        parent::_renderFiltersBefore();
+    }
+
+
     protected function performAfterLoad($tableName, $columnName)
     {
         $items = $this->getColumnValues($columnName);
@@ -185,11 +201,7 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
                     $item->setData('type_id', $idArr);
                     $idArr =[];
                 }
-
             }
-
-
-
         }
     }
     /**
