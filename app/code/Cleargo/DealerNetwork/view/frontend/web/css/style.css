@@ -1,0 +1,48 @@
+ul {
+    list-style: none none;
+    margin: 0;
+    padding: 0;
+}
+
+select {
+    width: auto;
+}
+
+.dealer-list-container {
+    padding: 20px 0;
+}
+
+.region-list h3 {
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.dealer-item > div {
+    float: left;
+}
+
+.dealer-item:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.dealer-name {
+    width: 35%;
+    padding-right: 15px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.dealer-address {
+    width: 50%;
+    padding-right: 15px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.dealer-tel {
+    width: 15%;
+    text-align: right;
+}

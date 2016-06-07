@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Cleargo_DealerNetwork::dealer_network" title="Dealer Network" module="Cleargo_DealerNetwork" sortOrder="10" parent="Cleargo_Core::extension" resource="Cleargo_DealerNetwork::dealer_network"/>
+        <add id="Cleargo_DealerNetwork::country" title="Countries" module="Cleargo_DealerNetwork" sortOrder="10" parent="Cleargo_DealerNetwork::dealer_network" action="dealer/country" resource="Cleargo_DealerNetwork::country"/>
+        <add id="Cleargo_DealerNetwork::region" title="Regions" module="Cleargo_DealerNetwork" sortOrder="20" parent="Cleargo_DealerNetwork::dealer_network" action="dealer/region" resource="Cleargo_DealerNetwork::region"/>
+        <add id="Cleargo_DealerNetwork::dealer" title="Dealers" module="Cleargo_DealerNetwork" sortOrder="30" parent="Cleargo_DealerNetwork::dealer_network" action="dealer/dealer" resource="Cleargo_DealerNetwork::dealer"/>
+        <add id="Cleargo_DealerNetwork::brand" title="Brands" module="Cleargo_DealerNetwork" sortOrder="40" parent="Cleargo_DealerNetwork::dealer_network" action="dealer/brand" resource="Cleargo_DealerNetwork::brand"/>
+    </menu>
+</config>

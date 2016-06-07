@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 CLEARgo. All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Cleargo\DealerNetwork\Block\Adminhtml\Brand\Edit" name="dealer_brand_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Cleargo\DealerNetwork\Block\Adminhtml\Brand\Edit\Tabs" name="dealer_brand_edit_tabs">
+                <block class="Cleargo\DealerNetwork\Block\Adminhtml\Brand\Edit\Tab\Main" name="dealer_brand_edit_tab_main"/>
+                <block class="Cleargo\DealerNetwork\Block\Adminhtml\Brand\Edit\Tab\Label" name="dealer_brand_edit_tab_label"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">dealer_brand_edit_tab_main</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">label_section</argument>
+                    <argument name="block" xsi:type="string">dealer_brand_edit_tab_label</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
