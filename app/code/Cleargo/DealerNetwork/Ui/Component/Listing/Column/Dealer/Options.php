@@ -1,7 +1,6 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © 2016 CLEARgo. All rights reserved.
  */
 namespace Cleargo\DealerNetwork\Ui\Component\Listing\Column\Dealer;
 

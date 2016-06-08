@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2016 CLEARgo. All rights reserved.
  */
 namespace Cleargo\DealerNetwork\Model;
 
