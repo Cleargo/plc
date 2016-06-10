@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 CLEARgo. All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"  />
+    <body>
+        <referenceContainer name="content">
+            <block class="Cleargo\FindYourLock\Block\Adminhtml\District\Edit" name="lock_district_edit"/>
+        </referenceContainer>
+    </body>
+</page>

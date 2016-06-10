@@ -1,0 +1,54 @@
+ul {
+    list-style: none none;
+    margin: 0;
+    padding: 0;
+}
+
+select {
+    width: auto;
+}
+
+.lock-list-container {
+    padding: 20px 0;
+}
+
+.district-list h3 {
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.lock-item > div {
+    float: left;
+}
+
+.lock-item:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.lock-name {
+    width: 35%;
+    padding-right: 15px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.lock-address {
+    width: 50%;
+    padding-right: 15px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.lock-tel {
+    width: 15%;
+    text-align: right;
+}
+.detail-title{
+
+}
+.lock-logo{
+ max-width: 80px;
+}

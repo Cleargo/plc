@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 CLEARgo. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+   <preference for="Cleargo\FindYourLock\Api\Data\RegionSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults" />
+    <preference for="Cleargo\FindYourLock\Api\Data\RegionInterface" type="Cleargo\FindYourLock\Model\Region" />
+    <preference for="Cleargo\FindYourLock\Api\RegionRepositoryInterface" type="Cleargo\FindYourLock\Model\RegionRepository" />
+    <preference for="Cleargo\FindYourLock\Api\Data\DistrictSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults" />
+    <preference for="Cleargo\FindYourLock\Api\Data\DistrictInterface" type="Cleargo\FindYourLock\Model\District" />
+    <preference for="Cleargo\FindYourLock\Api\DistrictRepositoryInterface" type="Cleargo\FindYourLock\Model\DistrictRepository" />
+    <preference for="Cleargo\FindYourLock\Api\Data\LockSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults" />
+    <preference for="Cleargo\FindYourLock\Api\Data\LockInterface" type="Cleargo\FindYourLock\Model\Lock" />
+    <preference for="Cleargo\FindYourLock\Api\LockRepositoryInterface" type="Cleargo\FindYourLock\Model\LockRepository" />
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="lock_region_listing_data_source" xsi:type="string">Cleargo\FindYourLock\Model\ResourceModel\Region\Grid\Collection</item>
+                <item name="lock_district_listing_data_source" xsi:type="string">Cleargo\FindYourLock\Model\ResourceModel\District\Grid\Collection</item>
+                <item name="lock_lock_listing_data_source" xsi:type="string">Cleargo\FindYourLock\Model\ResourceModel\Lock\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Cleargo\FindYourLock\Model\ResourceModel\Region\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">lock_region</argument>
+            <argument name="eventPrefix" xsi:type="string">lock_region_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">country_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Cleargo\FindYourLock\Model\ResourceModel\Region</argument>
+        </arguments>
+    </type>
+    <type name="Cleargo\FindYourLock\Model\ResourceModel\District\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">lock_district</argument>
+            <argument name="eventPrefix" xsi:type="string">lock_district_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">district_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Cleargo\FindYourLock\Model\ResourceModel\District</argument>
+        </arguments>
+    </type>
+    <type name="Cleargo\FindYourLock\Model\ResourceModel\Lock\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">lock_lock</argument>
+            <argument name="eventPrefix" xsi:type="string">lock_lock_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">lock_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Cleargo\FindYourLock\Model\ResourceModel\Lock</argument>
+        </arguments>
+    </type>
+    <virtualType name="LockGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="RegionGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Cleargo\FindYourLock\Model\ResourceModel\Region\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">LockGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="DistrictGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Cleargo\FindYourLock\Model\ResourceModel\District\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">LockGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="LockGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Cleargo\FindYourLock\Model\ResourceModel\Lock\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">LockGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+</config>

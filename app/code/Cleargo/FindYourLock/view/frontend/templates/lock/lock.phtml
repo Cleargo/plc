@@ -1,0 +1,108 @@
+<?php
+$regions = $this->getRegionList();
+$districtsArr = [];
+?>
+<div class="keyword-container">
+    <div class="district-filter">
+        <input name="keyword" />
+    </div>
+</div>
+<div class="lock-filter">
+    <div class="district-filter">
+        <div class="filter-label">
+            <span><?php echo __('District') ?></span>
+        </div>
+        <div class="filter-options-container">
+            <ul class="filter-checkboxs-list">
+                <li>
+                    <input id="region_0" type="radio" name="region[]" value="" checked/><label for="region_0"><?php echo __('All') ?></label>
+                </li>
+                <?php foreach($regions as $region): ?>
+                <li>
+                    <input id="region_<?php echo $region->getId() ?>" type="radio" name="region[]" value="<?php echo $region->getId() ?>" /><label for="region_<?php echo $region->getId() ?>"><?php echo $region->getName() ?></label>
+                    <?php $districts = $this->getDistrictList($region); ?>
+                    <?php if(!empty((array)$districts)): ?>
+                    <?php
+                        $district_shown_num = 0;
+
+                        foreach($districts as $district) {
+                            $districtsArr[] = array('id'=>$district->getId(),'name'=>$district->getName());
+                        }
+                    ?>
+
+                        <!--<select name="district_<?php /*echo $region->getId() */?>">
+                            <?php /*foreach($districts as $district): */?>
+
+                            <option value="<?php /*echo $district->getId() */?>"><?php /*echo $district->getName() */?></option>
+
+                            <?php /*endforeach; */?>
+                        </select>-->
+
+                    <?php endif; ?>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+    <div class="district-filter">
+        <div class="filter-label">
+            <span><?php echo __('District') ?></span>
+        </div>
+        <div class="filter-options-container">
+            <?php $brands = $this->getBrandList(); ?>
+            <select name="district">
+                <option value=""><?php echo __('Show All') ?></option>
+                <?php foreach($districtsArr as $district): ?>
+                <option value="<?php echo $district['id'] ?>"><?php echo $district['name'] ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="lock-list-container">
+    <ul class="region-list">
+        <?php foreach($regions as $region): ?>
+        <?php $districts = $this->getDistrictList($region); ?>
+        <?php $lock_num = $this->getLockCount($region) ?>
+        <?php if(!empty((array)$districts) && $lock_num > 0): ?>
+        <li class="region-item">
+            <!--<h2 class="region-name">
+                <?php /*echo $region->getName() */?>
+            </h2>-->
+
+            <ul class="district-list">
+                <?php foreach($districts as $district): ?>
+                <?php $locks = $this->getLockList($district); ?>
+                <?php if(!empty((array)$locks)): ?>
+                <li class="district-item">
+
+                    <h3 class="district-name">
+                        <?php echo $district->getName() ?>
+                    </h3>
+
+                    <table class="lock-list">
+                        <?php foreach($locks as $lock): ?>
+
+                                <tr class="lock-item1">
+                                    <td class="lock-name1">
+                                        <a href="finder/view/id/<?php echo $lock->getId()?>"> <?php echo $lock->getName() ?>      </a>
+                                    <td/>
+                                    <td class="lock-name1">
+                                        <a href="finder/view/id/<?php echo $lock->getId()?>"><?php echo $lock->getName2() ?>   </a>
+                                    </td>
+                                    <td class="lock-name1">
+                                        <a href="finder/view/id/<?php echo $lock->getId()?>"><?php echo $lock->getAddress() ?>   </a>
+                                    </td>
+                                </tr>
+
+                        <?php endforeach; ?>
+                    </table>
+                </li>
+                <?php endif; ?>
+                <?php endforeach; ?>
+            </ul>
+        </li>
+        <?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+</div>
