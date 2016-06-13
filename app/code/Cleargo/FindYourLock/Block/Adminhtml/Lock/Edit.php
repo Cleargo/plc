@@ -70,4 +70,19 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
             return __('New Lock');
         }
     }
+
+    protected function _prepareLayout()
+    {
+        $this->_formScripts[] = "
+            function toggleEditor() {
+                if (tinyMCE.getInstanceById('post_content') == null) {
+                    tinyMCE.execCommand('mceAddControl', false, 'post_content');
+                } else {
+                    tinyMCE.execCommand('mceRemoveControl', false, 'post_content');
+                }
+            };
+        ";
+
+        return parent::_prepareLayout();
+    }
 }

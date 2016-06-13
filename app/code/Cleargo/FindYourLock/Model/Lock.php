@@ -211,6 +211,10 @@ public function getHeight()
     {
         return $this->getData(self::CYLINDER);
     }
+    public function getProductId()
+    {
+        return $this->getData(self::PRODUCT_ID);
+    }
     public function getLogo()
     {
         return 'http://plc.dev.cleargo.com/pub/media/'.$this->getData(self::LOGO);

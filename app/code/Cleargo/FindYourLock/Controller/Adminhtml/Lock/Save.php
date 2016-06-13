@@ -93,6 +93,24 @@ class Save extends \Magento\Backend\App\Action
         return $data;
     }
 
+
+    /**
+     * deal with product field
+     *
+     * @return array
+     */
+
+    protected function handleProductField($data){
+        if(array_key_exists("products",$data)){
+            $tempProduct  = explode("&",$data["products"] );
+            if(sizeof($tempProduct) ){
+                $data ["product_id"] = $tempProduct[0];
+            }
+
+        }
+        return $data;
+    }
+
     /**
      * Save action
      *
@@ -113,12 +131,9 @@ class Save extends \Magento\Backend\App\Action
             }
 
 
-/*var_dump(isset($_FILES['cylinder']) && isset($_FILES['cylinder']['name']) && strlen($_FILES['cylinder']['name']));
-var_dump($_FILES);
-            die();*/
             $data = $this->mapImageToField(['logo','before_image1','before_image2','after_image1','after_image2'],$data);
-            //var_dump($data);die();
-
+            $data = $this->handleProductField($data);
+//var_dump($data);die();
             $model->setData($data);
             try {
                 $model->save();

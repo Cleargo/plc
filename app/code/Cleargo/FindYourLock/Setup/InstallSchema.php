@@ -345,6 +345,12 @@ class InstallSchema implements InstallSchemaInterface
             ['nullable' => true],
             'Lock Cylinder'
         )->addColumn(
+            'product_id',
+            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+            null,
+            ['nullable' => true],
+            'Procut ID'
+        )->addColumn(
             'identifier',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             255,
@@ -354,31 +360,31 @@ class InstallSchema implements InstallSchemaInterface
             'logo',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             255,
-            ['nullable' => false],
+            ['nullable' => true],
             'Lock String Logo'
         )->addColumn(
             'before_image1',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             255,
-            ['nullable' => false],
+            ['nullable' => true],
             'Lock String Before Image 1'
         )->addColumn(
             'before_image2',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             255,
-            ['nullable' => false],
+            ['nullable' => true],
             'Lock String Before Image 2'
         )->addColumn(
             'after_image1',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             255,
-            ['nullable' => false],
+            ['nullable' => true],
             'Lock String After Image 1'
         )->addColumn(
             'after_image2',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             255,
-            ['nullable' => false],
+            ['nullable' => true],
             'Lock String After Image 2'
         )->addColumn(
             'sort_order',

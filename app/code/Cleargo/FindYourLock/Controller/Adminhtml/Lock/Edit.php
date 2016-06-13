@@ -54,9 +54,9 @@ class Edit extends \Magento\Backend\App\Action
         // load layout, set active menu and breadcrumbs
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
-       /* $resultPage->setActiveMenu('Cleargo_FindYourLock::lock')
+        $resultPage->setActiveMenu('Cleargo_FindYourLock::lock')
             ->addBreadcrumb(__('Find Your Lock'), __('Find Your Lock'))
-            ->addBreadcrumb(__('Manage Locks'), __('Manage Locks'));*/
+            ->addBreadcrumb(__('Manage Locks'), __('Manage Locks'));
         return $resultPage;
     }
 

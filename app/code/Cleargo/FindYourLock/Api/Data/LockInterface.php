@@ -31,6 +31,7 @@ interface LockInterface
     const BACKSET                    = 'backset';
     const LOCKSET                    = 'lockset';
     const CYLINDER                    = 'cylinder';
+    const PRODUCT_ID                    = 'product_id';
     const BEFORE_IMAGE1                    = 'before_image1';
     const BEFORE_IMAGE2                    = 'before_image2';
     const AFTER_IMAGE1                    = 'after_image1';

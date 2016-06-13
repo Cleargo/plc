@@ -4,24 +4,45 @@
  * Copyright © 2016 CLEARgo. All rights reserved.
  */
 -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="editor"/>
     <body>
         <referenceContainer name="content">
             <block class="Cleargo\FindYourLock\Block\Adminhtml\Lock\Edit" name="lock_lock_edit"/>
         </referenceContainer>
         <referenceContainer name="left">
-            <block class="Cleargo\FindYourLock\Block\Adminhtml\Lock\Edit\Tabs" name="cleargo_findYourLock_edit_tabs">
-                <block class="Cleargo\FindYourLock\Block\Adminhtml\Lock\Edit\Tab\Main213" name="cleargo_findYourLock_edit_tab_main"/>
-                <block class="Cleargo\FindYourLock\Block\Adminhtml\Lock\Edit\Tab\Content" name="cleargo_findYourLock_edit_tab_content"/>
+            <block class="Cleargo\FindYourLock\Block\Adminhtml\Lock\Edit\Tabs" name="cleargo_findyourlock_edit_tabs">
+                <block class="Cleargo\FindYourLock\Block\Adminhtml\Lock\Edit\Tab\Main" name="cleargo_findyourlock_edit_tab_main"/>
                 <action method="addTab">
                     <argument name="name" xsi:type="string">main_section</argument>
-                    <argument name="block" xsi:type="string">cleargo_findYourLock_edit_tab_main</argument>
+                    <argument name="block" xsi:type="string">cleargo_findyourlock_edit_tab_main</argument>
                 </action>
+                <block class="Cleargo\FindYourLock\Block\Adminhtml\Lock\Edit\Tab\Basic" name="cleargo_findyourlock_edit_tab_basic"/>
                 <action method="addTab">
-                    <argument name="name" xsi:type="string">content_section</argument>
-                    <argument name="block" xsi:type="string">cleargo_findYourLock_edit_tab_content</argument>
+                    <argument name="name" xsi:type="string">basic_section</argument>
+                    <argument name="block" xsi:type="string">cleargo_findyourlock_edit_tab_basic</argument>
                 </action>
+                <block class="Cleargo\FindYourLock\Block\Adminhtml\Lock\Edit\Tab\Replacement" name="cleargo_findyourlock_edit_tab_replacement"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">replacement_section</argument>
+                    <argument name="block" xsi:type="string">cleargo_findyourlock_edit_tab_replacement</argument>
+                </action>
+                <block class="Cleargo\FindYourLock\Block\Adminhtml\Lock\Edit\Tab\Images" name="cleargo_findyourlock_edit_tab_images"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">images_section</argument>
+                    <argument name="block" xsi:type="string">cleargo_findyourlock_edit_tab_images</argument>
+                </action>
+                <!-- This code is added for products grid -->
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">attachment_products</argument>
+                    <argument name="block" xsi:type="array">
+                        <item name="label" xsi:type="string">Select Products</item>
+                        <item name="title" xsi:type="string">Select Products</item>
+                        <item name="url" xsi:type="helper" helper="Cleargo\FindYourLock\Helper\Data::getProductsGridUrl"></item>
+                        <item name="class" xsi:type="string">ajax</item>
+                    </argument>
+                </action>
+                <!-- This code is added for products grid -->
             </block>
         </referenceContainer>
 
