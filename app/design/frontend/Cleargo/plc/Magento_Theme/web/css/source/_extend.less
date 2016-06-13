@@ -1,0 +1,150 @@
+& when (@media-common = true) {
+
+
+    b,
+    strong {
+        .lib-css(font-weight, @font-style__base);
+        .lib-css(font-family, @font-family__bold);
+    }
+    
+    .page-header .panel.wrapper{
+        display: none;
+    }
+    .navigation {
+        .lib-css(font-family,@font-family__bold);
+    }
+    .page-footer {
+        .lib-css(background, @color-white);
+    }
+    .footer{
+        .footer-links{
+            display: inline-block;
+            vertical-align: top;
+            padding-bottom: 30px;
+            H4{
+                position: relative;
+                margin: 0;
+                font-size: 16px;
+                font-weight: normal;
+                text-transform: uppercase;
+                display: inline-block;
+                border-bottom: 1px solid;
+                padding: 8px 0;
+                margin: 10px 0 20px;
+            }
+            &.about-us, &.whats-new{
+                width: 50%;
+            }
+            &.customer-services, &.follow-us{
+                width: 100%;
+            }
+            li{
+                padding: 2px 0;
+                a{
+                    color: @text__color;
+                    text-decoration: none;
+                    line-height: 20px;
+                }
+            }
+            &.customer-services{
+                div{
+                    clear: both;
+                    ul{
+                        display: inline-block;
+                        width: 50%;
+                        float: left;
+                    }
+                }
+            }
+        }
+    }
+    .copyright{
+        .lib-css(background-color, @copyright__background-color);
+        display: block;
+        padding:0;
+        text-align: left;
+        padding-bottom:@indent__l;
+        .content{
+            padding-left: @layout-indent__width;
+            padding-right: @layout-indent__width;
+            margin-left: auto;
+            margin-right: auto;
+            width: auto;
+            max-width: @layout__max-width;
+            box-sizing: border-box;
+        }
+        span{
+            padding-left: @layout-indent__width;
+            .lib-css(color, @text__color);
+            .lib-css(font-size,@font-size__s);
+        }
+    }
+
+}
+
+//
+//    Desktop
+//-------------------------------------------------------------
+//screen__  |  xxs  |  xs   |  s    |  m    |   l    |  xl    |
+//          | 320px | 480px | 640px | 768px | 1024px | 1440px |
+//          |-------|-------|-------|-------|--------|--------|
+//
+//mobile >> .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs)
+//mobile >> .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s)
+//laptop >> .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m)
+
+//
+//    MOBILE | smaller than 768
+//-------------------------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .header{
+        &.content{
+        }
+    }
+}
+
+//
+//    Desktop | larger than 768
+//-------------------------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    /* change limit @ 1280px to unlimited */
+    .page-header{
+        .header.content{
+            max-width: inherit;
+        }
+    }
+
+    .page-footer {
+        .lib-css(background, @color-white); 
+        .lib-css(padding-bottom, @indent__xl);
+    }
+    .footer{
+        &.content ul{
+            padding-right: 0;
+        }
+        .footer-links{
+            display: inline-block;
+            min-height: 210px;
+            &.about-us, &.whats-new, &.follow-us{
+                width: 20%;
+            }
+            &.customer-services{
+                width: 40%;
+                div{
+                    ul{
+                        width: 45%;
+                    }
+                }
+            }
+        }
+    }    
+}
+
+//.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l){ //up to 1024
+@media screen and (min-width: @screen__m) and (max-width: @screen__l){
+    .footer{
+        /*max-width: calc(100% - 40px); */
+        .footer-links {
+        }
+    }
+}

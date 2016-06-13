@@ -1,0 +1,26 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<div class="footer-container">
+    <div class="footer-wrapper">
+        <div class="footer">
+            <?php //echo $block->getChildHtml() ?>
+            <div
+                class="footer-links about-us"><?php echo $block->getChildHtml('footer_links_about_us')?>
+            </div><div
+                class="footer-links whats-new"><?php echo $block->getChildHtml('footer_links_whats_new')?>
+            </div><div
+                class="footer-links customer-services"><?php echo $block->getChildHtml('footer_links_customer_services')?>
+            </div><div
+                class="footer-links follow-us"><?php echo $block->getChildHtml('footer_links_follow_us')?>
+            </div>
+           
+        </div>
+    </div>
+</div>
