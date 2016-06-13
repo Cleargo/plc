@@ -3,6 +3,11 @@ require([
     'mage/translate'
 ], function($){
     $(document).ready(function() {
+        $('.back-button').click(function () {
+            window.history.back();
+        });
+
+
         $('.district-filter input[type="radio"]').change(function() {
             updateDealerList();
         });

@@ -1,94 +1,102 @@
+<div class="left-container">
+    <div class="region-and-district">
+        <span class="district"><?php echo __("District: ").$this->getDistrictName();?></span>
+        <span> | </span>
+        <span class="region"><?php echo __("Region: ").$this->getRegionName();?></span>
+    </div>
+    <div class="basic-info-container">
+        <h3 class="detail-title"><?php echo __("Basic Infomation") ?></h3>
+        <table class="basic-info">
+            <?php if($this->getCurrentLock()->getAddress()):?>
+                <tr>
+                    <td> <?php echo __("Address:") ?> </td>
+                    <td> <?php echo $this->getCurrentLock()->getAddress(); ?> </td>
+                </tr>
+            <?php endif ?>
+            <?php if($this->getCurrentLock()->getYear()):?>
+                <tr>
+                    <td> <?php echo __("Date of tenancy:") ?> </td>
+                    <td> <?php echo $this->getCurrentLock()->getYear(); ?> </td>
+                </tr>
+            <?php endif ?>
+            <?php if($this->getCurrentLock()->getDeveloper()):?>
+                <tr>
+                    <td> <?php echo __("Developer:") ?> </td>
+                    <td> <?php echo $this->getCurrentLock()->getDeveloper(); ?> </td>
+                </tr>
+            <?php endif ?>
+            <?php if($this->getCurrentLock()->getBlock()):?>
+                <tr>
+                    <td> <?php echo __("Block:") ?> </td>
+                    <td> <?php echo $this->getCurrentLock()->getBlock(); ?></td>
+                </tr>
+            <?php endif ?>
+            <?php if($this->getCurrentLock()->getUnit()):?>
+                <tr>
+                    <td> <?php echo __("No. of units:") ?> </td>
+                    <td> <?php echo $this->getCurrentLock()->getUnit(); ?></td>
+                </tr>
+            <?php endif ?>
+            <?php if($this->getCurrentLock()->getUnitPerFloor()):?>
+                <tr>
+                    <td> <?php echo __("No. of units on each floor:") ?> </td>
+                    <td> <?php echo $this->getCurrentLock()->getUnitPerFloor(); ?></td>
+                </tr>
+            <?php endif ?>
+            <?php if($this->getCurrentLock()->getSize()):?>
+                <tr>
+                    <td> <?php echo __("Size:") ?> </td>
+                    <td> <?php echo $this->getCurrentLock()->getSize(); ?></td>
+                </tr>
+            <?php endif ?>
+            <?php if($this->getCurrentLock()->getBrand()):?>
+                <tr>
+                    <td> <?php echo __("Brand of lock:") ?> </td>
+                    <td> <?php echo $this->getCurrentLock()->getBrand(); ?></td>
+                </tr>
+            <?php endif ?>
+            <?php if($this->getCurrentLock()->getThickness()):?>
+                <tr>
+                    <td> <?php echo __("Door thickness:") ?> </td>
+                    <td> <?php echo $this->getCurrentLock()->getThickness(); ?></td>
+                </tr>
+            <?php endif ?>
+            <?php if($this->getCurrentLock()->getBackset()):?>
+                <tr>
+                    <td> <?php echo __("Backset:") ?> </td>
+                    <td> <?php echo $this->getCurrentLock()->getBackset(); ?></td>
+                </tr>
+            <?php endif ?>
+        </table>
+    </div>
+    <div class="recommendation-container">
+        <table class="recommendation">
+            <?php if($this->getCurrentLock()->getLockset()||$this->getCurrentLock()->getCylinder()):?>
+                <h3 class="detail-title"><?php echo __("Lock replacement recommendation") ?></h3>
+            <?php endif ?>
+            <?php if($this->getCurrentLock()->getLockset()):?>
+                <tr>
+                    <td> <?php echo __("Lockset:") ?> </td>
+                    <td> <?php echo $this->getCurrentLock()->getLockset(); ?></td>
+                </tr>
+            <?php endif ?>
+            <?php if($this->getCurrentLock()->getCylinder()):?>
+                <tr>
+                    <td> <?php echo __("Cylinder:") ?> </td>
+                    <td> <?php echo $this->getCurrentLock()->getCylinder(); ?></td>
+                </tr>
+            <?php endif ?>
+        </table>
+    </div>
+    <div class="button-container">
+        <span class="back-button"> <?= __("BACK") ?>  </span>
+        <a href="<?= $this->getProductUrl() ?>"><span> <?= __("GO TO PRODUCT DETAILS") ?> </span></a>
+    </div>
+</div>
 
 
-<div class="region-and-district">
-    <span class="district"><?php echo __("District: ").$this->getDistrictName();?></span>
-    <span> | </span>
-    <span class="region"><?php echo __("Region: ").$this->getRegionName();?></span>
-</div>
-<div class="basic-info-container">
-    <h3 class="detail-title"><?php echo __("Basic Infomation") ?></h3>
-    <table class="basic-info">
-        <?php if($this->getCurrentLock()->getAddress()):?>
-        <tr>
-            <td> <?php echo __("Address:") ?> </td>
-            <td> <?php echo $this->getCurrentLock()->getAddress(); ?> </td>
-        </tr>
-        <?php endif ?>
-        <?php if($this->getCurrentLock()->getYear()):?>
-            <tr>
-                <td> <?php echo __("Date of tenancy:") ?> </td>
-                <td> <?php echo $this->getCurrentLock()->getYear(); ?> </td>
-            </tr>
-        <?php endif ?>
-        <?php if($this->getCurrentLock()->getDeveloper()):?>
-        <tr>
-            <td> <?php echo __("Developer:") ?> </td>
-            <td> <?php echo $this->getCurrentLock()->getDeveloper(); ?> </td>
-        </tr>
-        <?php endif ?>
-        <?php if($this->getCurrentLock()->getBlock()):?>
-        <tr>
-            <td> <?php echo __("Block:") ?> </td>
-            <td> <?php echo $this->getCurrentLock()->getBlock(); ?></td>
-        </tr>
-        <?php endif ?>
-        <?php if($this->getCurrentLock()->getUnit()):?>
-        <tr>
-            <td> <?php echo __("No. of units:") ?> </td>
-            <td> <?php echo $this->getCurrentLock()->getUnit(); ?></td>
-        </tr>
-        <?php endif ?>
-        <?php if($this->getCurrentLock()->getUnitPerFloor()):?>
-        <tr>
-            <td> <?php echo __("No. of units on each floor:") ?> </td>
-            <td> <?php echo $this->getCurrentLock()->getUnitPerFloor(); ?></td>
-        </tr>
-        <?php endif ?>
-        <?php if($this->getCurrentLock()->getSize()):?>
-        <tr>
-            <td> <?php echo __("Size:") ?> </td>
-            <td> <?php echo $this->getCurrentLock()->getSize(); ?></td>
-        </tr>
-        <?php endif ?>
-        <?php if($this->getCurrentLock()->getBrand()):?>
-        <tr>
-            <td> <?php echo __("Brand of lock:") ?> </td>
-            <td> <?php echo $this->getCurrentLock()->getBrand(); ?></td>
-        </tr>
-        <?php endif ?>
-        <?php if($this->getCurrentLock()->getThickness()):?>
-        <tr>
-            <td> <?php echo __("Door thickness:") ?> </td>
-            <td> <?php echo $this->getCurrentLock()->getThickness(); ?></td>
-        </tr>
-        <?php endif ?>
-        <?php if($this->getCurrentLock()->getBackset()):?>
-        <tr>
-            <td> <?php echo __("Backset:") ?> </td>
-            <td> <?php echo $this->getCurrentLock()->getBackset(); ?></td>
-        </tr>
-        <?php endif ?>
-    </table>
-</div>
-<div class="recommendation-container">
-    <table class="recommendation">
-        <?php if($this->getCurrentLock()->getLockset()||$this->getCurrentLock()->getCylinder()):?>
-            <h3 class="detail-title"><?php echo __("Lock replacement recommendation") ?></h3>
-        <?php endif ?>
-        <?php if($this->getCurrentLock()->getLockset()):?>
-            <tr>
-                <td> <?php echo __("Lockset:") ?> </td>
-                <td> <?php echo $this->getCurrentLock()->getLockset(); ?></td>
-            </tr>
-        <?php endif ?>
-        <?php if($this->getCurrentLock()->getCylinder()):?>
-            <tr>
-                <td> <?php echo __("Cylinder:") ?> </td>
-                <td> <?php echo $this->getCurrentLock()->getCylinder(); ?></td>
-            </tr>
-        <?php endif ?>
-    </table>
-</div>
+
+
 <div>
 <?php if($this->getCurrentLock()->getLogo()):?>
     <img class="lock-logo" src="<?php echo $this->getCurrentLock()->getLogo() ?>"/>

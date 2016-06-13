@@ -12,4 +12,9 @@ class Data extends \Magento\Backend\Helper\Data
     {
         return $this->_backendUrl->getUrl('lock/lock/products', ['_current' => true]);
     }
+
+    public function getProductUrl($productId)
+    {
+        return $this->_urlBuilder->getUrl('catalog/product/view', ['_current' => true,'id'=> $productId]);
+    }
 }

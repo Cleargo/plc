@@ -15,7 +15,7 @@ use Magento\Framework\Api\Search\FilterGroupBuilder;
 use Magento\Framework\Api\SortOrderBuilder;
 
 class View extends \Magento\Framework\View\Element\Template
-{
+{ 
 
     protected $_template = 'lock/detail.phtml';
 
@@ -33,6 +33,11 @@ class View extends \Magento\Framework\View\Element\Template
      * @var \Cleargo\FindYourLock\Model\LockRepository
      */
     protected $_lockRepository;
+
+    /*
+     * @var \Cleargo\FindYourLock\Helper\Data
+     */
+    protected $_lockHelper;
 
     /**
      * @var \Magento\Framework\Api\SearchCriteriaBuilder
@@ -59,6 +64,7 @@ class View extends \Magento\Framework\View\Element\Template
         \Cleargo\FindYourLock\Model\RegionRepository $_regionRepository,
         \Cleargo\FindYourLock\Model\DistrictRepository $_districtRepository,
         \Cleargo\FindYourLock\Model\LockRepository $_lockRepository,
+        \Cleargo\FindYourLock\Helper\Data $_lockHelper,
         \Magento\Framework\Registry $registry,
         SearchCriteriaBuilder $_searchCriteriaBuilder,
         FilterBuilder $_filterBuilder,
@@ -69,6 +75,7 @@ class View extends \Magento\Framework\View\Element\Template
         $this->_regionRepository = $_regionRepository;
         $this->_districtRepository = $_districtRepository;
         $this->_lockRepository = $_lockRepository;
+        $this->_lockHelper = $_lockHelper;
         $this->_coreRegistry = $registry;
         $this->_searchCriteriaBuilder = $_searchCriteriaBuilder;
         $this->_filterBuilder = $_filterBuilder;
@@ -87,6 +94,10 @@ class View extends \Magento\Framework\View\Element\Template
         return parent::_prepareLayout();
     }
 
+    public function getProductUrl(){
+        return $this->_lockHelper->getProductUrl($this->getCurrentLock()->getProductId());
+    }
+    
     public function getDistrictName(){
         return $this->_districtRepository->getById($this->getCurrentLock()->getDistrictId())->getName();
     }
