@@ -90,13 +90,18 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
      *
      * */
     protected function saveProductPdf($data){
-        //var_dump($data);die();
-        if(isset($data['delete_image'])){
-            if($data['delete_image']){
+        if(is_string($data)){
+            $temp['value'] = $data;
+            $data = $temp;
+        }
+
+        if(isset($data['delete'])){
+            if($data['delete']){
                 $this->_pdfRepository->deleteById($data['pdf_id']);
                 return;
             }
         }
+        //var_dump($data);
 
         if(isset($data['pdf_path'])){
             $pdfRecord = [
@@ -120,7 +125,7 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
                     $originalStores[] = $currentStoreId;
                 }
 
-                $pdfRecord['stores'] = $this->getRequest()->getParam('store')? [$this->getRequest()->getParam('store')]:['0'];
+                $pdfRecord['stores'] = $originalStores;
 
             } else {
                 $pdfRecord['stores'] =  $this->getRequest()->getParam('store')? [$this->getRequest()->getParam('store')]:['0'];
@@ -139,56 +144,98 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
                 $this->messageManager->addError($e->getMessage());
             }
         }
+    }
 
+    protected function transferOldFilesArr ($input){
+        $returnArr = [];
+        foreach($_FILES['old_pdf']['name']  as $key =>$image){
+            $returnArr[$key] =  array(
+                'name' => $_FILES['old_pdf']['name'][$key],
+                'type' => $_FILES['old_pdf']['type'][$key],
+                'tmp_name' => $_FILES['old_pdf']['tmp_name'][$key],
+                'error' => $_FILES['old_pdf']['error'][$key],
+                'size' => $_FILES['old_pdf']['size'][$key],
+                'pdf_id' => $key
+            );
+            $_FILES['old_pdf_'.$key] = $returnArr[$key];
+        }
+        unset($_FILES['old_pdf']);
 
+    }
+    protected function transferNewFilesArr ($input){
+        $returnArr = [];
+        foreach($_FILES['new_pdf']['name']  as $key =>$image){
+            $returnArr[$key] =  array(
+                'name' => $_FILES['new_pdf']['name'][$key],
+                'type' => $_FILES['new_pdf']['type'][$key],
+                'tmp_name' => $_FILES['new_pdf']['tmp_name'][$key],
+                'error' => $_FILES['new_pdf']['error'][$key],
+                'size' => $_FILES['new_pdf']['size'][$key]
+            );
+            $_FILES['new_pdf_'.$key] = $returnArr[$key];
+        }
+        unset($_FILES['new_pdf']);
 
     }
 
     protected function mapPdfToField($fieldArr,$data){
+
+
+
+
         if(gettype($fieldArr) != "array"){
             $fieldArr = [$fieldArr];
         }
         foreach ($fieldArr as $field){
             if (isset($_FILES[$field]) && isset($_FILES[$field]['name']) && strlen($_FILES[$field]['name'])) {
-                /*
-                * Save image upload
-                */
-                try {
-                    $base_media_path = 'cleargo/product/pdf';
-                    $uploader = $this->uploader->create(
-                        ['fileId' => $field]
-                    );
-                    $uploader->setAllowedExtensions(['pdf','csv']);
-                    //$imageAdapter = $this->adapterFactory->create();
-                    //$uploader->addValidateCallback($field, $imageAdapter, 'validateUploadFile');
-                    $uploader->setAllowRenameFiles(true);
-                    $uploader->setFilesDispersion(true);
-                    $mediaDirectory = $this->filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA);
-                    $result = $uploader->save(
-                        $mediaDirectory->getAbsolutePath($base_media_path)
-                    );
+                    /*
+                    * Save image upload
+                    */
 
-                    $data[$field] = $base_media_path.$result['file'];
-                } catch (\Exception $e) {
-                    if ($e->getCode() == 0) {
-                        $this->messageManager->addError($e->getMessage());
+                    try {
+
+                        $base_media_path = 'cleargo/product/pdf';
+                        $uploader = $this->uploader->create(
+                            ['fileId' => $field]
+                        );
+                        $uploader->setAllowedExtensions(['pdf','csv']);
+                        //$imageAdapter = $this->adapterFactory->create();
+                        //$uploader->addValidateCallback($field, $imageAdapter, 'validateUploadFile');
+                        $uploader->setAllowRenameFiles(true);
+                        $uploader->setFilesDispersion(true);
+                        $mediaDirectory = $this->filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA);
+                        $result = $uploader->save(
+                            $mediaDirectory->getAbsolutePath($base_media_path)
+                        );
+                        if(strpos($field, 'old_pdf_') !== false){
+                            $data['old_pdf'][$_FILES[$field]['pdf_id']] = $base_media_path.$result['file'];
+                        }
+                        if(strpos($field, 'new_pdf_') !== false){
+                            $data['new_pdf'][] = $base_media_path.$result['file'];
+                        }
+
+
+
+                    } catch (\Exception $e) {
+                        if ($e->getCode() == 0) {
+                            $this->messageManager->addError($e->getMessage());
+                        }
                     }
-                }
-            } else {
-                if (isset($data[$field]) && isset($data[$field]['value'])) {
-                    if (isset($data[$field]['delete'])) {
-                        $data[$field] = null;
-                        $data['delete_image'] = true;
-                    } elseif (isset($data[$field]['value'])) {
-                        $data[$field] = $data[$field]['value'];
-                    } else {
-                        $data[$field] = null;
+                } else {
+                    if (isset($data[$field]) && isset($data[$field]['value'])) {
+                        if (isset($data[$field]['delete'])) {
+                            $data[$field] = null;
+                            $data['delete_image'] = true;
+                        } elseif (isset($data[$field]['value'])) {
+                            $data[$field] = $data[$field]['value'];
+                        } else {
+                            $data[$field] = null;
+                        }
                     }
                 }
             }
 
 
-        }
 
         return $data;
     }
@@ -225,8 +272,51 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
                 $productId = $product->getId();
                 $productAttributeSetId = $product->getAttributeSetId();
                 $productTypeId = $product->getTypeId();
-                $data = $this->mapPdfToField('pdf_path',$data);
-$this->saveProductPdf($data);
+
+
+                if(isset($_FILES['old_pdf'])){
+                    $this->transferOldFilesArr($_FILES['old_pdf']);
+                }
+
+                if(isset($_FILES['new_pdf'])){
+                    $this->transferNewFilesArr($_FILES['new_pdf']);
+                }
+
+                foreach($_FILES as $key => $file){
+                    if (strpos($key, 'old_pdf_') !== false || strpos($key, 'new_pdf_') !== false ) {//
+                        $data = $this->mapPdfToField($key,$data);
+                    }
+                };
+
+                if(isset($data['old_pdf']) ){
+                    foreach ($data['old_pdf'] as $key => $pdf){
+                        if(is_string($pdf)){
+                            $temp = [];
+                            $temp['pdf_path'] = $pdf;
+                            $pdf = $temp;
+                        } else {
+                            $pdf['pdf_path'] = $pdf['value'];
+                        }
+                        $pdf['pdf_id'] = $key;
+                        $this->saveProductPdf($pdf);
+                    }
+                }
+                if(isset($data['new_pdf'])){
+                    foreach ($data['new_pdf'] as $key => $pdf){
+                        if(is_string($pdf)){
+                            $temp = [];
+                            $temp['pdf_path'] = $pdf;
+                            $pdf = $temp;
+                        } else {
+                            $pdf['new_pdf'] = $pdf['value'];
+                        }
+
+                        $this->saveProductPdf($pdf);
+                    }
+                }
+
+
+
                 /**
                  * Do copying data to stores
                  */

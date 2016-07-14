@@ -76,7 +76,7 @@ class PdfRepository implements PdfRepositoryInterface
     public function __construct(
         ResourcePdf $resource,
         PdfFactory $pdfFactory,
-        \Cleargo\ProductPdf\Api\Data\PdfInterfaceFactory $dataPdfFactory,
+        Data\PdfInterfaceFactory $dataPdfFactory,
         PdfCollectionFactory $pdfCollectionFactory,
         Data\PdfSearchResultsInterfaceFactory $searchResultsFactory,
         DataObjectHelper $dataObjectHelper,
@@ -146,7 +146,7 @@ class PdfRepository implements PdfRepositoryInterface
         if(empty($pdfs)){
             return $pdfs;
         } else {
-            return is_array($pdfs)? $pdfs[0] : $pdfs;
+            return  $pdfs;
         }
 
     }

@@ -152,9 +152,10 @@ class Tabs extends WigetTabs
         $product = $this->getProduct();
         $searchCriteria = $this->_searchCriteriaBuilder
             ->create();
-        $currentPdf = $this->_pdfRepository->getByProductId($product->getId(),$this->getRequest()->getParam('store'));
+        $currentPdfs = $this->_pdfRepository->getByProductId($product->getId(),$this->getRequest()->getParam('store'));
+        
         //$this->_pdfRepository->getList($searchCriteria);
-        $this->_coreRegistry->register('product_pdf', $currentPdf);
+        $this->_coreRegistry->register('product_pdf', $currentPdfs);
 
         if (!($setId = $product->getAttributeSetId())) {
             $setId = $this->getRequest()->getParam('set', null);

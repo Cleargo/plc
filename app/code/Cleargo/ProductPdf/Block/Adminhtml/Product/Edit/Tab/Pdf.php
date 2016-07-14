@@ -22,30 +22,35 @@ class Pdf extends \Magento\Backend\Block\Widget\Form\Generic
 
 
         $fieldset = $form->addFieldset('pdf_upload', ['legend' => __('Pdf Uploading')]);
-        $fieldset->addField(
-            'pdf_id',
-            'hidden',
-            ['name' => 'pdf_id', 'label' => __('Current Pdf'), 'title' => __('Current Pdf')]
-        );
-        /*$fieldset->addField(
-            'pdf_path',
-            'label',
-            ['name' => 'pdf_path_current', 'label' => __('Current Pdf'), 'title' => __('Current Pdf')]
-        );*/
-        $fieldset->addField(
-            'pdf_path',
-            '\Cleargo\ProductPdf\Data\Form\Element\Pdf',
-            ['name' => 'pdf_path', 'label' => __('Pdf Upload'), 'title' => __('Pdf Upload'),
-                'note' => 'Allow type: pdf']
-        );
-        //var_dump($productPdf->getData());
 
-       // var_dump($productPdf);
-       // var_dump($this->getRequest()->getParam('store'));
-        //die();
+
+        $fieldset->addField(
+            'no_of_new_pdf',
+            'hidden',
+            ['name' => 'no_of_new_pdf', 'label' => __('Current Pdf'), 'title' => __('Current Pdf')]
+        );
+        $fieldset->addField(
+            'pdf_button',
+            '\Cleargo\ProductPdf\Data\Form\Element\PdfButton',
+            ['name' => 'pdf_button', 'label' => __(' Pdf Button'), 'title' => __('Pdf Button')]
+        );
+        foreach ($productPdf as $pdf){
+            /*$fieldset->addField(
+                'pdf_id_'.$pdf['pdf_id'],
+                'hidden',
+                ['name' => 'old_pdf['.$pdf['pdf_id'].'][]', 'label' => __('Current Pdf'), 'title' => __('Current Pdf'), 'value' => $pdf['pdf_id']]
+            );*/
+            $fieldset->addField(
+                'old_pdf_path_'.$pdf['pdf_id'],
+                '\Cleargo\ProductPdf\Data\Form\Element\Pdf',
+                ['name' => 'old_pdf['.$pdf['pdf_id'].']', 'label' => __('Pdf Upload'), 'title' => __('Pdf Upload'), 'value' => $pdf['pdf_path'],
+                    'note' => 'Allow type: pdf']
+            );
+        }
+
         if($productPdf){
 
-                $form->setValues($productPdf);
+               // $form->setValues($productPdf);
 
         }
         $this->setForm($form);

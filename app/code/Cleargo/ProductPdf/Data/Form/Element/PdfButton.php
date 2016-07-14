@@ -13,7 +13,7 @@ namespace Cleargo\ProductPdf\Data\Form\Element;
 
 use Magento\Framework\UrlInterface;
 
-class Pdf extends \Magento\Framework\Data\Form\Element\AbstractElement
+class PdfButton extends \Magento\Framework\Data\Form\Element\AbstractElement
 {
     /**
      * @var UrlInterface
@@ -50,42 +50,42 @@ class Pdf extends \Magento\Framework\Data\Form\Element\AbstractElement
         $buttonHtml = $widgetButton->createBlock(
             'Magento\Backend\Block\Widget\Button'
         )->setData(
-            ['label' => 'Add New Image', 'onclick' => 'addNewImg()', 'class' => 'add']
+            ['label' => 'Add New Pdf', 'onclick' => 'addNewImg()', 'class' => 'add']
         )->toHtml();
         $html = '';
-       //$html .= $buttonHtml;
+        $html .= $buttonHtml;
 
-        if ((string)$this->getValue()) {
-            $html.= '<div>There is a PDF for this product in this store view now.</div>';
-            $url = $this->_getUrl();
 
-            if (!preg_match("/^http\:\/\/|https\:\/\//", $url)) {
-                $url = $this->_urlBuilder->getBaseUrl(['_type' => UrlInterface::URL_TYPE_MEDIA]) . $url;
-            }
-
-            $html .= '<a style="display:block;" href="' .
-                $url .
-                '"' .
-
-                $this->_getUiId(
-                    'link'
-                ) .
-                '>' .
-                'Click Here To Download The Current PDF'.
-                '</a> ';
-        } else {
-            $html.= '<div>this product has no PDF for this store view now.</div>';
-        }
-        $this->setClass('input-file');
-        $html .= parent::getElementHtml();
-        $html .= $this->_getDeleteCheckbox();
 
         $name = $this->getName();
         $parentName = parent::getName();
         $html .= <<<EndSCRIPT
 
         <script language="javascript">
-       
+        id = 0;
+
+        function addNewImg(){
+        id++;
+        //document.getElementById('no_of_new_pdf').value(id);
+        var pdfLabel = document.createElement('label');
+        var t = document.createTextNode("Upload New Pdf");
+        pdfLabel.appendChild(t);
+         
+        var nameStr = 'new_pdf[]';
+        nameStr=  nameStr.replace(/%j%/g, 2).replace(/%id%/g, id);
+         
+        var pdfUpload = document.createElement('input');
+        pdfUpload.name= nameStr;
+        pdfUpload.type= 'file';
+        
+        var pdfInput = document.createElement('div');
+        pdfInput.className= 'control';
+        pdfInput.appendChild(pdfUpload);
+        
+        var pdfRow = document.createElement('div');
+        pdfRow.className= 'field';
+        pdfRow.appendChild(pdfLabel);
+        pdfRow.appendChild(pdfInput);
         
         document.getElementById('pdf_upload').appendChild(pdfRow);
 
@@ -105,7 +105,7 @@ class Pdf extends \Magento\Framework\Data\Form\Element\AbstractElement
             return false;
         };
     
-    }
+        }
         </script>
 
 EndSCRIPT;

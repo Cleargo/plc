@@ -134,6 +134,7 @@ class Save extends \Magento\Backend\App\Action
             $data = $this->mapImageToField(['logo','before_image1','before_image2','after_image1','after_image2'],$data);
             $data = $this->handleProductField($data);
 //var_dump($data);die();
+
             $model->setData($data);
             try {
                 $model->save();
