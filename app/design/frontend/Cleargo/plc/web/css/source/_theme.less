@@ -15,23 +15,21 @@
 //  PLC
 //  ---------------------------------------------
 @color-brandred: #C3161C;
+@color-transparent: transparent;
 @primary__color: #606060;
-@font-regular:'aileron';
-@font-italic:'aileron-italic';
-@font-bold:'aileron-bold';
-@font-bolditalic:'aileron-bolditalic';
-@font-thinitalic:'aileron-thinitalic';
-@font-black:'aileron-black';
+@font-regular: 'aileron';
+@font-italic: 'aileron-italic';
+@font-bold: 'aileron-bold';
+@font-bolditalic: 'aileron-bolditalic';
+@font-thinitalic: 'aileron-thinitalic';
+@font-black: 'aileron-black';
 
-@layout__min-width:320px;
-@layout__max-width:960px;
+@layout__min-width: 320px;
+@layout__max-width: 960px;
 
-
-@button__background-color: @color-brandred;
-@copyright__background-color: false;
-@footer__background-color: false;
 @footer-links-color: @text__color;
 
+@active__color: @color-brandred;
 //
 //  Typography
 //  ---------------------------------------------
@@ -43,6 +41,17 @@
 //  Color nesting
 @panel__background-color: @color-gray-light0;
 @border-color__base: @color-gray80;
+
+
+//
+//  Links
+//  ---------------------------------------------
+@link__color: @primary__color;
+@link__text-decoration: underline;
+@link__visited__color: @link__color;
+@link__visited__text-decoration: @link__text-decoration;
+@link__hover__color: lighten(@link__color, 20%);
+@link__active__color: @link__hover__color;
 
 //  Headings
 @h3__font-weight: @font-weight__semibold;
@@ -73,12 +82,18 @@
 //  Navigation
 //  ---------------------------------------------
 
-@navigation__background: @color-gray94;
-@navigation-level0-item__active__color: @primary__color;
+@navigation-level0-item__line-height: 40px;
+@navigation__background: @color-transparent;
 @submenu-item__active__color: @navigation-level0-item__active__color;
 
+
 //  Desktop navigation
-@navigation-desktop-level0-item__line-height: 47px;
+@navigation-desktop-level0-item__line-height: 59px;
+@navigation-desktop-level0-item__hover__background: @color-brandred;
+@navigation-desktop-level0-item__hover__color: @color-white;
+@navigation-desktop-level0-item__active__color: '';
+@navigation-desktop-level0-item__active__border-width: 0;
+
 @submenu-desktop__font-weight: @font-weight__regular;
 @submenu-desktop-item__active__color: @navigation-level0-item__active__color;
 
@@ -120,21 +135,29 @@
 //
 //  Buttons
 //  ---------------------------------------------
-
 @button__font-weight: @font-weight__semibold;
+@button__shadow: none; //  Used for secondary button and catalog toolbar controls
+@button__shadow-active:none; //  Used for secondary button and catalog toolbar controls
 
 //  Default = secondary button
-@button__background: @color-gray-darken0;
-@button__border: 1px solid @border-color__base;
-@button__hover__color: @button__color;
+@button__background: @color-brandred;
+@button__color: @color-white;
+@button__border: 1px solid @color-brandred;
+@button__border-radius: 100px;
+@button__hover__color: @color-white;
 @button__hover__background: darken(@button__background, 5%);
-@button__active__background: @color-gray-darken1;
+@button__hover__border: 1px solid darken(@button__background, 5%);
+@button__active__background: @color-brandred;
 
 //  Primary button
-@button-primary__hover__color: @color-white;
-@button-primary__active__background: @link__hover__color;
-@button-primary__active__border: 1px solid @link__hover__color;
-@button-primary__active__color: @color-white;
+@button-primary__background: @color-brandred;
+@button-primary__border: @button__border;
+@button-primary__hover__background: darken(@button__background, 5%);
+@button-primary__hover__border: @button__hover__border;
+@button-primary__active__background: @button-primary__hover__background;
+@button-primary__active__border: @button-primary__hover__border;
+
+
 
 //  Button with icon
 @button-icon__line-height: @icon-font__line-height;
@@ -151,6 +174,8 @@
 @icon-arrow-left-thin: false;
 @icon-arrow-down-thin: false;
 @icon-wishlist-empty: '\e601';
+
+
 
 //
 //  Messages
@@ -286,3 +311,4 @@
 
 // Checkout
 @checkout-sidebar__columns: 8;
+
