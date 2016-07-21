@@ -1,0 +1,217 @@
+<!--@subject Warranty Information of Your Lock @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image"}
+@-->
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+{{template config_path="design/email/header_template"}}
+
+<p class="greeting">{{trans "%name," name=$data.eng_first_name}}</p>
+<p>{{trans "Thank you for registering your Mul-T-Lock MT5 product."}}</p>
+<p>{{trans "Your Warranty Information is as following:"}}</p>
+
+<table class="button" width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>
+            <table  border="0" width="100%" cellspacing="0" cellpadding="10" align="center">
+                <tr>
+                    <td align="left" style="font-size: 20px; color:cornflowerblue;">
+                        {{trans "Customer Information "}}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        {{trans "Salutation"}}
+                    </td>
+                    <td align="left">
+                        {{var data.salutation}}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        {{trans "English First Name"}}
+                    </td>
+                    <td align="left">
+                        {{var data.eng_first_name}}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        {{trans "English Last Name"}}
+                    </td>
+                    <td align="left">
+                        {{var data.eng_last_name}}
+                    </td>
+                </tr>
+                {{if data.chi_name}}
+                <tr>
+                    <td align="left">
+                        {{trans "Chinese Name"}}
+                    </td>
+                    <td align="left">
+                        {{var data.chi_name}}
+                    </td>
+                </tr>
+                {{/if}}
+                {{if data.company}}
+                <tr>
+                    <td align="left">
+                        {{trans "Company"}}
+                    </td>
+                    <td align="left">
+                        {{var data.company}}
+                    </td>
+                </tr>
+                {{/if}}
+
+                <tr>
+                    <td align="left">
+                        {{trans "Hong Kong ID /Passport or other ID"}}
+                    </td>
+                    <td align="left">
+                        {{if data.hkid}} {{var data.hkid}}XXX(X)  {{else}} {{var data.passport_num}}{{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        {{trans "Contact No. (1)"}}
+                    </td>
+                    <td align="left">
+                        {{var data.contact_one_country_code}}-{{var data.contact_one_phone}}
+                    </td>
+                </tr>
+                {{if data.contact_two_phone}}
+                <tr>
+                    <td align="left">
+                        {{trans "Contact No. (2)"}}
+                    </td>
+                    <td align="left">
+                        {{var data.contact_two_country_code}}-{{var data.contact_two_phone}}
+                    </td>
+                </tr>
+                {{/if}}
+                <tr>
+                    <td align="left">
+                        {{trans "Email"}}
+                    </td>
+                    <td align="left">
+                        {{var data.email}}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        {{trans "Security question"}}
+                    </td>
+                    <td align="left">
+                        {{trans "%name" name=$data.question}}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        {{trans "Your answer "}}
+                    </td>
+                    <td align="left">
+                        {{var data.answer}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="left">
+                        {{trans "Date of Birth"}}
+                    </td>
+                    <td align="left">
+                        {{var data.date_of_birth}}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="font-size: 20px; color:cornflowerblue;">
+                        {{trans "Product Information "}}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        {{trans "Product Category"}}
+                    </td>
+                    <td align="left">
+
+                        {{trans "%name" name=$data.product}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="left" rowspan="4">
+                        {{trans "Key Information"}}
+                    </td>
+                    <td align="left">
+                        {{trans "1. Serial Number"}}
+                    </td>
+                    <td align="left">
+                        {{var data.serial_num}}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        {{trans "2. Profile "}}
+                    </td>
+                    <td align="left">
+                        {{var data.profile}}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        {{trans "3. T-Combination"}}
+                    </td>
+                    <td align="left">
+                        {{var data.t_combination}}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        {{trans "4. FP-Combination"}}
+                    </td>
+                    <td align="left">
+                        {{var data.fp_combination}}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="font-size: 20px; color:cornflowerblue;">
+                        {{trans "Purchase Information "}}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        {{trans "Date"}}
+                    </td>
+                    <td align="left">
+                        {{var data.date_of_purchase}}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        {{trans "Name of Dealer"}}
+                    </td>
+                    <td align="left">
+                        {{var data.name_of_dealer}}
+                    </td>
+                </tr>
+                {{if data.invoice_no}}
+                <tr>
+                    <td align="left">
+                        {{trans "Invoice No."}}
+                    </td>
+                    <td align="left">
+                        {{var data.invoice_no}}
+                    </td>
+                </tr>
+                {{/if}}
+            </table>
+        </td>
+    </tr>
+</table>
+
+<p>{{trans "Please call our CS Hotline @ 2765 9667 or email to plc@plc.com.hk if you have any questions regarding your product."}}</p>
+
+{{template config_path="design/email/footer_template"}}

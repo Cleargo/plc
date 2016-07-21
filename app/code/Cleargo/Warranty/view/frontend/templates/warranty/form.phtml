@@ -1,0 +1,420 @@
+<div id="formTotalContainer" style="margin:0 auto; ">
+    <div  border="0" align="center" cellpadding="0" cellspacing="0">
+       <form class="form contact"
+             action="<?php /* @escapeNotVerified */ echo $block->getFormAction(); ?>"
+              id="registerForm"
+              method="post"
+              data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>"
+              data-mage-init='{"validation":{}}'>
+
+            <fieldset class="fieldset">
+                    <div  border="0" cellpadding="0" cellspacing="0" class="regisdivation-form-info">
+                        <h2 class="heading">
+                            <div  valign="top" class="div-head"><div class="regisdivation-form-title">Customer Information</div></div>
+                            <div  valign="top">&nbsp;</div>
+                        </h2>
+                        <div>
+                           
+                            <!--<div valign="top"><div align="right"><img src="ssl.jpg"/></div></div>-->
+                        </div>
+                        <div>
+                            <div class="dt"><font id="salu_sp" >*<?php echo __('Salutation') ?></font></div>
+                            <div class="dd">
+                                    <input type="radio" class="radio" id="bundle-option-3-5" data-validate="{'validate-one-required-by-name':true}" name="salutation" value="Mr">
+                                    <label class="label" for="bundle-option-3-5">
+                                        Mr
+                                    </label>
+                                    <input type="radio" class="radio" id="bundle-option-3-6" data-validate="{'validate-one-required-by-name':true}" name="salutation" value="Mrs">
+                                    <label class="label" for="bundle-option-3-6">
+                                        Mrs
+                                    </label>
+                                    <input type="radio" class="radio" id="bundle-option-3-7" data-validate="{'validate-one-required-by-name':true}" name="salutation" value="Miss">
+                                    <label class="label" for="bundle-option-3-7">
+                                        Miss
+                                    </label>
+                            </div>
+                        </div>
+                        <div>
+                            
+                            <div height="10"></div>
+                            <div height="10"></div>
+                        </div>
+                        <div>
+                            
+                            <div class="dt"><font id="fname_sp" >*<?php echo __('English First Name') ?></font></div>
+                            <div class="dd"><input type="text" name="eng_first_name" maxlength="50" class="fieldWidth" data-validate="{required:true}" aria-required="true"  data-validate="{required:true}" aria-required="true" value=""/></div>
+                        </div>
+                        <div>
+                            
+                            <div height="10"></div>
+                            <div height="10"></div>
+                        </div>
+                        <div>
+                            
+                            <div class="dt"><font id="lname_sp" >*<?php echo __('English Last Name') ?></font></div>
+                            <div class="dd"><input type="text" name="eng_last_name" maxlength="50" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value=""/></div>
+                        </div>
+                        <div>
+                            
+                            <div height="10"></div>
+                            <div height="10"></div>
+                        </div>
+                        <div>
+                            <div class="dt" id="cname_div" >&nbsp;<?php echo __('Chinese Name (if applicable)') ?></div>
+                            <div class="dd"><input type="text" name="chi_name" maxlength="25" class="fieldWidth"  value=""/></div>
+                        </div>
+                        <div>
+                            
+                            <div height="10"></div>
+                            <div height="10"></div>
+                        </div>
+                        <div>
+                            
+                            <div class="dt">&nbsp;<?php echo __('Company Name (if applicable)') ?></div>
+                            <div class="dd"><input type="text" name="company" maxlength="100" class="fieldWidth" value=""/></div>
+                        </div>
+                        <div>
+                            
+                            <div height="10"></div>
+                            <div height="10"></div>
+                        </div>
+
+                        <script>
+                            function changeID() {
+                                var x = document.getElementById("isHKID").value;
+                                if(x == 1){
+                                    document.getElementById("hkid").style.display = 'block';
+                                    document.getElementById("pport").style.display = 'none';
+                                    document.getElementById("pport").childNodes[1].value = '';
+                                    document.getElementById("hkid").childNodes[1].value = '';
+                                }else if(x == 2) {
+                                    document.getElementById("hkid").style.display = 'none';
+                                    document.getElementById("hkid").childNodes[1].value = '';
+                                    document.getElementById("pport").childNodes[1].value = '';
+                                    document.getElementById("pport").style.display = 'block';
+                                }
+                            }
+                            require([
+                                'jquery', // jquery Library
+                                'jquery/ui', // Jquery UI Library
+                                'jquery/validate', // Jquery Validation Library
+                                'mage/translate' // Magento text translate (Validation message translte as per language)
+                            ], function($){
+                                $.validator.addMethod(
+                                    'validate-hkid-passport', function (v,elm) {
+                                        var inputs = $('.id-num');
+
+                                        var error = 1;
+                                        for(var i=0;i<inputs.length;i++) {
+                                            if(inputs[i].type == 'text'  && inputs[i].value !== "") {
+                                                error = 0;
+                                                if( i == 0 && inputs[i].value.length<4){
+                                                    error =1;
+                                                }
+                                            }
+                                        }
+
+                                        if( error == 0 ) {
+                                            return true;
+                                        } else {
+                                            return false;
+                                        }
+
+                                    },
+                                    $.mage.__('Enter Valid HKID/Passport Number'));
+
+                            });
+                        </script>
+
+                        <div>
+                            <div valign="top" class="dt"><font id="id_sp" >
+                                    *<?php echo __('Hong Kong ID / Passport or<br>&nbsp;other ID') ?></font></div>
+                            <div class="dd">
+                                <select name="isHKID" id="isHKID" onChange="changeID()" data-validate="{required:true}" aria-required="true" >
+                                    <option value="1" selected>HKID</option>
+                                    <option value="2" >Passport or other ID</option>
+                                </select><br><div id="hkid">
+                                    <input type="text" name="hkid" class="text id-num" data-validate="{'validate-hkid-passport':true}" maxlength="4" size="1" value=""/>
+                                    A123&nbsp;<br>(first 4 digit, including the first letter)</div>
+                                <div id="pport" style="display:none">
+                                    <input type="text" name="passport_num" class="text id-num"  data-validate="{'validate-hkid-passport':true}" maxlength="20" class="fieldWidth" value=""/></div>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            
+                            <div height="10"></div>
+                            <div height="10"></div>
+                        </div>
+                        <div>
+                            
+                            <div valign="top" class="dt"><font id="contact_sp" >
+                                    <?php echo __('*Contact No. (1)') ?></font></div>
+                            <div class="dd">
+                                <div cellpadding="0" cellspacing="0" border="0" class="fieldWidth" data-validate="{required:true}" aria-required="true" >
+                                    <div>
+                                        <!--<div><input type="text" name="areaCode1" maxlength="5" size="3" value="86"/></div>
+                      <div>&nbsp;-&nbsp;</div>  -->
+                                        <div class="country-code">
+                                            <input type="text" name="contact_one_country_code" maxlength="4" size="4" value="852" class="fieldWidth" data-validate="{required:true}" aria-required="true" /></div>
+                                        <div class="separate"align="center">-</div>
+                                        <div class="tel"><input type="text" name="contact_one_phone" maxlength="20" size="14" class="fieldWidth" data-validate="{'validate-digits':true}" aria-required="true" value=""/></div>
+                                    </div>
+                                    <div>
+                                        <!--<div id="contact1_ac" style="font-size:10px">(Area Code)</div>
+                      <div>&nbsp;-&nbsp;</div>  -->
+                                        <div id="contact1_cc" class="country-code" style="font-size:10px;">
+                                            (Coundivy Code)</div>
+                                        <div align="center" class="separate">-</div>
+                                        <div id="contact1_no" class="tel" style="font-size:10px;">
+                                            (Number)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            
+                            <div height="10"></div>
+                            <div height="10"></div>
+                        </div>
+                        <div>
+                           
+                            <div valign="top" class="dt" id="contact2_div" >
+                                &nbsp;<?php echo __('Contact No. (2)') ?></div>
+                            <div class="dd">
+                                <div cellpadding="0" cellspacing="0" border="0" class="fieldWidth" data-validate="{required:true}" aria-required="true" >
+                                    <div>
+                                        <!--<div><input type="text" name="areaCode2" maxlength="5" size="3" value="86" value=""/></div>
+                      <div>&nbsp;-&nbsp;</div>  -->
+                                        <div class="country-code">
+                                            <input type="text" name="contact_two_country_code" maxlength="4" size="4" value="852"/></div>
+                                        <div class="separate" align="center">-</div>
+                                        <div class="tel"><input type="text" name="contact_two_phone" data-validate="{'validate-digits':true}" maxlength="20" size="14" value=""/></div>
+                                    </div>
+                                    <div>
+                                        <!--<div id="contact2_ac" style="font-size:10px">(Area Code)</div>
+                      <div>&nbsp;-&nbsp;</div>  -->
+                                        <div id="contact1_cc" class="country-code" style="font-size:10px;">
+                                            (Coundivy Code)</div>
+                                        <div align="center" class="separate">-</div>
+                                        <div id="contact1_no" class="tel" style="font-size:10px;">
+                                            (Number)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            
+                            <div height="10"></div>
+                            <div height="10"></div>
+                        </div>
+                        <div>
+                            <div valign="top" class="dt" id="email_div" >&nbsp;<?php echo __('E-mail Address') ?></div>
+                            <div class="dd">
+                                <input type="text" name="email" maxlength="60" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value=""/>
+                                <p class="fieldWidth" data-validate="{required:true}" aria-required="true"  style="font-size:10px">
+                                    A copy of this regisdivationform will be sent to the e-mail address provided for reference.
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            
+                            <div height="10"></div>
+                            <div height="10"></div>
+                        </div>
+                        <div>
+                            <div class="dt" id="sq_div" >*<?php echo __('Security question') ?></div>
+                            <div class="dd">
+                                <select name="question_type" id="sQuest" class="fieldWidth" data-validate="{'validate-select':true}" aria-required="true" >
+                                    <option value="none">Select One</option>
+                                    <option value="1" >Who is your favourite singer?</option>
+                                    <option value="2" >What is your favourite pastime?</option>
+                                    <option value="3" >What is your favourite sports team?</option>
+                                    <option value="4" >What is the name of your primary school?</option>
+                                    <option value="5" >What is your pet's name?</option>
+                                    <option value="6" >What colour do you like best?</option>
+                                    <option value="7" >Which is your favourite festival?</option>
+                                    <option value="8" >What is your favourite fruit?</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            
+                            <div height="10"></div>
+                            <div height="10"></div>
+                        </div>
+                        <div>
+                            
+                            <div class="dt"><font id="sAnswer_sp" >*<?php echo __('Your answer') ?></font></div>
+                            <div class="dd">
+                                <input type="text" name="answer" id="sAnswer" maxlength="30" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value=""/>
+                            </div>
+                        </div>
+                        <div>
+                            
+                            <div height="10"></div>
+                            <div height="10"></div>
+                        </div>
+
+                        <div>
+                            <div class="dt">
+                                <font id="dealer_sp" >*<?php echo __('Date of Birth') ?></font></div>
+                            <div class="dd">
+                                <input type="text" class="date-pick" readonly='true' name="date_of_birth" maxlength="20" data-validate="{'validate-date':true, 'required-entry':true}" class="fieldWidth"  autocomplete="off" />
+                            </div>
+                        </div>
+
+                        <div>
+                            
+                            <div>&nbsp;</div>
+                            <div>&nbsp;</div>
+                        </div>
+                        <div>
+                            
+                            <div>&nbsp;</div>
+                            <div>&nbsp;</div>
+                        </div>
+                        <h2  class="heading">
+                            <div class="div-head"><div class="regisdivation-form-title">Product Information </div></div>
+                            <div  valign="top">&nbsp;</div>
+                        </h2>
+                        <div>
+                           <div class="dt" id="pc_div" >
+                                *Product Category</div>
+                            <div class="dd">
+                                <select name="product_type" class="fieldWidth" data-validate="{'validate-select':true}" aria-required="true" >
+                                    <option value="none">Select One</option>
+                                    <option value="1" >Auxiliary Lock</option>
+                                    <option value="2" >Cylinder</option>
+                                    <option value="3" >Endivance Lockset</option>
+                                    <option value="4" >Others</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            
+                            <div height="10"></div>
+                            <div height="10"></div>
+                        </div>
+                        <div bgcolor="#FFFFFF">
+                            <div valign="top" class="dt"><font id="keyInfo_sp" >
+                                    *Keycard Information</font></div>
+                            <div class="dd">
+                                <div cellpadding="0" cellspacing="2" border="0">
+                                    <div>
+                                        <div width="110"><font id="sn_sp" color="#9999CC" size="-2">
+                                                <b>1. Serial Number</b></font></div>
+                                        <div><input style="" name="serial_num" type="text" maxlength="6" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value=""/></div>
+                                    </div>
+                                    <div>
+                                        <div><font id="pn_sp" color="#9999CC" size="-2">
+                                                <b>2. Profile</b></font></div>
+                                        <div><input style="" name="profile" type="text" maxlength="4" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value=""/></div>
+                                    </div>
+                                    <div>
+                                        <div><font id="pins_sp" color="#9999CC" size="-2">
+                                                <b>3. T-Combination</b></font></div>
+                                        <div><input style="" name="t_combination" type="text" maxlength="10" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value=""/></div>
+                                    </div>
+                                    <div>
+                                        <div><font id="snake_sp" color="#9999CC" size="-2">
+                                                <b>4. FP-Combination</b></font></div>
+                                        <div><input style="" name="fp_combination" type="text" maxlength="5" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value=""/></div>
+                                    </div>
+                                </div>
+                                <!--<div id="keyTable" width="500" height="300"cellpadding="0" cellspacing="0" border="0" background="mul_t.jpg">
+                  <div>
+                  <div height="100%"></div>
+                  </div>
+                  </div>-->
+                                <!-- <font size="-2">Width: 500px,&nbsp;&nbsp;&nbsp;&nbsp;Height:300px</font>-->
+                            </div>
+                        </div>
+                        <div>
+                            
+                            <div class="dt">&nbsp;</div>
+                            <div class="dd">&nbsp;</div>
+                        </div>
+                        <div>
+
+                            <div>&nbsp;</div>
+                            <div>&nbsp;</div>
+                        </div>
+                        <h2  class="heading">
+                            <div class="div-head"><div class="regisdivation-form-title">Purchase Information</div></div>
+                            <div  valign="top">&nbsp;</div>
+                        </h2>
+
+                        <div>
+                            
+                            <div height="10"></div>
+                            <div height="10"></div>
+                        </div>
+                        <div>
+                            
+                            <div class="dt">
+                                <font id="dealer_sp" >*Date</font></div>
+                            <div class="dd">
+                                <input type="text" class="date-pick" readonly='true' name="date_of_purchase" data-validate="{'validate-date':true, 'required-entry':true}" maxlength="20" class="fieldWidth"  autocomplete="off" />
+                            </div>
+                        </div>
+                        <div>
+
+                            <div class="dt">
+                                <font id="dealer_sp" >*Name of Dealer</font></div>
+                            <div class="dd">
+                                <input type="text" name="name_of_dealer" maxlength="50" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value=""/>
+                            </div>
+                        </div>
+                        <div>
+                            
+                            <div height="10"></div>
+                            <div height="10"></div>
+                        </div>
+                        <div>
+                            
+                            <div class="dt">&nbsp;Invoice No.</div>
+                            <div class="dd">
+                                <input type="text" name="invoice_no" maxlength="20" class="fieldWidth"  />
+                            </div>
+                        </div>
+                        <script>
+                            require([
+                                "jquery",
+                                "mage/calendar"
+                            ], function($){
+                                $(".date-pick").calendar({
+                                    dateFormat: "yyyy-mm-dd",
+                                    showsTime: false,
+                                    changeMonth: true,
+                                    changeYear: true,
+                                    sideBySide: true,
+                                    numberOfMonths: 1,
+                                    closeText: "Done",
+                                    selectOtherMonths: true,
+                                    onClose: function( selectedDate ) {
+                                        $( "#period_date_end" ).datepicker( "option", "minDate", selectedDate );
+                                    }
+                                });
+
+                            });
+                        </script>
+
+                        <div>
+                            
+                            <div class="dt">&nbsp;</div>
+                            <div class="dd">&nbsp;</div>
+                        </div>
+                    </div>
+            </fieldset>
+
+            <div>
+                <div colspan="2" align="center" height="60" valign="middle" bgcolor="#FFFFFF">
+                    <button type="submit" class="action submit primary regisdivation-agree">
+                        Review this form
+                    </button>
+                </div>
+            </div> <!--submit btn-->
+        </form>
+    </div>

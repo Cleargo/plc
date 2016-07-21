@@ -1,0 +1,328 @@
+<?php
+    $inputed = $this->getInputedValue();
+?>
+<div id="formTotalContainer" style="margin:0 auto; ">
+    <div  border="0" align="center" cellpadding="0" cellspacing="0">
+        <form class="form contact"
+              action="<?php /* @escapeNotVerified */ echo $block->getFormAction(); ?>"
+              id="registerForm"
+              method="post"
+              data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>"
+              data-mage-init='{"validation":{}}'>
+
+            <fieldset class="fieldset">
+                <?php foreach ( $inputed as $fieldName => $fieldValue ):?>
+                    <input type="hidden" name="<?php echo $fieldName ?>" value="<?php echo $fieldValue ?>" />
+                <?php endforeach; ?>
+                <div  border="0" cellpadding="0" cellspacing="0" class="regisdivation-form-info">
+                    <h2 class="heading">
+                        <div  valign="top" class="div-head"><div class="regisdivation-form-title">Customer Information</div></div>
+                        <div  valign="top">&nbsp;</div>
+                    </h2>
+                    <div>
+
+                        <!--<div valign="top"><div align="right"><img src="ssl.jpg"/></div></div>-->
+                    </div>
+                    <div>
+                        <div class="dt"><font id="salu_sp" >*<?php echo __('Salutation') ?></font></div>
+                        <div class="dd">
+                            <span><?php echo isset($inputed['salutation'])?$inputed['salutation']:"" ?></span>
+                        </div>
+                    </div>
+                    <div>
+
+                        <div height="10"></div>
+                        <div height="10"></div>
+                    </div>
+                    <div>
+
+                        <div class="dt"><font id="fname_sp" >*<?php echo __('English First Name') ?></font></div>
+                        <div class="dd">
+                            <span><?php echo isset($inputed['eng_first_name'])?$inputed['eng_first_name']:"" ?></span>
+                        </div>
+                    </div>
+                    <div>
+
+                        <div height="10"></div>
+                        <div height="10"></div>
+                    </div>
+                    <div>
+
+                        <div class="dt"><font id="lname_sp" >*<?php echo __('English Last Name') ?></font></div>
+                        <div class="dd">
+                            <span><?php echo isset($inputed['eng_last_name'])?$inputed['eng_last_name']:"" ?></span>
+                          </div>
+                    </div>
+                    <div>
+
+                        <div height="10"></div>
+                        <div height="10"></div>
+                    </div>
+                    <div>
+                        <div class="dt" id="cname_div" >&nbsp;<?php echo __('Chinese Name (if applicable)') ?></div>
+
+                        <div class="dd">
+                            <span><?php echo isset($inputed['chi_name'])?$inputed['chi_name']:"" ?></span>
+                        </div>
+
+                    </div>
+                    <div>
+
+                        <div height="10"></div>
+                        <div height="10"></div>
+                    </div>
+                    <div>
+
+                        <div class="dt">&nbsp;<?php echo __('Company Name (if applicable)') ?></div>
+                        <div class="dd">
+                            <span><?php echo isset($inputed['company'])?$inputed['company']:"" ?></span>
+                        </div>
+                    </div>
+                    <div>
+
+                        <div height="10"></div>
+                        <div height="10"></div>
+                    </div>
+
+                    <div>
+                        <div valign="top" class="dt"><font id="id_sp" >
+                                *<?php echo __('ID Type') ?></font></div>
+                        <div class="dd">
+                            <?php echo $inputed['isHKID']? __('Hong Kong ID'): __('Passport or other ID') ?>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div valign="top" class="dt"><font id="id_sp" >
+                                *<?php echo __('ID Number') ?></font></div>
+                        <div class="dd">
+                            <?php echo $inputed['isHKID']?  $inputed['hkid']:  $inputed['passport_num'] ?>
+                        </div>
+                    </div>
+
+
+                    <div>
+
+                        <div height="10"></div>
+                        <div height="10"></div>
+                    </div>
+                    <div>
+
+                        <div valign="top" class="dt"><font id="contact_sp" >
+                                <?php echo __('*Contact No. (1)') ?></font></div>
+                        <div class="dd">
+                            <span><?php echo isset($inputed['contact_one_country_code']) && isset($inputed['contact_one_phone'])?$inputed['contact_one_country_code'].'-'.$inputed['contact_one_phone']:''?></span>
+                        </div>
+                    </div>
+                    <div>
+
+                        <div height="10"></div>
+                        <div height="10"></div>
+                    </div>
+                    <div>
+
+                        <div valign="top" class="dt" id="contact2_div" >
+                            &nbsp;<?php echo __('Contact No. (2)') ?></div>
+                        <div class="dd">
+                            <span><?php echo isset($inputed['contact_two_country_code']) && isset($inputed['contact_two_phone'])?$inputed['contact_two_country_code'].'-'.$inputed['contact_two_phone']:''?></span>
+                        </div>
+                    </div>
+                    <div>
+
+                        <div height="10"></div>
+                        <div height="10"></div>
+                    </div>
+                    <div>
+                        <div valign="top" class="dt" id="email_div" >&nbsp;<?php echo __('E-mail Address') ?></div>
+                        <div class="dd">
+                            <span><?php echo isset($inputed['email'])?$inputed['email']:"" ?></span>
+                        </div>
+                    </div>
+                    <div>
+
+                        <div height="10"></div>
+                        <div height="10"></div>
+                    </div>
+                    <div>
+                        <div class="dt" id="sq_div" >*<?php echo __('Security question') ?></div>
+                        <div class="dd">
+                            <?php echo ($this->getQusetion()[$inputed['question_type']]["label"]); ?>
+                        </div>
+                    </div>
+                    <div>
+
+                        <div height="10"></div>
+                        <div height="10"></div>
+                    </div>
+                    <div>
+
+                        <div class="dt"><font id="sAnswer_sp" >*<?php echo __('Your answer') ?></font></div>
+                        <div class="dd">
+                            <span><?php echo isset($inputed['answer'])?$inputed['answer']:"" ?></span>
+                        </div>
+                    </div>
+                    <div>
+
+                        <div height="10"></div>
+                        <div height="10"></div>
+                    </div>
+
+                    <div>
+                        <div class="dt">
+                            <font id="dealer_sp" >*<?php echo __('Date of Birth') ?></font></div>
+                        <div class="dd">
+                            <span><?php echo isset($inputed['date_of_birth'])?$inputed['date_of_birth']:"" ?></span>
+                        </div>
+                    </div>
+
+                    <div>
+
+                        <div>&nbsp;</div>
+                        <div>&nbsp;</div>
+                    </div>
+                    <div>
+
+                        <div>&nbsp;</div>
+                        <div>&nbsp;</div>
+                    </div>
+                    <h2  class="heading">
+                        <div class="div-head"><div class="regisdivation-form-title">Product Information </div></div>
+                        <div  valign="top">&nbsp;</div>
+                    </h2>
+                    <div>
+                        <div class="dt" id="pc_div" >
+                            *Product Category</div>
+                        <div class="dd">
+                            <?php echo ($this->getProduct()[$inputed['product_type']]["label"]); ?>
+                        </div>
+                    </div>
+                    <div>
+
+                        <div height="10"></div>
+                        <div height="10"></div>
+                    </div>
+                    <div bgcolor="#FFFFFF">
+                        <div valign="top" class="dt"><font id="keyInfo_sp" >
+                                *Keycard Information</font></div>
+                        <div class="dd">
+                            <div cellpadding="0" cellspacing="2" border="0">
+                                <div>
+                                    <div width="110"><font id="sn_sp" color="#9999CC" size="-2">
+                                            <b>1. Serial Number</b></font></div>
+                                    <div>
+                                        <span><?php echo isset($inputed['serial_num'])?$inputed['serial_num']:"" ?></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div><font id="pn_sp" color="#9999CC" size="-2">
+                                            <b>2. Profile</b></font></div>
+                                    <div>
+                                        <span><?php echo isset($inputed['profile'])?$inputed['profile']:"" ?></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div><font id="pins_sp" color="#9999CC" size="-2">
+                                            <b>3. T-Combination</b></font></div>
+                                    <div>
+                                        <span><?php echo isset($inputed['t_combination'])?$inputed['t_combination']:"" ?></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div><font id="snake_sp" color="#9999CC" size="-2">
+                                            <b>4. FP-Combination</b></font></div>
+                                   <div>
+                                        <span><?php echo isset($inputed['fp_combination'])?$inputed['fp_combination']:"" ?></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div id="keyTable" width="500" height="300"cellpadding="0" cellspacing="0" border="0" background="mul_t.jpg">
+              <div>
+              <div height="100%"></div>
+              </div>
+              </div>-->
+                            <!-- <font size="-2">Width: 500px,&nbsp;&nbsp;&nbsp;&nbsp;Height:300px</font>-->
+                        </div>
+                    </div>
+                    <div>
+
+                        <div class="dt">&nbsp;</div>
+                        <div class="dd">&nbsp;</div>
+                    </div>
+                    <div>
+
+                        <div>&nbsp;</div>
+                        <div>&nbsp;</div>
+                    </div>
+                    <h2  class="heading">
+                        <div class="div-head"><div class="regisdivation-form-title">Purchase Information</div></div>
+                        <div  valign="top">&nbsp;</div>
+                    </h2>
+
+                    <div>
+
+                        <div height="10"></div>
+                        <div height="10"></div>
+                    </div>
+                    <div>
+
+                        <div class="dt">
+                            <font id="dealer_sp" >*Date</font></div>
+                        <div class="dd">
+                            <span><?php echo isset($inputed['date_of_purchase'])?$inputed['date_of_purchase']:"" ?></span>
+                        </div>
+                    </div>
+                    <div>
+
+                        <div class="dt">
+                            <font id="dealer_sp" >*Name of Dealer</font></div>
+                        <div class="dd">
+                            <span><?php echo isset($inputed['name_of_dealer'])?$inputed['name_of_dealer']:"" ?></span>
+                        </div>
+                    </div>
+
+                    <div>
+
+                        <div class="dt">&nbsp;Invoice No.</div>
+                        <div class="dd">
+                            <span><?php echo isset($inputed['invoice_no'])?$inputed['invoice_no']:"" ?></span>
+                        </div>
+                    </div>
+                    <script>
+                        require([
+                            "jquery",
+                            "mage/calendar"
+                        ], function($){
+                            $(".date-pick").calendar({
+                                dateFormat: "M/d/yy",
+                                showsTime: false,
+                                changeMonth: true,
+                                changeYear: true,
+                                sideBySide: true,
+                                numberOfMonths: 1,
+                                closeText: "Done",
+                                selectOtherMonths: true,
+                                onClose: function( selectedDate ) {
+                                    $( "#period_date_end" ).datepicker( "option", "minDate", selectedDate );
+                                }
+                            });
+
+                        });
+                    </script>
+
+                    <div>
+
+                        <div class="dt">&nbsp;</div>
+                        <div class="dd">&nbsp;</div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div>
+                <div >
+                    <button type="submit" class="action submit primary regisdivation-agree">
+                        <?php echo __('Sumbit Above Information')?>
+                    </button>
+                </div>
+            </div> <!--submit btn-->
+        </form>
+    </div>

@@ -1,0 +1,60 @@
+#warrantRegContainer{
+
+  .clearfix:before, .clearfix:after, .content_block:before, .content_block:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .clearfix, .content_block {
+    zoom: 1;
+  }
+  .gutter-bottom20 {
+    margin-bottom: 20px;
+  }
+  .gutter-bottom40 {
+    margin-bottom: 40px;
+  }
+  .clear {
+    clear: both;
+  }
+  .clearfix {
+    display: inline-block;
+  }
+
+  .registration-agree {
+    width: 315px;
+    background: #f1f1f1;
+    font: 24px/65px 'MyriadProSemibold';
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .gutter-bottom20{
+    text-align: center;
+  }
+
+  .registration-title{
+    font: 24px/1em 'MyriadProSemibold';
+    display: inline-block;
+    vertical-align: top;
+    min-height: 100px;
+    padding: 20px 0 0 130px;
+    background: url(/pub/media/warranty/registration-img.jpg) no-repeat 0 0;
+  }
+
+  .registration-txt{
+    background: #eeede8;
+    padding: 15px 25px;
+    width: 430px;
+    margin-left: 5px;
+    display: inline-block;
+    color: #8c8c8c;
+    .gutter-bottom10 {
+      margin-bottom: 10px;
+    }
+  }
+}
+

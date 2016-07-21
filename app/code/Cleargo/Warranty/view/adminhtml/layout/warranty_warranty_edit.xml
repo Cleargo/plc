@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 CLEARgo. All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Cleargo\Warranty\Block\Adminhtml\Warranty\Edit" name="warranty_warranty_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Cleargo\Warranty\Block\Adminhtml\Warranty\Edit\Tabs" name="cleargo_warranty_edit_tabs">
+                <block class="Cleargo\Warranty\Block\Adminhtml\Warranty\Edit\Tab\Main" name="cleargo_warranty_edit_tab_main"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">cleargo_warranty_edit_tab_main</argument>
+                </action>
+                <block class="Cleargo\Warranty\Block\Adminhtml\Warranty\Edit\Tab\Product" name="cleargo_warranty_edit_tab_product"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">product_section</argument>
+                    <argument name="block" xsi:type="string">cleargo_warranty_edit_tab_product</argument>
+                </action>
+                <block class="Cleargo\Warranty\Block\Adminhtml\Warranty\Edit\Tab\Purchase" name="cleargo_warranty_edit_tab_purchase"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">purchase_section</argument>
+                    <argument name="block" xsi:type="string">cleargo_warranty_edit_tab_purchase</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
