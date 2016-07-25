@@ -9,16 +9,12 @@
 ?>
 <?php if($block->customerLoggedIn()): ?>
     <div class="top-links block-user">
-        <a class="action user" href="javascript:void(0)"><span class="text"><?php /* @e2scapeNotVerified */ echo __('User'); ?></span></a>
-        <span class="customer-name"
-              role="link"
-              tabindex="0"
-              data-mage-init='{"dropdown":{}}'
-              data-toggle="dropdown"
-              data-trigger-keypress-button="true"
-              data-bind="scope: 'customer'">
-            <span data-bind="text: customer().fullname"></span>
-        </span>
+        <a class="action user" href="javascript:void(0)"><span class="text"><?php /* @e2scapeNotVerified */ echo __('User'); ?></span>
+            <span class="customer-name"
+                  data-bind="scope: 'customer'">
+                <span data-bind="text: new String('&nbsp;&nbsp;Hi, %1!').replace('%1', customer().firstname)"></span>
+            </span>
+        </a>
         <script type="text/x-magento-init">
         {
             "*": {

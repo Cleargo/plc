@@ -34,14 +34,20 @@
             </referenceContainer>
     <!--referenceContainer name="header.panel.wrapper" remove="true" /-->
         </referenceContainer>
-        <move destination="header-wrapper" element="top.search" before="-" />
+        <move destination="header-wrapper" element="logo" before="-" />
+        <move destination="header-wrapper" element="top.search" after="logo" />
         <move destination="header-wrapper" element="minicart" after="top.search" />
         <!--move destination="header-wrapper" element="store_language" after="top.user" /-->
         <move destination="header-wrapper" element="store_language" after="customer" />
         <move destination="header-wrapper" element="customer" after="multiple-wish-list-link" />
         <move destination="header-wrapper" element="multiple-wish-list-link" after="minicart" />
         <!--<move destination="top.user" element="top.links" before="-" /-->
+        
+        <move destination="store.menu" element="store.settings.language" after="catalog.topnav" />
 
+        <referenceContainer name="store.menu">
+            <block class="Magento\Cms\Block\Block" name="copyright" template="Magento_Theme::html/copyright.phtml"/>
+        </referenceContainer>
         
 
         <referenceContainer name="footer">

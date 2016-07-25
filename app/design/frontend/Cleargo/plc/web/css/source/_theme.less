@@ -24,6 +24,14 @@
 @font-thinitalic: 'aileron-thinitalic';
 @font-black: 'aileron-black';
 
+
+//  Weights
+@font-weight__light: @font-weight__regular; //origin: 300
+@font-weight__regular: @font-weight__regular; //origin: 400
+@font-weight__heavier: @font-weight__regular; //origin: 500
+@font-weight__semibold: @font-weight__regular; //origin: 600
+@font-weight__bold: @font-weight__regular; //origin: 700
+
 @layout__min-width: 320px;
 @layout__max-width: 960px;
 
@@ -53,8 +61,7 @@
 @link__hover__color: lighten(@link__color, 20%);
 @link__active__color: @link__hover__color;
 
-//  Headings
-@h3__font-weight: @font-weight__semibold;
+
 @h3__margin-top: @indent__base;
 
 //
@@ -85,7 +92,20 @@
 @navigation-level0-item__line-height: 40px;
 @navigation__background: @color-transparent;
 @submenu-item__active__color: @navigation-level0-item__active__color;
+@submenu-item__text-decoration:'';
+@navigation__level0-item__border-width:0px;
 
+@navigation-level0-item__padding:10px 0;
+
+@navigation-level0-item__hover__border-color: @color-transparent;
+@navigation-level0-item__hover__border-style: solid;
+@navigation-level0-item__hover__border-width: 1px 0;
+@navigation-level0-item__hover__border-color: @color-brandred;
+@navigation-level0-item__hover__border-style: solid;
+@navigation-level0-item__hover__border-width: 1px 0;
+@navigation-level0-item__active__border-color: @color-brandred;
+@navigation-level0-item__active__border-style: solid;
+@navigation-level0-item__active__border-width: 1px 0;
 
 //  Desktop navigation
 @navigation-desktop-level0-item__line-height: 59px;
@@ -95,7 +115,16 @@
 @navigation-desktop-level0-item__active__border-width: 0;
 
 @submenu-desktop__font-weight: @font-weight__regular;
-@submenu-desktop-item__active__color: @navigation-level0-item__active__color;
+@submenu-desktop__border-width: 0;
+@submenu-desktop__background: @color-transparent;
+@submenu-desktop-item__padding:3px 0;
+@submenu-desktop-item__margin:3px;
+@submenu-desktop-item__text-decoration:none;
+@submenu-desktop-item__hover__color: @color-brandred;
+@submenu-desktop-item__hover__background: @color-transparent;
+@submenu-desktop-item__hover__text-decoration:none;
+@submenu-desktop-item__active__color: @color-brandred;
+@submenu-desktop-item__active__background: @color-transparent;
 
 //  Tabs
 @tab-control__font-weight: @font-weight__regular;
@@ -253,7 +282,8 @@
 //
 //  Dropdowns
 //  ---------------------------------------------
-
+@dropdown-list-pointer__border: @color-brandred;
+@dropdown-list__border:1px solid @color-brandred;
 @dropdown-toggle-icon__content: @icon-down;
 @dropdown-toggle-icon__active__content: @icon-up;
 @dropdown-toggle-icon__font-size: 12px;
@@ -312,3 +342,19 @@
 // Checkout
 @checkout-sidebar__columns: 8;
 
+//minicart
+@minicart-icons-color: @color-brandred;
+
+
+//collapsible navigation
+
+@collapsible-nav-background: @sidebar__background-color;
+@collapsible-nav-color: @color-gray34;
+@collapsible-nav-current-border: 0px solid @color-transparent;
+@collapsible-nav-current-border-color: @color-transparent;
+@collapsible-nav-current-color: @color-brandred;
+@collapsible-nav-current-font-weight: @font-weight__regular;
+@collapsible-nav-item-hover: @color-transparent;
+@collapsible-nav-item-hover-color: darken(@color-gray34, 5%);
+
+//
