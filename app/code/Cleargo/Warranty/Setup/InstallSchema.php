@@ -35,6 +35,13 @@ class InstallSchema implements InstallSchemaInterface
                     'ID'
                 )
                 ->addColumn(
+                    'increment_no',
+                    Table::TYPE_TEXT,
+                    100,
+                    ['nullable' => false, 'default' => ''],
+                    'Increment Number'
+                )
+                ->addColumn(
                     'salutation',
                     Table::TYPE_TEXT,
                     500,
@@ -54,18 +61,18 @@ class InstallSchema implements InstallSchemaInterface
                     ['nullable' => false, 'default' => ''],
                     'English Last Name'
                 )->addColumn(
-                    'chi_first_name',
+                    'chi_name',
                     Table::TYPE_TEXT,
                     100,
                     ['nullable' => true, 'default' => ''],
-                    'Chinese First Name'
+                    'Chinese Name'
                 )
                 ->addColumn(
-                    'chi_last_name',
+                    'company',
                     Table::TYPE_TEXT,
                     100,
                     ['nullable' => true, 'default' => ''],
-                    'Chinese Last Name'
+                    'Company Name'
                 )
                 ->addColumn(
                     'hkid',
@@ -209,11 +216,24 @@ class InstallSchema implements InstallSchemaInterface
                     'Updated At'
                 )
                 ->addColumn(
+                    'customer_id',
+                    Table::TYPE_INTEGER,
+                    10,
+                    ['nullable' => true, 'default' => Null, 'unsigned' => true ],
+                    'Customer ID'
+                )
+                ->addColumn(
                     'status',
                     Table::TYPE_SMALLINT,
                     null,
                     ['nullable' => false, 'default' => '0'],
                     'Status'
+                )->addForeignKey(
+                    $installer->getFkName('warranty_info', 'customer_id', 'customer_entity', 'entity_id'),
+                    'customer_id',
+                    $installer->getTable('customer_entity'),
+                    'entity_id',
+                    \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
                 )
                 ->setComment('Warranty Table')
                 ->setOption('type', 'InnoDB')

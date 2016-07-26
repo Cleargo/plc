@@ -364,7 +364,7 @@ class Warranty extends \Magento\Framework\View\Element\Template
                     'link' => $this->_storeManager->getStore()->getBaseUrl()
                 ]
             );
-            $breadcrumbsBlock->addCrumb('dealer_dealer', ['label' => __('Dealer Network'), 'title' => __('Dealer Network')]);
+            $breadcrumbsBlock->addCrumb('warranty_form', ['label' => __('Warranty Form'), 'title' => __('Warranty Form')]);
         }
     }
 }

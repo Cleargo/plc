@@ -10,6 +10,8 @@ namespace Cleargo\Warranty\Model\ResourceModel;
 class Warranty extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
     private $date;
+
+    private $customerSession;
     /**
      * Construct
      *
@@ -20,10 +22,12 @@ class Warranty extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     public function __construct(
         \Magento\Framework\Model\ResourceModel\Db\Context $context,
         \Magento\Framework\Stdlib\DateTime\DateTime $date,
+        \Magento\Customer\Model\Session $customerSession,
         $connectionName = null
     ) {
         parent::__construct($context, $connectionName);
         $this->date = $date;
+        $this->customerSession = $customerSession;
     }
 
     /**
@@ -60,7 +64,10 @@ class Warranty extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         if(!$object->getId()){
             $object->setCreationTime($this->date->gmtDate());
         }
-
+        if ($this->customerSession->isLoggedIn()) {
+            $this->customerSession->getCustomerId();
+            $object->setCustomerId($this->customerSession->getCustomerId());
+        }
         return $this;
     }
 

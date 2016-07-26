@@ -273,7 +273,7 @@ class Review extends \Magento\Framework\View\Element\Template
                     'link' => $this->_storeManager->getStore()->getBaseUrl()
                 ]
             );
-            $breadcrumbsBlock->addCrumb('dealer_dealer', ['label' => __('Dealer Network'), 'title' => __('Dealer Network')]);
+            $breadcrumbsBlock->addCrumb('warranty_review', ['label' => __('Warranty Review'), 'title' => __('Warranty Review')]);
         }
     }
 }

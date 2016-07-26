@@ -212,8 +212,8 @@
                         <div>
                             <div valign="top" class="dt" id="email_div" >&nbsp;<?php echo __('E-mail Address') ?></div>
                             <div class="dd">
-                                <input type="text" name="email" maxlength="60" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value=""/>
-                                <p class="fieldWidth" data-validate="{required:true}" aria-required="true"  style="font-size:10px">
+                                <input type="text" name="email" maxlength="60" class="fieldWidth" data-validate="{'validate-email':true}"  aria-required="true"  value=""/>
+                                <p class="fieldWidth" data-validate="{'validate-email':true}" aria-required="true"  style="font-size:10px">
                                     A copy of this regisdivationform will be sent to the e-mail address provided for reference.
                                 </p>
                             </div>
@@ -244,8 +244,8 @@
                             <div height="10"></div>
                             <div height="10"></div>
                         </div>
+
                         <div>
-                            
                             <div class="dt"><font id="sAnswer_sp" >*<?php echo __('Your answer') ?></font></div>
                             <div class="dd">
                                 <input type="text" name="answer" id="sAnswer" maxlength="30" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value=""/>
@@ -279,6 +279,12 @@
                             <div class="div-head"><div class="regisdivation-form-title">Product Information </div></div>
                             <div  valign="top">&nbsp;</div>
                         </h2>
+                        <div>
+                            <div class="dt"><font id="brandTitle" >*<?php echo __('Brand') ?></font></div>
+                            <div class="dd">
+                                <input type="text" name="brand" id="brand" maxlength="30" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value="Mul-T-Lock MT5" readonly/>
+                            </div>
+                        </div>
                         <div>
                            <div class="dt" id="pc_div" >
                                 *Product Category</div>
@@ -336,6 +342,7 @@
                             <div class="dt">&nbsp;</div>
                             <div class="dd">&nbsp;</div>
                         </div>
+                        <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mt5_form_img_en')->toHtml();?>
                         <div>
 
                             <div>&nbsp;</div>
@@ -386,6 +393,7 @@
                             ], function($){
                                 $(".date-pick").calendar({
                                     dateFormat: "yyyy-mm-dd",
+                                    yearRange: "-100:+0",
                                     showsTime: false,
                                     changeMonth: true,
                                     changeYear: true,
