@@ -10,8 +10,8 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
 {{template config_path="design/email/header_template"}}
 
 <p class="greeting">{{trans "%name," name=$data.eng_first_name}}</p>
-<p>{{trans "Thank you for registering your Mul-T-Lock MT5 product."}}</p>
-<p>{{trans "Your Warranty Information is as following:"}}</p>
+<p>{{trans "Thank you for using our online registration service."}}</p>
+<p>{{trans "Attached please kindly find a copy of your registration form for reference."}}</p>
 
 <table class="button" width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
@@ -20,6 +20,14 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                 <tr>
                     <td align="left" style="font-size: 20px; color:cornflowerblue;">
                         {{trans "Customer Information "}}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        {{trans "Reference No."}}
+                    </td>
+                    <td align="left">
+                        {{var data.increment_no}}
                     </td>
                 </tr>
                 <tr>
@@ -221,6 +229,8 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
     </tr>
 </table>
 
-<p>{{trans "Please call our CS Hotline @ 2765 9667 or email to plc@plc.com.hk if you have any questions regarding your product."}}</p>
+<p>{{trans "Should you have any enquiries, please call our customer service hotline at 852-2765 9667 for assistance."}}</p>
+<p>{{trans "Yours faithfully,"}}</p>
+<p>{{trans "The PLC Group"}}</p>
 
 {{template config_path="design/email/footer_template"}}

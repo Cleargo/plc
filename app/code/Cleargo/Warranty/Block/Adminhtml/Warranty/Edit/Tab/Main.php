@@ -75,11 +75,15 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
         }
 
         $fieldset->addField(
+            'increment_no',
+            'label',
+            ['name' => 'increment_no', 'label' => __('Increment No.'), 'title' => __('Increment No.')]
+        );
+        $fieldset->addField(
             'salutation',
             'text',
             ['name' => 'salutation', 'label' => __('Salutation'), 'title' => __('Salutation'), 'required' => true]
         );
-
         $fieldset->addField(
             'eng_first_name',
             'text',
@@ -123,7 +127,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
         $fieldset->addField(
             'email',
             'text',
-            ['name' => 'email', 'label' => __('Email'), 'title' => __('Email')]
+            ['name' => 'email', 'label' => __('Email'), 'title' => __('Email'), 'required' => true]
         );
         $fieldset->addField(
             'question_type',
@@ -133,7 +137,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
                 'title' => __('Quesetin Type'),
                 'name' => 'question_type',
                 'required' => true,
-                'options' => $model->getAvailableQustions()
+                'options' => $model->getAvailableQuestions()
             ]
         );
         $fieldset->addField(

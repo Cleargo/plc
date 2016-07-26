@@ -79,6 +79,15 @@ class Warranty extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      */
     protected function _afterSave(\Magento\Framework\Model\AbstractModel $object)
     {
+        $inNo = 'MT'.$this->date->gmtDate("Ymd").str_pad(strval($object->getId()),8,"0",STR_PAD_LEFT);
+        //var_dump($object->getId());die();
+        if(!$object->getIncrementNo()){
+            if($inNo){
+                $object->setIncrementNo($inNo);
+                $object->save();
+            }
+        }
+
         return parent::_afterSave($object);
     }
 

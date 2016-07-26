@@ -88,8 +88,6 @@ class Post extends \Magento\Framework\App\Action\Action
 
         $this->inlineTranslation->suspend();
         try {
-            $postObject = new \Magento\Framework\DataObject();
-            $postObject->setData($post);
 
             $error = false;
 
@@ -142,6 +140,10 @@ class Post extends \Magento\Framework\App\Action\Action
                 throw new \Exception();
             }
 
+            $this->warranty->setData($post);
+            $this->warranty->setIsActive(1);
+            $this->warranty->save();
+
 
             if(isset($post['email'])){
                 $question = [
@@ -165,6 +167,9 @@ class Post extends \Magento\Framework\App\Action\Action
                 $templateOptions = array('area' => \Magento\Framework\App\Area::AREA_FRONTEND, 'store' => $this->storeManager->getStore()->getId());
                 $from = $this->scopeConfig->getValue(self::XML_PATH_EMAIL_SENDER, $storeScope);
                 $to = array($post['email'],$post['eng_first_name']);
+                $postObject = new \Magento\Framework\DataObject();
+                $postObject->setData($this->warranty->getData());
+
                 $postObject->setQuestion( $question[$post['question_type']]);
                 $postObject->setProduct( $prodcut[$post['product_type']]);
 
@@ -179,10 +184,6 @@ class Post extends \Magento\Framework\App\Action\Action
                 $transport->sendMessage();
                 $this->inlineTranslation->resume();
             }
-
-            $this->warranty->setData($post);
-            $this->warranty->setIsActive(1);
-            $this->warranty->save();
 
             $this->messageManager->addSuccess(
                 __('Thank you for your MT5 registration!')

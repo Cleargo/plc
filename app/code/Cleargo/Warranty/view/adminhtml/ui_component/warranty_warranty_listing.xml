@@ -242,6 +242,15 @@
                 </item>
             </argument>
         </column>
+        <column name="increment_no">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Reference No.</item>
+                    <item name="sortOrder" xsi:type="number">21</item>
+                </item>
+            </argument>
+        </column>
         <column name="eng_first_name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -272,7 +281,7 @@
                 </item>
             </argument>
         </column>
-        <column name="chi_first_name">
+        <column name="chi_name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
@@ -287,7 +296,7 @@
                 </item>
             </argument>
         </column>
-        <column name="chi_last_name">
+        <column name="company">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
