@@ -1,0 +1,178 @@
+<?php
+    $pdfs = $block->getPdfArr();
+?>
+
+<div class="admin__field field field-pdf_button " data-ui-id="product-pdf-tab2-fieldset-element-form-field-pdf-button">
+    <div class="admin__field-control control">
+        <button id="id_01a31df79e24387fc5354801bd30d14b" title="Add New Pdf" type="button" class="action-default scalable make-popup" data-ui-id="widget-button-0">
+            <span><?php echo __("Upload Panel") ?></span>
+        </button>
+    </div>
+</div>
+<div id="popup-mpdal">
+    Please Wait Until Refresh
+</div>
+<form class="pdf-upload-form" enctype="multipart/form-data" novalidate="novalidate">
+    <fieldset class="fieldset admin__fieldset " id="pdf_upload">
+        <div class="messages">
+        </div>
+<div id="pdfContainer" >
+        <?php foreach ($pdfs as $p): ?>
+            <div style="  margin-right: 5px;  display: inline-block;" class="admin__field field field-old_pdf_path_<?php echo $p["pdf_id"]?>  with-note" data-ui-id="product-pdf-tab2-fieldset-element-form-field-old-pdf-path-<?php echo $p["pdf_id"]?>">
+                <label class="label admin__field-label" for="old_pdf_<?php echo $p["pdf_id"]?>" data-ui-id="product-pdf-tab2-fieldset-element-file-old-pdf-<?php echo $p["pdf_id"]?>-label"><span>Pdf Upload</span></label>
+                <div class="admin__field-control control">
+                    <div>There is a PDF for this product in this store view now.</div><a style="display:block;" href="<?php echo $block->getUrlPreffix() ?><?php echo $p["pdf_path"]?> " data-ui-id="product-pdf-tab2-fieldset-element-file-old-pdf-<?php echo $p["pdf_id"]?>-link">Click Here To Download The Current PDF</a> <span class="delete-pdf"><input pdfid="<?php echo $p["pdf_id"]?>" type="checkbox" name="old_pdf[<?php echo $p["pdf_id"]?>][delete]" class="checkbox delete-checkbox" id="old_pdf_path_<?php echo $p["pdf_id"]?>_delete"><label for="old_pdf_path_<?php echo $p["pdf_id"]?>_delete"> Delete Pdf</label><input type="hidden" name="old_pdf[<?php echo $p["pdf_id"]?>][value]" value="<?php echo $p["pdf_path"]?> "></span>
+
+                </div>
+            </div>
+        <?php endforeach; ?>
+</div>
+
+<div style="    float: right; margin-top: 15px;">
+    <input id="no_of_new_pdf" name="no_of_new_pdf" data-ui-id="product-pdf-tab2-fieldset-element-hidden-no-of-new-pdf" value="" title="Current Pdf" type="hidden">
+    <div style="display: inline-block;" admin__field field field-pdf_button " data-ui-id="product-pdf-tab2-fieldset-element-form-field-pdf-button">
+        <div class="admin__field-control control">
+            <button id="id_01a31df79e24387fc5354801bd30d14b" title="Add New Pdf" type="button" class="action-default scalable add" onclick="addNewImg()" data-ui-id="widget-button-0">
+                <span>Add New Pdf</span>
+            </button>
+        </div>
+    </div>
+
+    <div style="display: inline-block;" class="admin__field field field-pdf_button " data-ui-id="product-pdf-tab2-fieldset-element-form-field-pdf-button">
+        <div class="admin__field-control control">
+            <button id="id_01a31df79e24387fc5354801bd30d14b" title="Save" type="button" class="action-default scalable add save-pdf"  data-ui-id="widget-button-0">
+                <span>Save Pdf Section</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+    </fieldset>
+</form>
+
+<script language="javascript">
+    id = 0;
+
+    function addNewImg(){
+        id++;
+        //document.getElementById('no_of_new_pdf').value(id);
+        var pdfLabel = document.createElement('label');
+        var t = document.createTextNode("Upload New Pdf");
+        pdfLabel.appendChild(t);
+
+        var nameStr = 'new_pdf[]';
+        nameStr=  nameStr.replace(/%j%/g, 2).replace(/%id%/g, id);
+
+        var pdfUpload = document.createElement('input');
+        pdfUpload.name= nameStr;
+        pdfUpload.type= 'file';
+
+        var pdfInput = document.createElement('div');
+        pdfInput.className= 'control';
+        pdfInput.appendChild(pdfUpload);
+
+        var pdfRow = document.createElement('div');
+        pdfRow.className= 'field';
+        pdfRow.style.marginBottom= '8px';
+        pdfRow.style.marginTop= '8px';
+        pdfRow.style.marginRight= '8px';
+        pdfRow.style.display= 'inline-block';
+        pdfRow.appendChild(pdfLabel);
+        pdfRow.appendChild(pdfInput);
+
+        document.getElementById('pdfContainer').appendChild(pdfRow);
+
+        // Delete button
+        var new_row_button = document.createElement( 'input' );
+        new_row_button.type = 'checkbox';
+        new_row_button.value = 'Delete';
+
+
+        // Delete function
+        new_row_button.onclick= function(){
+            this.parentNode.parentNode.parentNode.removeChild( this.parentNode.parentNode );
+
+            // Appease Safari
+            //    without it Safari wants to reload the browser window
+            //    which nixes your already queued uploads
+            return false;
+        };
+
+    }
+</script>
+
+<script>
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function(
+            $,
+            modal
+        ) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                buttons: []
+            };
+            var popup = modal(options, $('#popup-mpdal'));
+            var mainPopup = modal(options, $('.pdf-upload-form'));
+            $(".make-popup").click(function () {
+                $('.pdf-upload-form').modal('openModal');
+            });
+            $(".save-pdf").click(function(){
+                $('.admin__form-loading-mask').show();
+                $('#popup-mpdal').modal('openModal');
+
+                var filterURL = "<?php echo $this->getAjaxPath() ?>";
+
+                var fd = new FormData();
+                //fd.append( 'file', $("#old_pdf_path_8")[0].files[0] );
+
+                fd.append( 'form_key', "<?php echo $block->getFormKey() ?>" );
+
+
+                $.each($(".delete-checkbox"),function (key,value) {
+                    console.log($(value).attr('name'));
+                    fd.append( $(value).attr('name') ,$(value).prop('checked') );
+
+                });
+                $.each($("input[name*='old_pdf']"),function ( key, value) {
+
+                    /*fd.append( 'old_pdf_' + value.attr('pdfid') ,value.files[0] );
+                    console.log(value.files[0]);
+                    console.log(value.attr('pdfid'));*/
+                });
+                $.each($("input[name='new_pdf[]']"),function ( key, value) {
+                    fd.append( 'new_pdf_' + key ,value.files[0] );
+                });
+                $.ajax({
+                    url: filterURL,
+                    processData: false,
+                    contentType: false,
+                    type: 'POST',
+                    success: function(data) {
+                        $('.admin__form-loading-mask').hide();
+                        location.reload();
+                    },
+                    data:fd,
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        $('.admin__form-loading-mask').hide();
+                        if (XMLHttpRequest.status == 0) {
+                            console.log(' Check Your Network.');
+                        } else if (XMLHttpRequest.status == 404) {
+                            console.log('Requested URL not found.');
+                        } else if (XMLHttpRequest.status == 500) {
+                            console.log('Internel Server Error.');
+                        }  else {
+                            console.log('Unknow Error.\n' + XMLHttpRequest.responseText);
+                        }
+                    }
+                });
+                console.log($("input[name='new_pdf[]']"));
+            });
+        }
+    );
+</script>
