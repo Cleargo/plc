@@ -5,7 +5,7 @@
             <block class="Cleargo\ProductPdf\Block\Adminhtml\Catalog\Product\Edit\Tab\Pdf" name="product.pdf.tab2">
                 <arguments>
                     <argument name="config" xsi:type="array">
-                        <item name="label" xsi:type="string" translate="true">Demo Tab</item>
+                        <item name="label" xsi:type="string" translate="true">Pdf Upload</item>
                         <item name="collapsible" xsi:type="boolean">true</item>
                         <item name="opened" xsi:type="boolean">true</item>
                         <item name="sortOrder" xsi:type="string">2</item>
