@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <weltpixel_quickview>
+            <general>
+                <remove_product_image>0</remove_product_image>
+                <remove_product_image_thumb>0</remove_product_image_thumb>
+                <remove_short_description>0</remove_short_description>
+                <remove_qty_selector>0</remove_qty_selector>
+                <enable_goto_product_button>1</enable_goto_product_button>
+                <remove_availability>0</remove_availability>
+                <remove_sku>0</remove_sku>
+                <enable_product_listing>0</enable_product_listing>
+                <button_style>v1</button_style>
+                <close_quickview>0</close_quickview>
+                <scroll_to_top>0</scroll_to_top>
+                <enable_shopping_checkout_product_buttons>1</enable_shopping_checkout_product_buttons>
+                <custom_css></custom_css>
+                <enable_zoom>0</enable_zoom>
+                <zoom_fullscreenzoom>5</zoom_fullscreenzoom>
+                <zoom_top></zoom_top>
+                <zoom_left></zoom_left>
+                <zoom_width></zoom_width>
+                <zoom_height></zoom_height>
+                <zoom_eventtype>hover</zoom_eventtype>
+            </general>            
+        </weltpixel_quickview>      
+    </default>
+</config>
