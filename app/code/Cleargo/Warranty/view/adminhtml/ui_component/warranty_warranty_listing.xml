@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2016 CLEARgo. All rights reserved.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing_data_source</item>
+            <item name="deps" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">warranty_warranty_columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Add New Warranty</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/new</item>
+            </item>
+        </item>
+    </argument>
+    <dataSource name="warranty_warranty_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">WarrantyGridDataProvider</argument>
+            <argument name="name" xsi:type="string">warranty_warranty_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">warranty_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <container name="listing_top">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="template" xsi:type="string">ui/grid/toolbar</item>
+                <item name="stickyTmpl" xsi:type="string">ui/grid/sticky/toolbar</item>
+            </item>
+        </argument>
+        <bookmark name="bookmarks">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="namespace" xsi:type="string">warranty_warranty_listing</item>
+                    </item>
+                </item>
+            </argument>
+        </bookmark>
+        <component name="columns_controls">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="columnsData" xsi:type="array">
+                        <item name="provider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing.warranty_warranty_columns</item>
+                    </item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/controls/columns</item>
+                    <item name="displayArea" xsi:type="string">dataGridActions</item>
+                </item>
+            </argument>
+        </component>
+        <filterSearch name="fulltext">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="provider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing_data_source</item>
+                    <item name="chipsProvider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing.listing_top.listing_filters_chips</item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.search</item>
+                    </item>
+                </item>
+            </argument>
+        </filterSearch>
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="columnsProvider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing.warranty_warranty_columns</item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.filters</item>
+                    </item>
+                    <item name="templates" xsi:type="array">
+                        <item name="filters" xsi:type="array">
+                            <item name="select" xsi:type="array">
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</item>
+                                <item name="template" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                            </item>
+                        </item>
+                    </item>
+                    <item name="childDefaults" xsi:type="array">
+                        <item name="provider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing.listing_top.listing_filters</item>
+                        <item name="imports" xsi:type="array">
+                            <item name="visible" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing.warranty_warranty_columns.${ $.index }:visible</item>
+                        </item>
+                    </item>
+                </item>
+                <item name="observers" xsi:type="array">
+                    <item name="column" xsi:type="string">column</item>
+                </item>
+            </argument>
+        </filters>
+        <exportButton name="export_button">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing.warranty_warranty_columns.ids</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/export</item>
+                    <item name="displayArea" xsi:type="string">dataGridActions</item>
+                    <item name="options" xsi:type="array">
+                        <item name="cvs" xsi:type="array">
+                            <item name="value" xsi:type="string">csv</item>
+                            <item name="label" xsi:type="string" translate="true">CSV</item>
+                            <item name="url" xsi:type="string">mui/export/gridToCsv</item>
+                        </item>
+                        <item name="xml" xsi:type="array">
+                            <item name="value" xsi:type="string">xml</item>
+                            <item name="label" xsi:type="string" translate="true">Excel XML</item>
+                            <item name="url" xsi:type="string">mui/export/gridToXml</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </exportButton>
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing.warranty_warranty_columns.ids</item>
+                    <item name="indexField" xsi:type="string">warranty_id</item>
+                </item>
+            </argument>
+            <action name="delete">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">delete</item>
+                        <item name="label" xsi:type="string" translate="true">Delete</item>
+                        <item name="url" xsi:type="url" path="warranty/warranty/massDelete"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Delete items</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected items?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+            <action name="disable">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">disable</item>
+                        <item name="label" xsi:type="string" translate="true">Disable</item>
+                        <item name="url" xsi:type="url" path="warranty/warranty/massDisable"/>
+                    </item>
+                </argument>
+            </action>
+            <action name="enable">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">enable</item>
+                        <item name="label" xsi:type="string" translate="true">Enable</item>
+                        <item name="url" xsi:type="url" path="warranty/warranty/massEnable"/>
+                    </item>
+                </argument>
+            </action>
+            <action name="edit">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">edit</item>
+                        <item name="label" xsi:type="string" translate="true">Edit</item>
+                        <item name="callback" xsi:type="array">
+                            <item name="provider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing.warranty_warranty_columns_editor</item>
+                            <item name="target" xsi:type="string">editSelected</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+        <paging name="listing_paging">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.paging</item>
+                    </item>
+                    <item name="selectProvider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing.warranty_warranty_columns.ids</item>
+                </item>
+            </argument>
+        </paging>
+    </container>
+    <columns name="warranty_warranty_columns">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="storageConfig" xsi:type="array">
+                    <item name="provider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing.listing_top.bookmarks</item>
+                    <item name="namespace" xsi:type="string">current</item>
+                </item>
+                <item name="editorConfig" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing.warranty_warranty_columns.ids</item>
+                    <item name="enabled" xsi:type="boolean">true</item>
+                    <item name="indexField" xsi:type="string">warranty_id</item>
+                    <item name="clientConfig" xsi:type="array">
+                        <item name="saveUrl" xsi:type="url" path="warranty/warranty/inlineEdit"/>
+                        <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+                <item name="childDefaults" xsi:type="array">
+                    <item name="fieldAction" xsi:type="array">
+                        <item name="provider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing.warranty_warranty_columns_editor</item>
+                        <item name="target" xsi:type="string">startEdit</item>
+                        <item name="params" xsi:type="array">
+                            <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                            <item name="1" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing.listing_top.bookmarks</item>
+                        <item name="root" xsi:type="string">columns.${ $.index }</item>
+                        <item name="namespace" xsi:type="string">current.${ $.storageConfig.root}</item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">55</item>
+                    <item name="indexField" xsi:type="string">warranty_id</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <column name="warranty_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">ID</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+        </column>
+        <column name="increment_no">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Reference No.</item>
+                    <item name="sortOrder" xsi:type="number">21</item>
+                </item>
+            </argument>
+        </column>
+        <column name="eng_first_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">English Frist Name</item>
+                </item>
+            </argument>
+        </column>
+        <column name="eng_last_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">English Last Name</item>
+                </item>
+            </argument>
+        </column>
+        <column name="chi_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Chinese Frist Name</item>
+                </item>
+            </argument>
+        </column>
+        <column name="company">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">51</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Chinese Last Name</item>
+                </item>
+            </argument>
+        </column>
+        <column name="hkid">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">HKID</item>
+                </item>
+            </argument>
+        </column>
+        <column name="passport_num">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Passport Number</item>
+                </item>
+            </argument>
+        </column>
+        <column name="date_of_purchase" class="Magento\Ui\Component\Listing\Columns\Date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">dateRange</item>
+                    <item name="sortOrder" xsi:type="number">70</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="editor" xsi:type="string">date</item>
+                    <item name="label" xsi:type="string" translate="true">Date of Purchase</item>
+                </item>
+            </argument>
+        </column>
+        <column name="contact_one_country_code">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Contact One Country Code</item>
+                </item>
+            </argument>
+        </column><column name="contact_one_phone">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Contact One Phone</item>
+                </item>
+            </argument>
+        </column>
+        <column name="contact_two_country_code">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Contact Two Country Code</item>
+                </item>
+            </argument>
+        </column>
+        <column name="contact_two_phone">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Contact Two Phone</item>
+                </item>
+            </argument>
+        </column>
+        <column name="email">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Email</item>
+                </item>
+            </argument>
+        </column>
+        <column name="question_type">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Cleargo\Warranty\Model\Warranty\Source\QuestionType</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="sortOrder" xsi:type="number">99</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="editor" xsi:type="string">select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Security Question</item>
+                </item>
+            </argument>
+        </column>
+        <column name="answer">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">100</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Answer</item>
+                </item>
+            </argument>
+        </column>
+        <column name="date_of_birth" class="Magento\Ui\Component\Listing\Columns\Date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">dateRange</item>
+                    <item name="sortOrder" xsi:type="number">110</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="label" xsi:type="string" translate="true">Date Of Birth</item>
+                </item>
+            </argument>
+        </column>
+        <column name="product_type">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Cleargo\Warranty\Model\Warranty\Source\ProductType</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="sortOrder" xsi:type="number">120</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="editor" xsi:type="string">select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Product Type</item>
+                </item>
+            </argument>
+        </column>
+        <column name="serial_num">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">130</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Serial Number</item>
+                </item>
+            </argument>
+        </column>
+        <column name="profile">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">140</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Profile</item>
+                </item>
+            </argument>
+        </column>
+        <column name="t_combination">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">150</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">T-combination</item>
+                </item>
+            </argument>
+        </column>
+        <column name="fp_combination">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">160</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">FP-combination</item>
+                </item>
+            </argument>
+        </column>
+        <column name="date_of_purchase" class="Magento\Ui\Component\Listing\Columns\Date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">dateRange</item>
+                    <item name="sortOrder" xsi:type="number">90</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="label" xsi:type="string" translate="true">Date of Purchase</item>
+                </item>
+            </argument>
+        </column>
+        <column name="name_of_dealer">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">170</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Name Of Dealer</item>
+                </item>
+            </argument>
+        </column>
+        <column name="invoice_no">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">180</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Invoice Number</item>
+                </item>
+            </argument>
+        </column>
+        <column name="status">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Cleargo\Warranty\Model\Warranty\Source\IsActive</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="sortOrder" xsi:type="number">190</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="editor" xsi:type="string">select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                </item>
+            </argument>
+        </column>
+        <column name="creation_time" class="Magento\Ui\Component\Listing\Columns\Date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">dateRange</item>
+                    <item name="sortOrder" xsi:type="number">200</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="label" xsi:type="string" translate="true">Created</item>
+                </item>
+            </argument>
+        </column>
+        <column name="update_time" class="Magento\Ui\Component\Listing\Columns\Date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">dateRange</item>
+                    <item name="sortOrder" xsi:type="number">210</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="label" xsi:type="string" translate="true">Modified</item>
+                </item>
+            </argument>
+        </column>
+        <actionsColumn name="actions" class="Cleargo\Warranty\Ui\Component\Listing\Column\WarrantyActions">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="number">15</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">107</item>
+                    <item name="indexField" xsi:type="string">warranty_id</item>
+                </item>
+            </argument>
+        </actionsColumn>
+    </columns>
+    <container name="sticky">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/sticky/sticky</item>
+                <item name="toolbarProvider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing.listing_top</item>
+                <item name="listingProvider" xsi:type="string">warranty_warranty_listing.warranty_warranty_listing.warranty_warranty_columns</item>
+            </item>
+        </argument>
+    </container>
+</listing>

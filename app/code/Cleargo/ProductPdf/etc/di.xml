@@ -1,0 +1,5 @@
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <preference for="Magento\Catalog\Block\Adminhtml\Product\Edit\Tabs" type="Cleargo\ProductPdf\Block\Adminhtml\Product\Edit\Tabs" />
+   <preference for="Magento\Catalog\Controller\Adminhtml\Product\Save" type="Cleargo\ProductPdf\Controller\Adminhtml\Product\Save" />
+</config>

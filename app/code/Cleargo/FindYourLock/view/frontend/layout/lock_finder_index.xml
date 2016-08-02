@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 CLEARgo. All rights reserved.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Find Your Lock</title>
+        <link src="Cleargo_FindYourLock::js/filter.js"/>
+        <css src="Cleargo_FindYourLock::css/style.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Cleargo\FindYourLock\Block\Lock" name="lock_lock"/>
+        </referenceContainer>
+    </body>
+</page>

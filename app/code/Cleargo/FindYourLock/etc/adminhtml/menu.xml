@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Cleargo_FindYourLock::find_your_lock" title="Lock Network" module="Cleargo_FindYourLock" sortOrder="10" parent="Cleargo_Core::extension" resource="Cleargo_FindYourLock::find_your_lock"/>
+        <add id="Cleargo_FindYourLock::country" title="Regions" module="Cleargo_FindYourLock" sortOrder="10" parent="Cleargo_FindYourLock::find_your_lock" action="lock/region" resource="Cleargo_FindYourLock::country"/>
+        <add id="Cleargo_FindYourLock::district" title="Districts" module="Cleargo_FindYourLock" sortOrder="20" parent="Cleargo_FindYourLock::find_your_lock" action="lock/district" resource="Cleargo_FindYourLock::district"/>
+        <add id="Cleargo_FindYourLock::lock" title="Locks" module="Cleargo_FindYourLock" sortOrder="30" parent="Cleargo_FindYourLock::find_your_lock" action="lock/lock" resource="Cleargo_FindYourLock::lock"/>
+    </menu>
+</config>

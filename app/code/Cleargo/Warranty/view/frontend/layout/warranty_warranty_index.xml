@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">My Warranty Record</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Cleargo\Warranty\Block\History" name="warranty.warranty.history" cacheable="false">
+                <container name="warranty.warranty.history.info" as="info" label="Order History Info"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,31 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/* @var $block \Magento\Wishlist\Block\Link */
+?>
+
+<div class="top-links block-wishlist" data-bind="scope: 'wishlist'">
+    <a class="action wishlist" <?php /* @escapeNotVerified */ echo $block->getLinkAttributes() ?>>
+        <span class="text"><?php /* @escapeNotVerified */ echo __('Wishlist'); ?></span>
+    </a>
+    <span data-bind="text: wishlist().counter" class="counter qty"></span>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "wishlist": {
+                        "component": "Magento_Wishlist/js/view/wishlist"
+                    }
+                }
+            }
+        }
+    }
+
+</script>

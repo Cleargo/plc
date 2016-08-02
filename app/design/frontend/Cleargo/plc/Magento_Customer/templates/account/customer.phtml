@@ -1,0 +1,41 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php if($block->customerLoggedIn()): ?>
+    <div class="top-links block-user">
+        <a class="action user" href="javascript:void(0)"><span class="text"><?php /* @e2scapeNotVerified */ echo __('User'); ?></span>
+            <span class="customer-name"
+                  data-bind="scope: 'customer'">
+                <span data-bind="text: new String('&nbsp;&nbsp;Hi, %1!').replace('%1', customer().firstname)"></span>
+            </span>
+        </a>
+        <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "customer": {
+                            "component": "Magento_Customer/js/view/customer"
+                        }
+                    }
+                }
+            }
+        }
+        </script>
+        <?php if($block->getChildHtml()):?>
+        <div class="block-content">
+            <?php echo $block->getChildHtml();?>
+        </div>
+        <?php endif; ?>
+    </div>
+<?php else: ?>
+<div class="top-links block-user">
+    <a class="action user" href="<?php echo $this->getUrl('customer/account/login') ?>"><span class="text"><?php /* @e2scapeNotVerified */ echo __('User'); ?></span></a>
+</div>
+<?php endif; ?>

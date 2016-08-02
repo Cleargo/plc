@@ -63,6 +63,9 @@ class GridActions extends Column
                     ),
                     'label' => __('Delete'),
                     'hidden' => false,
+                    'confirm' => [
+                        'title' => __('Delete?'),
+                        'message' => __('Are you sure you wan\'t to delete a  record?')]
                 ];
             }
         }

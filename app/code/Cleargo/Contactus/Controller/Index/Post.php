@@ -65,7 +65,7 @@ class Post extends \Magento\Contact\Controller\Index\Post
         } catch (\Exception $e) {
             $this->inlineTranslation->resume();
             $this->messageManager->addError(
-                __('We can\'t process your request right now. Sorry, that\'s all we know.')
+                __('We can\'t process your request right now. ')
             );
             $this->_redirect('contact/index');
             return;

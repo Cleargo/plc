@@ -1,0 +1,54 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+?>
+<?php $_warranties = $block->getWarranties(); ?>
+<?php echo $block->getChildHtml('info');?>
+<?php if ($_warranties && count($_warranties)): ?>
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?php /* @escapeNotVerified */ echo __('Warrantys') ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col id"><?php /* @escapeNotVerified */ echo __('Warranty #') ?></th>
+                    <th scope="col" class="col date"><?php /* @escapeNotVerified */ echo __('Serial Number') ?></th>
+                    <th scope="col" class="col shipping"><?php /* @escapeNotVerified */ echo __('Profile') ?></th>
+                    <th scope="col" class="col shipping"><?php /* @escapeNotVerified */ echo __('T combination') ?></th>
+                    <th scope="col" class="col shipping"><?php /* @escapeNotVerified */ echo __('FP combination') ?></th>
+                    <th scope="col" class="col status"><?php /* @escapeNotVerified */ echo __('Invoice No.') ?></th>
+                    <th scope="col" class="col total"><?php /* @escapeNotVerified */ echo __('Date of Purchase') ?></th>
+                    <th scope="col" class="col total"><?php /* @escapeNotVerified */ echo __('Date of Warranty Creation') ?></th>
+                    <th scope="col" class="col total"><?php /* @escapeNotVerified */ echo __('Detail Info') ?></th>
+                    <th scope="col" class="col actions">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($_warranties as $_warranty): ?>
+                    <tr>
+                        <td data-th="<?php echo $block->escapeHtml(__('Warranty #')) ?>" class="col id"><?php /* @escapeNotVerified */ echo $_warranty->getIncrementNo() ?></td>
+                        <td data-th="<?php echo $block->escapeHtml(__('Serial Number')) ?>" class="col date"><?php /* @escapeNotVerified */ echo $_warranty->getSerialNum() ?></td>
+                        <td data-th="<?php echo $block->escapeHtml(__('Profile')) ?>" class="col shipping"><?php echo $_warranty->getProfile() ?></td>
+                        <td data-th="<?php echo $block->escapeHtml(__('T combination')) ?>" class="col shipping"><?php echo $_warranty->getTCombination() ?></td>
+                        <td data-th="<?php echo $block->escapeHtml(__('FP combination')) ?>" class="col shipping"><?php echo $_warranty->getFpCombination() ?></td>
+                        <td data-th="<?php echo $block->escapeHtml(__('Invoice No.')) ?>" class="col status"><?php /* @escapeNotVerified */ echo $_warranty->getInvoiceNo()?  $_warranty->getInvoiceNo() : 'N/A' ?></td>
+                        <td data-th="<?php echo $block->escapeHtml(__('Date of Purchase')) ?>" class="col total"><?php /* @escapeNotVerified */ echo $block->formatDate($_warranty->getDateOfPurchase()) ?></td>
+                        <td data-th="<?php echo $block->escapeHtml(__('Date of Purchase')) ?>" class="col total"><?php /* @escapeNotVerified */ echo $block->formatDate($_warranty->getCreationTime()) ?></td>
+                        <td data-th="<?php echo $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                            <a href="<?php /* @escapeNotVerified */ echo $block->getViewUrl($_warranty) ?>" class="action view">
+                                <span><?php /* @escapeNotVerified */ echo __('View Warranty') ?></span>
+                            </a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+    <?php endif ?>
+<?php else: ?>
+    <div class="message info empty"><span><?php /* @escapeNotVerified */ echo __('You have no warranties.'); ?></span></div>
+<?php endif ?>

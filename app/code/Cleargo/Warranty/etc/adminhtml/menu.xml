@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul_Grid Menu
+ *
+ * @category    Webkul
+ * @package     Webkul_Grid
+ * @author      Webkul Software Private Limited
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Cleargo_Warranty::manager" title="Warranty Page" module="Cleargo_Warranty" sortOrder="10" parent="Cleargo_Core::extension" resource="Cleargo_Warranty::warranty"/>
+        <add id="Cleargo_Warranty::add_row" title="Warranty Manager" module="Cleargo_Warranty" sortOrder="20" parent="Cleargo_Warranty::manager" action="warranty/warranty" resource="Cleargo_Warranty::warranty"/>
+    </menu>
+</config>

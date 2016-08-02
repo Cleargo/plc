@@ -12,6 +12,33 @@
 //  All new variables should be placed in local theme lib or local theme files
 
 //
+//  PLC
+//  ---------------------------------------------
+@color-brandred: #C3161C;
+@color-transparent: transparent;
+@primary__color: #606060;
+@font-regular: 'aileron';
+@font-italic: 'aileron-italic';
+@font-bold: 'aileron-bold';
+@font-bolditalic: 'aileron-bolditalic';
+@font-thinitalic: 'aileron-thinitalic';
+@font-black: 'aileron-black';
+
+
+//  Weights
+@font-weight__light: @font-weight__regular; //origin: 300
+@font-weight__regular: @font-weight__regular; //origin: 400
+@font-weight__heavier: @font-weight__regular; //origin: 500
+@font-weight__semibold: @font-weight__regular; //origin: 600
+@font-weight__bold: @font-weight__regular; //origin: 700
+
+@layout__min-width: 320px;
+@layout__max-width: 960px;
+
+@footer-links-color: @text__color;
+
+@active__color: @color-brandred;
+//
 //  Typography
 //  ---------------------------------------------
 
@@ -23,8 +50,18 @@
 @panel__background-color: @color-gray-light0;
 @border-color__base: @color-gray80;
 
-//  Headings
-@h3__font-weight: @font-weight__semibold;
+
+//
+//  Links
+//  ---------------------------------------------
+@link__color: @primary__color;
+@link__text-decoration: underline;
+@link__visited__color: @link__color;
+@link__visited__text-decoration: @link__text-decoration;
+@link__hover__color: lighten(@link__color, 20%);
+@link__active__color: @link__hover__color;
+
+
 @h3__margin-top: @indent__base;
 
 //
@@ -52,14 +89,42 @@
 //  Navigation
 //  ---------------------------------------------
 
-@navigation__background: @color-gray94;
-@navigation-level0-item__active__color: @primary__color;
+@navigation-level0-item__line-height: 40px;
+@navigation__background: @color-transparent;
 @submenu-item__active__color: @navigation-level0-item__active__color;
+@submenu-item__text-decoration:'';
+@navigation__level0-item__border-width:0px;
+
+@navigation-level0-item__padding:10px 0;
+
+@navigation-level0-item__hover__border-color: @color-transparent;
+@navigation-level0-item__hover__border-style: solid;
+@navigation-level0-item__hover__border-width: 1px 0;
+@navigation-level0-item__hover__border-color: @color-brandred;
+@navigation-level0-item__hover__border-style: solid;
+@navigation-level0-item__hover__border-width: 1px 0;
+@navigation-level0-item__active__border-color: @color-brandred;
+@navigation-level0-item__active__border-style: solid;
+@navigation-level0-item__active__border-width: 1px 0;
 
 //  Desktop navigation
-@navigation-desktop-level0-item__line-height: 47px;
+@navigation-desktop-level0-item__line-height: 59px;
+@navigation-desktop-level0-item__hover__background: @color-brandred;
+@navigation-desktop-level0-item__hover__color: @color-white;
+@navigation-desktop-level0-item__active__color: '';
+@navigation-desktop-level0-item__active__border-width: 0;
+
 @submenu-desktop__font-weight: @font-weight__regular;
-@submenu-desktop-item__active__color: @navigation-level0-item__active__color;
+@submenu-desktop__border-width: 0;
+@submenu-desktop__background: @color-transparent;
+@submenu-desktop-item__padding:3px 0;
+@submenu-desktop-item__margin:3px;
+@submenu-desktop-item__text-decoration:none;
+@submenu-desktop-item__hover__color: @color-brandred;
+@submenu-desktop-item__hover__background: @color-transparent;
+@submenu-desktop-item__hover__text-decoration:none;
+@submenu-desktop-item__active__color: @color-brandred;
+@submenu-desktop-item__active__background: @color-transparent;
 
 //  Tabs
 @tab-control__font-weight: @font-weight__regular;
@@ -99,21 +164,29 @@
 //
 //  Buttons
 //  ---------------------------------------------
-
 @button__font-weight: @font-weight__semibold;
+@button__shadow: none; //  Used for secondary button and catalog toolbar controls
+@button__shadow-active:none; //  Used for secondary button and catalog toolbar controls
 
 //  Default = secondary button
-@button__background: @color-gray-darken0;
-@button__border: 1px solid @border-color__base;
-@button__hover__color: @button__color;
+@button__background: @color-brandred;
+@button__color: @color-white;
+@button__border: 1px solid @color-brandred;
+@button__border-radius: 100px;
+@button__hover__color: @color-white;
 @button__hover__background: darken(@button__background, 5%);
-@button__active__background: @color-gray-darken1;
+@button__hover__border: 1px solid darken(@button__background, 5%);
+@button__active__background: @color-brandred;
 
 //  Primary button
-@button-primary__hover__color: @color-white;
-@button-primary__active__background: @link__hover__color;
-@button-primary__active__border: 1px solid @link__hover__color;
-@button-primary__active__color: @color-white;
+@button-primary__background: @color-brandred;
+@button-primary__border: @button__border;
+@button-primary__hover__background: darken(@button__background, 5%);
+@button-primary__hover__border: @button__hover__border;
+@button-primary__active__background: @button-primary__hover__background;
+@button-primary__active__border: @button-primary__hover__border;
+
+
 
 //  Button with icon
 @button-icon__line-height: @icon-font__line-height;
@@ -130,6 +203,8 @@
 @icon-arrow-left-thin: false;
 @icon-arrow-down-thin: false;
 @icon-wishlist-empty: '\e601';
+
+
 
 //
 //  Messages
@@ -207,7 +282,8 @@
 //
 //  Dropdowns
 //  ---------------------------------------------
-
+@dropdown-list-pointer__border: @color-brandred;
+@dropdown-list__border:1px solid @color-brandred;
 @dropdown-toggle-icon__content: @icon-down;
 @dropdown-toggle-icon__active__content: @icon-up;
 @dropdown-toggle-icon__font-size: 12px;
@@ -265,3 +341,20 @@
 
 // Checkout
 @checkout-sidebar__columns: 8;
+
+//minicart
+@minicart-icons-color: @color-brandred;
+
+
+//collapsible navigation
+
+@collapsible-nav-background: @sidebar__background-color;
+@collapsible-nav-color: @color-gray34;
+@collapsible-nav-current-border: 0px solid @color-transparent;
+@collapsible-nav-current-border-color: @color-transparent;
+@collapsible-nav-current-color: @color-brandred;
+@collapsible-nav-current-font-weight: @font-weight__regular;
+@collapsible-nav-item-hover: @color-transparent;
+@collapsible-nav-item-hover-color: darken(@color-gray34, 5%);
+
+//
