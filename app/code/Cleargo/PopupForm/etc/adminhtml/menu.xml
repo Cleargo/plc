@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul_Grid Menu
+ *
+ * @category    Webkul
+ * @package     Webkul_Grid
+ * @author      Webkul Software Private Limited
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Cleargo_PopupForm::title" title="Popup Form" module="Cleargo_PopupForm" sortOrder="30" parent="Cleargo_Core::extension" resource="Cleargo_PopupForm::title"/>
+        <add id="Cleargo_PopupForm::add_row" title="Inquiry Manager" module="Cleargo_PopupForm" sortOrder="10" parent="Cleargo_PopupForm::title" action="popupForm/inquiry" resource="Cleargo_PopupForm::add_row"/>
+        <add id="Cleargo_PopupForm::add_row2" title="Question Type Manager" module="Cleargo_PopupForm" sortOrder="20" parent="Cleargo_PopupForm::title" action="popupForm/option" resource="Cleargo_PopupForm::add_row2"/>
+    </menu>
+</config>

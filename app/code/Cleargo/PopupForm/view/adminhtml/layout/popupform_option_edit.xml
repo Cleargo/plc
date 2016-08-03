@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Cleargo\PopupForm\Block\Adminhtml\Option\Edit" name="popupForm_option_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Cleargo\PopupForm\Block\Adminhtml\Option\Edit\Tabs" name="cleargo_option_edit_tabs">
+                <block class="Cleargo\PopupForm\Block\Adminhtml\Option\Edit\Tab\Main" name="cleargo_option_edit_tab_main"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">cleargo_option_edit_tab_main</argument>
+                </action>
+                <block class="Cleargo\PopupForm\Block\Adminhtml\Option\Edit\Tab\Advanced" name="cleargo_option_edit_tab_advanced"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">advanced_section</argument>
+                    <argument name="block" xsi:type="string">cleargo_option_edit_tab_advanced</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
