@@ -7,26 +7,11 @@
 namespace Cleargo\PopupForm\Controller\Post;
 class  Index  extends \Magento\Framework\App\Action\Action
 {
-    /**
-     * Recipient email config path
-     */
-    const XML_PATH_EMAIL_RECIPIENT = 'contact/email/recipient_email';
 
     /**
      * Sender email config path
      */
     const XML_PATH_EMAIL_SENDER = 'contact/email/sender_email_identity';
-
-    /**
-     * Email template config path
-     */
-    const XML_PATH_EMAIL_TEMPLATE = 'contact/email/email_template';
-
-    /**
-     * Enabled config path
-     */
-    const XML_PATH_ENABLED = 'contact/contact/enabled';
-
     /**
      * @var \Magento\Framework\Mail\Template\TransportBuilder
      */
@@ -48,7 +33,9 @@ class  Index  extends \Magento\Framework\App\Action\Action
     protected $storeManager;
     protected $inquiry;
     protected $resultJsonFactory;
-    private $customerSession;
+    protected $customerSession;
+    protected $optionRepository;
+
 
     /**
      * @param \Magento\Framework\App\Action\Context $context
@@ -65,7 +52,8 @@ class  Index  extends \Magento\Framework\App\Action\Action
     \Cleargo\PopupForm\Model\Inquiry $inquiry,
     \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
     \Magento\Customer\Model\Session $customerSession,
-    \Magento\Store\Model\StoreManagerInterface $storeManager
+    \Magento\Store\Model\StoreManagerInterface $storeManager,
+    \Cleargo\PopupForm\Model\OptionRepository $optionRepository
 ) {
     parent::__construct($context);
     $this->_transportBuilder = $transportBuilder;
@@ -75,6 +63,7 @@ class  Index  extends \Magento\Framework\App\Action\Action
     $this->inquiry = $inquiry;
     $this->customerSession = $customerSession;
     $this->storeManager = $storeManager;
+    $this->optionRepository = $optionRepository;
 }
 
     public function execute($coreRoute = null)//contact_email_email_template2
@@ -120,39 +109,18 @@ class  Index  extends \Magento\Framework\App\Action\Action
         $response = [
             'message' => __('Success')
         ];
-        $resultJson = $this->resultJsonFactory->create();
-        return $resultJson->setData($response);
 
         if(isset($post['email'])){
-            $question = [
-                1 => 'Who is your favourite singer?',
-                2 => 'What is your favourite pastime?',
-                3 => 'What is your favourite sports team?',
-                4 => 'What is the name of your primary school?',
-                5 => 'What is your pet’s name?',
-                6 => 'What colour do you like best?',
-                7 => 'Which is your favourite festival?',
-                8 => 'What is your favourite fruit?'
-            ];
-            $prodcut = [
-                1 => 'Auxiliary Lock',
-                2 => 'Cylinder',
-                3 => 'Entrance Lockset',
-                4 => 'Others'
-            ];
-
             $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
             $templateOptions = array('area' => \Magento\Framework\App\Area::AREA_FRONTEND, 'store' => $this->storeManager->getStore()->getId());
             $from = $this->scopeConfig->getValue(self::XML_PATH_EMAIL_SENDER, $storeScope);
-            $to = array($post['email'],$post['eng_first_name']);
+            $to = array($post['email'],$post['name']);
             $postObject = new \Magento\Framework\DataObject();
             $postObject->setData($this->inquiry->getData());
-
-            $postObject->setProduct( $prodcut[$post['product_type']]);
-
+            $postObject->setQuestion($this->optionRepository->getById($this->inquiry->getData('question_type_id'))->getData('default_label'));
 
             $this->inlineTranslation->suspend();
-            $transport = $this->_transportBuilder->setTemplateIdentifier('inquiry_to_customer')
+            $transport = $this->_transportBuilder->setTemplateIdentifier('inquiry_from_customer')
                 ->setTemplateOptions($templateOptions)
                 ->setTemplateVars(['data' => $postObject])
                 ->setFrom($from)
@@ -162,13 +130,17 @@ class  Index  extends \Magento\Framework\App\Action\Action
             $this->inlineTranslation->resume();
         }
 
+        $resultJson = $this->resultJsonFactory->create();
+        return $resultJson->setData($response);
+
     } catch (\Exception $e) {
         $this->inlineTranslation->resume();
-        $this->messageManager->addError(
-            __('We can\'t process your request right now. ')
-        );
-        $this->_redirect('*/*');
-        return;
+        $response = [
+            'errors' => true,
+            'message' => $e->getMessage()
+        ];
+        $resultJson = $this->resultJsonFactory->create();
+        return $resultJson->setData($response);
     }
 }
 }

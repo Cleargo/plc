@@ -125,7 +125,7 @@ class OptionRepository implements OptionRepositoryInterface
         $option = $this->optionFactory->create();
         $this->resource->load($option, $optionId);
         if (!$option->getId()) {
-            //throw new NoSuchEntityException(__('CMS Option with id "%1" does not exist.', $optionId));
+            throw new NoSuchEntityException(__('CMS Option with id "%1" does not exist.', $optionId));
         }
         return $option;
     }
