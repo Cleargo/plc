@@ -1,0 +1,192 @@
+<img class="popup-question-mark" src="<?php echo $block->getViewFileUrl('Cleargo_PopupForm/images/question_mark.png'); ?>"/>
+<div id="popupform-fade-wrapper"></div>
+
+<div class="fixed_bottom desktop">
+    <div class="icon">
+        <span> <?php echo __("QUESTION TO US?") ?> </span>
+        <img class="arrow" src="<?php echo $block->getViewFileUrl('Cleargo_PopupForm/images/arrow.png'); ?>"/>
+        <img class="cross" src="<?php echo $block->getViewFileUrl('Cleargo_PopupForm/images/cross.png'); ?>"/>
+    </div>
+    <div class="form-wrapper">
+        <div class="thank-container" >
+            <div class="top">
+                <?php echo __("Thank You For Your Question") ?>
+            </div>
+            <div class="middle">
+                <?php echo __("We will response to you Soon") ?>
+            </div>
+            <div class="back">
+                <span class="click">
+                  <?php echo __("Back") ?>
+                </span>
+            </div>
+        </div>
+
+        <form class="form popup-form"
+              action="<?php /* @escapeNotVerified */ echo $block->getFormAction(); ?>"
+              id="popupForm"
+              method="post"
+              data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>"
+              >
+
+
+            <fieldset class="fieldset">
+                <div class="field name required">
+                    <label class="label" for="name"><span><?php /* @escapeNotVerified */ echo __('Name') ?></span></label>
+                    <div class="control">
+                        <input name="name" id="name" title="<?php /* @escapeNotVerified */ echo __('Name') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+                    </div>
+                </div>
+                <div class="field email required">
+                    <label class="label" for="email"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
+                    <div class="control">
+                        <input name="email" id="email" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                    </div>
+                </div>
+                <div class="field telephone">
+                    <label class="label" for="telephone"><span><?php /* @escapeNotVerified */ echo __("Tel") ?></span></label>
+                    <div class="control">
+                        <input name="tel" id="telephone" title="<?php /* @escapeNotVerified */ echo __("Tel")  ?>" value="" class="input-text" type="text" />
+                    </div>
+                </div>
+
+
+                <?php $options = $block->getCheckBox(); ?>
+                <div class="field enquiry required">
+                    <?php foreach ($options as $opt): ?>
+                        <div class="checkbox-wrapper">
+                                <div class="control">
+                                    <input name="question_type_id" title="<?php /* @escapeNotVerified */ echo $opt['label'] ?>" value="<?php echo $opt['value']?>" class="input-checkbox" data-validate="{required:true,'validate-one-required-by-name': true}" type="checkbox" />
+                                </div>
+                            <label class="checkbox-label" for="question_type_id"><span><?php /* @escapeNotVerified */ echo $opt['label'] ?></span></label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+
+                <div class="field content required">
+                    <div class="control-textarea">
+                        <textarea name="content" id="content" title="<?php /* @escapeNotVerified */ echo __('What’s on your mind?') ?>" class="input-textarea" cols="5" rows="3" data-validate="{required:true}"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="actions-toolbar">
+                <div class="warn-text"><?php echo __("*Required Fields") ?></div>
+                <div class="primary">
+                    <input type="hidden" name="hideit" id="hideit" value="" />
+                    <button title="<?php /* @escapeNotVerified */ echo __('Submit') ?>" class="action submit primary">
+                        <span><?php /* @escapeNotVerified */ echo __('Submit') ?></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    require([
+        'jquery',
+        'mage/translate',
+        'mage/validation'
+    ], function($){
+        $(document).ready(function() {
+
+            var hiddenHeight = $('.fixed_bottom .form-wrapper').height();
+            var mobileBottomMargin = $(window).height() - $('.fixed_bottom').height();
+            var mobileRightMargin = $(window).width() - $('.fixed_bottom').width();
+            var formLayer = $('.fixed_bottom.desktop ');
+            var mobileFormLayer =  $('.fixed_bottom.mobile ');
+            var mobileDefinition = 768;
+            var addDeviceClassToContainer = function(){
+                if($(window).width()> mobileDefinition){ //desktop
+                    $('#popupform-fade-wrapper').hide();
+                    $('.fixed_bottom').addClass('desktop');
+                    $('.fixed_bottom').removeClass('mobile');
+                    hiddenHeight = $('.fixed_bottom .form-wrapper').height();
+                    $('.fixed_bottom').css('bottom', "-" + hiddenHeight + "px");
+                    $('.fixed_bottom').css('right', 55 + "px");
+                    $('.fixed_bottom').show();
+                } else {
+                    if($(window).width() == mobileDefinition){
+                        $('.fixed_bottom').hide();
+                    }
+                    $('.fixed_bottom').addClass('mobile');
+                    $('.fixed_bottom').removeClass('desktop');
+                    mobileBottomMargin = $(window).height() - $('.fixed_bottom').height();
+                    $('.fixed_bottom').css('bottom', mobileBottomMargin/2 + "px");
+                    $('.fixed_bottom').css('right', mobileRightMargin/2 + "px");
+                }
+            };
+
+            addDeviceClassToContainer();
+            $(window).resize(function () {
+                 mobileBottomMargin = $(window).height() - $('.fixed_bottom').height();
+                 mobileRightMargin = $(window).width() - $('.fixed_bottom').width();
+                addDeviceClassToContainer();
+            });
+
+
+            $('body').on('click','.fixed_bottom .icon',function(){
+                hiddenHeight = $('.fixed_bottom .form-wrapper').height();
+
+                if($(window).width()> mobileDefinition){
+                    if(!formLayer.hasClass('active')){
+                        formLayer.addClass('add-after-loaded');
+                    }
+                    if(formLayer.hasClass('active')){
+                        formLayer.removeClass('active');
+                        formLayer.css('bottom', "-" + hiddenHeight + "px");
+                    } else {
+                        formLayer.addClass('active');
+                        formLayer.css('bottom', 0 );
+                    }
+                }
+            });
+
+            $('.fixed_bottom .form-wrapper .thank-container .click').on('click',function () {
+                $('.fixed_bottom').find('.popup-form').show();
+                $('.fixed_bottom').find('.thank-container').hide();
+                setTimeout(function () {
+                    addDeviceClassToContainer();
+                },10)
+            });
+            $('.fixed_bottom .icon .cross').on('click',function () {
+                $('.fixed_bottom').hide();
+                $('#popupform-fade-wrapper').fadeOut();
+            });
+            $('.popup-question-mark').on('click',function () {
+                $('.fixed_bottom').show();
+                $('#popupform-fade-wrapper').fadeIn();
+            });
+
+            $('.fixed_bottom .form-wrapper form .submit').click(function(e){
+
+                var formToValidate = $('#popupForm');
+                var check = $(formToValidate).validation({
+                    submitHandler: function(form) {
+                        $('#popupForm').addClass('loading');
+                        $.post("<?php echo $block->getAjaxUrl()?>",
+                            formToValidate.serialize(),
+                            function (data) {
+                                $('#popupForm').removeClass('loading');
+                                $('.fixed_bottom').find('.popup-form').hide();
+                                $('.fixed_bottom').find('.thank-container').show();
+                                setTimeout(function () {
+                                    addDeviceClassToContainer();
+                                },10)
+                            }
+                        )
+                    },
+                    invalidHandler: function () {
+                        setTimeout(function () {
+                            addDeviceClassToContainer();
+                        },10)
+                    }
+                });
+
+
+            });
+        });
+    });
+</script>

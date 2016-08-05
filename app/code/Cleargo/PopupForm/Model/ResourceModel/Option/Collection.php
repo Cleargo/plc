@@ -46,6 +46,35 @@ class Collection extends AbstractCollection
     {
         return $this->_toOptionArray('question_type_id', 'default_label');
     }
+    /**
+     * Returns pairs inquiry_id - pdf_path
+     *
+     * @return array
+     */
+
+    public function toCheckboxArray($storeCode)
+    {
+        $res = [];
+        $additional['label'] = 'default_label';
+        $additional['value'] = 'question_type_id';
+
+        foreach ($this as $item) {
+            $trans =[];
+            if($item->getData('trans_label')){
+                $trans =(array) json_decode($item->getData('trans_label')) ;
+            }
+
+            foreach ($additional as $code => $field) {
+                if( $code != 'label' ||empty($trans) || !isset($trans[$storeCode]) || $trans[$storeCode] ==""){
+                    $data[$code] = $item->getData($field);
+                } else {
+                    $data[$code] = $trans[$storeCode];
+                }
+            }
+            $res[] = $data;
+        }
+        return $res;
+    }
 
     /**
      * Add filter by store
