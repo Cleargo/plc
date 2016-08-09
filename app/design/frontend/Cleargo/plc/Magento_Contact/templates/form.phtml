@@ -27,7 +27,7 @@
         jQuery('#descriptionContainer').find('.email').html(location.email);
         jQuery('#descriptionContainer').find('.office_hour').html(location.office_hour);
         jQuery('#descriptionContainer').find('.lunch_time').html(location.lunch_time);
-       
+
     }
 
     function initialize() {
@@ -148,14 +148,13 @@
             </div>
         </div>
         <div class="field telephone">
-            <label class="label" for="telephone"><span><?php /* @escapeNotVerified */ echo __('Phone Number') ?></span></label>
+            <label class="label" for="telephone"><span><?php /* @escapeNotVerified */ echo __('Tel') ?></span></label>
             <div class="control">
-                <input name="telephone" id="telephone" title="<?php /* @escapeNotVerified */ echo __('Phone Number') ?>" value="" class="input-text" type="text" />
+                <input name="telephone" id="telephone" title="<?php /* @escapeNotVerified */ echo __('Tel') ?>" value="" class="input-text" type="text" />
             </div>
         </div>
         <div class="field comment required">
-            <label class="label" for="comment"><span><?php /* @escapeNotVerified */ echo __('What’s on your mind?') ?></span></label>
-            <div class="control">
+            <div class="control-textarea">
                 <textarea name="comment" id="comment" title="<?php /* @escapeNotVerified */ echo __('What’s on your mind?') ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
             </div>
         </div>
