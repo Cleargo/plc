@@ -50,6 +50,8 @@ atlassian*
 
 /lib
 
+/node_modules
+
 /phpserver
 
 /pub
