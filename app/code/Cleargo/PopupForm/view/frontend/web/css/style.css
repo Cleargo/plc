@@ -1,0 +1,168 @@
+#popupform-fade-wrapper{
+    display: none;
+    bottom: 0;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.8);
+}
+.popup-question-mark{
+    position: fixed;
+    bottom: 80px;
+    cursor: pointer;
+    display: none;
+    z-index: 99;
+}
+.fixed_bottom{
+    position:fixed;
+    right:55px;
+    z-index: 1000;
+}
+.fixed_bottom.add-after-loaded{
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+.fixed_bottom .icon{
+    position:relative;
+    background:rgba(197,0,10,0.80);
+    height:40px;
+    box-sizing: border-box;
+    padding-top: 11px;
+    cursor: pointer;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.mobile .icon{
+    cursor: auto;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.fixed_bottom .icon span{
+    font-family:Aileron-Black;
+    font-size:14px;
+    padding-left: 20px;
+    color:#ffffff;
+    letter-spacing:0.03px;
+    text-align:left;
+    vertical-align: middle;
+}
+.fixed_bottom .icon img{
+    vertical-align: middle;
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+}
+.fixed_bottom .icon .cross {
+   display: none;
+}
+.fixed_bottom.mobile .icon .cross {
+    display: inline;
+}
+.fixed_bottom.mobile .icon .arrow {
+    display: none;
+}
+.fixed_bottom .form-wrapper{
+    background:#ffffff;
+}
+.fixed_bottom .form-wrapper .thank-container{
+    display: none;
+    width: 300px;
+    height: 250px;
+}
+.fixed_bottom .form-wrapper .thank-container div{
+    text-align: center;
+}
+.fixed_bottom .form-wrapper .thank-container .top{
+    padding-top: 20px;
+}
+.fixed_bottom .form-wrapper .thank-container .back{
+    padding-top: 20px;
+    color: darkred;
+    text-decoration: underline;
+}
+.fixed_bottom .form-wrapper .thank-container .click{
+    cursor: pointer;
+}
+.fixed_bottom .form-wrapper .popup-form{
+    box-sizing: border-box;
+    padding: 29px 19px;
+}
+.fixed_bottom .form-wrapper .popup-form .actions-toolbar .primary{
+    float: right;
+}.fixed_bottom.mobile .form-wrapper .popup-form .actions-toolbar .primary{
+    float: none;
+}
+.fixed_bottom .form-wrapper .popup-form .actions-toolbar .warn-text{
+    float: left;
+    font-family:MyriadPro-Regular;
+    font-size:10px;
+    color:#c3161c;
+    letter-spacing:0.03px;
+    text-align:left;
+}
+.fixed_bottom.mobile .form-wrapper .popup-form .actions-toolbar .warn-text{
+    display: none;
+}
+.fixed_bottom .form-wrapper .popup-form fieldset{
+    margin: 0 0 10px;
+}
+.fixed_bottom.mobile .form-wrapper .popup-form fieldset .field{
+    max-width: 250px;
+}
+.fixed_bottom .form-wrapper .popup-form fieldset .field .control{
+    display: inline-block;
+}
+.fixed_bottom .form-wrapper .popup-form fieldset .field .control-textarea textarea{
+    resize: none;
+}
+.fixed_bottom.mobile .form-wrapper .popup-form fieldset .field .control{
+    display: block;
+}
+.fixed_bottom .form-wrapper .popup-form fieldset .field .checkbox-wrapper{
+    display: inline-block;
+    margin-right: 8px;
+}
+.fixed_bottom .form-wrapper .popup-form fieldset .field .checkbox-wrapper .control{
+    display: inline-block;
+    vertical-align: middle;
+}
+.fixed_bottom .form-wrapper .popup-form fieldset .field .checkbox-wrapper .control input[type="checkbox"]{
+    margin: 0;
+    cursor: pointer;
+}
+.fixed_bottom .form-wrapper .popup-form fieldset .field .checkbox-wrapper .checkbox-label{
+    font-size:12px;
+    color:#606060;
+    letter-spacing:-0.07px;
+    text-align:left;
+}
+.fixed_bottom.mobile .form-wrapper .popup-form fieldset .field .checkbox-wrapper .checkbox-label{
+    font-size:16px;
+}
+.fixed_bottom.mobile .form-wrapper .popup-form fieldset .field .checkbox-wrapper .checkbox-label span{
+    word-break: break-all;
+}
+.fixed_bottom .form-wrapper .popup-form fieldset .field .input-text{
+    width: 204.5px;
+    height: 19.5px;
+}
+.fixed_bottom.mobile .form-wrapper .popup-form fieldset .field .input-text{
+    border-radius:2px;
+    width:250px;
+    height:31px;
+}
+.fixed_bottom .form-wrapper .popup-form fieldset .field .label {
+    width: 60px;
+}
+
+@media (max-width: 768px) {
+    .popup-question-mark{
+        display: block;
+    }
+    .fixed_bottom{
+        display: none;
+    }
+}

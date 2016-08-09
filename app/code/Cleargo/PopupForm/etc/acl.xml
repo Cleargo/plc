@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Cleargo_PopupForm::title" title="Popup Form" sortOrder="100" >
+                    <resource id="Cleargo_PopupForm::add_row" title="Inquiry Manager" sortOrder="10">
+                        <resource id="Cleargo_PopupForm::inquiry_save" title="Save" sortOrder="10" />
+                        <resource id="Cleargo_PopupForm::inquiry_delete" title="Delete" sortOrder="20" />
+                    </resource>
+                    <resource id="Cleargo_PopupForm::add_row2" title="Question Type Manager" sortOrder="20">
+                        <resource id="Cleargo_PopupForm::option_save" title="Save" sortOrder="10" />
+                        <resource id="Cleargo_PopupForm::option_delete" title="Delete" sortOrder="20" />
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

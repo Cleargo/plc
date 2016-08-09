@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <preference for="Cleargo\PopupForm\Api\Data\InquirySearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Cleargo\PopupForm\Api\Data\InquiryInterface" type="Cleargo\PopupForm\Model\Inquiry" />
+    <preference for="Cleargo\PopupForm\Api\InquiryRepositoryInterface" type="Cleargo\PopupForm\Model\InquiryRepository" />
+
+    <preference for="Cleargo\PopupForm\Api\Data\OptionSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Cleargo\PopupForm\Api\Data\OptionInterface" type="Cleargo\PopupForm\Model\Option" />
+    <preference for="Cleargo\PopupForm\Api\OptionRepositoryInterface" type="Cleargo\PopupForm\Model\OptionRepository" />
+    
+    <virtualType name="InquiryGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Cleargo\PopupForm\Model\Resource\Inquiry\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">PopupFormGridFilterPool</argument> <!-- Define new object for filters -->
+        </arguments>
+    </virtualType>
+    <!-- Create our type PopupFormGridFilterPool -->
+    <virtualType name="PopupFormGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!-- Type for jobs_department_listing_data_source -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="popupform_inquiry_listing_data_source" xsi:type="string">Cleargo\PopupForm\Model\ResourceModel\Inquiry\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Simulate our class Cleargo\PopupForm\Model\ResourceModel\Inquiry\Grid\Collection -->
+    <type name="Cleargo\PopupForm\Model\ResourceModel\Inquiry\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">customer_inquiry</argument>
+            <argument name="eventPrefix" xsi:type="string">popupform_inquiry_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">inquiry_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Cleargo\PopupForm\Model\ResourceModel\Inquiry</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="OptionGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Cleargo\PopupForm\Model\Resource\Option\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">PopupFormGridFilterPool2</argument> <!-- Define new object for filters -->
+        </arguments>
+    </virtualType>
+    <!-- Type for jobs_department_listing_data_source -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="popupform_option_listing_data_source" xsi:type="string">Cleargo\PopupForm\Model\ResourceModel\Option\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Simulate our class Cleargo\PopupForm\Model\ResourceModel\Option\Grid\Collection -->
+    <type name="Cleargo\PopupForm\Model\ResourceModel\Option\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">customer_inquiry_option</argument>
+            <argument name="eventPrefix" xsi:type="string">popupform_option_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">option_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Cleargo\PopupForm\Model.\ResourceModel\Option</argument>
+        </arguments>
+    </type>
+
+</config>
