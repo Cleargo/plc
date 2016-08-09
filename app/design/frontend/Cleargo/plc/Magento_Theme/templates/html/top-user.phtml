@@ -1,0 +1,38 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Customer\Block\Account\AuthorizationLink */
+$dataPostParam = '';
+if ($block->isLoggedIn()) :
+    $dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
+
+?>
+    <div class="top-links block-user">
+        <a class="action user" href="javascript:void(0)"><span class="text"><?php /* @e2scapeNotVerified */ echo __('User'); ?></span></a>
+
+        <div class="block-content">
+            <ul>
+                <li>
+                    <a class="myaccount-link" href="<?php echo $this->getUrl('customer/account') ?>" >
+                        <span><?php /* @escapeNotVerified */ echo __('My Account'); ?></span>
+                    </a>
+                </li>
+
+                <li class="authorization-link" data-label="<?php echo $block->escapeHtml(__('or')); ?>" >
+                    <a <?php /* @escapeNotVerified */ echo $block->getLinkAttributes(); ?><?php /* @escapeNotVerified */ echo $dataPostParam; ?>>
+                        <?php echo $block->escapeHtml($block->getLabel()); ?>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+<?php else: ?>
+<div class="top-links block-user">
+    <a class="action user" href="<?php echo $this->getUrl('customer/account/login') ?>"><span class="text"><?php /* @e2scapeNotVerified */ echo __('User'); ?></span></a>
+</div>
+<?php endif; ?>
