@@ -8,6 +8,9 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
         <script type="text/javascript" src="js/jQuery.fn.js"></script>
+        <script type="text/javascript" src="js/jquery.touchwipe.1.1.1.js"></script>
+        <script type="text/javascript" src="js/product_slider.js"></script>
+        <css src="js/fancybox/jquery.fancybox.css"/>
     </head>
     <body>
         <referenceContainer name="header.container">
@@ -18,40 +21,29 @@
                 <block class="Magento\Newsletter\Block\Subscribe" name="form.header_subscribe" template="Magento_Newsletter::header_subscribe.phtml"/>
             </block>
             <referenceContainer name="header-wrapper">
-                <referenceBlock name="invitation_link_top" remove="true" />
-                <!--container name="header-panel-wrapper" label="Header Panel Wrapper" after="logo" htmlTag="div" htmlClass="header-panel-wrapper"-->
-                    <!--referenceBlock name="top.links" remove="true" />
-                    <referenceBlock name="top.links">
-                        <referenceBlock name="my-account-link" remove="true" />
-                        <referenceBlock name="multiple-wish-list-link" remove="true" />
-                    </referenceBlock--> 
-                    <!--referenceContainer name="header-panel-wrapper"-->
-                        <!--block class="Magento\Wishlist\Block\Link" name="top.wishlist" after="minicart" template="Magento_Theme::html/top-wishlist.phtml" /-->
-                        <!--block class="Magento\Customer\Block\Account\AuthorizationLink" name="top.user" after="top.wishlist" template="Magento_Theme::html/top-user.phtml" /-->
-                    <!--/referenceContainer-->
-        <!--/container-->
-                
+                <referenceBlock name="invitation_link_top" remove="true" />                
             </referenceContainer>
-    <!--referenceContainer name="header.panel.wrapper" remove="true" /-->
         </referenceContainer>
+        
         <move destination="header-wrapper" element="logo" before="-" />
         <move destination="header-wrapper" element="top.search" after="logo" />
         <move destination="header-wrapper" element="minicart" after="top.search" />
-        <!--move destination="header-wrapper" element="store_language" after="top.user" /-->
         <move destination="header-wrapper" element="store_language" after="customer" />
         <move destination="header-wrapper" element="customer" after="multiple-wish-list-link" />
         <move destination="header-wrapper" element="multiple-wish-list-link" after="minicart" />
-        <!--<move destination="top.user" element="top.links" before="-" /-->
+        
+
         
         <move destination="store.menu" element="store.settings.language" after="catalog.topnav" />
 
         <referenceContainer name="store.menu">
-            <block class="Magento\Cms\Block\Block" name="copyright" template="Magento_Theme::html/copyright.phtml"/>
+            <block class="Magento\Theme\Block\Html\Footer" name="m-copyright" template="Magento_Theme::html/copyright.phtml"/>
         </referenceContainer>
-        
-
         <referenceContainer name="footer">
             <block class="Magento\Framework\View\Element\Template" name="global_footer" template="Magento_Theme::html/footer.phtml">
+                <block class="Magento\Cms\Block\Block" name="footer_service">
+                    <arguments><argument name="block_id" xsi:type="string">footer_service</argument></arguments>
+                </block>
                 <block class="Magento\Cms\Block\Block" name="footer_links_about_us">
                     <arguments><argument name="block_id" xsi:type="string">footer_links_about_us</argument></arguments>
                 </block>
@@ -67,6 +59,7 @@
             </block>
             <referenceBlock name="footer_links" remove="true"/>
         </referenceContainer>
+        
         <move element="form.subscribe" destination="global_footer"/>
     </body>
 </page>

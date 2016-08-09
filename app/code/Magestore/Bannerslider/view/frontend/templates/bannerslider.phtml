@@ -21,6 +21,10 @@
  */
 
 ?>
-<div class="magestore-bannerslider">
-    <?php echo $block->getChildHtml(); ?>
-</div>
+<?php $childHtml = $block->getChildHtml(); ?>
+
+<?php if($childHtml): ?>
+    <div class="magestore-bannerslider">
+        <?php echo $childHtml; ?>
+    </div>
+<?php endif; ?>
