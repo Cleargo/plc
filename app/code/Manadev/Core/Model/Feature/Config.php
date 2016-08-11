@@ -250,7 +250,8 @@ class Config
                     }
                 }
             }
-            $this->_extensionModels[$module] = $this->_createExtensionModel($extension);
+            //Unknown Error, temp fix by CLEARgo Jason
+            //$this->_extensionModels[$module] = $this->_createExtensionModel($extension);
         }
     }
 
