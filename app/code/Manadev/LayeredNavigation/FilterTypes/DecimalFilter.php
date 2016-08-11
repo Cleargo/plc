@@ -1,0 +1,30 @@
+<?php
+/**
+ * @copyright   Copyright (c) http://www.manadev.com
+ * @license     http://www.manadev.com/license  Proprietary License
+ */
+
+namespace Manadev\LayeredNavigation\FilterTypes;
+
+use Manadev\LayeredNavigation\Contracts\FilterTemplates;
+use Manadev\LayeredNavigation\Contracts\FilterType;
+use Manadev\LayeredNavigation\Registries\FilterTemplates\DecimalFilterTemplates;
+
+class DecimalFilter implements FilterType {
+    /**
+     * @var DecimalFilterTemplates
+     */
+    protected $templates;
+
+    public function __construct(DecimalFilterTemplates $templates) {
+        $this->templates = $templates;
+    }
+
+    /**
+     * Returns registry of filter templates available for ths filter type
+     * @return FilterTemplates
+     */
+    public function getTemplates() {
+        return $this->templates;
+    }
+}

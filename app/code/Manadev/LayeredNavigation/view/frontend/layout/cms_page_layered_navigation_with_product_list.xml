@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Manadev_LayeredNavigation::css/styles.css"/>
+        <css src="Magento_Swatches::css/swatches.css"/>
+    </head>
+    <body>
+        <attribute name="class" value="page-products"/>
+        <referenceBlock name="category.product.type.details.renderers">
+            <block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable" as="configurable" template="Magento_Swatches::product/listing/renderer.phtml"/>
+        </referenceBlock>
+
+        <referenceContainer name="content">
+            <block class="Magento\Catalog\Block\Product\ListProduct" name="category.products.list" as="product_list" template="Magento_Catalog::product/list.phtml" before="-">
+                <container name="category.product.list.additional" as="additional"/>
+                <block class="Magento\Framework\View\Element\RendererList" name="category.product.type.details.renderers" as="details.renderers">
+                    <block class="Magento\Framework\View\Element\Template" as="default"/>
+                </block>
+                <block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="product_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">
+                    <block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
+                    <!-- The following code shows how to set your own pager increments -->
+                    <!--
+                        <action method="setDefaultListPerPage">
+                        <argument name="limit" xsi:type="string">4</argument>
+                    </action>
+                    <action method="setDefaultGridPerPage">
+                        <argument name="limit" xsi:type="string">3</argument>
+                    </action>
+                    <action method="addPagerLimit">
+                        <argument name="mode" xsi:type="string">list</argument>
+                        <argument name="limit" xsi:type="string">2</argument>
+                    </action>
+                    <action method="addPagerLimit">
+                        <argument name="mode" xsi:type="string">list</argument>
+                        <argument name="limit" xsi:type="string">4</argument>
+                    </action>
+                    <action method="addPagerLimit">
+                        <argument name="mode" xsi:type="string">list</argument>
+                        <argument name="limit" xsi:type="string">6</argument>
+                    </action>
+                    <action method="addPagerLimit">
+                        <argument name="mode" xsi:type="string">list</argument>
+                        <argument name="limit" xsi:type="string">8</argument>
+                    </action>
+                    <action method="addPagerLimit" translate="label">
+                        <argument name="mode" xsi:type="string">list</argument>
+                        <argument name="limit" xsi:type="string">all</argument>
+                        <argument name="label" xsi:type="string">All</argument>
+                    </action>
+                    <action method="addPagerLimit">
+                        <argument name="mode" xsi:type="string">grid</argument>
+                        <argument name="limit" xsi:type="string">3</argument>
+                    </action>
+                    <action method="addPagerLimit">
+                        <argument name="mode" xsi:type="string">grid</argument>
+                        <argument name="limit" xsi:type="string">6</argument>
+                    </action>
+                    <action method="addPagerLimit">
+                        <argument name="mode" xsi:type="string">grid</argument>
+                        <argument name="limit" xsi:type="string">9</argument>
+                    </action>
+                    <action method="addPagerLimit" translate="label">
+                        <argument name="mode" xsi:type="string">grid</argument>
+                        <argument name="limit" xsi:type="string">all</argument>
+                        <argument name="label" xsi:type="string">All</argument>
+                    </action>
+                    -->
+                </block>
+                <action method="setToolbarBlockName">
+                    <argument name="name" xsi:type="string">product_list_toolbar</argument>
+                </action>
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="sidebar.additional">
+            <block class="Manadev\LayeredNavigation\Blocks\Navigation" name="left.mana.layered_nav" before="-" template="Manadev_LayeredNavigation::navigation.phtml">
+                <arguments>
+                    <argument name="position" xsi:type="string">left</argument>
+                </arguments>
+                <block class="Manadev\LayeredNavigation\Blocks\FilterRenderer" name="left.mana.layered_nav.filter_renderer" as="filter_renderer"/>
+                <block class="Manadev\LayeredNavigation\Blocks\AppliedItemRenderer" name="left.mana.layered_nav.applied_item_renderer" as="applied_item_renderer"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

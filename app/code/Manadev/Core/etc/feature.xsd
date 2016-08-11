@@ -1,0 +1,55 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="config">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element name="feature" minOccurs="1" maxOccurs="unbounded">
+                        <xs:complexType>
+                            <xs:attribute name="version" type="featureVersion" use="required"/>
+                            <xs:attribute name="title" type="xs:string" use="optional"/>
+                            <xs:attribute name="disable_if_dependent_features_are_disabled" fixed="1" use="optional"/>
+                            <xs:attribute name="module" type="moduleName" use="optional"/>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="extension" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                    <xs:element name="removes">
+                                        <xs:complexType>
+                                            <xs:attribute name="extension" type="xs:string" use="required"/>
+                                            <xs:attribute name="module" type="moduleName" use="optional" />
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:choice>
+                            </xs:sequence>
+                            <xs:attribute name="module" type="moduleName" use="optional"/>
+                            <xs:attribute name="title" type="xs:string" use="required"/>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="featureVersion">
+        <xs:annotation>
+            <xs:documentation>
+                Feature version attribute can contain only [0-9.].
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9.]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="moduleName">
+        <xs:annotation>
+            <xs:documentation>
+                Module name attribute can contain only [A-Za-z0-9_].
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z]+[A-Za-z0-9]{1,}_[A-Z]+[A-Z0-9a-z]{1,}"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

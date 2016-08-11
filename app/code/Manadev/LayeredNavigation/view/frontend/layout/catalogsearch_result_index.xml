@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Manadev_LayeredNavigation::css/styles.css"/>
+        <css src="Magento_Swatches::css/swatches.css"/>
+    </head>
+    <body>
+        <referenceContainer name="sidebar.main">
+            <block class="Manadev\LayeredNavigation\Blocks\Navigation" name="left.mana.layered_nav" before="-" template="Manadev_LayeredNavigation::navigation.phtml">
+                <arguments>
+                    <argument name="position" xsi:type="string">left</argument>
+                </arguments>
+                <block class="Manadev\LayeredNavigation\Blocks\FilterRenderer" name="left.mana.layered_nav.filter_renderer" as="filter_renderer"/>
+                <block class="Manadev\LayeredNavigation\Blocks\AppliedItemRenderer" name="left.mana.layered_nav.applied_item_renderer" as="applied_item_renderer"/>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="catalogsearch.leftnav" remove="true"/>
+        <referenceBlock name="category.product.type.details.renderers">
+            <block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable" as="configurable" template="Magento_Swatches::product/listing/renderer.phtml"/>
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mana_core>
+            <log>
+                <filter_index_queries>1</filter_index_queries>
+            </log>
+            <debug>
+                <product_list_select>1</product_list_select>
+            </debug>
+        </mana_core>
+        <mana_layered_navigation>
+            <display>
+                <default_dropdown_template>text_multiple_select</default_dropdown_template>
+                <default_swatch_template>swatch_multiple_select</default_swatch_template>
+                <default_decimal_template>text_multiple_select</default_decimal_template>
+                <default_show_in>left</default_show_in>
+            </display>
+        </mana_layered_navigation>
+    </default>
+</config>
