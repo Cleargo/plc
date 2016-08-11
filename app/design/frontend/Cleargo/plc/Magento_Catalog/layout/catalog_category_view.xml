@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="page.main.title" remove="true" />
+        <referenceBlock name="breadcrumbs" remove="true" />
+
+        <referenceContainer name="top.container">
+            <block class="Magento\Cms\Block\Block" name="category_top_navigation">
+                <arguments><argument name="block_id" xsi:type="string">category_top_navigation</argument></arguments>
+            </block>
+        </referenceContainer>
+
+        <!--move element="catalog.leftnav" destination="category.product.list.additional" before="-"/-->
+        <!--move destination="columns.top" element="catalog.leftnav" after="-"/-->
+        <!--move destination="columns.top" element="product_list_toolbar" after="sidebar.main" /-->
+    </body>
+</page>
