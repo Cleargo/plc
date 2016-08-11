@@ -30,17 +30,29 @@
 .magestore-bannerslider-standard {
 	width: 100%;
 }
-
+.banner-wrapper-mobile{
+	display:none;
+}
 @media only screen and (max-width: 768px) {
     .magestore-bannerslider-standard {
-    	width: 768px;
-    }
+		/* width: 768px; */
+		width:100%;
+	}
+	.banner-wrapper-laptop{
+		display:none;
+	}
+	
+	.banner-wrapper-mobile{
+		display:block;
+	}
 }
 
 @media only screen and (max-width: 360px){
-    .magestore-bannerslider-standard {
-    	width: 290px;
-    }
+	.magestore-bannerslider-standard {
+		/* width: 290px; */
+		width:100%;
+		min-width:320px;
+	}
 }
 
 /*.magestore-bannerslide-flex-slider ul.slides {

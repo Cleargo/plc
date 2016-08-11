@@ -25,139 +25,195 @@
 /** @var \Magestore\Bannerslider\Block\SliderItem $block */
 $styleSlide = $block->getSlider()->getStyleSlide();
 $slider = $block->getSlider();
+$sliderId = $slider->getId();
 $htmlId   = $block->getFlexsliderHtmlId();
 $bannerCollection = $block->getBannerCollection();
+
+$sliderHtmlClass = "";
+
+if($sliderId == 1)
+    $sliderHtmlClass = " banner-wrapper-laptop";
+else if($sliderId == 2)
+    $sliderHtmlClass = " banner-wrapper-mobile";
 ?>
 <link rel="stylesheet" type="text/css" href="<?php echo $block->getViewFileUrl('Magestore_Bannerslider::css/flexslider.css')?>">
 <link rel="stylesheet" type="text/css" href="<?php echo $block->getViewFileUrl('Magestore_Bannerslider::css/custom.css')?>">
 <script type="text/javascript">
-(function  () {
-    var flexSliderSelector = '<?php echo $htmlId; ?>';
-    require(['jquery', 'magestore/flexslider'], function($) {
-        var fitImageSlider = function (slider) {
-            if(slider && slider[0]) {
-                var height = $(slider[0]).find('.slides li img').height();
-                $(slider[0]).find('.slides li img').each(function(index, element){
-                    if($(element).height() > height) {
-                        height = $(element).height();
+    (function  () {
+        var flexSliderSelector = '<?php echo $htmlId; ?>';
+        require(['jquery', 'magestore/flexslider'], function($) {
+            var fitImageSlider = function (slider) {
+                if(slider && slider[0]) {
+                    var height = $(slider[0]).find('.slides li img').height();
+                    $(slider[0]).find('.slides li img').each(function(index, element){
+                        if($(element).height() > height) {
+                            height = $(element).height();
+                        }
+                    });
+                    $(slider[0]).find('.slides li,.slides  li a,.slides li img').css('height', height + 'px');
+                }
+            }
+            var adjustTopSlider = function() {
+                if(jQuery('.banner-wrapper-laptop') && jQuery('.banner-wrapper-mobile')){
+                    laptop = jQuery('.banner-wrapper-laptop');
+                    mobile = jQuery('.banner-wrapper-mobile');
+                    bannerWidth = jQuery('.top-container').innerWidth();
+
+                    laptop.find('ul.slides').each(function(){
+                        //desktop need minus padding
+                        jQuery(this).css({ 'width':bannerWidth, 'height':bannerWidth*700/1920 })
+                        jQuery(this).find('a, img').css({ 'width':'100%', 'height':'100%' })
+                    });
+                    mobile.find('ul.slides').each(function(){
+                        jQuery(this).css({ 'width':bannerWidth, 'height':bannerWidth*700/700 })
+                        jQuery(this).find('a, img').css({ 'width':'100%', 'height':'100%' })
+                    });
+                    laptop.find('ul.slides').css({ 'width':bannerWidth*50, 'height':bannerWidth*700/1920 });
+                    mobile.find('ul.slides').css({ 'width':bannerWidth*50, 'height':bannerWidth*700/700 });
+                }
+            }
+            var responseTopSlider = function(){
+                //only homepage banner set need to adjust
+                if(jQuery('.banner-wrapper-desktop') && jQuery('.banner-wrapper-mobile')){
+                    winwidth = jQuery(window).width();
+
+                    laptop = jQuery('.banner-wrapper-laptop');
+                    mobile = jQuery('.banner-wrapper-mobile');
+
+                    if(winwidth >= (768-17)){
+                        laptop.show();
+                        mobile.hide();
                     }
+                    else{
+                        laptop.hide();
+                        mobile.show();
+                    }
+                }
+            }
+            var removeLoadingIcon = function(){
+                jQuery('.banner-wrapper-laptop').removeClass('loading_bg');
+                jQuery('.banner-wrapper-mobile').removeClass('loading_bg');
+            }
+            $(document).ready(function($) {
+                var STYLESLIDE_FLEXSLIDER_ONE = <?php echo \Magestore\Bannerslider\Model\Slider::STYLESLIDE_FLEXSLIDER_ONE ?>;
+                var STYLESLIDE_FLEXSLIDER_TWO = <?php echo \Magestore\Bannerslider\Model\Slider::STYLESLIDE_FLEXSLIDER_TWO ?>;
+                var STYLESLIDE_FLEXSLIDER_THREE = <?php echo \Magestore\Bannerslider\Model\Slider::STYLESLIDE_FLEXSLIDER_THREE ?>;
+
+                switch (<?php echo $styleSlide ?>) {
+                    case STYLESLIDE_FLEXSLIDER_ONE:
+                        $('.' + flexSliderSelector).flexslider({
+                            animation: '<?php echo $slider->getData("animationB") ?>',
+                            slideshowSpeed: <?php echo $slider->getSliderSpeed() ?>,
+                            start: function (slider) {
+                               // fitImageSlider(slider);
+                                adjustTopSlider();
+                                responseTopSlider();
+                                removeLoadingIcon();
+                            }
+                        });
+                        break;
+                    case STYLESLIDE_FLEXSLIDER_TWO:
+                        $('.' + flexSliderSelector).flexslider({
+                            animation: '<?php echo $slider->getData("animationB") ?>',
+                            controlNav: 'thumbnails',
+                            slideshowSpeed: <?php echo $slider->getSliderSpeed() ?>,
+                            start: function (slider) {
+                                fitImageSlider(slider);
+                            }
+                        });
+                        break;
+                    case STYLESLIDE_FLEXSLIDER_THREE:
+                        $('#'+flexSliderSelector + '-carousel').flexslider({
+                            animation: 'slide',
+                            controlNav: false,
+                            animationLoop: true,
+                            slideshow: true,
+                            itemWidth: 210,
+                            itemMargin: 5,
+                            asNavFor: '#' + flexSliderSelector,
+                            start: function (slider) {
+                                fitImageSlider(slider);
+                            }
+                        });
+                        $('#' + flexSliderSelector).flexslider({
+                            animation: '<?php echo $slider->getData("animationB") ?>',
+                            controlNav: false,
+                            animationLoop: true,
+                            slideshow: true,
+                            sync: '#'+flexSliderSelector + '-carousel',
+                            slideshowSpeed: <?php echo $slider->getSliderSpeed() ?>,
+                            start: function (slider) {
+                                fitImageSlider(slider);
+                            }
+                        });
+                        break;
+                    default:
+                        $('.' + flexSliderSelector).flexslider({
+                            animation: 'slide',
+                            animationLoop: true,
+                            itemWidth: 400,
+                            slideshow: true,
+                            itemMargin: 5,
+                            minItems: 2,
+                            maxItems: 4,
+                            start: function (slider) {
+                                fitImageSlider(slider);
+                            }
+                        });
+                        break;
+                }
+
+                jQuery(window).resize(function(){
+                    adjustTopSlider();
+                    responseTopSlider();
                 });
-                $(slider[0]).find('.slides li,.slides  li a,.slides li img').css('height', height + 'px');
-            }
-        }
-        $(document).ready(function($) {
-            var STYLESLIDE_FLEXSLIDER_ONE = <?php echo \Magestore\Bannerslider\Model\Slider::STYLESLIDE_FLEXSLIDER_ONE ?>;
-            var STYLESLIDE_FLEXSLIDER_TWO = <?php echo \Magestore\Bannerslider\Model\Slider::STYLESLIDE_FLEXSLIDER_TWO ?>;
-            var STYLESLIDE_FLEXSLIDER_THREE = <?php echo \Magestore\Bannerslider\Model\Slider::STYLESLIDE_FLEXSLIDER_THREE ?>;
-
-            switch (<?php echo $styleSlide ?>) {
-                case STYLESLIDE_FLEXSLIDER_ONE:
-                    $('.' + flexSliderSelector).flexslider({
-                        animation: '<?php echo $slider->getData("animationB") ?>',
-                        slideshowSpeed: <?php echo $slider->getSliderSpeed() ?>,
-                        start: function (slider) {
-                            fitImageSlider(slider);
-                        }
-                    });
-                    break;
-                case STYLESLIDE_FLEXSLIDER_TWO:
-                    $('.' + flexSliderSelector).flexslider({
-                        animation: '<?php echo $slider->getData("animationB") ?>',
-                        controlNav: 'thumbnails',
-                        slideshowSpeed: <?php echo $slider->getSliderSpeed() ?>,
-                        start: function (slider) {
-                            fitImageSlider(slider);
-                        }
-                    });
-                    break;
-                case STYLESLIDE_FLEXSLIDER_THREE:
-                    $('#'+flexSliderSelector + '-carousel').flexslider({
-                        animation: 'slide',
-                        controlNav: false,
-                        animationLoop: true,
-                        slideshow: true,
-                        itemWidth: 210,
-                        itemMargin: 5,
-                        asNavFor: '#' + flexSliderSelector,
-                        start: function (slider) {
-                            fitImageSlider(slider);
-                        }
-                    });
-                    $('#' + flexSliderSelector).flexslider({
-                        animation: '<?php echo $slider->getData("animationB") ?>',
-                        controlNav: false,
-                        animationLoop: true,
-                        slideshow: true,
-                        sync: '#'+flexSliderSelector + '-carousel',
-                        slideshowSpeed: <?php echo $slider->getSliderSpeed() ?>,
-                        start: function (slider) {
-                            fitImageSlider(slider);
-                        }
-                    });
-                    break;
-                default:
-                    $('.' + flexSliderSelector).flexslider({
-                        animation: 'slide',
-                        animationLoop: true,
-                        itemWidth: 400,
-                        slideshow: true,
-                        itemMargin: 5,
-                        minItems: 2,
-                        maxItems: 4,
-                        start: function (slider) {
-                            fitImageSlider(slider);
-                        }
-                    });
-                    break;
-            }
-
+            });
         });
-    });
-})();
+    })();
 </script>
 <div class="magestore-bannerslider-standard" data-mage-init='{"magestore/impress": {"url": "<?php echo $this->getUrl("bannerslider/index/impress") ?>", "slider_id": "<?php echo $block->getSlider()->getId() ?>"}}'>
     <?php if ($block->isShowTitle() == \Magestore\Bannerslider\Model\Slider::SHOW_TITLE_YES) :
-    ?>
+        ?>
         <div class="magestore-bannerslider-title" style="font: bold 12px/16px Arial, Helvetica, sans-serif;text-transform: uppercase;color: #e26703;">
-        <strong><span><?php echo $slider->getTitle(); ?></span></strong>
+            <strong><span><?php echo $slider->getTitle(); ?></span></strong>
         </div>
     <?php endif; ?>
-    <div class="magestore-bannerslide-flex-slider" style="margin: auto; margin-bottom: 40px;">
-        <div id="<?php echo $htmlId ?>" class="flexslider flexslider-content-image <?php echo $htmlId ?>" style="margin:auto">
+    <div class="magestore-bannerslide-flex-slider" style="margin: auto; margin-bottom:0;">
+        <div id="<?php echo $htmlId ?>" class="flexslider flexslider-content-image <?php echo $htmlId . $sliderHtmlClass ?>" style="margin:auto; margin-bottom:0px;">
             <ul class="slides">
                 <?php foreach ($bannerCollection as $banner):
-                ?>
+                    ?>
                     <?php if ($styleSlide == \Magestore\Bannerslider\Model\Slider::STYLESLIDE_FLEXSLIDER_TWO) : ?>
                     <li data-thumb="<?php echo $block->getBannerImageUrl($banner) ?>">
                         <a href="<?php echo $banner->getClickUrl() ?>" target="<?php echo $banner->getTargetValue() ?>" style="display:block;" data-mage-init='{"magestore/clickbanner": {"url": "<?php echo $this->getUrl("bannerslider/index/click") ?>", "slider_id": "<?php echo $banner->getSliderId() ?>", "banner_id": "<?php echo $banner->getId() ?>" }}' >
-                        <img alt="<?php echo $banner->getImageAlt() ?>" src="<?php echo $block->getBannerImageUrl($banner) ?>"/>
+                            <img alt="<?php echo $banner->getImageAlt() ?>" src="<?php echo $block->getBannerImageUrl($banner) ?>"/>
                         </a>
                     </li>
-                    <?php else :
+                <?php else :
                     ?>
                     <li>
                         <a href="<?php echo $banner->getClickUrl() ?>" target="<?php echo $banner->getTargetValue() ?>" style="display:block;" data-mage-init='{"magestore/clickbanner": {"url": "<?php echo $this->getUrl("bannerslider/index/click") ?>", "slider_id": "<?php echo $banner->getSliderId() ?>", "banner_id": "<?php echo $banner->getId() ?>" }}' >
-                        <img alt="<?php echo $banner->getImageAlt() ?>"  src="<?php echo $block->getBannerImageUrl($banner) ?>"/>
+                            <img alt="<?php echo $banner->getImageAlt() ?>"  src="<?php echo $block->getBannerImageUrl($banner) ?>"/>
                         </a>
                     </li>
-                    <?php endif; ?>
+                <?php endif; ?>
                 <?php endforeach ?>
             </ul>
         </div>
 
         <?php if ($styleSlide ==  \Magestore\Bannerslider\Model\Slider::STYLESLIDE_FLEXSLIDER_THREE) :
-        ?>
-        <!-- for flex slide carousel-->
-        <div id="<?php echo $htmlId ?>-carousel" class="flexslider flexslider-carousel" style="margin:auto">
-            <ul class="slides">
-                <?php foreach ($bannerCollection as $banner) :
-                ?>
-                    <li>
-                        <img  alt="<?php echo $banner->getImageAlt() ?>" src="<?php echo $block->getBannerImageUrl($banner) ?>" />
-                    </li>
-                <?php endforeach ?>
-            </ul>
-        </div>
+            ?>
+            <!-- for flex slide carousel-->
+            <div id="<?php echo $htmlId ?>-carousel" class="flexslider flexslider-carousel" style="margin:auto">
+                <ul class="slides">
+                    <?php foreach ($bannerCollection as $banner) :
+                        ?>
+                        <li>
+                            <img  alt="<?php echo $banner->getImageAlt() ?>" src="<?php echo $block->getBannerImageUrl($banner) ?>" />
+                        </li>
+                    <?php endforeach ?>
+                </ul>
+            </div>
         <?php endif; ?>
     </div>
 </div>

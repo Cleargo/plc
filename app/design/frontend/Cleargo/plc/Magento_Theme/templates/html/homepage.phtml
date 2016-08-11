@@ -1,0 +1,23 @@
+<div class="category-banner-container">
+    <?php echo $block->getChildHtml('home_category_banner')?>    
+</div>
+                       <?php echo $block->getChildHtml('highlight_product_slider')?>
+<div class="promo-grid">
+    <div class="grid-row">
+    <div class="grid-item"><?php echo $block->getChildHtml('home_grid_1')?></div>
+    <div class="grid-item"><?php echo $block->getChildHtml('home_grid_2')?></div>
+    </div>
+    <div class="grid-row">
+    <div class="grid-item"><?php echo $block->getChildHtml('home_grid_3')?></div>
+    <div class="grid-item"><?php echo $block->getChildHtml('home_grid_4')?></div>
+    </div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7";
+        fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>

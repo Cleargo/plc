@@ -1,0 +1,76 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+// @codingStandardsIgnoreFile
+
+//
+// Source Clone from :
+//      vendor/magento/module-catalog/view/frontend/templates/product/list.phtml
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ */
+?>
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$category = $objectManager->get('Magento\Catalog\Model\Category')->load($this->getCategoryId());
+$collection = $category->getProductCollection()->addAttributeToSelect('*');
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+?>
+<div id="highlight-slider" class="slider-outer">
+    <h2 class="title"><?php $title = explode(" ",$category->getName());   
+        for ($i = 0; $i < count($title); $i++) {
+            if($i>0){echo "<i> ";}
+            echo $title[$i];
+            if($i>0){echo "</i>";}
+        }
+    ?>
+    </h2>
+    <div class="highlight slider_wrapper<?php if (!$collection->count()): ?> empty<?php endif; ?>">
+
+        <?php if (!$collection->count()): ?>
+            <div class="message info empty"><div><?php /* @escapeNotVerified */ echo __('We can\'t find products matching the selection.') ?></div></div>
+        <?php else: ?>
+            <div class="slider-box">
+                <div id="highlight-left" class="slider-left"><img src="<?php echo $block->getViewFileUrl('images/slider_arrow_prev.png')?>" alt="<?php echo __('Previous')?>" /></div>
+                <div class="slider-canvas products-grid">
+                    <ol class="slider" id="highlight-items">
+                        <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+                        <?php foreach ($collection as $_product): ?>
+                            <?php
+                            $imagehelper = $objectManager->create('Magento\Catalog\Helper\Image');
+                            $productImage = $imagehelper->init($_product, 'category_page_grid')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(270,270)->getUrl();
+                            ?>
+                            <li class="item">
+                                <div class="item-wrapper">
+                                    <a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" class="image">
+                                        <img src="<?php echo $productImage; ?>" alt="<?php echo $_product->getName()?>" />
+                                    </a>
+                                    <div class="info">
+                                        <h4 class="name">
+                                            <a class="product-item-link" href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>">
+                                                <?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>
+                                            </a>
+                                        </h4>
+                                       <?php /*<!-- <h4 class="brand"><?php echo $_product->getAttributeText('brand')?></h4>-->*/?>
+                                        <?php /* @escapeNotVerified */ echo $block->getProductPrice($_product) ?>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    </ol>
+                </div>
+                <div id="highlight-right" class="slider-right"><img src="<?php echo $block->getViewFileUrl('images/slider_arrow_next.png')?>" alt="<?php echo __('Previous')?>" /></div>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+
