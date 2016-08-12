@@ -26,7 +26,8 @@
         .items-total {
             margin: 10px @indent__s;
             color:@color-brandred;
-            font-family:@font-italic;
+            font-family:@font-regular;
+            font-style:italic;
             
             .count {
                 font-weight: @font-weight__bold;
@@ -38,7 +39,8 @@
             text-align: right;
             color:@color-brandred;
             .lib-font-size(16);
-            font-family: @font-italic;
+            font-family:@font-regular;
+            font-style:italic;
             
             .label {
                 &:extend(.abs-colon all);
@@ -51,7 +53,8 @@
                 &:first-child {
                     .price {
                         font-weight: @font-weight__bold;
-                        font-family:@font-bolditalic;
+                        font-style:italic;
+                        font-family:@font-bold;
                     }
                 }
             }
@@ -65,7 +68,8 @@
                 font-size: 14px;
                 padding: @indent__l 0 @indent__base;
                 text-align: center;
-                font-family: @font-italic;
+                font-family:@font-regular;
+                font-style:italic;
             }
         }
 
@@ -95,6 +99,27 @@
                             &:extend(.abs-button-m all);
                             display: block;
                             width: 100%;
+
+                            span{
+                                padding-left: 40px;
+                                
+                                &:before{
+                                    width:30px;
+                                    height:30px;
+                                    display:inline-block;
+                                    content:"";
+
+                                    background-image:url('@{baseDir}images/product-list_icon_add-to-cart.png');
+                                    background-size:27px 22px;
+                                    background-repeat:no-repeat;
+                                    background-position:center center;
+                                    
+                                    margin-top: -8px;
+                                    margin-left: -40px;
+                                    position: absolute;
+                                    
+                                }
+                            }
                         }
                     }
                 }
@@ -243,6 +268,7 @@
         border-right: 0;
         overflow-x: auto;
         padding: 15px 0;
+        max-height:260px;
     }
 
     .minicart-items {
@@ -291,8 +317,8 @@
             padding-left: 68px;
             .lib-font-size(12);
             .price {
-                font-weight: @font-weight__bold;
-                font-family: @font-italic;
+                font-family:@font-regular;
+                font-style:italic;
             }
 
             .price-including-tax,
@@ -309,7 +335,8 @@
 
             .details-qty {
                 margin-top: @indent__s;
-                font-family:@font-italic;
+                font-family:@font-regular;
+                font-style:italic;
                 display:inline-block;
                 width:35%;
                 

@@ -1,0 +1,45 @@
+& when (@media-common = true) {
+
+
+    .catalog-product-view{
+        .page{
+            &-title{
+                font-size:2.8rem;
+                color:@primary__color;
+            }
+        }
+    }
+
+}
+
+//
+//    Desktop
+//-------------------------------------------------------------
+//screen__  |  xxs  |  xs   |  s    |  m    |   l    |  xl    |
+//          | 320px | 480px | 640px | 768px | 1024px | 1440px |
+//          |-------|-------|-------|-------|--------|--------|
+//
+//mobile >> .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs)
+//mobile >> .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s)
+//laptop >> .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m)
+
+//
+//    MOBILE | smaller than 768
+//-------------------------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m){
+
+}
+
+//
+//    Desktop | larger than 768
+//-------------------------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    .catalog-product-view{
+        .page{
+            &-title{
+                font-size: 3.2rem;
+            }
+        }
+    }
+}

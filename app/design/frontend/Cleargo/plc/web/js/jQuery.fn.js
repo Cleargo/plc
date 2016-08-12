@@ -28,7 +28,7 @@ require(['jquery'], function($) {
 })
 
 
-require(['jquery','jquery.fancybox', 'magestore/flexslider'], function($) {
+require(['jquery','jquery.fancybox', 'jquery.mCustomScrollbar','magestore/flexslider'], function($) {
     
     //
     // Header Nav: Fixed top while scrolling
@@ -130,6 +130,8 @@ require(['jquery','jquery.fancybox', 'magestore/flexslider'], function($) {
         }
     });
     
+    
+    
     //
     // Adjust Home page top banner, append loading icon
     //--------------------------------------------------
@@ -156,5 +158,14 @@ require(['jquery','jquery.fancybox', 'magestore/flexslider'], function($) {
             }
     };
     
-    
-});
+    //
+    // mCustomScrollbar
+    // -------------------------------------------------
+    jQuery(document).ready(function(){
+        jQuery(".minicart-items-wrapper").mCustomScrollbar({
+            axis:"y",
+            scrollInertia:550,
+            scrollbarPosition:"outside"
+        })
+    })
+})
