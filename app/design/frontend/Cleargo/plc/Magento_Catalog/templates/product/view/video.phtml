@@ -1,0 +1,12 @@
+<?php
+$_product = $block->getProduct();
+?>
+<?php foreach ($_product->getMediaGalleryImages() as $mediaGalleryImage): ?>
+    <?php if($mediaGalleryImage->getMediaType() != "video" && $mediaGalleryImage->getMediaType() != "external-video") continue; ?>
+    <?php if(preg_match("/youtube\.com/",$mediaGalleryImage->getVideoUrl())): ?>
+        Youtube: <?php echo $mediaGalleryImage->getVideoUrl() ?>
+    <?php endif; ?>
+    <?php if(preg_match("/vimeo\.com/",$mediaGalleryImage->getVideoUrl())): ?>
+        Vimeo: <?php echo $mediaGalleryImage->getVideoUrl() ?>
+    <?php endif; ?>
+<?php endforeach; ?>
