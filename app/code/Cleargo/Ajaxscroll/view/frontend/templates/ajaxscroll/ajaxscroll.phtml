@@ -61,7 +61,8 @@ require(["jquery"], (function() {
 		<?php endif; ?>
 		pagination: '.pages .item',
 		next: '.next',
-		loader: '<img style="padding: 10px;" width="220" height="20" class="scroll_loading" src="<?php echo $loading_bar; ?>" />'
+		loader: '<img style="padding: 10px;" width="150" height="100" class="scroll_loading" src="<?php echo $loading_bar; ?>" />' +
+                '<div class="ajax-loading-text scroll_loading"><?php echo 'Loading' ?> <i><?php echo 'More' ?></i></div>'
 	});
 }));
 </script>

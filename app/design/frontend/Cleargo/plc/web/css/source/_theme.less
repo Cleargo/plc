@@ -18,16 +18,13 @@
 @color-transparent: transparent;
 @primary__color: #606060;
 @font-regular: 'aileron';
-@font-italic: 'aileron-italic';
 @font-bold: 'aileron-bold';
-@font-bolditalic: 'aileron-bolditalic';
-@font-thinitalic: 'aileron-thinitalic';
+@font-thin: 'aileron-thin';
 @font-black: 'aileron-black';
 
 
 //  Weights
 @font-weight__light: @font-weight__regular; //origin: 300
-@font-weight__regular: @font-weight__regular; //origin: 400
 @font-weight__heavier: @font-weight__regular; //origin: 500
 @font-weight__semibold: @font-weight__regular; //origin: 600
 @font-weight__bold: @font-weight__regular; //origin: 700
@@ -50,7 +47,14 @@
 @panel__background-color: @color-gray-light0;
 @border-color__base: @color-gray80;
 
+// Header color
+@h1__font-color:@color-brandred;
+@h2__font-color:@color-brandred;
+@h3__font-color:@primary__color;
 
+@h1__font-size: 3.8rem ;
+@h1__font-family: @font-black;
+@h2__font-family: @font-black;
 //
 //  Links
 //  ---------------------------------------------
@@ -164,7 +168,8 @@
 //
 //  Buttons
 //  ---------------------------------------------
-@button__font-weight: @font-weight__semibold;
+@button__font-weight: @font-weight__bold;
+@button__font-family: @font-bold;
 @button__shadow: none; //  Used for secondary button and catalog toolbar controls
 @button__shadow-active:none; //  Used for secondary button and catalog toolbar controls
 
@@ -186,7 +191,8 @@
 @button-primary__active__background: @button-primary__hover__background;
 @button-primary__active__border: @button-primary__hover__border;
 
-
+@button__padding:10px;
+@button-primary_padding:10px;
 
 //  Button with icon
 @button-icon__line-height: @icon-font__line-height;
@@ -229,11 +235,14 @@
 //  ---------------------------------------------
 
 //  Form fieldset
+@form-fieldset-legend__font-family: @font-bold;
 @form-fieldset-legend__font-size: 18px;
-@form-fieldset-legend__font-weight: @font-weight__light;
+@form-fieldset-legend__font-weight: @font-weight__bold;
 @form-fieldset-legend__margin: 0 0 @indent__base;
 @form-fieldset-legend__padding: 0 0 @indent__s;
 @form-fieldset-legend__width: 100%;
+@form-fieldset__border: none;
+
 
 //  Form field
 @form-field-type-revert: false;
@@ -348,7 +357,7 @@
 
 //collapsible navigation
 
-@collapsible-nav-background: @sidebar__background-color;
+@collapsible-nav-background: @color-white;
 @collapsible-nav-color: @color-gray34;
 @collapsible-nav-current-border: 0px solid @color-transparent;
 @collapsible-nav-current-border-color: @color-transparent;
