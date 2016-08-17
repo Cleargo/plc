@@ -103,9 +103,12 @@
                     $('#popupform-fade-wrapper').hide();
                     $('.fixed_bottom').addClass('desktop');
                     $('.fixed_bottom').removeClass('mobile');
+                    formLayer.removeClass('active');
                     hiddenHeight = $('.fixed_bottom .form-wrapper').height();
                     $('.fixed_bottom').css('bottom', "-" + hiddenHeight + "px");
                     $('.fixed_bottom').css('right', 55 + "px");
+                    $('.arrow').attr('src','<?php echo $block->getViewFileUrl('Cleargo_PopupForm/images/arrow.png'); ?>');
+
                     $('.fixed_bottom').show();
                 } else {
                     if($(window).width() == mobileDefinition){
@@ -123,7 +126,7 @@
             $(window).resize(function () {
                  mobileBottomMargin = $(window).height() - $('.fixed_bottom').height();
                  mobileRightMargin = $(window).width() - $('.fixed_bottom').width();
-                addDeviceClassToContainer();
+                 addDeviceClassToContainer();
             });
 
 
@@ -137,9 +140,11 @@
                     if(formLayer.hasClass('active')){
                         formLayer.removeClass('active');
                         formLayer.css('bottom', "-" + hiddenHeight + "px");
+                        $('.arrow').attr('src','<?php echo $block->getViewFileUrl('Cleargo_PopupForm/images/arrow.png'); ?>');
                     } else {
                         formLayer.addClass('active');
                         formLayer.css('bottom', 0 );
+                        $('.arrow').attr('src','<?php echo $block->getViewFileUrl('Cleargo_PopupForm/images/downArrow.png'); ?>');
                     }
                 }
             });
@@ -148,7 +153,7 @@
                 $('.fixed_bottom').find('.popup-form').show();
                 $('.fixed_bottom').find('.thank-container').hide();
                 setTimeout(function () {
-                    addDeviceClassToContainer();
+                   // addDeviceClassToContainer();
                 },10)
             });
             $('.fixed_bottom .icon .cross').on('click',function () {
@@ -173,14 +178,14 @@
                                 $('.fixed_bottom').find('.popup-form').hide();
                                 $('.fixed_bottom').find('.thank-container').show();
                                 setTimeout(function () {
-                                    addDeviceClassToContainer();
+                                   //addDeviceClassToContainer();
                                 },10)
                             }
                         )
                     },
                     invalidHandler: function () {
                         setTimeout(function () {
-                            addDeviceClassToContainer();
+                            //addDeviceClassToContainer();
                         },10)
                     }
                 });
