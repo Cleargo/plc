@@ -38,7 +38,7 @@
             margin: 10px @indent__s;
             text-align: right;
             color:@color-brandred;
-            .lib-font-size(16);
+            .lib-font-size(12);
             font-family:@font-regular;
             font-style:italic;
             
@@ -87,7 +87,38 @@
                     text-align: center;
                     
                     .action{
-                        .lib-link(@_link-color: @color-brandred, @_link-color-hover: darken(@color-brandred, 5%), @_link-text-decoration-hover: none );
+                        .lib-link(@_link-color: @color-brandred, @_link-color-hover: darken(@color-brandred, 5%),@_link-text-decoration:none);
+                        text-transform:uppercase;
+                        font-style:italic;
+                        text-decoration:none;
+                        color:@color-brandred;
+
+                        .lib-font-size(12);
+                        
+                        &:visited{
+                            color:@color-brandred;                            
+                        }
+
+                        >span{
+                            padding-left: 40px;
+
+                            &:before{
+                                width:30px;
+                                height:30px;
+                                display:inline-block;
+                                content:"";
+
+                                background-image:url('@{baseDir}images/header/icon_nav-shoppingcart_active.png');
+                                background-size:50px 50px;
+                                background-repeat:no-repeat;
+                                background-position:center center;
+
+                                margin-top: -8px;
+                                margin-left: -35px;
+                                position: absolute;
+
+                            }
+                        }
                     }
                 }
 
@@ -100,26 +131,6 @@
                             display: block;
                             width: 100%;
 
-                            span{
-                                padding-left: 40px;
-                                
-                                &:before{
-                                    width:30px;
-                                    height:30px;
-                                    display:inline-block;
-                                    content:"";
-
-                                    background-image:url('@{baseDir}images/product-list_icon_add-to-cart.png');
-                                    background-size:27px 22px;
-                                    background-repeat:no-repeat;
-                                    background-position:center center;
-                                    
-                                    margin-top: -8px;
-                                    margin-left: -40px;
-                                    position: absolute;
-                                    
-                                }
-                            }
                         }
                     }
                 }
@@ -498,6 +509,10 @@
             }
             &:before{
                 right:26px;
+            }
+
+            .subtotal {
+                .lib-font-size(14);
             }
         }
     }

@@ -16,7 +16,7 @@
 <?php if ($block->isVisible()): ?>
     <div class="block filter">
         <div class="block-title filter-title">
-            <strong><?php echo __('Shop By') ?></strong>
+            <strong><img src="<?php echo $block->getViewFileUrl('images/icon_filter')?>" /><?php echo __('Filter & Shop') ?></strong>
         </div>
 
         <div class="block-content filter-content">
@@ -37,7 +37,7 @@
                 </div>
             <?php endif; ?>
 
-            <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?php echo __('Shopping Options') ?></strong>
+            <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?php echo __('Filter by') ?></strong>
 
             <dl class="filter-options" id="narrow-by-list">
             <?php foreach ($block->getFilters() as $filter): ?>

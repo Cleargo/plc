@@ -161,11 +161,22 @@ require(['jquery','jquery.fancybox', 'jquery.mCustomScrollbar','magestore/flexsl
     //
     // mCustomScrollbar
     // -------------------------------------------------
-    jQuery(document).ready(function(){
+/*    jQuery(document).ready(function(){
         jQuery(".minicart-items-wrapper").mCustomScrollbar({
             axis:"y",
             scrollInertia:550,
             scrollbarPosition:"outside"
         })
-    })
+    })*/
+    
+    //
+    // Product listing sorter 
+    //----------------------------------------------------
+    jQuery('.filter-title').click(function () {
+        if(jQuery('.block.filter').hasClass('active')){
+            jQuery('.toolbar.toolbar-products').addClass('active');
+        }else{
+            jQuery('.toolbar.toolbar-products').removeClass('active');
+        }
+    })    
 })
