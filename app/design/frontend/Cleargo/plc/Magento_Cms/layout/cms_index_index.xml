@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  layout="1column"  xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script type="text/javascript" src="js/homepage.js"></script>
+    </head>
+    <!--
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="homepage" template="Magento_Theme::html/homepage.phtml">
+                <block class="Magento\Cms\Block\Block" name="homepage_category_listing">
+                    <arguments><argument name="block_id" xsi:type="string">homepage_category_listing</argument></arguments>
+                </block>
+                
+                <block class="Magento\Cms\Block\Block" name="homepage_promotion">
+                    <arguments><argument name="block_id" xsi:type="string">homepage_promotion</argument></arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="homepage_plc_group_video">
+                    <arguments><argument name="block_id" xsi:type="string">homepage_plc_group_video</argument></arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="homepage_whats_news">
+                    <arguments><argument name="block_id" xsi:type="string">homepage_whats_news</argument></arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="homepage_social_media">
+                    <arguments><argument name="block_id" xsi:type="string">homepage_social_media</argument></arguments>
+                </block>
+            </block>
+        </referenceContainer>
+        
+        <referenceBlock name="page.main.title" remove="true"/>
+    </body>
+    -->
+</page>
