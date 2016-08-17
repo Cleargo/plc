@@ -143,12 +143,14 @@
                         <div height="10"></div>
                         <div height="10"></div>
                     </div>
-                    <div>
-                        <div class="dt" id="sq_div" >*<?php echo __('Security question') ?></div>
-                        <div class="dd">
-                            <?php echo ($this->getQusetion()[$inputed['question_type']]["label"]); ?>
+                    <?php if(isset($inputed['question_type']) && isset($this->getQusetion()[$inputed['question_type']]["label"]) ): ?>
+                        <div>
+                            <div class="dt" id="sq_div" >*<?php echo __('Security question') ?></div>
+                            <div class="dd">
+                                <?php echo ($this->getQusetion()[$inputed['question_type']]["label"]); ?>
+                            </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
                     <div>
 
                         <div height="10"></div>
