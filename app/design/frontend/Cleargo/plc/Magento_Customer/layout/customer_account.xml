@@ -27,5 +27,47 @@
             </action>
         </referenceBlock>
 
+        <referenceBlock name="customer_account_navigation">
+            <!-- Mobile sidebar display label -->
+            <!--referenceBlock name="customer_account_navigation_block">
+                <arguments>
+                    <argument name="block_title" translate="true" xsi:type="string">Dashboard</argument>
+                </arguments>
+            </referenceBlock-->
+            <!-- Customer Account side bar NAV -->
+            <referenceBlock name="customer-account-navigation-account-link" before="-"/>
+            <referenceBlock name="customer-account-navigation-account-edit-link" after="customer-account-navigation-account-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Edit Information</argument>
+                </arguments>
+            </referenceBlock>
+            <!-- Cannot use referenceBlock to re-order customer-account-navigation's order sequence -->
+            <!-- Need to place the 'after' attribute into the XML directly                          -->
+            <!--referenceBlock name="customer-account-navigation-address-link" after="customer-account-navigation-account-edit-link" /-->
+            <!--referenceBlock name="customer-account-navigation-wish-list-link" after="customer-account-navigation-address-link" /-->
+            <!--referenceBlock name="customer-account-navigation-product-reviews-link" after="customer-account-navigation-wish-list-link" /-->
+            <referenceBlock name="customer-account-navigation-product-reviews-link" remove="true" />
+            <!--referenceBlock name="customer-account-navigation-orders-link" after="customer-account-navigation-product-reviews-link" /-->
+            <!--referenceBlock name="customer-account-navigation-return-history-link" after="customer-account-navigation-orders-link" /-->
+            <!--referenceBlock name="customer-account-navigation-warranties-link" after="customer-account-navigation-return-history-link" /-->
+            <!--referenceBlock name="customer-account-navigation-newsletter-subscriptions-link" after="customer-account-navigation-warranties-link" /-->
+
+            <referenceBlock name="customer-account-navigation-customer-balance-link" remove="true" /><!-- Store Credit -->
+            <referenceBlock name="customer-account-navigation-downloadable-products-link" remove="true" /><!-- Downloadable product -->
+            <referenceBlock name="customer-account-navigation-gift-card-link" remove="true" /><!-- Gift card -->
+            <referenceBlock name="customer-account-navigation-billing-agreements-link" remove="true" /><!-- Billing Agreements -->
+            <referenceBlock name="customer-account-navigation-reward-link" remove="true" /><!-- Reward Points -->
+            <referenceBlock name="customer-account-navigation-giftregistry-link" remove="true" /><!-- Gift Register -->
+            <referenceBlock name="customer-account-navigation-my-credit-cards-link" remove="true" /><!-- My Credit Cards -->
+
+            <!--referenceBlock name="customer-account-navigation-return-history-link" remove="true" /-->
+            <!--referenceBlock name="customer-account-navigation-product-reviews-link" remove="true" /-->
+
+            <!-- switch off by backend :: Store > configuration > sales > sales > Order by SKU Settings -->
+            <!--referenceBlock name="customer-account-navigation-checkout-sku-link" remove="true" /-->
+
+            <!-- switch off by backend :: Stores > Configuration > Customers > Invitations > General ( disable functionality) -->
+            <!--referenceBlock name="customer-account-navigation-magento-invitation-link remove="true" /-->
+        </referenceBlock>
     </body>
 </page>

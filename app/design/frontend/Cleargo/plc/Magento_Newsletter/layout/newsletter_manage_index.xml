@@ -26,23 +26,13 @@
                 </argument>
             </action>
             <action method="addCrumb">
-                <argument name="crumbName" xsi:type="string">My Warranty Record</argument>
+                <argument name="crumbName" xsi:type="string">Newsletter Subscription</argument>
                 <argument name="crumbInfo" xsi:type="array">
-                    <item name="title" xsi:type="string">My Warranty Record</item>
-                    <item name="label" xsi:type="string">My Warranty Record</item>
-                    <item name="link" xsi:type="string">/warranty/warranty/</item>
+                    <item name="title" xsi:type="string">Newsletter Subscription</item>
+                    <item name="label" xsi:type="string">Newsletter Subscription</item>
+                    <item name="link" xsi:type="string">/newsletter/manage/</item>
                 </argument>
             </action>
         </referenceBlock>
-        <referenceBlock name="page.main.title">
-            <action method="setPageTitle">
-                <argument translate="true" name="title" xsi:type="string">My Warranty Record</argument>
-            </action>
-        </referenceBlock>
-        <referenceContainer name="content">
-            <block class="Cleargo\Warranty\Block\History" name="warranty.warranty.history" cacheable="false">
-                <container name="warranty.warranty.history.info" as="info" label="Order History Info"/>
-            </block>
-        </referenceContainer>
     </body>
 </page>
