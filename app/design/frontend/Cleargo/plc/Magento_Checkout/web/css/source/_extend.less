@@ -1,0 +1,121 @@
+& when (@media-common = true) {
+    .checkout-cart-index {
+        .abs-shopping-cart-items-desktop,
+        .block-cart-failed,
+        .cart-container .form-cart,
+        .cart-container .cart-gift-item {
+
+        }
+    }
+}
+
+//
+//    Desktop
+//-------------------------------------------------------------
+//screen__  |  xxs  |  xs   |  s    |  m    |   l    |  xl    |
+//          | 320px | 480px | 640px | 768px | 1024px | 1440px |
+//          |-------|-------|-------|-------|--------|--------|
+//
+//mobile >> .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs)
+//mobile >> .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s)
+//laptop >> .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m)
+
+//
+//    MOBILE | smaller than 768
+//-------------------------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m){
+
+}
+
+//
+//    Desktop | larger than 768
+//-------------------------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .checkout-cart-index {
+        .abs-shopping-cart-items-desktop,
+        .block-cart-failed,
+        .cart-container .form-cart,
+        .cart-container .cart-gift-item {
+            width: 100%;
+            padding-right: 0;
+        }
+        .cart.table-wrapper {
+            .cart {
+                thead {
+                    tr {
+                        th.col {
+                            text-align: center;
+                            border-top: 1px solid #AFAFAF;
+                            border-bottom: 1px solid #AFAFAF;
+                            padding-top: 10px;
+                            padding-bottom: 10px;
+                            &.item {
+                                text-align: left;
+                            }
+                        }
+                    }
+                }
+                tbody {
+                    tr {
+                        td.col {
+                            border-bottom: 1px solid #D6D6D6;
+                            text-align: center;
+                            &.item {
+                                text-align: left;
+                            }
+                            &.color {
+                                font-size: 1.6rem;
+                                font-weight: italic;
+                            }
+                            &.price,
+                            &.subtotal {
+                                .price {
+                                    font-size: 1.6rem;
+                                    font-weight: italic;
+                                }
+                            }
+                            &.action {
+                                .action-towishlist,
+                                .action-edit {
+                                    display: none;
+                                }
+                                .action-delete {
+                                    &:before {
+                                        content: url('@{baseDir}images/item_delete.png');
+                                    }
+                                }
+                            }
+                            .product-item-name {
+                                font-size: 1.6rem;
+                            }
+                        }
+                        &:last-child {
+                            td.col {
+                                border-bottom: 1px solid #AFAFAF;
+                            }
+                        }
+                    }
+                }
+            }
+            .product-image-wrapper {
+                max-width: 100px;
+                .product-image-photo {
+                    width: 100%;
+                    height: inherit;
+                }
+            }
+        }
+    }
+}
+
+//
+//    Desktop | larger than 1024
+//-------------------------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l){
+}
+
+//
+//    Desktop | larger than 1140
+//-------------------------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl){
+}
