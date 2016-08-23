@@ -6,10 +6,10 @@
 namespace Cleargo\Warranty\Controller\Warranty;
 
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\App\Action\Action;
+use Magento\Customer\Controller\AbstractAccount;
 use Magento\Framework\View\Result\PageFactory;
 
-class View extends Action
+class View extends AbstractAccount
 {
     /**
      * @var PageFactory

@@ -17,6 +17,7 @@
 .fixed_bottom{
     position:fixed;
     right:55px;
+	bottom:-600px;
     z-index: 1000;
 }
 .fixed_bottom.add-after-loaded{

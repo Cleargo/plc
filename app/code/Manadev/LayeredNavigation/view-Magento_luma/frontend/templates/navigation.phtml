@@ -1,5 +1,5 @@
 <?php
-/** 
+/**
  * @copyright   Copyright (c) http://www.manadev.com
  * @license     http://www.manadev.com/license  Proprietary License
  */
@@ -12,30 +12,30 @@
 ?>
 
 <?php if ($block->isVisible()): ?>
-            <div class="block filter" id="layered-filter-block" data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false, "collateral": { "openedState": "filter-active", "element": "body" } }}'>
-                <?php $filtered = count(iterator_to_array($block->getAppliedFilters())) ?>
-                <div class="block-title filter-title" data-count="<?php echo $filtered; ?>">
-                    <strong data-role="title"><?php echo __('Shop By') ?></strong>
+    <div class="block filter" id="layered-filter-block" data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false, "collateral": { "openedState": "filter-active", "element": "body" } }}'>
+        <?php $filtered = count(iterator_to_array($block->getAppliedFilters())) ?>
+        <div class="block-title filter-title" data-count="<?php echo $filtered; ?>">
+            <strong data-role="title"><?php echo __('Filter & Sort') ?></strong>
+        </div>
+        <div class="block-content filter-content">
+            <?php if ($block->hasState()) : ?>
+                <div class="filter-current" data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false }}'>
+                    <strong class="block-subtitle filter-current-subtitle" role="heading" aria-level="2" data-role="title" data-count="<?php echo $filtered; ?>"><?php echo __('Now Shopping by') ?></strong>
+                    <ol class="items">
+                        <?php foreach ($block->getAppliedFilters() as $engineFilter): ?>
+                            <?php foreach ($engineFilter->getAppliedItems() as $item) : ?>
+                                <li class="item"><?php echo $block->renderAppliedItem($engineFilter, $item) ?></li>
+                            <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </ol>
                 </div>
-                <div class="block-content filter-content">
-                    <?php if ($block->hasState()) : ?>
-                        <div class="filter-current" data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false }}'>
-                            <strong class="block-subtitle filter-current-subtitle" role="heading" aria-level="2" data-role="title" data-count="<?php echo $filtered; ?>"><?php echo __('Now Shopping by') ?></strong>
-                            <ol class="items">
-                                <?php foreach ($block->getAppliedFilters() as $engineFilter): ?>
-                                    <?php foreach ($engineFilter->getAppliedItems() as $item) : ?>
-                                        <li class="item"><?php echo $block->renderAppliedItem($engineFilter, $item) ?></li>
-                                    <?php endforeach; ?>
-                                <?php endforeach; ?>
-                            </ol>
-                        </div>
 
                 <div class="block-actions filter-actions">
                     <a href="<?php echo $block->getClearUrl() ?>" class="action clear filter-clear"><span><?php echo __('Clear All') ?></span></a>
                 </div>
             <?php endif; ?>
 
-            <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?php echo __('Shopping Options') ?></strong>
+            <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?php echo __('Filter by') ?></strong>
             <?php $noFilters = true; ?>
 
             <div class="filter-options" id="narrow-by-list" data-role="content" data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": false, "multipleCollapsible": false}}'>

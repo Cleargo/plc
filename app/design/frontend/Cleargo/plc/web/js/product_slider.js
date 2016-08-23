@@ -1,150 +1,150 @@
-function initArrow(thisContainer){
-    jQuery('.slider_wrapper').each(function(){
+require(["jquery","jquery.touchwipe","plc.fn"], function($){
+    function initArrow(thisContainer){
+        $('.slider_wrapper').each(function(){
 
-        if(thisContainer==null || thisContainer=="")
-        //container = jQuery(this).attr("class").split(" ")[0];
-            container = jQuery(this).parent().attr("id");
-        else
-            container = thisContainer;
+            if(thisContainer==null || thisContainer=="")
+            //container = $(this).attr("class").split(" ")[0];
+                container = $(this).parent().attr("id");
+            else
+                container = thisContainer;
 
-        thisObj = jQuery('#' + container + ' .slider');
+            thisObj = $('#' + container + ' .slider');
 
-        if(thisObj[0])
-        {
-            displayWidth = 0;
-            sliderCanvas = jQuery('#' + container + ' .slider-canvas');
-
-            if(sliderCanvas)
-                displayWidth = parseInt(sliderCanvas.width());
-
-            //if(thisObj.has('li'))
-            if(thisObj.children("li").length > 0)
+            if(thisObj[0])
             {
-                itemWidth = thisObj.children('li').outerWidth();
-                itemCount = thisObj.children('li').size();
+                displayWidth = 0;
+                sliderCanvas = $('#' + container + ' .slider-canvas');
 
-                maxWidth = itemWidth * itemCount;
-                cssLeft = parseInt(thisObj.css('left'));
+                if(sliderCanvas)
+                    displayWidth = parseInt(sliderCanvas.width());
 
-                if(maxWidth <= displayWidth)
-                    updateArrow(container, 'right', 'hide');
+                //if(thisObj.has('li'))
+                if(thisObj.children("li").length > 0)
+                {
+                    itemWidth = thisObj.children('li').outerWidth();
+                    itemCount = thisObj.children('li').size();
+
+                    maxWidth = itemWidth * itemCount;
+                    cssLeft = parseInt(thisObj.css('left'));
+
+                    if(maxWidth <= displayWidth)
+                        updateArrow(container, 'right', 'hide');
+                    else
+                        updateArrow(container, 'right', 'show');
+                }
                 else
-                    updateArrow(container, 'right', 'show');
+                {
+                    updateArrow(container, 'right', 'hide');
+                }
+                updateArrow(container, 'left', 'hide');
+            }
+        });
+    }
+
+    function updateArrow(container, direction, status){
+        thisArrowObj = $('#'+container+' .slider-'+direction);
+
+        if(status=="show")
+            thisArrowObj.removeClass("off");
+        else
+            thisArrowObj.addClass("off");
+    }
+    /*
+     function resetArrow(thisTabID, container){
+     thisObj = $('#' + container + ' .slider');
+
+     if(thisObj[0])
+     {
+     displayWidth = $('.' + container + ' .slider-canvas').width();
+     itemWidth = thisObj.children('li').outerWidth();
+     itemCount = thisObj.children('li').size();
+
+     updateArrow(container, 'left', 'hide');
+
+     if((itemCount * itemWidth) < displayWidth)
+     updateArrow(container, 'right', 'hide');
+     else
+     updateArrow(container, 'right', 'show');
+     }
+     }
+     */
+
+    function productSlider(sliderContainer, direction){
+        thisObj = $('.' + sliderContainer + ' .slider');
+
+        winwidth = $(window).width();
+
+        if(!thisObj.is(':animated'))
+        {
+            displayWidth = parseInt($('.' + sliderContainer + ' .slider-canvas').width());
+            itemWidth = thisObj.children('li').outerWidth();
+            itemCount = thisObj.children('li').size();
+
+            if(displayWidth < 768){
+                itemsToFlow = Math.floor(displayWidth / itemWidth);
+                displayWidth = itemsToFlow * itemWidth;
+            }
+            maxWidth = itemWidth * itemCount;
+            cssLeft = parseInt(thisObj.css('left'));
+
+            outerContainer = $('.'+sliderContainer+'.slider_wrapper').parent().attr('id');
+
+            if(direction=='right')
+            {
+                cssLeft -= displayWidth;
+
+                if((maxWidth+cssLeft) <= displayWidth)
+                    updateArrow(outerContainer, 'right', 'hide');
+                else
+                    updateArrow(outerContainer, 'right', 'show');
+
+                updateArrow(outerContainer, 'left', 'show');
             }
             else
             {
-                updateArrow(container, 'right', 'hide');
-            }
-            updateArrow(container, 'left', 'hide');
-        }
-    });
-}
+                cssLeft += displayWidth;
 
-function updateArrow(container, direction, status){
-    thisArrowObj = jQuery('#'+container+' .slider-'+direction);
+                if(cssLeft==0)
+                    updateArrow(outerContainer, 'left', 'hide');
+                else
+                    updateArrow(outerContainer, 'left', 'show');
 
-    if(status=="show")
-        thisArrowObj.removeClass("off");
-    else
-        thisArrowObj.addClass("off");
-}
-/*
- function resetArrow(thisTabID, container){
- thisObj = jQuery('#' + container + ' .slider');
-
- if(thisObj[0])
- {
- displayWidth = jQuery('.' + container + ' .slider-canvas').width();
- itemWidth = thisObj.children('li').outerWidth();
- itemCount = thisObj.children('li').size();
-
- updateArrow(container, 'left', 'hide');
-
- if((itemCount * itemWidth) < displayWidth)
- updateArrow(container, 'right', 'hide');
- else
- updateArrow(container, 'right', 'show');
- }
- }
- */
-
-function productSlider(sliderContainer, direction){
-    thisObj = jQuery('.' + sliderContainer + ' .slider');
-
-    winwidth = jQuery(window).width();
-
-    if(!thisObj.is(':animated'))
-    {
-        displayWidth = parseInt(jQuery('.' + sliderContainer + ' .slider-canvas').width());
-        itemWidth = thisObj.children('li').outerWidth();
-        itemCount = thisObj.children('li').size();
-
-        if(displayWidth < 768){
-            itemsToFlow = Math.floor(displayWidth / itemWidth);
-            displayWidth = itemsToFlow * itemWidth;
-        }
-        maxWidth = itemWidth * itemCount;
-        cssLeft = parseInt(thisObj.css('left'));
-
-        outerContainer = jQuery('.'+sliderContainer+'.slider_wrapper').parent().attr('id');
-
-        if(direction=='right')
-        {
-            cssLeft -= displayWidth;
-
-            if((maxWidth+cssLeft) <= displayWidth)
-                updateArrow(outerContainer, 'right', 'hide');
-            else
                 updateArrow(outerContainer, 'right', 'show');
-
-            updateArrow(outerContainer, 'left', 'show');
+            }
+            thisObj.animate({ 'left':cssLeft,  duration:250 });
         }
-        else
-        {
-            cssLeft += displayWidth;
-
-            if(cssLeft==0)
-                updateArrow(outerContainer, 'left', 'hide');
-            else
-                updateArrow(outerContainer, 'left', 'show');
-
-            updateArrow(outerContainer, 'right', 'show');
-        }
-        thisObj.animate({ 'left':cssLeft,  duration:250 });
     }
-}
-
-require(["jquery"], function(){
+    
     // prevent android browser scrollbar hiding or showing to fire window.resize
-    var contentWidth = jQuery(window).width();
-    var contentHeight = jQuery(window).height();
+    var contentWidth = $(window).width();
+    var contentHeight = $(window).height();
 
     //Product Slider Arrow Actions
-    jQuery(".slider-left").click(function(){
-        thisContainer = jQuery(this).closest("DIV.slider_wrapper").attr("class").split(" ");
-        if(!jQuery(this).hasClass('off'))
+    $(".slider-left").click(function(){
+        thisContainer = $(this).closest("DIV.slider_wrapper").attr("class").split(" ");
+        if(!$(this).hasClass('off'))
             productSlider(thisContainer[0], "left");
     });
-    jQuery(".slider-right").click(function(){
-        thisContainer = jQuery(this).closest("DIV.slider_wrapper").attr("class").split(" ");
-        if(!jQuery(this).hasClass('off'))
+    $(".slider-right").click(function(){
+        thisContainer = $(this).closest("DIV.slider_wrapper").attr("class").split(" ");
+        if(!$(this).hasClass('off'))
             productSlider(thisContainer[0], "right");
     });
 
     //
     // Mobile Device detect swipe slider, trigger left and right action
     //-----------------------------------------------------------------
-    jQuery.detectSwipe = function(slider){
-        sliderWrapper = jQuery('#'+slider).children('.slider_wrapper');
+    $.detectSwipe = function(slider){
+        sliderWrapper = $('#'+slider).children('.slider_wrapper');
 
-        if(!jQuery.isDesktop() && jQuery(window).width() <=1024 )
+        if(!$.isDesktop() && $(window).width() <=1024 )
         {
-            jQuery('#'+slider).touchwipe({
+            $('#'+slider).touchwipe({
                 wipeLeft: function() {
-                    jQuery('#'+slider).find('.slider-right').trigger('click');
+                    $('#'+slider).find('.slider-right').trigger('click');
                 },
                 wipeRight: function() {
-                    jQuery('#'+slider).find('.slider-left').trigger('click');
+                    $('#'+slider).find('.slider-left').trigger('click');
                 },
                 min_move_x: 20,
                 min_move_y: 20,
@@ -153,23 +153,23 @@ require(["jquery"], function(){
         }
     };
 
-    jQuery('.slider_wrapper').each(function(){
-        jQuery.detectSwipe(jQuery(this).parent().attr('id'));
+    $('.slider_wrapper').each(function(){
+        $.detectSwipe($(this).parent().attr('id'));
     });
 
     /*
-     jQuery.getInitData = function(){
-     jQuery('.slider_wrapper').each(function(){
-     container = jQuery(this).attr("class").split(" ")[0];
+     $.getInitData = function(){
+     $('.slider_wrapper').each(function(){
+     container = $(this).attr("class").split(" ")[0];
 
-     itemWidth = jQuery('.' + container + ' .slider LI').outerWidth();
-     jQuery('.' + container + ' .slider').attr('data-item-basewidth', itemWidth);
+     itemWidth = $('.' + container + ' .slider LI').outerWidth();
+     $('.' + container + ' .slider').attr('data-item-basewidth', itemWidth);
      });
      }
      */
 
-    jQuery.adjustSlider = function(){
-        winwidth = jQuery(window).width();
+    $.adjustSlider = function(){
+        winwidth = $(window).width();
         maxwidth = 1140;
 
         if(winwidth <= 768)
@@ -177,11 +177,11 @@ require(["jquery"], function(){
         else
             arrowWidth = 50;
 
-        jQuery('.slider_wrapper').each(function(){
-            container = jQuery(this).parent().attr('id');
-            containerWidth = jQuery(this).parent().outerWidth();
-            sliderCanvas = jQuery('#' + container + ' .slider-canvas');
-            thisObj = jQuery('#' + container + ' .slider');
+        $('.slider_wrapper').each(function(){
+            container = $(this).parent().attr('id');
+            containerWidth = $(this).parent().outerWidth();
+            sliderCanvas = $('#' + container + ' .slider-canvas');
+            thisObj = $('#' + container + ' .slider');
 
             if(thisObj)
             {
@@ -196,7 +196,7 @@ require(["jquery"], function(){
                         maxDisplayItems = Math.floor((displayWidth - arrowWidth*2) / itemWidth);
                     }
                     else{
-                        //containerWidth = jQuery('#' + container + ' .slider_wrapper').outerWidth();
+                        //containerWidth = $('#' + container + ' .slider_wrapper').outerWidth();
                         //maxDisplayItems = Math.floor((winwidth - arrowWidth*2) / itemWidth);
                         displayWidth = parseInt(sliderCanvas.width());
                         maxDisplayItems = Math.floor((containerWidth - arrowWidth*2) / itemWidth);
@@ -207,7 +207,7 @@ require(["jquery"], function(){
 
                     //if((winwidth <= maxwidth) && (maxDisplayItems > 0) && (displayWidth != itemWidth*maxDisplayItems)){
                     if(displayWidth != itemWidth*maxDisplayItems){
-                        jQuery(this).css('width', itemWidth*maxDisplayItems);
+                        $(this).css('width', itemWidth*maxDisplayItems);
                         sliderCanvas.css('width', itemWidth*maxDisplayItems);
                         thisObj.css('left',0);
                     }
@@ -219,24 +219,24 @@ require(["jquery"], function(){
         });
     };
 
-    jQuery(window).resize(function(){
-        jQuery.adjustSlider();
+    $(window).resize(function(){
+        $.adjustSlider();
     });
 
     // Capture Event : Rotate, add Event Listener cannot add to document.ready state
-    if(!jQuery.isDesktop() && jQuery(window).width() <=1024 ){
+    if(!$.isDesktop() && $(window).width() <=1024 ){
         window.addEventListener('orientationchange', function() {
-            jQuery.adjustSlider();
+            $.adjustSlider();
         }, false);
     }
 
     //init.
-    //jQuery.getInitData();
+    //$.getInitData();
 
     //init arrow included into adjustSlider()
     //initArrow();
-    jQuery.adjustSlider();
-   // jQuery(document).ready(function(){
-   //     jQuery(window).trigger('resize');
+    $.adjustSlider();
+   // $(document).ready(function(){
+   //     $(window).trigger('resize');
    // });
 });

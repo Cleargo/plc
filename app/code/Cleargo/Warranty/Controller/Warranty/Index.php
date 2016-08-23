@@ -6,10 +6,10 @@
 namespace Cleargo\Warranty\Controller\Warranty;
 
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\App\Action\Action;
+use Magento\Customer\Controller\AbstractAccount;
 use Magento\Framework\View\Result\PageFactory;
 
-class Index extends Action
+class Index extends AbstractAccount
 {
     /**
      * @var PageFactory
@@ -36,7 +36,6 @@ class Index extends Action
     public function execute()
     {
         /** @var \Magento\Framework\View\Result\Page $resultPage */
-
         $resultPage = $this->resultPageFactory->create();
         $resultPage->getLayout()->initMessages();
         return $resultPage;

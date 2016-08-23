@@ -30,7 +30,7 @@ class BlockProductList
         $this->scopeConfig = $scopeConfig;
     }
 
-    public function aroundGetProductDetailsHtml(
+   /* public function aroundGetProductDetailsHtml(
         \Magento\Catalog\Block\Product\ListProduct $subject,
         \Closure $proceed,
         \Magento\Catalog\Model\Product $product
@@ -44,6 +44,23 @@ class BlockProductList
             return $result . '<a class="weltpixel-quickview '.$buttonStyle.'" data-quickview-url=' . $productUrl . ' href="javascript:void(0);"><span>' . __("Quickview") . '</span></a>';
         }
         
+        return $result;
+    }*/
+
+    public function aroundGetReviewsSummaryHtml(
+        \Magento\Catalog\Block\Product\ListProduct $subject,
+        \Closure $proceed,
+        \Magento\Catalog\Model\Product $product
+    )
+    {
+        $result = $proceed($product);
+        $isEnabled = $this->scopeConfig->getValue(self::XML_PATH_QUICKVIEW_ENABLED,  \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+        if ($isEnabled) {
+            $buttonStyle =  'weltpixel_quickview_button_' . $this->scopeConfig->getValue(self::XML_PATH_QUICKVIEW_BUTTONSTYLE,  \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+            $productUrl = $this->urlInterface->getUrl('weltpixel_quickview/catalog_product/view', array('id' => $product->getId()));
+            return $result . '<a class="weltpixel-quickview '.$buttonStyle.'" data-quickview-url=' . $productUrl . ' href="javascript:void(0);"><span>' . __("Quickview") . '</span></a>';
+        }
+
         return $result;
     }
 }
