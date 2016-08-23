@@ -1,0 +1,8 @@
+<?php
+$data = $this->getFormData();
+?>
+<form id="asiapay-redirect" method="post" action="<?php echo $this->getPostUrl() ?>">
+    <?php foreach($data as $key => $value): ?>
+        <input type="hidden" name="<?php echo $key ?>" value="<?php echo $value ?>" />
+    <?php endforeach; ?>
+</form>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 CLEARgo. All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>PayDollar Redirection</title>
+        <!--link src="Cleargo_Asiapay::js/form/redirect.js"/-->
+    </head>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">You will be redirected to a secure payment page.</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Cleargo\Asiapay\Block\Form\Redirect" name="asiapay.payment.redirect"/>
+        </referenceContainer>
+        <referenceContainer name="page.messages" remove="true"/>
+        <referenceBlock name="minicart" remove="true"/>
+        <referenceContainer name="header.panel" remove="true"/>
+        <referenceBlock name="top.search" remove="true"/>
+        <referenceBlock name="catalog.compare.link" remove="true"/>
+        <referenceBlock name="catalog.topnav" remove="true"/>
+        <referenceContainer name="footer-container" remove="true"/>
+    </body>
+</page>

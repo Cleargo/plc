@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 CLEARgo. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Cleargo\Asiapay\Model\Ui\ConfigProvider">
+        <arguments>
+            <argument name="config" xsi:type="object">AsiapayConfig</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="cleargo_asiapay" xsi:type="object">Cleargo\Asiapay\Model\Ui\ConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
