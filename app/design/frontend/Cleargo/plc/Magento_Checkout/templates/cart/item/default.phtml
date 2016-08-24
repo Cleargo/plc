@@ -15,6 +15,12 @@ $isVisibleProduct = $product->isVisibleInSiteVisibility();
 $helper = $this->helper('Magento\Msrp\Helper\Data');
 $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
 ?>
+<?php
+$productColor = $product->getColor();
+if( !$productColor ) {
+    $productColor = __('N/A');
+}
+?>
     <tr class="item-info">
         <td data-th="<?php echo $block->escapeHtml(__('Item')); ?>" class="col item">
             <?php if ($block->hasProductUrl()):?>
@@ -39,6 +45,8 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                         <?php echo $block->escapeHtml($block->getProductName()) ?>
                     <?php endif; ?>
                 </strong>
+                <p class="product-sku"><?php /* @escapeNotVerified */ echo $product->getSku();?></p>
+                <p class="product-color show-mobile"><?php /* @escapeNotVerified */ echo __('Color : ') . $productColor;?></p>
                 <?php if ($_options = $block->getOptionList()):?>
                     <dl class="item-options">
                         <?php foreach ($_options as $_option) : ?>
@@ -66,7 +74,7 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
             </div>
         </td>
         <td class="col color" data-th="<?php echo $block->escapeHtml(__('Color')); ?>">
-
+            <?php /* @escapeNotVerified */ echo $productColor;?>
         </td>
         <?php if ($canApplyMsrp): ?>
             <td class="col msrp" data-th="<?php echo $block->escapeHtml(__('Price')); ?>">

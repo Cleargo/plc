@@ -6,6 +6,9 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script type="text/javascript" src="js/jquery.cart.js"></script>
+    </head>
     <body>
         <referenceBlock name="breadcrumbs">
             <action method="addCrumb">
@@ -27,7 +30,47 @@
         </referenceBlock>
         <move destination="checkout.cart.container" element="checkout.cart.form.before" before="-" />
         <move destination="checkout.cart.container" element="checkout.cart.form" after="checkout.cart.form.before" />
-        <move destination="checkout.cart.container" element="cart.discount" after="checkout.cart.form" />
-        <move destination="checkout.cart.container" element="cart.summary" after="cart.discount" />
+        <move destination="checkout.cart.container" element="cart.summary" after="checkout.cart.form" />
+        <move destination="checkout.cart.container" element="cart.discount" after="cart.summary" />
+        <referenceContainer name="checkout.cart.container">
+            <container name="cart.payment-logo-wrapper" label="Cart Payment Type Logo" htmlTag="div" htmlClass="cart-payment-logo" after="-">
+                <block class="Magento\Framework\View\Element\Template" name="cart.payment-logo" template="Magento_Checkout::cart/payment_logo.phtml" />
+            </container>
+        </referenceContainer>
+
+        <!-- remove the cart shipping estimation block -->
+        <!--referenceBlock name="checkout.cart.shipping" remove="true" /-->
+        <referenceBlock name="checkout.cart.shipping">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-summary" xsi:type="array">
+                            <!--remove shipping estimation tr-->
+                            <item name="config" xsi:type="array">
+                                <item name="componentDisabled" xsi:type="boolean">true</item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="checkout.cart.totals">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-totals" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="tax" xsi:type="array">
+                                    <!--remove tax tr-->
+                                    <item name="config" xsi:type="array">
+                                        <item name="componentDisabled" xsi:type="boolean">true</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
     </body>
 </page>
