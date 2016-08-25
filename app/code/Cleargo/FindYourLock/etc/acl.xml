@@ -8,8 +8,8 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Cleargo_Core::extension">
-                    <resource id="Cleargo_FindYourLock::find_your_lock">
+                <resource id="Cleargo_Core::extension" >
+                    <resource id="Cleargo_FindYourLock::find_your_lock" title="Find Your Lock">
                         <resource id="Cleargo_FindYourLock::country" title="Regions" sortOrder="10">
                             <resource id="Cleargo_FindYourLock::country_save" title="Save Region" sortOrder="10" />
                             <resource id="Cleargo_FindYourLock::country_delete" title="Delete Region" sortOrder="20" />
