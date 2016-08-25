@@ -1,0 +1,61 @@
+.page-layout-1column .product-info-main{
+    width: 57%;
+}
+
+.product-options-wrapper .option-button{
+    display: inline-block;
+    text-align: center;
+    margin-right: 12px;
+    padding: 10px 30px;
+    border-radius: 8px;
+    border: 1px solid #bdbdbd ;
+    cursor: pointer;
+    vertical-align: middle;
+    vertical-align: -webkit-baseline-middle;
+    margin-bottom: 10px;
+}
+.product-options-wrapper .option-button-wrapper{
+    display: inline-block;
+}
+.product-options-wrapper .option-button-wrapper .value-img{
+    display: block;
+}
+.product-options-wrapper .option-button .title{
+    font-name:aileron-italic;
+    font-size:16px;
+    color:#424242;
+    letter-spacing:0.01px;
+    text-align:center;
+    margin-bottom: 8px;
+}
+.product-options-wrapper .option-button .content{
+    font-name:aileron-italic;
+    font-size:12px;
+    color:#606060;
+    letter-spacing:0.01px;
+}
+.product-options-wrapper .option-button .content .price{
+    font-weight: bold;
+}
+.product-options-wrapper .option-img{
+    max-width: 140px;
+    vertical-align: middle;
+    margin-bottom: 10px;
+}
+.product-options-wrapper .option-button:hover{
+    border: 1px solid black;
+}
+.product-options-wrapper .option-button.chosen{
+    border: 2px solid black;
+}
+.product-add-form .product-options-wrapper .field:not(.date) > .control{
+ width: 100%;
+}
+.options-list {
+    opacity: 0;
+    height: 0;
+}
+.options-list .choice  {
+    opacity: 0;
+    height: 0;
+}
