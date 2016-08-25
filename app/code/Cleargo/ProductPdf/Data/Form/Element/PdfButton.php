@@ -19,7 +19,7 @@ class PdfButton extends \Magento\Framework\Data\Form\Element\AbstractElement
      * @var UrlInterface
      */
     protected $_urlBuilder;
-
+    const NAME = 'pdfButton';
     /**
      * @param \Magento\Framework\Data\Form\Element\Factory $factoryElement
      * @param \Magento\Framework\Data\Form\Element\CollectionFactory $factoryCollection
