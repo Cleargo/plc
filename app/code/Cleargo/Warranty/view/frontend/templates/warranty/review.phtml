@@ -143,11 +143,11 @@
                         <div height="10"></div>
                         <div height="10"></div>
                     </div>
-                    <?php if(isset($inputed['question_type']) && isset($this->getQusetion()[$inputed['question_type']]["label"]) ): ?>
+                    <?php if(isset($inputed['question_type']) && isset($this->getQusetion()[$inputed['question_type'] - 1 ]["label"]) ): ?>
                         <div>
                             <div class="dt" id="sq_div" >*<?php echo __('Security question') ?></div>
                             <div class="dd">
-                                <?php echo ($this->getQusetion()[$inputed['question_type']]["label"]); ?>
+                                <?php echo ($this->getQusetion()[$inputed['question_type'] - 1]["label"]); ?>
                             </div>
                         </div>
                     <?php endif; ?>
@@ -201,7 +201,7 @@
                         <div class="dt" id="pc_div" >
                             *Product Category</div>
                         <div class="dd">
-                            <?php echo ($this->getProduct()[$inputed['product_type']]["label"]); ?>
+                            <?php echo ($this->getProduct()[$inputed['product_type'] - 1 ]["label"]); ?>
                         </div>
                     </div>
                     <div>
