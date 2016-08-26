@@ -77,7 +77,7 @@ Class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Option\Val
     public function getValues($storeId)
     {
 
-        $this->addPriceToResult($storeId)->addTitleToResult($storeId)->addImageToResult($storeId);
+        $this->addPriceToResult($storeId)->addTitleToResult($storeId);
 
         return $this;
     }
