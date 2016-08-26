@@ -31,6 +31,12 @@
                     <td> <?php echo $this->getCurrentLock()->getBlock(); ?></td>
                 </tr>
             <?php endif ?>
+            <?php if($this->getCurrentLock()->getPhrase()):?>
+                <tr>
+                    <td> <?php echo __("Phrase:") ?> </td>
+                    <td> <?php echo $this->getCurrentLock()->getPhrase(); ?></td>
+                </tr>
+            <?php endif ?>
             <?php if($this->getCurrentLock()->getUnit()):?>
                 <tr>
                     <td> <?php echo __("No. of units:") ?> </td>
@@ -89,8 +95,13 @@
         </table>
     </div>
     <div class="button-container">
-        <span class="back-button"> <?= __("BACK") ?>  </span>
-        <a href="<?= $this->getProductUrl() ?>"><span> <?= __("GO TO PRODUCT DETAILS") ?> </span></a>
+        <a href="<?= $this->getBackUrl() ?>">
+            <span class="back-button"> <?= __("BACK") ?>  </span>
+        </a>
+
+        <?php if($this->getProductUrl()):?>
+            <a href="<?= $this->getProductUrl() ?>"><span> <?= __("GO TO PRODUCT DETAILS") ?> </span></a>
+        <?php endif; ?>
     </div>
 </div>
 

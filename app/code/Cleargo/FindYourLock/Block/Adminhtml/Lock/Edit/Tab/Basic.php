@@ -111,6 +111,10 @@ class Basic extends \Magento\Backend\Block\Widget\Form\Generic implements \Magen
         'text',
         ['name' => 'block', 'label' => __('Lock block'), 'title' => __('Lock block')]
     );$fieldset->addField(
+        'phrase',
+        'text',
+        ['name' => 'phrase', 'label' => __('Lock phrase'), 'title' => __('Lock phrase')]
+    );$fieldset->addField(
         'thickness',
         'text',
         ['name' => 'thickness', 'label' => __('Lock thickness'), 'title' => __('Lock thickness')]

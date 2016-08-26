@@ -217,22 +217,37 @@ public function getHeight()
     }
     public function getLogo()
     {
+        if(!$this->getData(self::LOGO)){
+            return false;
+        }
         return 'http://plc.dev.cleargo.com/pub/media/'.$this->getData(self::LOGO);
     }
     public function getBeforeImage1()
     {
+        if(!$this->getData(self::BEFORE_IMAGE1)){
+            return false;
+        }
         return $this->getData(self::BEFORE_IMAGE1)?'http://plc.dev.cleargo.com/pub/media/'.$this->getData(self::BEFORE_IMAGE1):NULL;
     }
     public function getBeforeImage2()
     {
+        if(!$this->getData(self::BEFORE_IMAGE2)){
+            return false;
+        }
         return $this->getData(self::BEFORE_IMAGE2)?'http://plc.dev.cleargo.com/pub/media/'.$this->getData(self::BEFORE_IMAGE2):NULL;
     }
     public function getAfterImage1()
     {
+        if(!$this->getData(self::AFTER_IMAGE1)){
+            return false;
+        }
         return $this->getData(self::AFTER_IMAGE1)?'http://plc.dev.cleargo.com/pub/media/'.$this->getData(self::AFTER_IMAGE1):NULL;
     }
     public function getAfterImage2()
     {
+        if(!$this->getData(self::AFTER_IMAGE2)){
+            return false;
+        }
         return $this->getData(self::AFTER_IMAGE2)?'http://plc.dev.cleargo.com/pub/media/'.$this->getData(self::AFTER_IMAGE2):NULL;
     }
 

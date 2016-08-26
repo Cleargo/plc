@@ -95,7 +95,13 @@ class View extends \Magento\Framework\View\Element\Template
     }
 
     public function getProductUrl(){
+        if(!$this->getCurrentLock()->getProductId()){
+            return false;
+        }
         return $this->_lockHelper->getProductUrl($this->getCurrentLock()->getProductId());
+    }
+    public function getBackUrl(){
+        return $this->_lockHelper->getBackUrl();
     }
     
     public function getDistrictName(){

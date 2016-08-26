@@ -87,7 +87,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
         $fieldset->addField(
             'name2',
             'text',
-            ['name' => 'name2', 'label' => __('Lock Name2'), 'title' => __('Lock Name2'), 'required' => true]
+            ['name' => 'name2', 'label' => __('Lock Name2'), 'title' => __('Lock Name2'), 'required' => false]
         );
         $fieldset->addField(
             'address',
