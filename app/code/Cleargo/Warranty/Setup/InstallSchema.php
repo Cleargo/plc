@@ -149,7 +149,7 @@ class InstallSchema implements InstallSchemaInterface
                     'product_type',
                     Table::TYPE_INTEGER,
                     null,
-                    ['nullable' => false, 'default' => 1],
+                    ['nullable' => true ],
                     'Product Type'
                 )
                 ->addColumn(

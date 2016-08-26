@@ -95,14 +95,14 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
             ['name' => 'eng_last_name', 'label' => __('English Last Name'), 'title' => __('English Last Name'), 'required' => true]
         );
         $fieldset->addField(
-            'chi_first_name',
+            'chi_name',
             'text',
-            ['name' => 'chi_first_name', 'label' => __('Chinese First Name'), 'title' => __('Chinese First Name')]
+            ['name' => 'chi_name', 'label' => __('Chinese Name'), 'title' => __('Chinese Name')]
         );
         $fieldset->addField(
-            'chi_last_name',
+            'company',
             'text',
-            ['name' => 'chi_last_name', 'label' => __('Chinese Last Name'), 'title' => __('Chinese Last Name')]
+            ['name' => 'company', 'label' => __('Company'), 'title' => __('Company')]
         );
         $fieldset->addField(
             'contact_one_country_code',
