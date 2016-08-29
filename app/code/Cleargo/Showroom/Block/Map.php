@@ -109,7 +109,7 @@ class Map extends \Magento\Framework\View\Element\Template
             if(in_array($location["location_id"],$locationArr)&&in_array($location["location_id"],$this->getTypeArray(1))){
                 $coordinates = $location["xcoordinates"].','.$location["ycoordinates"];
 
-                echo "<span class='location-btn'  style=\"display:inline-block; margin-right:15px;\" onclick='changeCenterAndMarker(this,new google.maps.LatLng(";
+                echo "<span class='location-btn active'  style=\"display:inline-block; margin-right:15px;\" onclick='changeCenterAndMarker(this,new google.maps.LatLng(";
                 echo $coordinates;
                 echo '),';
                 echo json_encode($location);
