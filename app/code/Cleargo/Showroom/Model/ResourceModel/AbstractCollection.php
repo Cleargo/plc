@@ -184,15 +184,16 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
             $result = $connection->fetchAll($select);
             if ($result) {
                 foreach ($this as $item) {
-                    $entityId = $item->getData($columnName);
-                    if (!isset($result[$entityId])) {
-                        continue;
-                    }
+                    $entityId = $item->getData('location_id');
 
-                    $storeId = $result[$item->getData($columnName)];
+
+
+                    $storeId = $result[$item->getData($columnName) - 1];
 
 
                     $item->setData('_first_type_id', $storeId["type_id"]);
+
+                   // var_dump($row);
                     foreach ($result as $row){
                         if($entityId ==$row["location_id"] ){
                             $idArr[] = $row["type_id"];

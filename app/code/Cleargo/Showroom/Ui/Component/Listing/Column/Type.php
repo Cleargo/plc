@@ -79,14 +79,9 @@ class Type extends Column
     protected function prepareItem(array $item)
     {
         $content = '';
+        $origStores = [] ;
+        if(isset($item['type_id'])) $origStores =$item['type_id'];
 
-/*var_dump($item);
-        die();*/
-        $origStores = $item['type_id'];
-
-        if (empty($origStores)) {
-            return '';
-        }
         if (!is_array($origStores)) {
             $origStores = [$origStores];
         }
@@ -99,17 +94,17 @@ class Type extends Column
             $countType ++ ;
             switch ($type) {
                 case 1:
-                    $content .= 'Type A';
+                    $content .=  __('PLC Lighting');
                     break;
                 case 2:
-                    $content .= 'Type B';
+                    $content .= __('PLC Locks & Illumination') ;
                     break;
                 case 3:
-                    $content .= 'Type C';
+                    $content .= __('PLC Galleria');
                     break;
 
                 default:
-                    $content .= 'Type A';
+                    $content .= __('PLC Lighting') ;
             }
 
         }

@@ -90,7 +90,7 @@ class Map extends \Magento\Framework\View\Element\Template
                 }
             }
             if($hasType){
-                echo '<div>'.$heading.'</div>';
+                echo '<div class="heading">'.$heading.'</div>';
             }
         }
     }
@@ -100,14 +100,16 @@ class Map extends \Magento\Framework\View\Element\Template
 
         $collection = $this->locationFactory->create();
         $collection->setOrder('sort_order','ASC');
-        $this->echoHeading(1,'Type A Product',$locationArr);
 
+
+        echo '<div class="category-container">';
+        $this->echoHeading(1, __('PLC Lighting'),$locationArr);
         foreach ($collection as $ttt){
             $location = $ttt->get();
             if(in_array($location["location_id"],$locationArr)&&in_array($location["location_id"],$this->getTypeArray(1))){
                 $coordinates = $location["xcoordinates"].','.$location["ycoordinates"];
 
-                echo "<span  style=\"display:inline-block; margin-right:15px;\" onclick='changeCenterAndMarker(new google.maps.LatLng(";
+                echo "<span class='location-btn'  style=\"display:inline-block; margin-right:15px;\" onclick='changeCenterAndMarker(this,new google.maps.LatLng(";
                 echo $coordinates;
                 echo '),';
                 echo json_encode($location);
@@ -123,37 +125,17 @@ class Map extends \Magento\Framework\View\Element\Template
                 echo '</span>';
             }
         }
+        echo '</div>';
 
-        $this->echoHeading(2,'Type B Product',$locationArr);
-        foreach ($collection as $ttt){
-            $location = $ttt->get();
-            if(in_array($location["location_id"],$locationArr)&&in_array($location["location_id"],$this->getTypeArray(2))){
-                $coordinates = $location["xcoordinates"].','.$location["ycoordinates"];
 
-                echo "<span  style=\"display:inline-block; margin-right:15px;\" onclick='changeCenterAndMarker(new google.maps.LatLng(";
-                echo $coordinates;
-                echo '),';
-                echo json_encode($location);
-                echo ")'>";
-
-                echo $location["address"];
-                echo '<br/>TEL:';
-                echo $location["telephone"];
-                echo '/';
-                echo $location["whatsapp"];
-                echo '(WHATSAPP)<br/>Business Hours:';
-                echo $location["office_hour"];
-                echo '</span>';
-            }
-        }
-        $this->echoHeading(3,'Type C Product',$locationArr);
-
+        echo '<div class="category-container">';
+        $this->echoHeading(3, __('PLC Galleria'),$locationArr);
         foreach ($collection as $ttt){
             $location = $ttt->get();
             if(in_array($location["location_id"],$locationArr)&&in_array($location["location_id"],$this->getTypeArray(3))){
                 $coordinates = $location["xcoordinates"].','.$location["ycoordinates"];
 
-                echo "<span  style=\"display:inline-block; margin-right:15px;\" onclick='changeCenterAndMarker(new google.maps.LatLng(";
+                echo "<span class='location-btn'  style=\"display:inline-block; margin-right:15px;\" onclick='changeCenterAndMarker(this,new google.maps.LatLng(";
                 echo $coordinates;
                 echo '),';
                 echo json_encode($location);
@@ -169,5 +151,32 @@ class Map extends \Magento\Framework\View\Element\Template
                 echo '</span>';
             }
         }
+        echo '</div>';
+
+        echo '<div class="category-container">';
+        $this->echoHeading(2, __('PLC Locks & Illumination') ,$locationArr);
+        foreach ($collection as $ttt){
+            $location = $ttt->get();
+            if(in_array($location["location_id"],$locationArr)&&in_array($location["location_id"],$this->getTypeArray(2))){
+                $coordinates = $location["xcoordinates"].','.$location["ycoordinates"];
+
+                echo "<span class='location-btn'  style=\"display:inline-block; margin-right:15px;\" onclick='changeCenterAndMarker(this,new google.maps.LatLng(";
+                echo $coordinates;
+                echo '),';
+                echo json_encode($location);
+                echo ")'>";
+
+                echo $location["address"];
+                echo '<br/>TEL:';
+                echo $location["telephone"];
+                echo '/';
+                echo $location["whatsapp"];
+                echo '(WHATSAPP)<br/>Business Hours:';
+                echo $location["office_hour"];
+                echo '</span>';
+            }
+        }
+        echo '</div>';
+
     }
 }
