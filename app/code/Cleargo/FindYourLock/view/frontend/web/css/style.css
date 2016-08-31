@@ -83,9 +83,6 @@ select {
     width: 15%;
     text-align: right;
 }
-.detail-title{
-
-}
 .lock-logo{
  max-width: 80px;
 }
@@ -192,21 +189,26 @@ select {
         width: 100%;
         line-height: 40px;
         color: white;
-        text-align: center;
+        text-align: left;
         background: #c3161c url('../images/white-arrow.png') no-repeat 98% 51%;
         border-radius: 2px;
         height: 40px;
         cursor: pointer;
+        padding-left: 15px;
+        box-sizing: border-box;
+        font-size: 18px;
+        font-weight: bold;
     }
     div.district-filter.right > div.filter-options-container > select{
         width: 100%;
-        text-align: center;
         color: white;
-        text-align-last: center;
+        text-align: left;
         background: #c3161c url('../images/white-arrow.png') no-repeat 98% 51%;
         border-radius: 2px;
         height: 40px;
         cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
      }
     .red-line-container .red-line .lock-filter .filter-options-container .filter-checkboxs-list li{
         border-bottom: 1px solid;
@@ -228,6 +230,8 @@ select {
         letter-spacing:0px;
     }
 }
+
+
 
 .lock-finder-view .page-title-wrapper{
     display: none;
