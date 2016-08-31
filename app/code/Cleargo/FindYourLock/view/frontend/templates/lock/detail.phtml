@@ -1,9 +1,26 @@
+<div class="heading-container">
+    <h1 class="page-title">
+        <span class="base" data-ui-id="page-title-wrapper">
+            <?php echo $this->getCurrentLock()->getName() ?>
+
+        </span>
+        <span class="base2" data-ui-id="page-title-wrapper">
+
+            <?php echo $this->getCurrentLock()->getName2() ?>
+
+        </span>
+    </h1>
+    <?php if($this->getCurrentLock()->getLogo()):?>
+        <img class="lock-logo" src="<?php echo $this->getCurrentLock()->getLogo() ?>"/>
+    <?php endif ?>
+</div>
+
+<div class="region-and-district">
+    <span class="district"><?php echo __("District: ").$this->getDistrictName();?></span>
+    <span> | </span>
+    <span class="region"><?php echo __("Region: ").$this->getRegionName();?></span>
+</div>
 <div class="left-container">
-    <div class="region-and-district">
-        <span class="district"><?php echo __("District: ").$this->getDistrictName();?></span>
-        <span> | </span>
-        <span class="region"><?php echo __("Region: ").$this->getRegionName();?></span>
-    </div>
     <div class="basic-info-container">
         <h3 class="detail-title"><?php echo __("Basic Infomation") ?></h3>
         <table class="basic-info">
@@ -108,34 +125,31 @@
 
 
 
-<div>
-<?php if($this->getCurrentLock()->getLogo()):?>
-    <img class="lock-logo" src="<?php echo $this->getCurrentLock()->getLogo() ?>"/>
-<?php endif ?>
-</div>
-<div>
-    <?php if($this->getCurrentLock()->getBeforeImage1()||$this->getCurrentLock()->getBeforeImage2()):?>
-        <h3 class="img-hading"><?php echo __("Before Installation") ?></h3>
+<div class="image-total-container">
+    <div>
+        <?php if($this->getCurrentLock()->getBeforeImage1()||$this->getCurrentLock()->getBeforeImage2()):?>
+            <h3 class="img-hading"><?php echo __("Before Installation") ?></h3>
+        <?php endif ?>
+    <?php if($this->getCurrentLock()->getBeforeImage1()):?>
+        <img class="before-img" src="<?php echo $this->getCurrentLock()->getBeforeImage1() ?>"/>
     <?php endif ?>
-<?php if($this->getCurrentLock()->getBeforeImage1()):?>
-    <img class="before-img" src="<?php echo $this->getCurrentLock()->getBeforeImage1() ?>"/>
-<?php endif ?>
 
-<?php if($this->getCurrentLock()->getBeforeImage2()):?>
-    <img class="before-img" src="<?php echo $this->getCurrentLock()->getBeforeImage2() ?>"/>
-<?php endif ?>
+    <?php if($this->getCurrentLock()->getBeforeImage2()):?>
+        <img class="before-img" src="<?php echo $this->getCurrentLock()->getBeforeImage2() ?>"/>
+    <?php endif ?>
     </div>
-<div>
-    <?php if($this->getCurrentLock()->getAfterImage1()||$this->getCurrentLock()->getAfterImage2()):?>
-        <h3 class="img-hading"><?php echo __("After Installation") ?></h3>
+    <div>
+        <?php if($this->getCurrentLock()->getAfterImage1()||$this->getCurrentLock()->getAfterImage2()):?>
+            <h3 class="img-hading"><?php echo __("After Installation") ?></h3>
+        <?php endif ?>
+    <?php if($this->getCurrentLock()->getAfterImage1()):?>
+        <img class="after-img" src="<?php echo $this->getCurrentLock()->getAfterImage1() ?>"/>
     <?php endif ?>
-<?php if($this->getCurrentLock()->getAfterImage1()):?>
-    <img class="after-img" src="<?php echo $this->getCurrentLock()->getAfterImage1() ?>"/>
-<?php endif ?>
 
-<?php if($this->getCurrentLock()->getAfterImage2()):?>
-    <img class="after-img" src="<?php echo $this->getCurrentLock()->getAfterImage2() ?>"/>
-<?php endif ?>
+    <?php if($this->getCurrentLock()->getAfterImage2()):?>
+        <img class="after-img" src="<?php echo $this->getCurrentLock()->getAfterImage2() ?>"/>
+    <?php endif ?>
+    </div>
 </div>
 
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
