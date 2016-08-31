@@ -93,13 +93,13 @@ class Form extends Generic
         }
 
         $typeArray = [[
-            'label' => "Type A",
+            'label' => __("PLC Lighting"),
             'value' => 1
         ],[
-            'label' => "Type B",
+            'label' => __("PLC Locks & Illumination"),
             'value' => 2
         ],[
-            'label' => "Type C",
+            'label' => __("PLC Galleria"),
             'value' => 3
         ]];
 

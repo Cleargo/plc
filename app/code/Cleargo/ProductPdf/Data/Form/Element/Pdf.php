@@ -87,7 +87,7 @@ class Pdf extends \Magento\Framework\Data\Form\Element\AbstractElement
         <script language="javascript">
        
         
-        document.getElementById('pdf_upload').appendChild(pdfRow);
+        //document.getElementById('pdf_upload').appendChild(pdfRow);
 
         // Delete button
         var new_row_button = document.createElement( 'input' );
@@ -105,7 +105,7 @@ class Pdf extends \Magento\Framework\Data\Form\Element\AbstractElement
             return false;
         };
     
-    }
+    
         </script>
 
 EndSCRIPT;

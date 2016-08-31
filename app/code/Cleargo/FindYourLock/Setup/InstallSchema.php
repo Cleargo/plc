@@ -279,6 +279,12 @@ class InstallSchema implements InstallSchemaInterface
             ['nullable' => true],
             'Lock Developer'
         )->addColumn(
+            'phrase',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            255,
+            ['nullable' => true],
+            'Lock Phrase'
+        )->addColumn(
             'block',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             255,
@@ -286,20 +292,20 @@ class InstallSchema implements InstallSchemaInterface
             'Lock Block'
         )->addColumn(
             'unit',
-            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
-            null,
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            255,
             ['nullable' => false, 'default' => '0'],
             'Lock Sort Order'
         )->addColumn(
             'unit_per_floor',
-            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
-            null,
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            255,
             ['nullable' => false, 'default' => '0'],
             'Lock Sort Order'
         )->addColumn(
             'height',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            255,
+            null,
             ['nullable' => true],
             'Lock Height'
         )->addColumn(

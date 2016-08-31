@@ -8,6 +8,43 @@ select {
     width: auto;
 }
 
+.keyword-container input{
+    padding-left: 12px;
+    height: 24px;
+    width: 96%;
+    background: #ffffff url('../images/magnify.png') no-repeat 98% 45%;
+    border: 1px solid gray;
+}
+.lock-list{
+    padding: 0;
+}
+.lock-list .lock-item{
+    padding: 0;
+}
+.lock-list .lock-item td{
+    padding: 0;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+.lock-list .lock-item td a {
+    text-decoration: none;
+}
+.lock-list .district-name td{
+    padding: 0;
+    border-bottom: 1px solid gray;
+    padding-top: 50px;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+
+.district-name{
+    font-family: Aileron-Bold;
+    font-size: 20px;
+    color: #c3161c;
+    letter-spacing: 0.02px;
+}
+
 .lock-list-container {
     padding: 20px 0;
 }
@@ -57,10 +94,204 @@ select {
     padding: 30px 0;
 }
 .button-container span{
-    background: red;
+    background: #c3161c;
+    border-radius: 100px;
+    padding: 12px 30px;
     color: white;
     font-size: 15px;
     cursor: pointer;
-    padding: 12px;
     margin-right: 40px;
+}
+@media (min-width: 768px) {
+    .lock-finder-index #maincontent{
+        max-width: 100%;
+        padding-left:0 ;
+        padding-right:0 ;
+    }
+    .lock-finder-index #maincontent .page-title-wrapper{
+        max-width: 960px;
+        margin: 0 auto;
+    }
+    .lock-finder-index #maincontent .lock-list-container{
+        max-width: 960px;
+        margin: 0 auto;
+    }
+    .district-filter{
+        display: inline-block;
+    }
+    .district-filter.right{
+        float: right;
+    }
+    .red-line-container{
+        background:#c3161c;
+        color: white;
+        font-style:italic;
+    }
+    .red-line-container .red-line{
+        margin: 0 auto;
+        display: block;
+        max-width: 960px;
+    }
+    .keyword-container{
+        margin: 0 auto;
+        max-width: 960px;
+    }
+
+    .keyword-container input{
+        float: right;
+        position: relative;
+        bottom: 55px;
+        width: 319px;
+        height: 24px;
+        font-size: 12px;
+    }
+    .red-line-container .red-line .lock-filter{
+
+        width: 100%;
+    }
+    .red-line-container .red-line .lock-filter .filter-label{
+        display: inline-block;
+        font-weight: bold;
+        padding-bottom: 15px;
+        padding-top: 15px;
+    }
+    .red-line-container .red-line .lock-filter .filter-options-container{
+        display: inline-block;
+        padding-top: 9px;
+    }
+    .red-line-container .red-line .lock-filter .filter-options-container .filter-checkboxs-list li{
+        display: inline-block;
+    }
+    div.district-filter.right > div.filter-options-container > select{
+        border-radius:100px;
+        width:228px;
+    }
+}
+
+@media (max-width: 768px) {
+    .district-filter.left{
+        margin-top: 12px;
+    }
+    .district-filter.right{
+        margin-top: 12px;
+    }
+    .lock-list{
+        padding: 0;
+    }
+    .lock-list .lock-item td{
+        padding: 0;
+        display: block;
+        width: 100%;
+    }
+    .lock-list .lock-item{
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .red-line-container .red-line .lock-filter .filter-label{
+        width: 100%;
+        line-height: 40px;
+        color: white;
+        text-align: center;
+        background: #c3161c url('../images/white-arrow.png') no-repeat 98% 51%;
+        border-radius: 2px;
+        height: 40px;
+        cursor: pointer;
+    }
+    div.district-filter.right > div.filter-options-container > select{
+        width: 100%;
+        text-align: center;
+        color: white;
+        text-align-last: center;
+        background: #c3161c url('../images/white-arrow.png') no-repeat 98% 51%;
+        border-radius: 2px;
+        height: 40px;
+        cursor: pointer;
+     }
+    .red-line-container .red-line .lock-filter .filter-options-container .filter-checkboxs-list li{
+        border-bottom: 1px solid;
+        border-left: 1px solid;
+        border-right: 1px solid;
+        margin-bottom: 0;
+        padding: 10px;
+    }
+    .red-line-container .red-line .lock-filter .filter-options-container .filter-checkboxs-list li input{
+        display: none;
+    }
+    .red-line-container .red-line .lock-filter .filter-options-container .filter-checkboxs-list li label.active{
+        font-weight: bold;
+        color:#c3161c;
+    }
+    .red-line-container .red-line .lock-filter .filter-options-container .filter-checkboxs-list li label{
+        font-size:18px;
+        color:#606060;
+        letter-spacing:0px;
+    }
+}
+
+.lock-finder-view .page-title-wrapper{
+    display: none;
+}
+.lock-finder-view .page-title {
+    display: inline-block;
+    width: 52%;
+    color:#606060;
+    letter-spacing:0.01px;
+    text-align:left;
+}
+.lock-finder-view .left-container {
+    width: 52%;
+    display: inline-block;
+    vertical-align: top;
+}
+.lock-finder-view .left-container .recommendation-container {
+    margin-top: 30px;
+}
+.lock-finder-view .left-container .detail-title{
+    text-transform: none;
+    font-family: Aileron-Bold;
+    font-size: 20px;
+    color: #c3161c;
+    letter-spacing: 0.9px;
+    text-align: left;
+}
+.lock-finder-view .left-container table{
+    width:80%;
+    border-top: 1px solid #979797;
+}
+.lock-finder-view .left-container table tr{
+    border-bottom: 1px solid antiquewhite;
+}
+.lock-finder-view .left-container table tr td{
+
+    font-style: italic;
+    font-size: 14px;
+    color: #6e6e6e;
+    letter-spacing: 0px;
+}
+.lock-finder-view .left-container table tr:last-child{
+    border-bottom: 1px solid #979797;
+}
+.lock-finder-view .image-total-container {
+    width: 47%;
+    display: inline-block;
+}
+.lock-finder-view .image-total-container img{
+    margin-right: 20px;
+    max-width: 140px;
+}
+.lock-finder-view .image-total-container .img-hading{
+
+    text-transform: none;
+}
+
+@media (max-width: 768px) {
+    .lock-finder-view .left-container {
+        width: 100%;
+        display: block;
+    }
+    .lock-finder-view .image-total-container {
+        width: 100%;
+        display: block;
+    }
 }

@@ -17,4 +17,8 @@ class Data extends \Magento\Backend\Helper\Data
     {
         return $this->_urlBuilder->getUrl('catalog/product/view', ['_current' => true,'id'=> $productId]);
     }
+    public function getBackUrl()
+    {
+        return $this->_urlBuilder->getUrl('lock/finder/index');
+    }
 }

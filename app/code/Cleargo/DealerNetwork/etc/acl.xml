@@ -9,7 +9,7 @@
         <resources>
             <resource id="Magento_Backend::admin">
                 <resource id="Cleargo_Core::extension">
-                    <resource id="Cleargo_DealerNetwork::dealer_network">
+                    <resource id="Cleargo_DealerNetwork::dealer_network" title="Dealer Network" >
                         <resource id="Cleargo_DealerNetwork::country" title="Countries" sortOrder="10">
                             <resource id="Cleargo_DealerNetwork::country_save" title="Save Country" sortOrder="10" />
                             <resource id="Cleargo_DealerNetwork::country_delete" title="Delete Country" sortOrder="20" />

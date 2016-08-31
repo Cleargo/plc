@@ -72,12 +72,22 @@ class ContactForm extends \Magento\Contact\Block\ContactForm
 
         $collection = $this->locationFactory->create();
         $collection->setOrder('sort_order','ASC');
+        $check = 0;
         foreach ($collection as $ttt){
             $location = $ttt->get();
             if(in_array($location["location_id"],$locationArr)){
                 $coordinates = $location["xcoordinates"].','.$location["ycoordinates"];
 
-                echo "<span style=\"margin-right:15px;\" onclick='changeCenterAndMarker(new google.maps.LatLng(";
+                echo '<div style="display: inline-block; 
+                                        margin-right: 19px;
+                                        margin-bottom: 29px;
+                                        ">';
+                echo "<span class='location-btn";
+                if($check == 0){
+                    echo ' active';
+                    $check++;
+                }
+                echo "' style=\"margin-right:15px;\" onclick='changeCenterAndMarker( this, new google.maps.LatLng(";
                 echo $coordinates;
                 echo '),';
                 echo json_encode($location);
@@ -85,6 +95,7 @@ class ContactForm extends \Magento\Contact\Block\ContactForm
 
                 echo $location["title"];
                 echo '</span>';
+                echo '</div>';
             }
         }
     }

@@ -100,7 +100,7 @@ class Form extends Generic
 
         $fieldset->addField(
             'address',
-            'text',
+            'textarea',
             ['name' => 'address', 'label' => __('Address'), 'title' => __('Address'), 'required' => true]
         );
 

@@ -1,0 +1,88 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php /* @var $block \Magento\Catalog\Block\Product\View\Options\Type\Select */ ?>
+<?php
+$_option = $block->getOption();
+$class = ($_option->getIsRequire()) ? ' required' : '';
+$mediaUrl = $block->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'pub/media/';
+?>
+<?php $values=$_option->getValues(); ?>
+
+<div class="field<?php /* @escapeNotVerified */ echo $class; ?>">
+    <label class="label" for="select_<?php /* @escapeNotVerified */ echo $_option->getId() ?>">
+        <span><?php echo  $block->escapeHtml($_option->getTitle()) ?></span>
+    </label>
+
+    <div class="control" style="">
+        <?php if($_option->getImage()):?>
+            <img class="option-img" src="<?php echo $mediaUrl.$_option->getImage() ?>">
+        <?php endif; ?>
+        <?php foreach ($values as $key => $val):?>
+            <div class="option-button-wrapper">
+                <?php if($val->getImage()):?>
+                    <img class="value-img" src="<?php echo $mediaUrl.$val->getImage() ?>" />
+                <?php endif; ?>
+                <div class="option-button" target-option="#options_<?php echo $_option->getId()?>_<?php echo ($val->getSortOrder() + 1)?>">
+                    <div class="title">
+                        <?php echo $val->getTitle(); ?>
+                    </div>
+                    <div class="content">
+                        <span class="description">
+                            <?php if($val->getDescription()) echo $val->getDescription(); ?>
+                        </span>
+                        <span class="price">
+                            <?php if($val->getPrice()) echo '+'.$val->getPrice(); ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+
+        <div >
+            <?php echo $block->getValuesHtml() ?>
+        </div>
+            <?php if ($_option->getIsRequire()): ?>
+                <?php if ($_option->getType() == \Magento\Catalog\Model\Product\Option::OPTION_TYPE_RADIO || $_option->getType() == \Magento\Catalog\Model\Product\Option::OPTION_TYPE_CHECKBOX): ?>
+                    <span id="options-<?php /* @escapeNotVerified */ echo $_option->getId() ?>-container"></span>
+                <?php endif; ?>
+            <?php endif;?>
+
+    </div>
+</div>
+
+<script>
+    require(["jquery"], (function($) {
+        $.each($('.product-options-wrapper').find('.control'),function () {
+            var maxH = 0;
+            var maxW = 0;
+            $.each($(this).find('.option-button'),function () {
+                if($(this).outerHeight() > maxH){
+                    maxH = $(this).outerHeight();
+                }
+                if($(this).outerWidth() > maxW){
+                    maxW = $(this).outerWidth();
+                }
+            });
+            $(this).find('.option-button').outerHeight(maxH);
+            $(this).find('.option-button').outerWidth(maxW);
+            $(this).find('.value-img').outerHeight(maxH );
+            $(this).find('.value-img').css('margin','0 auto');
+            $(this).find('.value-img').css('margin-bottom','20px');
+        });
+        
+        $('.option-button').click(function () {
+           var option_id =  $(this).attr('target-option');
+            $(this).closest('.control').find('.option-button').removeClass('chosen');
+            $(this).addClass('chosen');
+            $(option_id).trigger('click');
+        });
+    }));
+</script>

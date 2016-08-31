@@ -6,6 +6,9 @@
  */
 -->
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Cleargo_CustomOption::css/style.css"/>
+    </head>
     <body>
         <referenceBlock name="product.info.details">
             <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.video" template="product/view/video.phtml" group="detailed_info">

@@ -3,6 +3,7 @@
     <head>
         <title>Showroom</title>
         <css src="Cleargo_Contactus::resources/contactus.css"/>
+        <css src="Cleargo_Showroom::css/style.css"/>
     </head>
     <body>
         <referenceContainer name="content">
