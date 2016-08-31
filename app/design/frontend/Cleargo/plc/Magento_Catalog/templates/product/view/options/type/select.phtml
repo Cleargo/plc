@@ -73,12 +73,14 @@ $mediaUrl = $block->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) 
             });
             $(this).find('.option-button').outerHeight(maxH);
             $(this).find('.option-button').outerWidth(maxW);
-            $(this).find('.value-img').outerWidth(maxW );
+            $(this).find('.value-img').outerHeight(maxH );
+            $(this).find('.value-img').css('margin','0 auto');
+            $(this).find('.value-img').css('margin-bottom','20px');
         });
         
         $('.option-button').click(function () {
            var option_id =  $(this).attr('target-option');
-            $(this).parent().find('.option-button').removeClass('chosen');
+            $(this).closest('.control').find('.option-button').removeClass('chosen');
             $(this).addClass('chosen');
             $(option_id).trigger('click');
         });
