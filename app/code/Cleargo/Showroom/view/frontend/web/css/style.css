@@ -14,9 +14,11 @@
 #buttonContainer .location-btn{
     margin-top: 30px;
     border-radius:5px;
+    vertical-align: middle;
     border: 1px solid gray;
     padding: 34px;
-    cursor: pointer;
+    cursor: pointer;width: 196px;
+    height: 117px;
 }
 #buttonContainer .location-btn.active{
     border:2px solid #b7000c;
