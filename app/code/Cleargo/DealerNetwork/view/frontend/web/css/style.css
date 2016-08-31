@@ -6,6 +6,7 @@ ul {
 
 select {
     width: auto;
+    border-radius: 100px;
 }
 
 .dealer-list-container {
@@ -45,4 +46,164 @@ select {
 .dealer-tel {
     width: 15%;
     text-align: right;
+}
+.country-name{
+
+    padding: 20px 0;
+}
+@media (min-width: 768px) {
+    .dealer-network-index #maincontent{
+        max-width: 100%;
+        padding-left:0 ;
+        padding-right:0 ;
+    }
+    .dealer-network-index #maincontent .page-title-wrapper{
+        max-width: 960px;
+        margin: 0 auto;
+    }
+    .dealer-network-index #maincontent .dealer-list-container{
+        max-width: 960px;
+        margin: 0 auto;
+    }
+    .district-filter{
+        display: inline-block;
+    }
+    .brand-filter{
+        float: right;
+    }
+    .red-line-container{
+        background:#c3161c;
+        color: white;
+        font-style:italic;
+    }
+    .red-line-container .red-line{
+        margin: 0 auto;
+        display: block;
+        max-width: 960px;
+    }
+    .keyword-container{
+        margin: 0 auto;
+        max-width: 960px;
+    }
+
+    .keyword-container input{
+        float: right;
+        position: relative;
+        bottom: 55px;
+        width: 319px;
+        height: 24px;
+        font-size: 12px;
+    }
+    .red-line-container .red-line .dealer-filter{
+        width: 100%;
+    }
+    .red-line-container .red-line .dealer-filter .brand-filter{
+        float: right;
+        display: inline-block;
+    }
+    .red-line-container .red-line .dealer-filter .region-filter{
+        display: inline-block;
+    }
+    .red-line-container .red-line .dealer-filter .filter-label{
+        display: inline-block;
+        font-weight: bold;
+        padding-bottom: 15px;
+        padding-top: 15px;
+    }
+    .red-line-container .red-line .dealer-filter .filter-options-container{
+        display: inline-block;
+        padding-top: 9px;
+    }
+    .red-line-container .red-line .dealer-filter .filter-options-container .filter-checkboxs-list li{
+        display: inline-block;
+        margin-left: 12px;
+    }
+    .red-line-container .red-line .dealer-filter li label{
+
+        margin-right: 5px;
+    }
+    .red-line-container .red-line .dealer-filter .filter-label{
+        margin-right: 5px;
+    }
+
+    .brand-filter select{
+        border-radius:100px;
+        width:228px;
+    }
+}
+
+@media (max-width: 768px) {
+    .region-filter{
+        margin-top: 12px;
+    }
+    .region-filter select{
+        float: right;
+    }
+    .brand-filter{
+        margin-top: 12px;
+    }
+    .dealer-list{
+        padding: 0;
+    }
+    .dealer-list .dealer-item div{
+        padding: 0;
+        display: block;
+        width: 100%;
+    }
+    .dealer-tel{
+        text-align: left;
+    }
+    .dealer-list .dealer-item{
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .red-line-container .red-line .dealer-filter .brand-filter .filter-label{
+        display:none;
+    }
+    .red-line-container .red-line .dealer-filter  .filter-label{
+        width: 100%;
+        line-height: 40px;
+        color: white;
+        text-align: left;
+        background: #c3161c url('../images/white-arrow.png') no-repeat 95% 51%;
+        border-radius: 2px;
+        height: 40px;
+        cursor: pointer;
+        padding-left: 15px;
+        box-sizing: border-box;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    div.brand-filter > div.filter-options-container > select{
+        width: 100%;
+        text-align: center;
+        color: white;
+        text-align-last: left;
+        background: #c3161c url('../images/white-arrow.png') no-repeat 95% 51%;
+        border-radius: 2px;
+        height: 40px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .red-line-container .red-line .dealer-filter .filter-options-container .filter-checkboxs-list li{
+        border-bottom: 1px solid;
+        border-left: 1px solid;
+        border-right: 1px solid;
+        margin-bottom: 0;
+        padding: 10px;
+    }
+    .red-line-container .red-line .dealer-filter .filter-options-container .filter-checkboxs-list li input{
+        display: none;
+    }
+    .red-line-container .red-line .dealer-filter .filter-options-container .filter-checkboxs-list li label.active{
+        font-weight: bold;
+        color:#c3161c;
+    }
+    .red-line-container .red-line .dealer-filter .filter-options-container .filter-checkboxs-list li label{
+        font-size:18px;
+        color:#606060;
+        letter-spacing:0px;
+    }
 }
