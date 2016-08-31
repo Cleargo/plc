@@ -29,6 +29,12 @@
 	bottom:-600px;
     z-index: 1000;
 }
+.weltpixel-quickview-catalog-product-view  .icon{
+    display: none;
+}
+.weltpixel-quickview-catalog-product-view .fixed_bottom {
+    display: none;
+}
 .fixed_bottom.add-after-loaded{
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
@@ -50,6 +56,7 @@
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
 }
+
 .fixed_bottom .icon span{
     font-family:Aileron-Black;
     font-size:14px;
