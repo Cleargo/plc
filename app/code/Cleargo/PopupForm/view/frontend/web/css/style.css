@@ -42,6 +42,7 @@
     transition: all 0.5s ease-in-out;
 }
 .fixed_bottom .icon{
+    box-shadow: rgba(0, 0, 0, 0.29) 0px 0px 3px;
     position:relative;
     background:rgba(197,0,10,0.80);
     height:40px;
@@ -83,6 +84,7 @@
 }
 .fixed_bottom .form-wrapper{
     background:#ffffff;
+    box-shadow: rgba(0, 0, 0, 0.29) 0px 0px 3px;
 }
 .fixed_bottom .form-wrapper .thank-container{
     display: none;
@@ -131,6 +133,10 @@
 }
 .fixed_bottom .form-wrapper .popup-form fieldset .field .control{
     display: inline-block;
+    width: 100%;
+}
+.fixed_bottom .form-wrapper .popup-form fieldset .field .checkbox-wrapper .control{
+    width: auto;
 }
 .fixed_bottom .form-wrapper .popup-form fieldset .field .control-textarea textarea{
     resize: none;
@@ -165,6 +171,7 @@
 .fixed_bottom .form-wrapper .popup-form fieldset .field .input-text{
     width: 204.5px;
     height: 19.5px;
+    float: right;
 }
 .fixed_bottom.mobile .form-wrapper .popup-form fieldset .field .input-text{
     border-radius:2px;
