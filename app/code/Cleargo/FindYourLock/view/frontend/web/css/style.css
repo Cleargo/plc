@@ -21,10 +21,16 @@ select {
 .lock-list .lock-item{
     padding: 0;
 }
+.lock-list .lock-item:hover{
+    background-color: #F4F3F3;
+}
 .lock-list .lock-item td{
     padding: 0;
     padding-top: 6px;
     padding-bottom: 6px;
+}
+.lock-list .lock-item .lock-name{
+    padding-left: 10px;
 }
 .lock-list .lock-item td a {
     text-decoration: none;
@@ -158,6 +164,10 @@ select {
     }
     .red-line-container .red-line .lock-filter .filter-options-container .filter-checkboxs-list li{
         display: inline-block;
+        margin-left: 10px;
+    }
+    .red-line-container .red-line .lock-filter .filter-options-container .filter-checkboxs-list li label{
+        margin-right: 10px;
     }
     div.district-filter.right > div.filter-options-container > select{
         border-radius:100px;
