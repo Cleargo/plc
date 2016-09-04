@@ -43,21 +43,21 @@ class Adapter implements MethodInterface
      *
      * @var bool
      */
-    protected $_canRefund = true;
+    protected $_canRefund = false;
 
     /**
      * Payment Method feature
      *
      * @var bool
      */
-    protected $_canRefundInvoicePartial = true;
+    protected $_canRefundInvoicePartial = false;
 
     /**
      * Payment Method feature
      *
      * @var bool
      */
-    protected $_canVoid = true;
+    protected $_canVoid = false;
 
     /**
      * Payment Method feature

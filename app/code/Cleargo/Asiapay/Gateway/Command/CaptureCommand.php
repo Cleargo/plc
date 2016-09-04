@@ -12,9 +12,9 @@ use Magento\Payment\Gateway\CommandInterface;
 use Magento\Sales\Model\Order\Payment;
 
 /**
- * Class AuthorizeCommand
+ * Class CaptureCommand
  */
-class AuthorizeCommand implements CommandInterface
+class CaptureCommand implements CommandInterface
 {
     /**
      * @var \Magento\Framework\DB\TransactionFactory
@@ -46,22 +46,13 @@ class AuthorizeCommand implements CommandInterface
      */
     public function execute(array $commandSubject)
     {
-        $stateObject = SubjectReader::readStateObject($commandSubject);
+        //$stateObject = SubjectReader::readStateObject($commandSubject);
         $paymentDO = SubjectReader::readPayment($commandSubject);
 
         /** @var Payment $payment */
         $payment = $paymentDO->getPayment();
         ContextHelper::assertOrderPayment($payment);
-        $order = $payment->getOrder();
 
-        if($order->canInvoice()) {
-            $invoice = $order->prepareInvoice();
-            $invoice->register();
-            /** @var \Magento\Framework\DB\Transaction $transaction */
-            $transaction = $this->transactionFactory->create();
-            $transaction->addObject($invoice)
-                ->addObject($invoice->getOrder())
-                ->save();
-        }
+        $payment->setIsTransactionClosed(false);
     }
 }

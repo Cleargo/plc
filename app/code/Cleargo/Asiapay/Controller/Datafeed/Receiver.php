@@ -53,7 +53,6 @@ class Receiver extends Action
     public function execute()
     {
         $data = $this->getRequest()->getPostValue();
-        //$this->_asiapayLogger->asiapayLog("Test Logger");
         $this->_asiapayLogger->asiapayLog("Datafeed");
         $this->_asiapayLogger->asiapayLog(json_encode($data));
         //die('OK!');
@@ -94,7 +93,12 @@ class Receiver extends Action
             $orderNumber = $ref;
         }
 
-        $order = $this->_orderFactory->create()->loadByIncrementId($orderNumber);
+        try{
+            $order = $this->_orderFactory->create()->loadByIncrementId($orderNumber);
+        } catch (\Exception $e) {
+            var_dump($e->getMessage());
+        }
+
         $storeId = $order->getStoreId();
         $paymentMethod = $order->getPayment()->getMethodInstance();
 
@@ -116,7 +120,6 @@ class Receiver extends Action
                 }
             }
             if (!$verifyResult) {
-                $this->_asiapayLogger->asiapayLog($orderNumber . ": Secure Hash Validation Failed");
                 exit("Secure Hash Validation Failed");
             }
         }   
@@ -134,12 +137,15 @@ class Receiver extends Action
                 );
                 switch($payment_type) {
                     case "H":
-                        $this->_asiapayLogger->asiapayLog("Debug1");
                         $order->getPayment()->authorize(false,$order->getBaseTotalDue());
                         break;
                     case "N":
+                        $order->canInvoice();
+                        $order->getPayment()->capture();
+                        $order->save();
                         break;
                     default:
+                        exit;
                 }
 
                 // Send Order Email
@@ -147,26 +153,26 @@ class Receiver extends Action
                 $this->orderSender->send($order);
             } else {
                 if (($dbAmount != $amt)){
-                    echo "Amount value: DB " . (($dbAmount == '') ? 'NULL' : $dbAmount) . " is not equal to POSTed " . $amt . " | ";
-                    echo "Possible tamper - Update failed";
+                    $this->_asiapayLogger->asiapayLog("Amount value: DB " . (($dbAmount == '') ? 'NULL' : $dbAmount) . " is not equal to POSTed " . $amt . " | ");
+                    $this->_asiapayLogger->asiapayLog("Possible tamper - Update failed");
                 }else if (($dbCurrencyIso != $cur)){
-                    echo "Currency value: DB " . (($dbCurrency == '') ? 'NULL' : $dbCurrency) . " (".$dbCurrencyIso.") is not equal to POSTed " . $cur . " | ";
-                    echo "Possible tamper - Update failed";
+                    $this->_asiapayLogger->asiapayLog("Currency value: DB " . (($dbCurrency == '') ? 'NULL' : $dbCurrency) . " (".$dbCurrencyIso.") is not equal to POSTed " . $cur . " | ");
+                    $this->_asiapayLogger->asiapayLog("Possible tamper - Update failed");
                 }else{
-                    echo "Other unknown error - Update failed";
+                    $this->_asiapayLogger->asiapayLog("Other unknown error - Update failed");
                 }
             }
         } else {
             $dbState = $order->getState();
             if($dbState == \Magento\Sales\Model\Order::STATE_PROCESSING || $dbState == \Magento\Sales\Model\Order::STATE_COMPLETE){
                 //do nothing here
-                echo "The order state is already set to  \"".$dbState."\", so we cannot set it to \"".\Magento\Sales\Model\Order::STATE_CANCELED."\" anymore";
+                $this->_asiapayLogger->asiapayLog("The order state is already set to  \"".$dbState."\", so we cannot set it to \"".\Magento\Sales\Model\Order::STATE_CANCELED."\" anymore");
             }else{
                 //update order status to canceled
                 $comment = "Payment was Rejected. Payment Ref: " . $payRef ;
                 $order->cancel()->save();
-                echo "Order Status (cancelled) update successful";
-                echo "Transaction Rejected / Failed.";
+                $this->_asiapayLogger->asiapayLog("Order Status (cancelled) update successful");
+                $this->_asiapayLogger->asiapayLog("Transaction Rejected / Failed.");
             }
         }
     }

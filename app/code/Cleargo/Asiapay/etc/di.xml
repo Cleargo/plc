@@ -65,6 +65,8 @@
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="initialize" xsi:type="string">Cleargo\Asiapay\Gateway\Command\InitializeCommand</item>
+                <item name="authorize" xsi:type="string">Cleargo\Asiapay\Gateway\Command\AuthorizeCommand</item>
+                <item name="capture" xsi:type="string">Cleargo\Asiapay\Gateway\Command\CaptureCommand</item>
             </argument>
         </arguments>
     </virtualType>
