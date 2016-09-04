@@ -21,10 +21,16 @@ select {
 .lock-list .lock-item{
     padding: 0;
 }
+.lock-list .lock-item:hover{
+    background-color: #F4F3F3;
+}
 .lock-list .lock-item td{
     padding: 0;
     padding-top: 6px;
     padding-bottom: 6px;
+}
+.lock-list .lock-item .lock-name{
+    padding-left: 10px;
 }
 .lock-list .lock-item td a {
     text-decoration: none;
@@ -82,9 +88,6 @@ select {
 .lock-tel {
     width: 15%;
     text-align: right;
-}
-.detail-title{
-
 }
 .lock-logo{
  max-width: 80px;
@@ -161,6 +164,10 @@ select {
     }
     .red-line-container .red-line .lock-filter .filter-options-container .filter-checkboxs-list li{
         display: inline-block;
+        margin-left: 10px;
+    }
+    .red-line-container .red-line .lock-filter .filter-options-container .filter-checkboxs-list li label{
+        margin-right: 10px;
     }
     div.district-filter.right > div.filter-options-container > select{
         border-radius:100px;
@@ -192,21 +199,26 @@ select {
         width: 100%;
         line-height: 40px;
         color: white;
-        text-align: center;
+        text-align: left;
         background: #c3161c url('../images/white-arrow.png') no-repeat 98% 51%;
         border-radius: 2px;
         height: 40px;
         cursor: pointer;
+        padding-left: 15px;
+        box-sizing: border-box;
+        font-size: 18px;
+        font-weight: bold;
     }
     div.district-filter.right > div.filter-options-container > select{
         width: 100%;
-        text-align: center;
         color: white;
-        text-align-last: center;
+        text-align: left;
         background: #c3161c url('../images/white-arrow.png') no-repeat 98% 51%;
         border-radius: 2px;
         height: 40px;
         cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
      }
     .red-line-container .red-line .lock-filter .filter-options-container .filter-checkboxs-list li{
         border-bottom: 1px solid;
@@ -228,6 +240,8 @@ select {
         letter-spacing:0px;
     }
 }
+
+
 
 .lock-finder-view .page-title-wrapper{
     display: none;

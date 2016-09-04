@@ -1,3 +1,12 @@
+.cms-terms-conditions .heading{
+    margin-top: 20px;
+    font-weight: bold;
+    font-size:22px;
+    color:#606060;
+    letter-spacing:1px;
+    text-align:left;
+    border-bottom: 1px solid grey;
+}
 #popupform-fade-wrapper{
     display: none;
     bottom: 0;
@@ -20,6 +29,12 @@
 	bottom:-600px;
     z-index: 1000;
 }
+.weltpixel-quickview-catalog-product-view  .icon{
+    display: none;
+}
+.weltpixel-quickview-catalog-product-view .fixed_bottom {
+    display: none;
+}
 .fixed_bottom.add-after-loaded{
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
@@ -27,6 +42,7 @@
     transition: all 0.5s ease-in-out;
 }
 .fixed_bottom .icon{
+    box-shadow: rgba(0, 0, 0, 0.29) 0px 0px 3px;
     position:relative;
     background:rgba(197,0,10,0.80);
     height:40px;
@@ -41,6 +57,7 @@
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
 }
+
 .fixed_bottom .icon span{
     font-family:Aileron-Black;
     font-size:14px;
@@ -67,6 +84,7 @@
 }
 .fixed_bottom .form-wrapper{
     background:#ffffff;
+    box-shadow: rgba(0, 0, 0, 0.29) 0px 0px 3px;
 }
 .fixed_bottom .form-wrapper .thank-container{
     display: none;
@@ -115,6 +133,10 @@
 }
 .fixed_bottom .form-wrapper .popup-form fieldset .field .control{
     display: inline-block;
+    width: 100%;
+}
+.fixed_bottom .form-wrapper .popup-form fieldset .field .checkbox-wrapper .control{
+    width: auto;
 }
 .fixed_bottom .form-wrapper .popup-form fieldset .field .control-textarea textarea{
     resize: none;
@@ -149,6 +171,7 @@
 .fixed_bottom .form-wrapper .popup-form fieldset .field .input-text{
     width: 204.5px;
     height: 19.5px;
+    float: right;
 }
 .fixed_bottom.mobile .form-wrapper .popup-form fieldset .field .input-text{
     border-radius:2px;

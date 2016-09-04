@@ -1,53 +1,57 @@
 <?php
 $countries = $this->getCountryList();
 ?>
-<div class="dealer-filter">
-    <div class="region-filter">
-        <div class="filter-label">
-            <span><?php echo __('Region') ?></span>
-        </div>
-        <div class="filter-options-container">
-            <ul class="filter-checkboxs-list">
-                <?php foreach($countries as $country): ?>
-                <li>
-                    <input id="country_<?php echo $country->getId() ?>" type="checkbox" name="country[]" value="<?php echo $country->getId() ?>" /><label for="country_<?php echo $country->getId() ?>"><?php echo $country->getName() ?></label>
-                    <?php $regions = $this->getRegionList($country); ?>
-                    <?php if(!empty((array)$regions)): ?>
-                    <?php
-                        $region_shown_num = 0;
-                        foreach($regions as $region) {
-                            if($region->getIsShownFrontend()) {
-                                $region_shown_num++;
-                            }
-                        }
-                    ?>
-                        <?php if($region_shown_num > 0): ?>
-                        <select name="region_<?php echo $country->getId() ?>">
-                            <?php foreach($regions as $region): ?>
-                            <?php if($region->getIsShownFrontend()): ?>
-                            <option value="<?php echo $region->getId() ?>"><?php echo $region->getName() ?></option>
+<div class="red-line-container">
+    <div class="red-line">
+        <div class="dealer-filter">
+            <div class="region-filter">
+                <div class="filter-label">
+                    <span><?php echo __('Region') ?></span>
+                </div>
+                <div class="filter-options-container">
+                    <ul class="filter-checkboxs-list">
+                        <?php foreach($countries as $country): ?>
+                        <li>
+                            <input id="country_<?php echo $country->getId() ?>" type="checkbox" name="country[]" value="<?php echo $country->getId() ?>" /><label for="country_<?php echo $country->getId() ?>"><?php echo $country->getName() ?></label>
+                            <?php $regions = $this->getRegionList($country); ?>
+                            <?php if(!empty((array)$regions)): ?>
+                            <?php
+                                $region_shown_num = 0;
+                                foreach($regions as $region) {
+                                    if($region->getIsShownFrontend()) {
+                                        $region_shown_num++;
+                                    }
+                                }
+                            ?>
+                                <?php if($region_shown_num > 1): ?>
+                                <select name="region_<?php echo $country->getId() ?>">
+                                    <?php foreach($regions as $region): ?>
+                                    <?php if($region->getIsShownFrontend()): ?>
+                                    <option value="<?php echo $region->getId() ?>"><?php echo $region->getName() ?></option>
+                                    <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </select>
+                                <?php endif; ?>
                             <?php endif; ?>
-                            <?php endforeach; ?>
-                        </select>
-                        <?php endif; ?>
-                    <?php endif; ?>
-                </li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    </div>
-    <div class="brand-filter">
-        <div class="filter-label">
-            <span><?php echo __('Brand') ?></span>
-        </div>
-        <div class="filter-options-container">
-            <?php $brands = $this->getBrandList(); ?>
-            <select name="brand">
-                <option value=""><?php echo __('Show All') ?></option>
-                <?php foreach($brands as $brand): ?>
-                <option value="<?php echo $brand->getId() ?>"><?php echo $brand->getName() ?></option>
-                <?php endforeach; ?>
-            </select>
+                        </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </div>
+            <div class="brand-filter">
+                <div class="filter-label">
+                    <span><?php echo __('Brand') ?></span>
+                </div>
+                <div class="filter-options-container">
+                    <?php $brands = $this->getBrandList(); ?>
+                    <select name="brand">
+                        <option value=""><?php echo __('Show All') ?></option>
+                        <?php foreach($brands as $brand): ?>
+                        <option value="<?php echo $brand->getId() ?>"><?php echo $brand->getName() ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -96,3 +100,24 @@ $countries = $this->getCountryList();
         <?php endforeach; ?>
     </ul>
 </div>
+
+<script>
+    require([
+        'jquery',
+        'tabs'], function ($) {
+        $(".region-filter").find('.filter-label').click(function () {
+            if($(window).width() < 768){
+                $('.filter-checkboxs-list').slideToggle();
+            }
+
+        });
+
+        $('.filter-checkboxs-list').find('input:radio').change(
+            function(){
+                $('.filter-checkboxs-list').find('label').removeClass('active');
+                $(this).next().addClass('active');
+            }
+        );
+
+    });
+</script>
