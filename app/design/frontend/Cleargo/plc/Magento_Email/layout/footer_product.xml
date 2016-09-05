@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Email Shipment Items List" design_abstraction="custom">
+    <!--<body>
+        <email_footer_product>
+            <block type="Magento\Framework\View\Element\Template" name="email_coupon" template="product.phtml" />
+        </email_footer_product>
+    </body>-->
+
+    <body>
+        <block class="Magento\Framework\View\Element\Template" name="additional.product.info" template="Magento_Email::product.phtml"/>
+    </body>
+</page>

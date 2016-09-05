@@ -12,9 +12,47 @@
                     <!-- End Content -->
                     </td>
                 </tr>
+
+                <tr>
+                    <td align="center">
+                        {{layout handle="footer_product" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" class="header">
+                        <img src="
+                              {{view url='Magento_Email/red-footer.png'}}
+                        " />
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: center;">
+                        <span style="">
+                        <img src="
+                              {{view url='Magento_Email/small-plc.png'}}
+                        " style="vertical-align: middle;  padding: 0 12px;
+    border-right: 1px solid #606060 !important;" />
+                        </span>
+                        <span style="">
+                        <img src="
+                              {{view url='Magento_Email/fb.png'}}
+                        " style="vertical-align: middle;  padding: 0 12px;
+    border-right: 1px solid #606060 !important; "  />
+                        </span>
+                        <span >
+                        <img src="
+                              {{view url='Magento_Email/email-icon.png'}}
+                        " style="vertical-align: middle;
+    padding: 0 12px; " />
+                           <a href="{{trans "mailto:plc@plc.com.hk" }}" style='vertical-align:middle;' >{{trans "plc@plc.com.hk" }}</a>
+                        </span>
+                    </td>
+                </tr>
                 <tr>
                     <td class="footer">
-                        <p class="closing">{{trans "Thank you, %store_name" store_name=$store.getFrontendName()}}!</p>
+                        <p class="closing" style="text-align: center;">{{trans "This email was intended for XXX@XXXX.com.   To ensure our emails reach your inbox, add plc@plc.com.hk to your address book. We promise not to share your information. Click here to view our privacy policy."}}</p>
+
+                        <p class="closing" style="text-align: center;">{{trans "Unit A-D, 9/F., Gemstar Tower, 23 Man Lok Street, Hunghom, Kowloon, Hong Kong.  Monday – Friday 9:30am - 6pm , Saturday 9:30am-1pm (excluding public holidays).  ©2016 THE PLC GROUP"}}</p>
                     </td>
                 </tr>
             </table>
