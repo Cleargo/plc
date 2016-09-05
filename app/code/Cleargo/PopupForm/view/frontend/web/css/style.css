@@ -180,6 +180,7 @@
 }
 .fixed_bottom .form-wrapper .popup-form fieldset .field .label {
     width: 60px;
+    margin-right: 8px;
 }
 
 @media (max-width: 768px) {

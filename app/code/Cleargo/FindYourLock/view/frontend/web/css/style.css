@@ -157,6 +157,7 @@ select {
         font-weight: bold;
         padding-bottom: 15px;
         padding-top: 15px;
+        color: white;
     }
     .red-line-container .red-line .lock-filter .filter-options-container{
         display: inline-block;
@@ -274,7 +275,7 @@ select {
     border-top: 1px solid #979797;
 }
 .lock-finder-view .left-container table tr{
-    border-bottom: 1px solid antiquewhite;
+    border-bottom: 1px solid #efefef;
 }
 .lock-finder-view .left-container table tr td{
 

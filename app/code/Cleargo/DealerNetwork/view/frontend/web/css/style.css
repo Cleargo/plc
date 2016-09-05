@@ -109,6 +109,7 @@ select {
         font-weight: bold;
         padding-bottom: 15px;
         padding-top: 15px;
+        color: white;
     }
     .red-line-container .red-line .dealer-filter .filter-options-container{
         display: inline-block;
