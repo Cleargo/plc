@@ -760,30 +760,6 @@
         }
     }
 
-    
-    //
-    // Module: Color Switches
-    // ---------------------------------------------
-
-    .page-main .swatch-option{
-        .lib-css(border-radius, 30px);
-        height: 30px !important;
-    }
-    .page-main .swatch-option.image:not(.disabled):hover, .swatch-option.color:not(.disabled):hover{
-        outline:none !important;
-        border-width:1px;
-
-        &:before{
-            outline:none;
-            width:40px;
-            height:40px;
-            position:absolute;
-            top:50%;
-            margin-top:20px;
-            border:2px solid @color-brandred;
-        }
-        //box-shadow: 2px 2px 0 @color-brandred, -2px -2px 0 @color-brandred, 2px -2px 0 @color-brandred, -2px 2px 0 @color-brandred, 3px 0 0 @color-brandred, 0 3px 0 @color-brandred, 0 -3px 0 @color-brandred, -3px 0 0 @color-brandred;
-    }
 }
 
 //
@@ -923,6 +899,7 @@
             }
 
             .switcher {
+                border:none;
                 &-options {
                 }
                 &-trigger {
@@ -1024,8 +1001,8 @@
             padding-right:0;
 
             .service-container {
-                padding-left:50px;
-                padding-right:50px;
+                padding-left:8%;
+                padding-right:8%;
             }
             .footer-container {
                 padding-left:15px;
@@ -1138,7 +1115,7 @@
             padding:0;
         }
         .logo {
-            margin:5px;
+            margin:5px 15px;
         }
         .header.content {
             .top-links, .minicart-wrapper {

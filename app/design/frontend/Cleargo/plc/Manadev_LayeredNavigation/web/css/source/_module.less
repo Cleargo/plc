@@ -12,6 +12,9 @@
         &.block {
             margin-bottom: 0;
         }
+        &-wrapper{
+            border-bottom: 1px solid #CCC;
+        }
 
         &-title {
             strong {
@@ -27,7 +30,7 @@
                 padding: 7px @indent__s;
                 position: absolute;
                 text-align: center;
-                top: 0;
+                top: -4px;
                 z-index: 2;
 
                 &[data-count]:after {
@@ -62,16 +65,21 @@
         }
 
         &-current {
-            margin: 0;
-
+            border-width:0;
+            
             .items {
-                padding: @indent__xs @indent__s;
+                padding: 0;
+                list-style:none;
+                margin-bottom: 0;
             }
 
             .item {
-                padding-left: 17px;
+                margin:5px 10px;
+                padding: 7px;
+                padding-right:20px;
                 position: relative;
                 z-index: 1;
+                border:1px solid @color-brandred;
             }
 
             .filter &-subtitle {
@@ -82,9 +90,15 @@
 
             .action.remove {
                 &:extend(.abs-remove-button-for-blocks all);
-                left: -2px;
+                left:auto;
+                right: 12px;
                 position: absolute;
-                top: -1px;
+                top: 6px;
+                &:before, &:hover:before{
+                    font-size:14px;
+                    line-height:18px;
+                    color:@color-brandred;
+                }
             }
         }
 
@@ -94,15 +108,15 @@
         }
 
         &-label {
-            font-weight: @font-weight__bold;
-
+           // font-weight: @font-weight__bold;
+            .lib-css(color, @color-brandred);
             &:after {
                 content: ': ';
             }
         }
 
         &-value {
-            .lib-css(color, @filter-quantity);
+            .lib-css(color, @color-brandred);
         }
 
         &-options {
@@ -298,8 +312,8 @@
 
     .filter .filter-current {
         border: solid @border-color__base;
-        border-width: 1px 0;
-        margin: @indent__xs -@indent__s 0;
+        border-width: 0;
+        margin: 0;
 
         .items {
             display: none;
@@ -316,6 +330,8 @@
             @_icon-font-position: before,
             @_icon-font-display: block
             );
+            
+            display:none;
 
             &:before {
                 position: absolute;
@@ -330,7 +346,15 @@
             }
         }
 
-        &.active {
+        .items {
+            display: block;
+        }
+
+        & + .block-actions {
+            display: none;
+        }
+
+       /* &.active {
            // padding-bottom: 30px;
 
             .block-subtitle {
@@ -351,7 +375,7 @@
 
         & + .block-actions {
             display: none;
-        }
+        }*/
     }
 
     .filter-no-options {
@@ -370,7 +394,8 @@
         }
 
         .filter-content {
-            margin-bottom: @indent__base;
+           /* margin-bottom: @indent__base;*/
+            margin-bottom: 0;
         }
     }
 
