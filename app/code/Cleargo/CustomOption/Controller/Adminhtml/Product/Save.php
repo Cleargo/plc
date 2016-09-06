@@ -224,8 +224,10 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
                 }
 
                 $tempRequest = $this->getRequest()->getParams();
-                $tempRequest['options'] = $data['product']['options'];
-                $this->getRequest()->setParams($tempRequest);
+                if(isset($data['product']['options'])){
+                    $tempRequest['options'] = $data['product']['options'];
+                    $this->getRequest()->setParams($tempRequest);
+                }
                 $product = $this->initializationHelper->initialize(
                     $this->productBuilder->build($this->getRequest())
                 );
