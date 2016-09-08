@@ -9,21 +9,30 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
 
 {{template config_path="design/email/header_template"}}
 
-<p class="greeting">{{trans "%name," name=$data.eng_first_name}}</p>
-<p>{{trans "Thank you for using our online registration service."}}</p>
-<p>{{trans "Attached please kindly find a copy of your registration form for reference."}}</p>
+<p class="greeting">{{trans "Dear %name," name=$data.eng_first_name}}</p>
+<p>{{trans "
+    Thank you for using our online registration service. Attached please kindly find a copy of your registration form for reference."}}</p>
 
 <table class="button" width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td>
             <table  border="0" width="100%" cellspacing="0" cellpadding="10" align="center">
-                <tr>
-                    <td align="left" style="font-size: 20px; color:cornflowerblue;">
+                <tr style="border-bottom: 1px solid #606060;">
+                    <td align="left" style="
+                    font-weight: bold;
+                    font-size:16px;
+                    color:#c3161c;
+                    letter-spacing:0px;
+                    line-height:18px;
+                    text-align:left;
+                    ">
                         {{trans "Customer Information "}}
                     </td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "Reference No."}}
                     </td>
                     <td align="left">
@@ -31,7 +40,7 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                     </td>
                 </tr>
                 <tr>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "Salutation"}}
                     </td>
                     <td align="left">
@@ -39,7 +48,7 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                     </td>
                 </tr>
                 <tr>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "English First Name"}}
                     </td>
                     <td align="left">
@@ -47,7 +56,7 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                     </td>
                 </tr>
                 <tr>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "English Last Name"}}
                     </td>
                     <td align="left">
@@ -56,7 +65,7 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                 </tr>
                 {{if data.chi_name}}
                 <tr>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "Chinese Name"}}
                     </td>
                     <td align="left">
@@ -66,7 +75,7 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                 {{/if}}
                 {{if data.company}}
                 <tr>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "Company"}}
                     </td>
                     <td align="left">
@@ -76,7 +85,7 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                 {{/if}}
 
                 <tr>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "Hong Kong ID /Passport or other ID"}}
                     </td>
                     <td align="left">
@@ -84,7 +93,7 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                     </td>
                 </tr>
                 <tr>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "Contact No. (1)"}}
                     </td>
                     <td align="left">
@@ -93,7 +102,7 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                 </tr>
                 {{if data.contact_two_phone}}
                 <tr>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "Contact No. (2)"}}
                     </td>
                     <td align="left">
@@ -102,7 +111,7 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                 </tr>
                 {{/if}}
                 <tr>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "Email"}}
                     </td>
                     <td align="left">
@@ -110,15 +119,15 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                     </td>
                 </tr>
                 <tr>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "Security question"}}
                     </td>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "%name" name=$data.question}}
                     </td>
                 </tr>
                 <tr>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "Your answer "}}
                     </td>
                     <td align="left">
@@ -127,20 +136,29 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                 </tr>
 
                 <tr>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "Date of Birth"}}
                     </td>
                     <td align="left">
                         {{var data.date_of_birth}}
                     </td>
                 </tr>
-                <tr>
-                    <td align="left" style="font-size: 20px; color:cornflowerblue;">
+                <tr style="border-bottom: 1px solid #606060;">
+                    <td align="left" style="
+                    font-weight: bold;
+                    font-size:16px;
+                    color:#c3161c;
+                    letter-spacing:0px;
+                    line-height:18px;
+                    text-align:left;
+                    ">
                         {{trans "Product Information "}}
                     </td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "Brand"}}
                     </td>
                     <td align="left">
@@ -149,7 +167,7 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                     </td>
                 </tr>
                 <tr>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "Product Category"}}
                     </td>
                     <td align="left">
@@ -159,10 +177,10 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                 </tr>
 
                 <tr>
-                    <td align="left" rowspan="4">
+                    <td align="left"  style="font-weight: bold;" rowspan="4">
                         {{trans "Key Information"}}
                     </td>
-                    <td align="left">
+                    <td align="left" >
                         {{trans "1. Serial Number"}}
                     </td>
                     <td align="left">
@@ -170,7 +188,7 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                     </td>
                 </tr>
                 <tr>
-                    <td align="left">
+                    <td align="left"  >
                         {{trans "2. Profile "}}
                     </td>
                     <td align="left">
@@ -178,7 +196,7 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                     </td>
                 </tr>
                 <tr>
-                    <td align="left">
+                    <td align="left" >
                         {{trans "3. T-Combination"}}
                     </td>
                     <td align="left">
@@ -186,20 +204,29 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                     </td>
                 </tr>
                 <tr>
-                    <td align="left">
+                    <td align="left"  >
                         {{trans "4. FP-Combination"}}
                     </td>
                     <td align="left">
                         {{var data.fp_combination}}
                     </td>
                 </tr>
-                <tr>
-                    <td align="left" style="font-size: 20px; color:cornflowerblue;">
+                <tr style="border-bottom: 1px solid #606060;">
+                    <td align="left" style="
+                    font-weight: bold;
+                    font-size:16px;
+                    color:#c3161c;
+                    letter-spacing:0px;
+                    line-height:18px;
+                    text-align:left;
+                    ">
                         {{trans "Purchase Information "}}
                     </td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "Date"}}
                     </td>
                     <td align="left">
@@ -207,7 +234,7 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                     </td>
                 </tr>
                 <tr>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "Name of Dealer"}}
                     </td>
                     <td align="left">
@@ -216,7 +243,7 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                 </tr>
                 {{if data.invoice_no}}
                 <tr>
-                    <td align="left">
+                    <td align="left" style="font-weight: bold;" >
                         {{trans "Invoice No."}}
                     </td>
                     <td align="left">
