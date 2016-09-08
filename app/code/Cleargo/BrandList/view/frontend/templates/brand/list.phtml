@@ -1,0 +1,36 @@
+<?php
+    $allBrands = $block->getAllBrand();
+
+?>
+
+<ul class="brands_list">
+    <?php foreach(range('A','Z') as $i): ?>
+
+        <?php
+            $isDisplay = false;
+            foreach ($allBrands as $brand){
+                if( $brand['group'] == $i) $isDisplay = true;
+            }
+        ?>
+
+        <?php if($isDisplay):?>
+            <li> <h2><?php echo $i ?></h2>
+        <?php endif; ?>
+
+            <?php foreach ($allBrands as $brand):?>
+                <?php if( $brand['group'] == $i):?>
+                    <p>
+                        <a href="
+                       /catalogsearch/advanced/result/?name=&sku=&description=&short_description=&price%5Bfrom%5D=&price%5Bto%5D=&brand%5B%5D=<?php echo $brand['id'] ?>&features_specifications=&dimension=
+                        "><?php echo $brand['label']; ?></a>
+                    </p>
+                <?php endif; ?>
+            <?php endforeach;?>
+
+        <?php if($isDisplay):?>
+            </li>
+        <?php endif; ?>
+
+    <?php endforeach;?>
+</ul>
+

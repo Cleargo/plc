@@ -1,0 +1,46 @@
+.brands_list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.brands_list li H2 {
+    font-family: raleway-bold;
+    font-size: 20px;
+    color: #000;
+    letter-spacing: 0;
+    line-height: 22px;
+    text-transform: uppercase;
+    width: auto;
+    padding: 0 10px 10px 10px;
+    margin: 0 0 14px 0;
+    border-bottom: 1px solid #ccc;
+}
+.brands_list li P {
+    font-family: raleway;
+    font-size: 16px;
+    color: #808080;
+    letter-spacing: 0;
+    line-height: 18px;
+    text-transform: uppercase;
+    width: auto;
+    padding: 0 10px;
+    margin-bottom: 1em;
+}
+
+.brands_list li P a{
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    .brands_list li:nth-child(4n+1) {
+        clear: left;
+    }
+    .brands_list li {
+        float: left;
+        display: inline-block;
+        width: 25%;
+        padding-right: 6.6667%;
+        padding-bottom: 55px;
+        box-sizing: border-box;
+    }
+}
