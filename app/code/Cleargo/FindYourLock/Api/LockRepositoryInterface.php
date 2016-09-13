@@ -22,13 +22,22 @@ interface LockRepositoryInterface
     public function save(\Cleargo\FindYourLock\Api\Data\LockInterface $lock);
 
     /**
-     * Retrieve dealer.
+     * Retrieve lock.
      *
      * @param int $lockId
      * @return \Cleargo\FindYourLock\Api\Data\LockInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getById($lockId);
+    /**
+     * Retrieve lock.
+     *
+     * @param int $identifier
+     * @param int $storeId
+     * @return \Cleargo\FindYourLock\Api\Data\LockInterface
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function getByIdentifier($identifier,$storeId);
 
     /**
      * Retrieve dealers matching the specified criteria.

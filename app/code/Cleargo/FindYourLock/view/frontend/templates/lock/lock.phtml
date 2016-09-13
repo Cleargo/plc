@@ -89,12 +89,12 @@ $districtsArr = [];
                     <?php foreach($locks as $lock): ?>
 
                             <tr class="lock-item">
-                                <td class="lock-name"><a href="finder/view/id/<?php echo $lock->getId()?>"> <?php echo $lock->getName() ?> </a></td>
+                                <td class="lock-name"><a href="finder/view/identifier/<?php echo urlencode($lock->getIdentifier()) ?>"> <?php echo $lock->getName() ?> </a></td>
                                 <td class="lock-name">
-                                    <a href="finder/view/id/<?php echo $lock->getId()?>"> <?php echo $lock->getName2() ?> </a>
+                                    <a href="finder/view/id/<?php echo urlencode($lock->getIdentifier())?>"> <?php echo $lock->getName2() ?> </a>
                                 </td>
                                 <td class="lock-name">
-                                    <a href="finder/view/id/<?php echo $lock->getId()?>"><?php echo $lock->getAddress() ?>   </a>
+                                    <a href="finder/view/id/<?php echo urlencode($lock->getIdentifier())?>"><?php echo $lock->getAddress() ?>   </a>
                                 </td>
                             </tr>
 

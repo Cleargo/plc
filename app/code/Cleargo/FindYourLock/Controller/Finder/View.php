@@ -106,20 +106,20 @@ class View extends \Magento\Framework\App\Action\Action
      */
     protected function _initFinder()
     {
-        $lockId = (int)$this->getRequest()->getParam('id', false);
 
-        if (!$lockId) {
+
+        $urlPara = $this->getRequest()->getParam('identifier', false);
+        $currentStoreId = $this->_storeManager->getStore()->getId();
+
+        if (!$urlPara) {
             return false;
         }
 
         try {
-            $lock = $this->lockRepository->getById($lockId);
-
+            $lock = $this->lockRepository->getByIdentifier($urlPara,$currentStoreId);
         } catch (NoSuchEntityException $e) {
-            echo 'asdf';
             return false;
         }
-
 
         $this->_coreRegistry->register('current_lock', $lock);
         try {
@@ -130,8 +130,7 @@ class View extends \Magento\Framework\App\Action\Action
         } catch (\Magento\Framework\Exception\LocalizedException $e) {
             $this->_objectManager->get('Psr\Log\LoggerInterface')->critical($e);
             return false;
-        }
-
+    }
         return $lock;
     }
 
@@ -143,8 +142,8 @@ class View extends \Magento\Framework\App\Action\Action
      * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     public function execute()
-    {   $this->_initFinder();
-
+    {
+        $this->_initFinder();
         $resultPage = $this->resultPageFactory->create();
         $resultPage->getLayout()->initMessages();
         return $resultPage;

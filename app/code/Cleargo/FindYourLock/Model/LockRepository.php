@@ -127,6 +127,21 @@ class LockRepository implements LockRepositoryInterface
         }
         return $lock;
     }
+    /**
+     * Load Lock data by given Lock Identifier
+     *
+     * @param string $lockId
+     * @return Lock
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getByIdentifier($urlKey, $storeId)
+    {
+        $identifier = urldecode($urlKey) ;
+        $collection = $this->lockCollectionFactory->create();
+        $collection->addStoreFilter($storeId)->addFieldToFilter('identifier',$identifier);
+        $lock = $collection->getFirstItem();
+        return  $lock;
+    }
 
     /**
      * Load Lock data collection by given search criteria
