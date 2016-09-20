@@ -34,6 +34,8 @@
         jQuery('#descriptionContainer').find('.email').html(location.email);
         jQuery('#descriptionContainer').find('.office_hour').html(location.office_hour);
         jQuery('#descriptionContainer').find('.lunch_time').html(location.lunch_time);
+        jQuery('#descriptionContainer').find('.shop_url').html(location.shop_url);
+        jQuery('#descriptionContainer').find('.shop_url').attr('href',location.shop_url);
 
     }
 
@@ -62,19 +64,23 @@
 
     <div id="descriptionContainer">
         <div class="heading"></div>
-        <div class="address"></div>
-        <div class="contact">
-            T:<span class="tele"></span><br/>
-            F:<span class="fax"></span><br/>
+        <div class="address non-heading"></div>
+        <div class="contact non-heading">
+            <?php echo __("T:") ?><span class="tele"></span><br/>
+            <?php echo __("F:") ?><span class="fax"></span><br/>
             <span class="email"></span>
         </div>
-        <div class="office-hour-container">
-            Office Hours:<br/>
-            <span class="office_hour"></span>
+        <div class="office-hour-container non-heading">
+            <?php echo __("Office Hours:") ?><br/>
+            <span class="office_hour non-heading"></span>
         </div>
-        <div class="lunch-time-container">
-            Lunch Time:<br/>
+        <div class="lunch-time-container non-heading">
+            <?php echo __("Lunch Time:") ?><br/>
             <span class="lunch_time"></span>
+        </div>
+        <div class="url-container non-heading">
+            <?php echo __("Website:")?><br/>
+            <a class="shop_url"></a>
         </div>
     </div>
 

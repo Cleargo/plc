@@ -136,14 +136,19 @@ class Form extends Generic
             'text',
             ['name' => 'email', 'label' => __('Email'), 'title' => __('Email'), 'required' => false]
         );
+        $fieldset->addField(
+            'shop_url',
+            'text',
+            ['name' => 'shop_url', 'label' => __('Shop Url'), 'title' => __('Shop Url'), 'required' => false]
+        );
 
- $fieldset->addField(
+        $fieldset->addField(
             'office_hour',
             'textarea',
             ['name' => 'office_hour', 'label' => __('Office hour'), 'title' => __('Office hour'), 'required' => false]
         );
 
- $fieldset->addField(
+        $fieldset->addField(
             'lunch_time',
             'textarea',
             ['name' => 'lunch_time', 'label' => __('Lunch time'), 'title' => __('Lunch time'), 'required' => false]
