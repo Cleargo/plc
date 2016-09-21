@@ -1,12 +1,40 @@
 <?php
 $_product = $block->getProduct();
 ?>
+
+<style>
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 */
+        padding-top: 25px;
+        height: 0;
+    }
+    .videoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+}</style>
 <?php foreach ($_product->getMediaGalleryImages() as $mediaGalleryImage): ?>
     <?php if($mediaGalleryImage->getMediaType() != "video" && $mediaGalleryImage->getMediaType() != "external-video") continue; ?>
     <?php if(preg_match("/youtube\.com/",$mediaGalleryImage->getVideoUrl())): ?>
-        Youtube: <?php echo $mediaGalleryImage->getVideoUrl() ?>
+        
+        <?php
+        $url = $mediaGalleryImage->getVideoUrl();
+        parse_str( parse_url( $url, PHP_URL_QUERY ), $urlDataQuery );
+        $youtubeVideoId =  $urlDataQuery['v'];
+        ?>
+        <div class="videoWrapper">
+        <iframe width="100%" src="https://www.youtube.com/embed/<?php echo $youtubeVideoId; ?>"
+                frameborder="0" allowfullscreen>></iframe>
+        </div>
     <?php endif; ?>
     <?php if(preg_match("/vimeo\.com/",$mediaGalleryImage->getVideoUrl())): ?>
-        Vimeo: <?php echo $mediaGalleryImage->getVideoUrl() ?>
+
+        <div class="videoWrapper">
+            <iframe width="100%" src="<?php echo $mediaGalleryImage->getVideoUrl() ?>"
+                    frameborder="0" allowfullscreen>></iframe>
+        </div>
     <?php endif; ?>
 <?php endforeach; ?>

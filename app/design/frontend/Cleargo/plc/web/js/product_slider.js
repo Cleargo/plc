@@ -175,7 +175,7 @@ require(["jquery","jquery.touchwipe","plc.fn"], function($){
         if(winwidth <= 768)
             arrowWidth = 10;    //left & right arrow
         else
-            arrowWidth = 50;
+            arrowWidth = 30;
 
         $('.slider_wrapper').each(function(){
             container = $(this).parent().attr('id');

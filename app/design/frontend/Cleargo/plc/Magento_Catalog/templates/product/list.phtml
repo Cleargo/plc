@@ -24,8 +24,8 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
 <?php else: ?>
     <div class="filter-wrapper">
         <div class="filter-container">
-            <?php echo $block->getToolbarHtml() ?>
             <?php echo $block->getAdditionalHtml() ?>
+            <?php echo $block->getToolbarHtml() ?>
         </div>
     </div>
     <?php

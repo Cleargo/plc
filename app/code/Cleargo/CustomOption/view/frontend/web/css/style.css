@@ -1,33 +1,36 @@
+.product-options-wrapper{
+	padding-bottom:10px;
+}
+
 .product-options-wrapper .option-button{
-    display: inline-block;
+    display: block;
     text-align: center;
-    margin-right: 12px;
-    padding: 10px 30px;
-    border-radius: 8px;
+    padding: 10px 20px;
+    border-radius: 4px;
     border: 1px solid #bdbdbd ;
     cursor: pointer;
     vertical-align: middle;
     vertical-align: -webkit-baseline-middle;
-    margin-bottom: 10px;
+	
 }
 .product-options-wrapper .option-button-wrapper{
     display: inline-block;
+	margin-right: 12px;
 }
 .product-options-wrapper .option-button-wrapper .value-img{
     display: block;
 }
 .product-options-wrapper .option-button .title{
-    font-name:aileron-italic;
+    font-style:italic;
     font-size:16px;
-    color:#424242;
+    color:#797979;
     letter-spacing:0.01px;
     text-align:center;
-    margin-bottom: 8px;
 }
 .product-options-wrapper .option-button .content{
-    font-name:aileron-italic;
+    font-style:italic;
     font-size:12px;
-    color:#606060;
+    color:#797979;
     letter-spacing:0.01px;
 }
 .product-options-wrapper .option-button .content .price{
@@ -36,16 +39,17 @@
 .product-options-wrapper .option-img{
     max-width: 140px;
     vertical-align: middle;
-    margin-bottom: 10px;
 }
-.product-options-wrapper .option-button:hover{
-    border: 1px solid black;
+.product-options-wrapper .option-button:hover, .product-options-wrapper .option-button.chosen{
+    border: 1px solid #c8000b;
+	box-shadow:0 0 0 1px #c8000b;
 }
-.product-options-wrapper .option-button.chosen{
-    border: 2px solid black;
+
+.product-options-wrapper .option-button.chosen .title{
+	color:#424242;
 }
-.product-add-form .product-options-wrapper .field:not(.date) > .control{
- width: 100%;
+.product-options-wrapper .option-button.chosen .content{
+	color:#606060;	
 }
 .options-list {
     opacity: 0;
@@ -54,4 +58,29 @@
 .options-list .choice  {
     opacity: 0;
     height: 0;
+}
+.product-options-wrapper label{
+	font-style:italic;
+	font-size:20px;
+}
+
+.product-options-wrapper .option-button {
+	display:flex;
+	justify-content:center;
+	flex-direction:column;
+}
+.product-add-form .product-options-wrapper .field:not(.date) > .control{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+@media screen and (min-width:768px){
+	.product-options-wrapper{
+		padding-bottom:20px;
+	}
+	
+	.product-options-wrapper .option-button .title{
+		font-size:16px;
+	}
 }

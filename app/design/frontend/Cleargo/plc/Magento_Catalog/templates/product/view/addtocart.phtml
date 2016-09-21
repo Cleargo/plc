@@ -13,21 +13,6 @@
 <?php if ($_product->isSaleable()): ?>
 <div class="box-tocart">
     <div class="fieldset">
-        <?php if ($block->shouldRenderQuantity()): ?>
-        <div class="field qty">
-            <label class="label" for="qty"><span><?php /* @escapeNotVerified */ echo __('Qty') ?></span></label>
-            <div class="control">
-                <input type="number"
-                       name="qty"
-                       id="qty"
-                       maxlength="12"
-                       value="<?php /* @escapeNotVerified */ echo $block->getProductDefaultQty() * 1 ?>"
-                       title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" class="input-text qty"
-                       data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
-                       />
-            </div>
-        </div>
-        <?php endif; ?>
         <div class="actions">
             <button type="submit"
                     title="<?php /* @escapeNotVerified */ echo $buttonTitle ?>"
@@ -60,3 +45,23 @@
     }
 </script>
 <?php endif; ?>
+
+<?php
+$_wishlistSubmitParams = $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product);
+?>
+
+<div class="product-addto-links" data-role="add-to-links">
+    <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()) : ?>
+        <a href="#"
+           class="action towishlist"
+           data-post='<?php /* @escapeNotVerified */ echo $_wishlistSubmitParams; ?>'
+           data-action="add-to-wishlist"><span><?php /* @escapeNotVerified */ echo __('Add to Wish List') ?></span></a>
+    <?php endif; ?>
+</div>
+<script type="text/x-magento-init">
+    {
+        "body": {
+            "addToWishlist": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($block->getWishlistOptions())?>
+        }
+    }
+</script>

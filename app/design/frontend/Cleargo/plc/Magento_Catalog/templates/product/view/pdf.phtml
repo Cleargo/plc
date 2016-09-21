@@ -1,3 +1,7 @@
+<div class="pdf-outer">
+    <div class="title">
+        <span><?php echo __('Download Product Details PDF'); ?></span>
+    </div>
 <table class="pdf-container">
 
 
@@ -7,10 +11,10 @@
 
    <?php foreach ($pdfs as $pdf): ?>
        <tr>
-           <td><img src="<?= $this->getMediaPrefix().'cleargo/product/pdf/icon_pdf-small.gif' ?>" /></td>
-           <td><?= str_replace("cleargo/product/pdf","",$pdf['pdf_path'])  ?></td>
-           <td><a href="<?= $this->getMediaPrefix().$pdf['pdf_path'] ?>"> <?= __('View') ?> </a> </td>
-           <td><a href="<?= $this->getMediaPrefix().$pdf['pdf_path'] ?>"> <?= __('Download') ?> </a> </td>
+           <td class="pdf-img"><img src="<?= $this->getMediaPrefix().'cleargo/product/pdf/icon_pdf-small.gif' ?>" /></td>
+           <td class="pdf-path"><?= str_replace("cleargo/product/pdf","",$pdf['pdf_path'])  ?></td>
+           <td class="pdf-action"><a href="<?= $this->getMediaPrefix().$pdf['pdf_path'] ?>"> <?= __('View') ?> </a> </td>
+           <td class="pdf-action"><a href="<?= $this->getMediaPrefix().$pdf['pdf_path'] ?>"> <?= __('Download') ?> </a> </td>
        </tr>
    <?php endforeach; ?>
 
@@ -18,3 +22,4 @@
 
 
 </table>
+</div>

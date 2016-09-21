@@ -28,7 +28,15 @@
                        data-toggle="switch"
                        href="#<?php /* @escapeNotVerified */ echo $alias; ?>"
                        id="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>-title">
-                        <?php /* @escapeNotVerified */ echo $label; ?>
+                        <?php $label_e = explode(" ",$label);
+                        for ($i = 0; $i < count($label_e); $i++) {
+                            if($i>0){echo "<i> ";}
+                            echo $label_e[$i];
+                            if($i>0){echo "</i>";}
+                        }
+                        ?>
+                        
+                        <?php /* @escapeNotVerified */ //echo $label; ?>
                     </a>
                 </div>
                 <div class="data item content" id="<?php /* @escapeNotVerified */ echo $alias; ?>" data-role="content">

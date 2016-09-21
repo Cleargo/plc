@@ -311,6 +311,11 @@
         .item:not(:last-child):after {
             margin: 0;
         }
+        strong{
+            font-weight:normal;
+            font-family:@font-family-name__base;
+            color:@primary__color;
+        }
     }
 
     //
@@ -634,7 +639,7 @@
                                 }
                             }
                             .info {
-                                margin:0;
+                                margin:10px 0 0;
                                 padding:0 5%;
                                 text-align:center;
                                 &:after {
@@ -645,7 +650,6 @@
                                 H3.name {
                                     margin:0;
                                     padding:0;
-                                    font-family:@font-regular;
                                     A {
                                         color:inherit;
                                         font-size:inherit;

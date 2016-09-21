@@ -25,6 +25,7 @@
 .swatch-attribute-selected-option {
     color: #646464;
     padding-left: 17px;
+	display:none;
 }
 
 .swatch-attribute-options {
@@ -34,11 +35,11 @@
 .swatch-option {
     /*width: 30px;*/
 	height: 26px;
-    padding: 1px 2px;
+    padding: 2px 2px;
     min-width: 26px;
     max-width: 90px;
     float: left;
-    margin: 0 20px 20px 0;
+    margin: 0 10px 0px 0;
     text-align: center;
     cursor: pointer;
     position: relative;
@@ -46,6 +47,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
 	border-radius:30px;
+	background-size:cover !important;
 }
 
 .swatch-option.text {
@@ -63,7 +65,8 @@
 .swatch-option.selected {
     color: #333;
 	outline:none !important;
-	box-shadow: 0 0 0 2PX #FFF, 0 0 0 4.5PX #c3161c;
+	box-shadow: 0 0 0 1PX #FFF, 0 0 0 3PX #c3161c;
+	border-color:#FFF;
 }
 
 .swatch-option.text.selected {
@@ -97,7 +100,15 @@
 .swatch-option.color:not(.disabled):hover {
 	outline:none !important;
 	border-width:2px;
-	box-shadow: 0 0 0 2PX #FFF, 0 0 0 4.5PX #c3161c;
+	box-shadow: 0 0 0 2PX #FFF, 0 0 0 4PX #c3161c;
+	
+}
+
+.swatch-option.image.selected:not(.disabled):hover,
+.swatch-option.color.selected:not(.disabled):hover {
+	outline:none !important;
+	border-width:2px;
+	box-shadow: 0 0 0 1PX #FFF, 0 0 0 3PX #c3161c;
 	
 }
 
@@ -276,4 +287,14 @@
 
 .swatch-option-loading {
     content: url("../images/loader-2.gif");
+}
+@media screen and (min-width:768px){
+	.swatch-attribute-label{
+		position:absolute;
+		line-height:30px;
+	}
+	.swatch-attribute-options {
+		margin-left:60px;
+	}
+	
 }
