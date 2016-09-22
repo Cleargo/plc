@@ -7,4 +7,5 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
     <template id="contact_email_email_template2" label="Contact Form2" file="submitted_form.html" type="text" module="Cleargo_Contactus" area="adminhtml"/>
+    <template id="contact_from_customer" label="Contact Form For Customer" file="submitted_form.html" type="html" module="Cleargo_Contactus" area="frontend"/>
 </config>

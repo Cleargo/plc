@@ -18,7 +18,6 @@ class Post extends \Magento\Contact\Controller\Index\Post
         }
 
         $this->inlineTranslation->suspend();
-        try {
             $postObject = new \Magento\Framework\DataObject();
             $postObject->setData($post);
 
@@ -56,19 +55,20 @@ class Post extends \Magento\Contact\Controller\Index\Post
                 ->getTransport();
 
             $transport->sendMessage();
+
+            $transport2 = $this->_transportBuilder->setTemplateIdentifier('contact_from_customer')
+                ->setTemplateOptions(array('area' => \Magento\Framework\App\Area::AREA_FRONTEND, 'store' => $this->storeManager->getStore()->getId()))
+                ->setTemplateVars(['data' => $postObject])
+                ->setFrom($this->scopeConfig->getValue(self::XML_PATH_EMAIL_SENDER, $storeScope))
+                ->addTo(trim($post['email']))
+                ->getTransport();
+            $transport2->sendMessage();
+
             $this->inlineTranslation->resume();
             $this->messageManager->addSuccess(
                 __('Thanks for contacting us with your comments and questions. We\'ll respond to you very soon.')
             );
             $this->_redirect('contact/index');
             return;
-        } catch (\Exception $e) {
-            $this->inlineTranslation->resume();
-            $this->messageManager->addError(
-                __('We can\'t process your request right now. ')
-            );
-            $this->_redirect('contact/index');
-            return;
-        }
     }
 }
