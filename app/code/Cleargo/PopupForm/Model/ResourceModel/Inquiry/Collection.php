@@ -24,6 +24,8 @@ class Collection extends AbstractCollection
      */
     protected function _afterLoad()
     {
+        $this->performAfterLoadForType('customer_inquiry_type', 'inquiry_id');
+
         return parent::_afterLoad();
     }
 

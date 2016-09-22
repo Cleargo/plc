@@ -57,7 +57,6 @@ class Advanced extends \Magento\Backend\Block\Widget\Form\Generic implements \Ma
     {
         /* @var $model \Cleargo\PopupForm\Model\Inquiry */
         $model = $this->_coreRegistry->registry('inquiry_inquiry');
-
         /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create();
 
@@ -77,16 +76,15 @@ class Advanced extends \Magento\Backend\Block\Widget\Form\Generic implements \Ma
 
         $fieldset->addField(
             'question_type_id',
-            'select',
+            'multiselect',
             [
-                'label' => __('Status'),
-                'title' => __('Status'),
+                'label' => __('Question Type'),
+                'title' => __('Question Type'),
                 'name' => 'question_type_id',
                 'required' => true,
-                'options' => $this->_getOptions()
+                'values' =>  $this->_optionCollection->toOptionArray()
             ]
         );
-
 
         $form->setValues($model->getData());
         $this->setForm($form);
@@ -100,6 +98,7 @@ class Advanced extends \Magento\Backend\Block\Widget\Form\Generic implements \Ma
         foreach($availableOptions as $availableOption) {
             $options[$availableOption['value']] = __($availableOption['label']);
         }
+        var_dump($options);
         return $options;
     }
 

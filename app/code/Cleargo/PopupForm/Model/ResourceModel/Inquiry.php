@@ -69,6 +69,11 @@ class Inquiry extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
                 __('A pdf identifier with the same properties already exists in the selected store.')
             );
         }*/
+
+        if(!$object->getData('customer_id')){
+            $object->setData('customer_id',null);
+        }
+
         return $this;
     }
 
@@ -80,7 +85,57 @@ class Inquiry extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      */
     protected function _afterSave(\Magento\Framework\Model\AbstractModel $object)
     {
+
+        $oldTypes = $this->lookupTypeIds($object->getId());
+
+        if($object->getQuestionType()){
+            $newTypes = (array)$object->getQuestionType();
+        } else {
+            $newTypes = (array) $object->getData('question_type_id');
+        }
+
+        if (empty($newTypes)) {
+            $newTypes = (array)$object->getQuestionTypeId();
+        }
+
+
+        $table = $this->getTable('customer_inquiry_type');
+        $insert = array_diff($newTypes, $oldTypes);
+        $delete = array_diff($oldTypes, $newTypes);
+
+        if ($delete) {
+            $where = ['inquiry_id = ?' => (int)$object->getId(), 'question_type_id IN (?)' => $delete];
+            $this->getConnection()->delete($table, $where);
+        }
+
+        if ($insert) {
+            $data = [];
+
+            foreach ($insert as $typeId) {
+                $data[] = ['inquiry_id' => (int)$object->getId(), 'question_type_id' => (int)$typeId];
+            }
+
+            $this->getConnection()->insertMultiple($table, $data);
+        }
+
+        //var_dump(13);die();
+
         return parent::_afterSave($object);
+    }
+
+    public function lookupTypeIds($inquiry_id)
+    {
+        $connection = $this->getConnection();
+
+        $select = $connection->select()->from(
+            $this->getTable('customer_inquiry_type'),
+            'question_type_id'
+        )->where(
+            'inquiry_id = ?',
+            (int)$inquiry_id
+        );
+
+        return $connection->fetchCol($select);
     }
 
     /**
@@ -105,6 +160,12 @@ class Inquiry extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      */
     protected function _afterLoad(\Magento\Framework\Model\AbstractModel $object)
     {
+        if ($object->getId()) {
+            $types = $this->lookupTypeIds($object->getId());
+
+            $object->setData('question_type_id', $types);
+        }
+
         return parent::_afterLoad($object);
     }
 

@@ -51,6 +51,33 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
 
     }
 
+    protected function performAfterLoadForType($tableName, $columnName)
+    {
+        $idArr = [];
+        $items = $this->getColumnValues($columnName);
+        if (count($items)) {
+            $connection = $this->getConnection();
+            $select = $connection->select()->from(['inquiry_entity_type' => $this->getTable($tableName)])
+                ->where('inquiry_entity_type.' . $columnName . ' IN (?)', $items);
+            $result = $connection->fetchAll($select);
+
+            if ($result) {
+                foreach ($this as $item) {
+                    $entityId = $item->getData('inquiry_id');
+
+
+                    foreach ($result as $row){
+                        if($entityId == $row['inquiry_id'] ){
+                            $idArr[] = $row["question_type_id"];
+                        }
+                    }
+
+                    $item->setData('question_type_id', $idArr);
+                    $idArr =[];
+                }
+            }
+        }
+    }
 
 
     /**

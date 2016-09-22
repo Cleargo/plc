@@ -78,7 +78,7 @@ class  Index  extends \Magento\Framework\App\Action\Action
         $resultJson = $this->resultJsonFactory->create();
         return $resultJson->setData($response);
     }
-    try {
+   try {
 
         $error = false;
 
@@ -99,32 +99,71 @@ class  Index  extends \Magento\Framework\App\Action\Action
             $resultJson = $this->resultJsonFactory->create();
             return $resultJson->setData($response);
         }
+       // var_dump($post);die();
+
         $this->inquiry->setData($post);
         $this->inquiry->setIsActive(1);
         if ($this->customerSession->isLoggedIn()) {
             $this->inquiry->setCustomerId($this->customerSession->getCustomerId());
         }
-        $this->inquiry->save();
 
+        $this->inquiry->save();
         $response = [
             'message' => __('Success')
         ];
 
         if(isset($post['email'])){
+            $questionArray = $this->inquiry->getData('question_type_id');
+
+
+
+            $questionStr = '' ;
+            foreach ($questionArray as $q){
+                if($questionStr){
+                    $questionStr = $questionStr.'/ ';
+                }
+                $questionStr = $questionStr. $this->optionRepository->getById($q)->getData('default_label');
+            }
             $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
             $templateOptions = array('area' => \Magento\Framework\App\Area::AREA_FRONTEND, 'store' => $this->storeManager->getStore()->getId());
             $from = $this->scopeConfig->getValue(self::XML_PATH_EMAIL_SENDER, $storeScope);
             $to = array($post['email'],$post['name']);
+
+            $bcc = array();
+            if(in_array( 1 , $questionArray)){
+                $bcc[] = 'jackwong@plc.com.hk';
+                $bcc[] = 'ckchung@plc.com.hk';
+                $bcc[] = 'anthonyleung@plc.com.hk';
+                $bcc[] = 'lstsui@plc.com.hk';
+                $bcc[] = 'angelachan@plc.com.hk';
+                $bcc[] = 'angelachan@plc.com.hk';
+                $bcc[] = 'wah@plc.com.hk';
+                $bcc[] = 'conniechan@plc.com.hk';
+            }
+            if(in_array( 2 , $questionArray)){
+                $bcc[] = 'lstsui@plc.com.hk';
+                $bcc[] = 'anthonyleung@plc.com.hk';
+                $bcc[] = 'ckchung@plc.com.hk';
+                $bcc[] = 'jackwong@plc.com.hk';
+                $bcc[] = 'angelachan@plc.com.hk';
+                $bcc[] = 'wah@plc.com.hk';
+                $bcc[] = 'conniechan@plc.com.hk';
+            }
+
             $postObject = new \Magento\Framework\DataObject();
             $postObject->setData($this->inquiry->getData());
-            $postObject->setQuestion($this->optionRepository->getById($this->inquiry->getData('question_type_id'))->getData('default_label'));
+            $postObject->setQuestion($questionStr);
+
+
 
             $this->inlineTranslation->suspend();
             $transport = $this->_transportBuilder->setTemplateIdentifier('inquiry_from_customer')
                 ->setTemplateOptions($templateOptions)
                 ->setTemplateVars(['data' => $postObject])
                 ->setFrom($from)
-                ->addTo($to)
+                ->addTo($to[0],$to[1])
+                ->addCc('plc@plc.com.hk')
+                ->addBcc($bcc)
                 ->getTransport();
             $transport->sendMessage();
             $this->inlineTranslation->resume();

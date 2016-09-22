@@ -56,10 +56,12 @@
                 <div class="field enquiry required">
                     <?php foreach ($options as $opt): ?>
                         <div class="checkbox-wrapper">
+                            <label class="checkbox-label">
                                 <div class="control">
-                                    <input name="question_type_id" title="<?php /* @escapeNotVerified */ echo $opt['label'] ?>" value="<?php echo $opt['value']?>" class="input-checkbox" data-validate="{required:true,'validate-one-required-by-name': true}" type="checkbox" />
+                                    <input name="question_type_id[]" title="<?php /* @escapeNotVerified */ echo $opt['label'] ?>" value="<?php echo $opt['value']?>" class="input-checkbox" data-validate="{required:true,'validate-one-required-by-name': true}" type="checkbox" />
                                 </div>
-                            <label class="checkbox-label" for="question_type_id"><span><?php /* @escapeNotVerified */ echo $opt['label'] ?></span></label>
+                            <span><?php /* @escapeNotVerified */ echo $opt['label'] ?></span>
+                            </label>
                         </div>
                     <?php endforeach; ?>
                 </div>
