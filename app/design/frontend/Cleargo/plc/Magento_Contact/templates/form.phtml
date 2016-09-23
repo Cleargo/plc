@@ -32,8 +32,20 @@
         jQuery('#descriptionContainer').find('.tele').html(location.telephone);
         jQuery('#descriptionContainer').find('.fax').html(location.fax);
         jQuery('#descriptionContainer').find('.email').html(location.email);
-        jQuery('#descriptionContainer').find('.office_hour').html(location.office_hour);
-        jQuery('#descriptionContainer').find('.lunch_time').html(location.lunch_time);
+
+        if(location.office_hour){
+            jQuery('#descriptionContainer').find('.office-hour-container').show();
+            jQuery('#descriptionContainer').find('.office_hour').html(location.office_hour);
+        } else {
+            jQuery('#descriptionContainer').find('.office-hour-container').hide();
+        }
+        if(location.lunch_time){
+            jQuery('#descriptionContainer').find('.lunch-time-container').show();
+            jQuery('#descriptionContainer').find('.lunch_time').html(location.lunch_time);
+        } else {
+            jQuery('#descriptionContainer').find('.lunch-time-container').hide();
+        }
+
         jQuery('#descriptionContainer').find('.shop_url').html(location.shop_url);
         jQuery('#descriptionContainer').find('.shop_url').attr('href',location.shop_url);
 
