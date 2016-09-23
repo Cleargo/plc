@@ -293,7 +293,8 @@ select {
 }
 .lock-finder-view .image-total-container img{
     margin-right: 20px;
-    height: 250px;
+    height: 218px;
+    width: 118px;
 }
 .lock-finder-view .image-total-container .img-hading{
 
