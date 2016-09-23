@@ -10,8 +10,8 @@
 
         </span>
     </h1>
-    <?php if($this->getCurrentLock()->getLogo()):?>
-        <img class="lock-logo" src="<?php echo $this->getCurrentLock()->getLogo() ?>"/>
+    <?php if($this->getImageLock()->getLogo()):?>
+        <img class="lock-logo" src="<?php echo $this->getImageLock()->getLogo() ?>"/>
     <?php endif ?>
 </div>
 
@@ -127,27 +127,27 @@
 
 <div class="image-total-container">
     <div>
-        <?php if($this->getCurrentLock()->getBeforeImage1()||$this->getCurrentLock()->getBeforeImage2()):?>
+        <?php if($this->getImageLock()->getBeforeImage1()||$this->getImageLock()->getBeforeImage2()):?>
             <h3 class="img-hading"><?php echo __("Before Installation") ?></h3>
         <?php endif ?>
-    <?php if($this->getCurrentLock()->getBeforeImage1()):?>
-        <img class="before-img" src="<?php echo $this->getCurrentLock()->getBeforeImage1() ?>"/>
+    <?php if($this->getImageLock()->getBeforeImage1()):?>
+        <img class="before-img" src="<?php echo $this->getImageLock()->getBeforeImage1() ?>"/>
     <?php endif ?>
 
-    <?php if($this->getCurrentLock()->getBeforeImage2()):?>
-        <img class="before-img" src="<?php echo $this->getCurrentLock()->getBeforeImage2() ?>"/>
+    <?php if($this->getImageLock()->getBeforeImage2()):?>
+        <img class="before-img" src="<?php echo $this->getImageLock()->getBeforeImage2() ?>"/>
     <?php endif ?>
     </div>
     <div>
-        <?php if($this->getCurrentLock()->getAfterImage1()||$this->getCurrentLock()->getAfterImage2()):?>
+        <?php if($this->getCurrentLock()->getAfterImage1()||$this->getImageLock()->getAfterImage2()):?>
             <h3 class="img-hading"><?php echo __("After Installation") ?></h3>
         <?php endif ?>
-    <?php if($this->getCurrentLock()->getAfterImage1()):?>
-        <img class="after-img" src="<?php echo $this->getCurrentLock()->getAfterImage1() ?>"/>
+    <?php if($this->getImageLock()->getAfterImage1()):?>
+        <img class="after-img" src="<?php echo $this->getImageLock()->getAfterImage1() ?>"/>
     <?php endif ?>
 
-    <?php if($this->getCurrentLock()->getAfterImage2()):?>
-        <img class="after-img" src="<?php echo $this->getCurrentLock()->getAfterImage2() ?>"/>
+    <?php if($this->getImageLock()->getAfterImage2()):?>
+        <img class="after-img" src="<?php echo $this->getImageLock()->getAfterImage2() ?>"/>
     <?php endif ?>
     </div>
 </div>

@@ -117,11 +117,13 @@ class View extends \Magento\Framework\App\Action\Action
 
         try {
             $lock = $this->lockRepository->getByIdentifier($urlPara,$currentStoreId);
+            $lockImages = $this->lockRepository->getByIdentifier($urlPara,1);
         } catch (NoSuchEntityException $e) {
             return false;
         }
 
         $this->_coreRegistry->register('current_lock', $lock);
+        $this->_coreRegistry->register('image_lock', $lockImages);
         try {
             $this->_eventManager->dispatch(
                 'finder_controller_lock_init_after',

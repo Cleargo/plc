@@ -260,7 +260,6 @@ class Lock extends \Magento\Framework\View\Element\Template
                 ->setConditionType('like')
                 ->setValue('%'.$keywordParam.'%')
                 ->create();
-
             $keywordFilter2 = $this->_filterBuilder
                 ->setField('main_table.name')
                 ->setConditionType('like')
@@ -276,6 +275,11 @@ class Lock extends \Magento\Framework\View\Element\Template
                 ->setConditionType('like')
                 ->setValue('%'.$keywordParam.'%')
                 ->create();
+            $keywordFilter5 = $this->_filterBuilder
+                ->setField('main_table.lockset')
+                ->setConditionType('like')
+                ->setValue('%'.$keywordParam.'%')
+                ->create();
 
 
 
@@ -286,6 +290,7 @@ class Lock extends \Magento\Framework\View\Element\Template
                 ->addFilter($keywordFilter2)
                 ->addFilter($keywordFilter3)
                 ->addFilter($keywordFilter4)
+                ->addFilter($keywordFilter5)
                 ->create();
         }
 

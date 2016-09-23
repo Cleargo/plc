@@ -121,6 +121,14 @@ class View extends \Magento\Framework\View\Element\Template
         return $this->getData('current_lock');
     }
 
+    public function getImageLock()
+    {
+        if (!$this->hasData('image_lock')) {
+            $this->setData('image_lock', $this->_coreRegistry->registry('image_lock'));
+        }
+        return $this->getData('image_lock');
+    }
+
     protected function _addBreadcrumbs()
     {
         $lock = $this->getCurrentLock();
