@@ -17,15 +17,25 @@
         <div class="messages">
         </div>
 <div id="pdfContainer" >
+    <?php if($pdfs): ?>
         <?php foreach ($pdfs as $p): ?>
-            <div style="  margin-right: 5px;  display: inline-block;" class="admin__field field field-old_pdf_path_<?php echo $p["pdf_id"]?>  with-note" data-ui-id="product-pdf-tab2-fieldset-element-form-field-old-pdf-path-<?php echo $p["pdf_id"]?>">
-                <label class="label admin__field-label" for="old_pdf_<?php echo $p["pdf_id"]?>" data-ui-id="product-pdf-tab2-fieldset-element-file-old-pdf-<?php echo $p["pdf_id"]?>-label"><span>Pdf Upload</span></label>
+            <div style="  margin: 0 15px;  display: inline-block;" class="admin__field field field-old_pdf_path_<?php echo $p["pdf_id"]?>  with-note" data-ui-id="product-pdf-tab2-fieldset-element-form-field-old-pdf-path-<?php echo $p["pdf_id"]?>">
+                <label class="label admin__field-label" for="old_pdf_<?php echo $p["pdf_id"]?>" data-ui-id="product-pdf-tab2-fieldset-element-file-old-pdf-<?php echo $p["pdf_id"]?>-label">
+                    <span><?php echo __('Existing Pdf:') ?> <?php echo $p['name']?></span>
+                </label>
                 <div class="admin__field-control control">
-                    <div>There is a PDF for this product in this store view now.</div><a style="display:block;" href="<?php echo $block->getUrlPreffix() ?><?php echo $p["pdf_path"]?> " data-ui-id="product-pdf-tab2-fieldset-element-file-old-pdf-<?php echo $p["pdf_id"]?>-link">Click Here To Download The Current PDF</a> <span class="delete-pdf"><input pdfid="<?php echo $p["pdf_id"]?>" type="checkbox" name="old_pdf[<?php echo $p["pdf_id"]?>][delete]" class="checkbox delete-checkbox" id="old_pdf_path_<?php echo $p["pdf_id"]?>_delete"><label for="old_pdf_path_<?php echo $p["pdf_id"]?>_delete"> Delete Pdf</label><input type="hidden" name="old_pdf[<?php echo $p["pdf_id"]?>][value]" value="<?php echo $p["pdf_path"]?> "></span>
+                    <div><?php echo __('There is/are PDF(s) for this product in this store view now.'); ?></div><a style="display:block;" href="<?php echo $block->getUrlPreffix() ?><?php echo $p["pdf_path"]?> " data-ui-id="product-pdf-tab2-fieldset-element-file-old-pdf-<?php echo $p["pdf_id"]?>-link">Click Here To Download The Current PDF</a> <span class="delete-pdf"><input pdfid="<?php echo $p["pdf_id"]?>" type="checkbox" name="old_pdf[<?php echo $p["pdf_id"]?>][delete]" class="checkbox delete-checkbox" id="old_pdf_path_<?php echo $p["pdf_id"]?>_delete"><label for="old_pdf_path_<?php echo $p["pdf_id"]?>_delete"> Delete Pdf</label><input type="hidden" name="old_pdf[<?php echo $p["pdf_id"]?>][value]" value="<?php echo $p["pdf_path"]?> "></span>
 
                 </div>
             </div>
         <?php endforeach; ?>
+    <?php else: ?>
+        <div style="text-align:center;     margin: 30px;">
+            <?php echo __('There is no PDF for this product in this store view now.'); ?>
+        </div>
+    <?php endif;?>
+
+
 </div>
 
 <div style="    float: right; margin-top: 15px;">
@@ -57,25 +67,40 @@
         id++;
         //document.getElementById('no_of_new_pdf').value(id);
         var pdfLabel = document.createElement('label');
+        pdfLabel.style.fontWeight = 'bold';
         var t = document.createTextNode("Upload New Pdf");
         pdfLabel.appendChild(t);
 
         var nameStr = 'new_pdf[]';
         nameStr=  nameStr.replace(/%j%/g, 2).replace(/%id%/g, id);
+        var nameStr2 = 'pdf_name[]';
+        nameSt2r=  nameStr2.replace(/%j%/g, 2).replace(/%id%/g, id);
 
         var pdfUpload = document.createElement('input');
         pdfUpload.name= nameStr;
         pdfUpload.type= 'file';
+        pdfUpload.style.marginBottom= '8px';
+        pdfUpload.style.display= 'block';
+
+        var pdfName = document.createElement('input');
+        pdfName.name= nameStr2;
+        pdfName.type= 'text';
+        pdfName.style.marginLeft= '5px';
+        var nameLabel = document.createTextNode("<?php echo __('Name:'); ?>");
 
         var pdfInput = document.createElement('div');
         pdfInput.className= 'control';
         pdfInput.appendChild(pdfUpload);
+        pdfInput.appendChild(nameLabel);
+        pdfInput.appendChild(pdfName);
 
         var pdfRow = document.createElement('div');
         pdfRow.className= 'field';
         pdfRow.style.marginBottom= '8px';
         pdfRow.style.marginTop= '8px';
         pdfRow.style.marginRight= '8px';
+        pdfRow.style.minWidth= '340px';
+        pdfRow.style.padding= '0 15px';
         pdfRow.style.display= 'inline-block';
         pdfRow.appendChild(pdfLabel);
         pdfRow.appendChild(pdfInput);
@@ -112,9 +137,11 @@
             modal
         ) {
             var options = {
+                title: "<?php echo __('Pdf Upload Panel'); ?>",
                 type: 'popup',
                 responsive: true,
                 innerScroll: true,
+                clickableOverlay: true,
                 buttons: []
             };
             var popup = modal(options, $('#popup-mpdal'));
@@ -140,13 +167,14 @@
 
                 });
                 $.each($("input[name*='old_pdf']"),function ( key, value) {
-
-                    /*fd.append( 'old_pdf_' + value.attr('pdfid') ,value.files[0] );
-                    console.log(value.files[0]);
-                    console.log(value.attr('pdfid'));*/
                 });
                 $.each($("input[name='new_pdf[]']"),function ( key, value) {
                     fd.append( 'new_pdf_' + key ,value.files[0] );
+                });
+                $.each($("input[name='pdf_name[]']"),function ( key, value) {
+                    if($("input[name='new_pdf[]']")[key].files[0]){
+                        fd.append( 'pdf_name_' + key ,$(this).val() );
+                    }
                 });
                 $.ajax({
                     url: filterURL,
@@ -155,6 +183,7 @@
                     type: 'POST',
                     success: function(data) {
                         $('.admin__form-loading-mask').hide();
+
                         location.reload();
                     },
                     data:fd,

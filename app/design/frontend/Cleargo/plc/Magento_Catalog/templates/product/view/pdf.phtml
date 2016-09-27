@@ -12,7 +12,8 @@
    <?php foreach ($pdfs as $pdf): ?>
        <tr>
            <td class="pdf-img"><img src="<?= $this->getMediaPrefix().'cleargo/product/pdf/icon_pdf-small.gif' ?>" /></td>
-           <td class="pdf-path"><?= str_replace("cleargo/product/pdf","",$pdf['pdf_path'])  ?></td>
+           <td class="pdf-path"><?php if(isset($pdf['name'])): ?><?php echo $pdf['name']; ?><?php else: ?><? echo str_replace("cleargo/product/pdf","",$pdf['pdf_path'])  ?><?php endif; ?>
+           </td>
            <td class="pdf-action"><a href="<?= $this->getMediaPrefix().$pdf['pdf_path'] ?>"> <?= __('View') ?> </a> </td>
            <td class="pdf-action"><a href="<?= $this->getMediaPrefix().$pdf['pdf_path'] ?>"> <?= __('Download') ?> </a> </td>
        </tr>

@@ -117,6 +117,9 @@ class Save extends \Magento\Backend\App\Action
             ];
 
             $pdfRecord['pdf_path'] = $data['pdf_path'];
+            if(isset($data['name'])){
+                $pdfRecord['name'] = $data['name'];
+            }
 
             $pdf = $this->_objectManager->create('Cleargo\ProductPdf\Model\Pdf');
 
@@ -136,7 +139,6 @@ class Save extends \Magento\Backend\App\Action
             } else {
                 $pdfRecord['stores'] =  $this->getRequest()->getParam('store')? [$this->getRequest()->getParam('store')]:['0'];
             }
-            //var_dump($pdfRecord);die();
 
             $pdf->setData($pdfRecord);
 
@@ -264,12 +266,19 @@ class Save extends \Magento\Backend\App\Action
             $this->transferNewFilesArr($_FILES['new_pdf']);
         }
         $data = $this->getRequest()->getPostValue();
+        $data['pdf_names'] = array();
         foreach($_FILES as $key => $file){
             if (strpos($key, 'old_pdf_') !== false || strpos($key, 'new_pdf_') !== false ) {//
                 $data = $this->mapPdfToField($key,$data);
             }
         };
-//var_dump($data);die();
+        foreach ($data as $key => $field){
+            if (strpos($key, 'pdf_name_') !== false ) {//
+                $data['pdf_names'][] = $field;
+            }
+        }
+
+
         if(isset($data['old_pdf']) ){
             foreach ($data['old_pdf'] as $key => $pdf){
                 $pdf['pdf_id'] = $key;
@@ -282,15 +291,16 @@ class Save extends \Magento\Backend\App\Action
                 if(is_string($pdf)){
                     $temp = [];
                     $temp['pdf_path'] = $pdf;
+                    if(isset($data['pdf_names'][$key])){
+                        $temp['name'] = $data['pdf_names'][$key];
+                    }
                     $pdf = $temp;
                 } else {
                     $pdf['new_pdf'] = $pdf['value'];
                 }
-
                 $this->saveProductPdf($pdf);
             }
         }
-
 
         $response = [
             'errors' => false,
