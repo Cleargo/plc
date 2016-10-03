@@ -133,7 +133,7 @@
 }
 .fixed_bottom .form-wrapper .popup-form fieldset .field .control{
     display: inline-block;
-    width: 100%;
+    vertical-align: middle;
 }
 .fixed_bottom .form-wrapper .popup-form fieldset .field .checkbox-wrapper .control{
     width: auto;
