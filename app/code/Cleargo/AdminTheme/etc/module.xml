@@ -8,6 +8,7 @@
     <module name="Cleargo_AdminTheme" setup_version="1.0.0">
         <sequence>
             <module name="Magento_Theme"/>
+            <module name="Magento_Enterprise"/>
         </sequence>
     </module>
 </config>
