@@ -27,43 +27,39 @@
               id="popupForm"
               method="post"
               data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>"
-              >
+        >
 
 
             <fieldset class="fieldset">
                 <div class="field name required">
+                    <label class="label" for="name"><span><?php /* @escapeNotVerified */ echo __('Name') ?></span></label>
                     <div class="control">
-                        <label class="label" for="name"><span><?php /* @escapeNotVerified */ echo __('Name') ?></span></label>
                         <input name="name" id="name" title="<?php /* @escapeNotVerified */ echo __('Name') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
                     </div>
                 </div>
                 <div class="field email required">
+                    <label class="label" for="email"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
                     <div class="control">
-                        <label class="label" for="email"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
                         <input name="email" id="email" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
                     </div>
                 </div>
-                <div class="field telephone">
-
+                <div class="field telephone required">
+                    <label class="label" for="telephone"><span><?php /* @escapeNotVerified */ echo __("Tel") ?></span></label>
                     <div class="control">
-                        <label class="label" for="telephone"><span><?php /* @escapeNotVerified */ echo __("Tel") ?></span></label>
-                        <input name="tel" id="telephone" title="<?php /* @escapeNotVerified */ echo __("Tel")  ?>" value="" class="input-text" type="text" />
+                        <input name="tel" id="telephone" title="<?php /* @escapeNotVerified */ echo __("Tel")  ?>" value="" class="input-text" type="text"  data-validate="{required:true}" />
                     </div>
                 </div>
 
 
                 <?php $options = $block->getCheckBox(); ?>
                 <div class="field enquiry required">
-                    <?php foreach ($options as $opt): ?>
-                        <div class="checkbox-wrapper">
-                            <label class="checkbox-label">
-                                <div class="control">
-                                    <input name="question_type_id[]" title="<?php /* @escapeNotVerified */ echo $opt['label'] ?>" value="<?php echo $opt['value']?>" class="input-checkbox" data-validate="{required:true,'validate-one-required-by-name': true}" type="checkbox" />
-                                </div>
-                            <span><?php /* @escapeNotVerified */ echo $opt['label'] ?></span>
-                            </label>
-                        </div>
-                    <?php endforeach; ?>
+                    <div class="control">
+                        <?php foreach ($options as $key => $opt): ?>
+                            <input name="question_type_id[]" id="question_type_id_<?php echo $key ?>" title="<?php /* @escapeNotVerified */ echo $opt['label'] ?>" value="<?php echo $opt['value']?>" class="input-checkbox" data-validate="{'validate-one-required-by-name': true}" type="checkbox" />
+                            <label for="question_type_id_<?php echo $key ?>" ><?php /* @escapeNotVerified */ echo $opt['label'] ?></label>
+                        <?php endforeach; ?>
+                    </div>
+
                 </div>
 
 
