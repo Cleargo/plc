@@ -37,10 +37,10 @@
                         <input name="name" id="name" title="<?php /* @escapeNotVerified */ echo __('Name') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
                     </div>
                 </div>
-                <div class="field email required">
+                <div class="field email">
                     <label class="label" for="email"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
                     <div class="control">
-                        <input name="email" id="email" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                        <input name="email" id="email" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" />
                     </div>
                 </div>
                 <div class="field telephone required">
@@ -63,9 +63,9 @@
                 </div>
 
 
-                <div class="field content required">
+                <div class="field content">
                     <div class="control-textarea">
-                        <textarea name="content" id="content" title="<?php /* @escapeNotVerified */ echo __('What’s on your mind?') ?>" class="input-textarea" cols="5" rows="3" data-validate="{required:true}"></textarea>
+                        <textarea name="content" id="content" title="<?php /* @escapeNotVerified */ echo __('What’s on your mind?') ?>" class="input-textarea" cols="5" rows="3" ></textarea>
                     </div>
                 </div>
             </fieldset>
