@@ -13,8 +13,13 @@
         }
     ],
     "require": {
-        "magento/product-enterprise-edition": "2.0.4",
-        "composer/composer": "@alpha"
+        "magento/product-enterprise-edition": "2.1.0",
+        "composer/composer": "@alpha",
+        "magento/project-enterprise-edition": "^2.0",
+        "ebizmarts/magento2-magemonkey": "^3.0",
+        "ebizmarts/magento2-mandrill": "^3.0",
+        "ebizmarts/magento2-abandonedcart": "^3.0",
+        "ebizmarts/magento2-autoresponder": "^3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.0",
