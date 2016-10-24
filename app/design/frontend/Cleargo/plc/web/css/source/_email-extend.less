@@ -1,0 +1,89 @@
+// /**
+//  * Copyright © 2016 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Email extend styles
+//  _____________________________________________
+
+//  This file should be used for theme-specific styles for emails that extend or modify the styles in _email.less
+//  This will allow you to edit email styles without copying and editing the _email.less file
+
+//  Importing fonts from an external CSS file, rather than embedding @font-face declarations inside the <style> tag,
+//  as the latter will cause font rendering issues if the web fonts are inaccessible.
+
+@import url("@{baseUrl}css/email-fonts.css");
+h1,h2,h3,h4,h5{
+    font-family:arial;
+}
+.header {
+    background-color: #ffffff;
+    padding: @email-body__padding 0;
+}
+.main-content{
+    background-color: #ffffff;
+    padding: 30px 50px;
+    
+    a, a[href]{
+        color: @color-brandred;
+    }
+    a.link-grey{
+        color:#606060;
+        text-decoration:none;
+        font-style:italic;
+    }
+    p{
+        font-size:12px;
+        font-style:italic;
+    }
+    .email-information{
+        p{
+            font-size:14px;
+            font-style:normal;
+        }
+    }
+}
+
+.footer {
+    background-color: #FFFFFF;
+    padding: @email-body__padding;
+
+    table {
+        width: 100%;
+
+        td {
+            padding-bottom: @email-body__padding;
+            width: 33%;
+
+            p {
+                margin-bottom: 0;
+                color:#AFAFAF;
+                font-size:12px;
+
+                &.phone {
+                    font-size: @font-size__l;
+
+                    a {
+                        color: inherit;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .header,
+    .main-content,
+    .footer {
+        padding: @email-body__padding @indent__s !important;
+    }
+
+    .footer {
+        td {
+            display: block;
+            width: auto !important;
+        }
+    }
+}
