@@ -76,8 +76,12 @@ html[xmlns] .slides {display: block;}
 .video-playlist .flex-direction-nav .flex-prev {left: 0px;}
 .video-playlist .flex-control-paging li a{border:1px solid #FFF; background:transparent;box-shadow:none;}
 .video-playlist .flex-control-paging li a.flex-active{background:#FFF;}
+
+.news-slide .flex-control-nav{display:none;}
 @media screen and (max-width: 860px) {
 	
-  .flex-direction-nav .flex-prev {opacity: 1; left: 0;}
-  .flex-direction-nav .flex-next {opacity: 1; right: 0;}
+	.news-slide .flex-direction-nav .flex-prev {opacity: 1; left: -55px; transform: scale(0.8);}
+	.news-slide .flex-direction-nav .flex-next {opacity: 1; right: -55px; transform: scale(0.8);}
+	.flex-direction-nav .flex-prev {opacity: 1; left: 0;}
+	.flex-direction-nav .flex-next {opacity: 1; right: 0;}
 }

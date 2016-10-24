@@ -33,5 +33,7 @@
         <referenceContainer name="product.info.social" remove="true"/>
         
         <referenceBlock name="product.info.details" remove="true"/>
+        <referenceBlock name="product.info.addtocart" remove="true"/>
+        <referenceBlock name="product.info.addto" remove="true"/>
     </body>
 </page>

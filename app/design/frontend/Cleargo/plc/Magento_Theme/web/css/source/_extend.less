@@ -520,7 +520,7 @@
                     top:50%;
                     margin-top:-35px;
                     padding:0;
-                    z-index:99;
+                    z-index:98;
                     cursor:pointer;
                     width:40px;
                     height:48px;
@@ -532,7 +532,7 @@
                     top:50%;
                     margin-top:-35px;
                     padding:0;
-                    z-index:99;
+                    z-index:98;
                     cursor:pointer;
                     width:40px;
                     height:48px;
@@ -748,7 +748,7 @@
                     }
                     &:nth-child(2) {
                         .grid-item {
-                            padding:0 50px 20px;
+                            padding:0 30px 20px;
                             &:nth-child(2) {
                                 border-top:1px solid #CCCCCC;
                             }
@@ -1491,5 +1491,15 @@
                 }
             }
         }
+    }
+}
+@media screen and (min-width:768px) and (max-width:960px){
+    .navigation .level0{
+        margin:0;
+    }
+    .navigation .level0 > .level-top{
+        line-height: 4;
+        padding: 0 10px;
+        font-size:1.5vw;
     }
 }
