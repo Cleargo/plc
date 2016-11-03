@@ -80,7 +80,7 @@ class ContactForm extends \Magento\Contact\Block\ContactForm
 
                 echo '<div style="display: inline-block; 
                                         margin-right: 19px;
-                                        margin-bottom: 29px;
+                                        margin-bottom: 19px;
                                         ">';
                 echo "<span class='location-btn";
                 if($check == 0){

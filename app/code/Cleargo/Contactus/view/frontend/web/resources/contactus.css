@@ -65,10 +65,11 @@
 
 #buttonContainer span{
   border: 1px solid gray;
-  /* padding: 12px; */
-  cursor: pointer;
   border-radius: 5px;
-  width: 298px;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 0 15px;
+  width: 284px;
   height: 78px;
   text-align: center;
   display: table-cell;
