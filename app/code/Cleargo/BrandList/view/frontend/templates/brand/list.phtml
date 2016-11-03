@@ -1,36 +1,48 @@
 <?php
-    $allBrands = $block->getAllBrand();
-
+    $attrSets = $block->getAllAttrSetId();
 ?>
 
-<ul class="brands_list">
-    <?php foreach(range('A','Z') as $i): ?>
+<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('brand_top_navigation')->toHtml();?>
 
-        <?php
-            $isDisplay = false;
-            foreach ($allBrands as $brand){
-                if( $brand['group'] == $i) $isDisplay = true;
-            }
-        ?>
+<?php foreach ($attrSets as $attrSet): ?>
+    <?php if($attrSet['value'] != '4'): ?>
+        <ul class="brands_list" id="brandList<?php echo $attrSet['value']; ?>">
+            <h2> <?php echo $attrSet['label']; ?> </h2>
+            <?php foreach(range('A','Z') as $i): ?>
 
-        <?php if($isDisplay):?>
-            <li> <h2><?php echo $i ?></h2>
-        <?php endif; ?>
+                <?php
+                $allBrands = $block->getAllBrandByAttrSet($attrSet['value']);
+                $isDisplay = false;
+                foreach ($allBrands as $brand){
+                    if( $brand['group'] == $i) $isDisplay = true;
+                }
+                ?>
 
-            <?php foreach ($allBrands as $brand):?>
-                <?php if( $brand['group'] == $i):?>
-                    <p>
-                        <a href="
-                       /catalogsearch/advanced/result/?name=&sku=&description=&short_description=&price%5Bfrom%5D=&price%5Bto%5D=&brand%5B%5D=<?php echo $brand['id'] ?>&features_specifications=&dimension=
-                        "><?php echo $brand['label']; ?></a>
-                    </p>
+                <?php if($isDisplay):?>
+                    <li> <h2><?php echo $i ?></h2>
                 <?php endif; ?>
+
+                <?php foreach ($allBrands as $brand):?>
+                    <?php if( $brand['group'] == $i):?>
+                        <p>
+                            <a href="
+                   /catalogsearch/advanced/result/?name=&sku=&description=&short_description=&price%5Bfrom%5D=&price%5Bto%5D=&brand%5B%5D=<?php echo $brand['id'] ?>&features_specifications=&dimension=
+                    "><?php echo $brand['label']; ?></a>
+                        </p>
+                    <?php endif; ?>
+                <?php endforeach;?>
+
+                <?php if($isDisplay):?>
+                    </li>
+                <?php endif; ?>
+
             <?php endforeach;?>
+            <!--<li style="clear: both;"></li>-->
+        </ul>
+    <?php endif; ?>
+<?php endforeach; ?>
 
-        <?php if($isDisplay):?>
-            </li>
-        <?php endif; ?>
 
-    <?php endforeach;?>
-</ul>
+
+
 

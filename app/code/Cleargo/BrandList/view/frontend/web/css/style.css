@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    display: none;
 }
 .brands_list li H2 {
     font-family: aileron-black;
@@ -31,13 +32,9 @@
 }
 
 @media (min-width: 768px) {
-    .brands_list li:nth-child(4n+1) {
-        clear: left;
-    }
     .brands_list li {
-        float: left;
         display: inline-block;
-        width: 25%;
+        width: 24%;
         padding-right: 6.6667%;
         padding-bottom: 55px;
         box-sizing: border-box;
