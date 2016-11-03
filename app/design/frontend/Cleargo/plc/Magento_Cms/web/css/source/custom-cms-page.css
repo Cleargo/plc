@@ -1,0 +1,55 @@
+/* start of Group Companies */
+.group-companies-container .company-container{
+    padding: 35px 0;
+    border-top: 1px dashed #e4d3d3;
+}
+.group-companies-container .company-container:nth-child(1){
+    border-top: 1px solid #e4d3d3;
+}
+.group-companies-container .company-container > div{
+    display: inline-block;
+    vertical-align: middle;
+}
+.group-companies-container .company-container .icon-container{
+    width: 30%;
+    text-align: center;
+}
+.group-companies-container .company-container .description-container{
+    width: 65%;
+}
+.group-companies-container .company-container .description-container .header{
+    font-weight: bold;
+    font-size:20px;
+    color:#606060;
+    letter-spacing:0px;
+}
+.group-companies-container .company-container .description-container .content{
+    margin-top: 12px;
+    font-size:12px;
+    color:#808080;
+    letter-spacing:0px;
+    line-height:20px;
+}
+
+@media screen and (max-width: 768px) {
+    .group-companies-container .company-container > div{
+        display: block;
+    }
+    .group-companies-container .company-container .icon-container{
+        width: 100%;
+    }
+    .group-companies-container .company-container .description-container{
+        width: 100%;
+    }
+}
+
+/* end of Group Companies */
+
+/* start of Recruitment */
+.recruitment-container  .font{
+    font-size:14px;
+    color:#808080;
+    letter-spacing:0px;
+    line-height:23px;
+}
+/* end of Recruitment */
