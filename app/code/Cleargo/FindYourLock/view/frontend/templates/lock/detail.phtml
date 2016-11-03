@@ -84,6 +84,12 @@
                     <td> <?php echo $this->getCurrentLock()->getBrand(); ?></td>
                 </tr>
             <?php endif ?>
+            <?php if($this->getCurrentLock()->getTypeOfLock()):?>
+                <tr>
+                    <td> <?php echo __("Type of lock:") ?> </td>
+                    <td> <?php echo $this->getCurrentLock()->getTypeOfLock(); ?></td>
+                </tr>
+            <?php endif ?>
             <?php if($this->getCurrentLock()->getThickness()):?>
                 <tr>
                     <td> <?php echo __("Door thickness:") ?> </td>
@@ -113,6 +119,12 @@
                 <tr>
                     <td> <?php echo __("Cylinder:") ?> </td>
                     <td> <?php echo $this->getCurrentLock()->getCylinder(); ?></td>
+                </tr>
+            <?php endif ?>
+            <?php if($this->getCurrentLock()->getRemarks()):?>
+                <tr>
+                    <td> <?php echo __("Remarks:") ?> </td>
+                    <td> <?php echo $this->getCurrentLock()->getRemarks(); ?></td>
                 </tr>
             <?php endif ?>
         </table>

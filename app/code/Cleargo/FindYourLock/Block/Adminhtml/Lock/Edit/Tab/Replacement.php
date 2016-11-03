@@ -79,10 +79,15 @@ class Replacement extends \Magento\Backend\Block\Widget\Form\Generic implements 
         'text',
         ['name' => 'lockset', 'label' => __('Lock lockset'), 'title' => __('Lock lockset')]
     );
-        $fieldset->addField(
+    $fieldset->addField(
         'cylinder',
         'text',
         ['name' => 'cylinder', 'label' => __('Lock cylinder'), 'title' => __('Lock cylinder')]
+    );
+    $fieldset->addField(
+        'remarks',
+        'text',
+        ['name' => 'remarks', 'label' => __('Remarks'), 'title' => __('Remarks')]
     );
 
 

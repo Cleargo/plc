@@ -97,7 +97,7 @@ class Basic extends \Magento\Backend\Block\Widget\Form\Generic implements \Magen
         );$fieldset->addField(
         'height',
         'text',
-        ['name' => 'height', 'label' => __('Lock height'), 'title' => __('Lock height')]
+        ['name' => 'height', 'label' => __('Ceiling height'), 'title' => __('Ceiling height')]
     );$fieldset->addField(
         'size',
         'text',
@@ -114,6 +114,10 @@ class Basic extends \Magento\Backend\Block\Widget\Form\Generic implements \Magen
         'phrase',
         'text',
         ['name' => 'phrase', 'label' => __('Lock phrase'), 'title' => __('Lock phrase')]
+    );$fieldset->addField(
+            'type_of_lock',
+            'text',
+            ['name' => 'type_of_lock', 'label' => __('Type Of Lock'), 'title' => __('Type Of Lock')]
     );$fieldset->addField(
         'thickness',
         'text',
