@@ -13,29 +13,29 @@
 
 {{template config_path="design/email/header_template"}}
 
-<p class="greeting" style="font-weight: bold;">{{trans "%name," name=$customer.name}}</p>
-<p>{{trans "Welcome to %store_name." store_name=$store.getFrontendName()}}</p>
-<p>
+<p class="greeting" style="font-weight: bold;font-style:italic;">{{trans "Dear"}} {{trans "%name," name=$customer.name}}</p>
+<p style="font-style:italic;font-size:12px;">{{trans "Welcome to %store_name." store_name=$store.getFrontendName()}}</p>
+<p style="font-style:italic;font-size:12px;">
     {{trans
-        'To sign in to our site, use these credentials during checkout or on the <a href="%customer_url">My Account</a> page:'
+        'To sign in to our site, use these credentials during checkout or on the <a href="%customer_url" class="link-grey">My Account</a> page:'
 
         customer_url=$this.getUrl($store,'customer/account/',[_nosid:1])
     |raw}}
 </p>
-<ul style="font-weight: bold;">
-    <li><strong>{{trans "Email:"}}</strong> {{var customer.email}} 13213</li>
-    <li><strong>{{trans "Password:"}}</strong> <em>{{trans "Password you set when creating account"}}</em></li>
+<ul style="font-weight: bold;font-size:12px;">
+    <li><em>{{trans "Email:"}} <a href="{{var customer.email}}" style="color:#606060;">{{var customer.email}}</a></em></li>
+    <li><em>{{trans "Password:"}}</em> <em>{{trans "Password you set when creating account"}}</em></li>
 </ul>
-<p>
+<p style="font-style:italic;font-size:12px;">
     {{trans
-        'Forgot your account password? Click <a href="%reset_url">here</a> to reset it.'
+        'Forgot your account password? <a href="%reset_url">Click here to reset it</a>.'
 
         reset_url="$this.getUrl($store,'customer/account/createPassword/',[_query:[id:$customer.id,token:$customer.rp_token],_nosid:1])"
     |raw}}
 </p>
 <br/>
-<p>{{trans "When you sign in to your account, you will be able to:"}}</p>
-<ul style="font-weight: bold;">
+<p style="font-style:italic;font-size:12px;">{{trans "When you sign in to your account, you will be able to:"}}</p>
+<ul style="font-weight: bold; font-style:italic;font-size:12px;">
     <li>{{trans "Proceed through checkout faster"}}</li>
     <li>{{trans "Check the status of orders"}}</li>
     <li>{{trans "View past orders"}}</li>

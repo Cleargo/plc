@@ -12,11 +12,16 @@
     <body>
         <referenceContainer name="product.info.form.content">
             <block class="Magento\Catalog\Block\Product\View" name="product.info.qty" template="Magento_Catalog::product/view/qty.phtml" before="-"/>
-        </referenceContainer>
+       </referenceContainer>
+
+        <referenceBlock name="product.info.form.content">
+            
+        </referenceBlock>
+
 
         <referenceContainer name="product.info.options.wrapper.bottom">
             <block class="Magento\Catalog\Block\Product\View" name="product.info.qty.additional" as="product.info.qty" template="Magento_Catalog::product/view/qty.phtml" before="product.info.addtocart.additional"/>
-
+        
             <block class="Magento\Catalog\Pricing\Render" name="product.price.final.additional" as="product.price." after="product.info.qty.additional">
                 <arguments>
                     <argument name="price_render" xsi:type="string">product.price.render.default</argument>
@@ -32,6 +37,8 @@
                 </arguments>
             </block>
             <!--block class="Magento\Catalog\Block\Product\View" name="product.info.addto.additional" as="addto" template="product/view/addto.phtml"/-->
+            <block ifconfig="weltpixel_quickview/general/enable_goto_product_button" class="Magento\Catalog\Block\Product\View" after="product.price.final.additional" name="goto.product.additional" as="goto.product" template="WeltPixel_Quickview::gotoproduct.phtml"/>
+
         </referenceContainer>
 
         <!--move destination="product.info" element="product.info.price" after="product.info.form.content" />

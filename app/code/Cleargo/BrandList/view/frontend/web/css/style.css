@@ -2,11 +2,11 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    display: none;
 }
 .brands_list li H2 {
-    font-family: raleway-bold;
+    font-family: aileron-black;
     font-size: 20px;
-    color: #000;
     letter-spacing: 0;
     line-height: 22px;
     text-transform: uppercase;
@@ -16,7 +16,7 @@
     border-bottom: 1px solid #ccc;
 }
 .brands_list li P {
-    font-family: raleway;
+    font-family: aileron;
     font-size: 16px;
     color: #808080;
     letter-spacing: 0;
@@ -32,13 +32,9 @@
 }
 
 @media (min-width: 768px) {
-    .brands_list li:nth-child(4n+1) {
-        clear: left;
-    }
     .brands_list li {
-        float: left;
         display: inline-block;
-        width: 25%;
+        width: 24%;
         padding-right: 6.6667%;
         padding-bottom: 55px;
         box-sizing: border-box;

@@ -9,5 +9,6 @@
     <head>
         <title>Contact Us</title>
         <css src="Cleargo_Warranty::resources/warranty.css"/>
+        <css src="Magento_Cms::css/source/custom-cms-page.css"/>
     </head>
 </page>

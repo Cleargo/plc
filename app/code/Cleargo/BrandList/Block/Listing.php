@@ -12,6 +12,9 @@ use Magento\Framework\Api\Search\FilterGroupBuilder;
 use Magento\Framework\Api\SortOrderBuilder;
 use Magento\Framework\View\Element\Template;
 use Magento\Eav\Model\Config;
+use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
+use \Magento\Catalog\Model\Product\AttributeSet\Options as attributeSetOptions;
+use \Magento\Catalog\Model\Product as productModel;
 
 class Listing extends Template
 {
@@ -45,6 +48,13 @@ class Listing extends Template
      */
     protected $_eavConfig;
 
+    /**
+     * @var \Magento\Catalog\Model\ResourceModel\Product\Collection
+     */
+    protected $_productCollectionFactory;
+
+    protected $_attributeSetOptions;
+
     public function __construct(
         Context $context,
         SearchCriteriaBuilder $_searchCriteriaBuilder,
@@ -52,6 +62,8 @@ class Listing extends Template
         FilterGroupBuilder $_filterGroupBuilder,
         SortOrderBuilder $_sortOrderBuilder,
         Config $_eavConfig,
+        CollectionFactory $_productCollectionFactory,
+        attributeSetOptions $_attributeSetOptions,
         array $data = []
     ) {
         $this->_searchCriteriaBuilder = $_searchCriteriaBuilder;
@@ -59,6 +71,8 @@ class Listing extends Template
         $this->_filterGroupBuilder = $_filterGroupBuilder;
         $this->_sortOrderBuilder = $_sortOrderBuilder;
         $this->_eavConfig = $_eavConfig;
+        $this->_productCollectionFactory = $_productCollectionFactory;
+        $this->_attributeSetOptions = $_attributeSetOptions;
         parent::__construct($context, $data);
     }
 
@@ -71,6 +85,52 @@ class Listing extends Template
     {
         $this->_addBreadcrumbs();
         return parent::_prepareLayout();
+    }
+
+    public function getAttrSetLabelFromProduct(productModel $product){
+        $optionId = $product->getAttributeSetId();
+        $attr = $product->getResource()->getAttribute('attribute_set_id');
+        $optionText = '';
+        if ($attr->usesSource()) {
+            $optionText = $attr->getSource()->getOptionText($optionId);
+        }
+        return $optionText;
+    }
+
+    public function getBrandLabelFromProduct(productModel $product){
+        $optionId = $product->getBrand();
+        $attr = $product->getResource()->getAttribute('brand');
+        $optionText = '';
+        if ($attr->usesSource()) {
+            $optionText = $attr->getSource()->getOptionText($optionId);
+        }
+        return $optionText;
+    }
+
+    public function getAllAttrSetId(){
+        return $this->_attributeSetOptions->toOptionArray();
+    }
+
+    public function getAllBrandByAttrSet($attrId){
+        $productsInstance = $this->_productCollectionFactory->create();
+        $products = $productsInstance
+            ->addAttributeToFilter('attribute_set_id',$attrId)
+            ->groupByAttribute('brand')
+            ->load()
+            ;
+        $returnArr = array();
+        foreach ($products as $product){
+            $brandLabel = $this->getBrandLabelFromProduct($product);
+            foreach(range('A','Z') as $i) {
+                if(substr($brandLabel,0,1) == $i) {
+                    $temp['group'] = $i;
+                    $temp['id'] = $product->getBrand();
+                    $temp['label'] = $brandLabel;
+                    $returnArr[] = $temp;
+                }
+            }
+        }
+        return $returnArr;
     }
 
     public function getAllBrand(){

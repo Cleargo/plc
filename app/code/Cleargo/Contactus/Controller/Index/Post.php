@@ -26,10 +26,10 @@ class Post extends \Magento\Contact\Controller\Index\Post
             if (!\Zend_Validate::is(trim($post['name']), 'NotEmpty')) {
                 $error = true;
             }
-            if (!\Zend_Validate::is(trim($post['comment']), 'NotEmpty')) {
+            if (!\Zend_Validate::is(trim($post['telephone']), 'NotEmpty')) {
                 $error = true;
             }
-            if (!\Zend_Validate::is(trim($post['email']), 'EmailAddress')) {
+            if (!\Zend_Validate::is(trim($post['enquiry']), 'NotEmpty')) {
                 $error = true;
             }
             if (\Zend_Validate::is(trim($post['hideit']), 'NotEmpty')) {
@@ -39,9 +39,10 @@ class Post extends \Magento\Contact\Controller\Index\Post
                 throw new \Exception();
             }
 
+
             $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
             $transport = $this->_transportBuilder
-                ->setTemplateIdentifier('contact_email_email_template2')
+                ->setTemplateIdentifier('contact_email_email_template2') // admin email
                 ->setTemplateOptions(
                     [
                         'area' => \Magento\Backend\App\Area\FrontNameResolver::AREA_CODE,
@@ -51,18 +52,19 @@ class Post extends \Magento\Contact\Controller\Index\Post
                 ->setTemplateVars(['data' => $postObject])
                 ->setFrom($this->scopeConfig->getValue(self::XML_PATH_EMAIL_SENDER, $storeScope))
                 ->addTo($this->scopeConfig->getValue(self::XML_PATH_EMAIL_RECIPIENT, $storeScope))
-                ->setReplyTo($post['email'])
                 ->getTransport();
 
             $transport->sendMessage();
 
-            $transport2 = $this->_transportBuilder->setTemplateIdentifier('contact_from_customer')
-                ->setTemplateOptions(array('area' => \Magento\Framework\App\Area::AREA_FRONTEND, 'store' => $this->storeManager->getStore()->getId()))
-                ->setTemplateVars(['data' => $postObject])
-                ->setFrom($this->scopeConfig->getValue(self::XML_PATH_EMAIL_SENDER, $storeScope))
-                ->addTo(trim($post['email']))
-                ->getTransport();
-            $transport2->sendMessage();
+            if(isset($post['email']) && $post['email'] != '' ){
+                $transport2 = $this->_transportBuilder->setTemplateIdentifier('contact_from_customer')
+                    ->setTemplateOptions(array('area' => \Magento\Framework\App\Area::AREA_FRONTEND, 'store' => $this->storeManager->getStore()->getId()))
+                    ->setTemplateVars(['data' => $postObject])
+                    ->setFrom($this->scopeConfig->getValue(self::XML_PATH_EMAIL_SENDER, $storeScope))
+                    ->addTo(trim($post['email']))
+                    ->getTransport();
+                $transport2->sendMessage();
+            }
 
             $this->inlineTranslation->resume();
             $this->messageManager->addSuccess(

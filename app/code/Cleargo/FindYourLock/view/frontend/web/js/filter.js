@@ -1,8 +1,14 @@
 require([
     'jquery',
-    'mage/translate'
+    'mage/translate',
+    'mfp'
 ], function($){
     $(document).ready(function() {
+        $('.img-wrapper').magnificPopup({
+            type: 'image',
+            closeBtnInside: false
+        });
+
         $('.back-button').click(function () {
             window.history.back();
         });

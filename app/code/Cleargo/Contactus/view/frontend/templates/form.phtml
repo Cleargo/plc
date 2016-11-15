@@ -117,30 +117,30 @@
         -->
 
         <div class="field name required">
+            <label class="label" for="name"><span><?php /* @escapeNotVerified */ echo __('Name') ?></span></label>
             <div class="control">
-                <label class="label" for="name"><span><?php /* @escapeNotVerified */ echo __('Name') ?></span></label>
                 <input name="name" id="name" title="<?php /* @escapeNotVerified */ echo __('Name') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
             </div>
         </div>
         <div class="field company">
             <label class="label" for="company"><span><?php /* @escapeNotVerified */ echo __('Company') ?></span></label>
             <div class="control">
-                <input name="company" id="company" title="<?php /* @escapeNotVerified */ echo __('Company') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+                <input name="company" id="company" title="<?php /* @escapeNotVerified */ echo __('Company') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text"/>
             </div>
         </div>
-        <div class="field half telephone">
+        <div class="field half telephone required">
             <label class="label" for="telephone"><span><?php /* @escapeNotVerified */ echo __('Tel') ?></span></label>
             <div class="control">
-                <input name="telephone" id="telephone" title="<?php /* @escapeNotVerified */ echo __('Tel') ?>" value="" class="input-text" type="text" />
+                <input name="telephone" id="telephone" title="<?php /* @escapeNotVerified */ echo __('Tel') ?>" value="" class="input-text" type="text"  data-validate="{required:true}" />
             </div>
         </div>
-        <div class="field email half required">
+        <div class="field email half">
             <label class="label" for="email"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
             <div class="control">
-                <input name="email" id="email" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                <input name="email" id="email" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email"/>
             </div>
         </div>
-        <div class="field country half  required">
+        <div class="field country half">
             <label class="label" for="country"><span><?php  echo __('Country') ?></span></label>
             <div class="control">
                 <select name="country" id="country" >
@@ -158,7 +158,7 @@
                 </select>
             </div>
         </div>
-        <div class="field youare half  required">
+        <div class="field youare half">
             <label class="label" for="youare"><span><?php  echo __('You are') ?></span></label>
             <div class="control">
                 <select name="youare" id="youare" >
@@ -170,10 +170,9 @@
                 </select>
             </div>
         </div>
-        <div class="field enquiry  required">
+        <div class="field enquiry required">
             <label class="label" for="enquiry"><span><?php  echo __('Your enquiry is about:') ?></span></label>
             <div class="control">
-
                 <select name="enquiry" id="enquiry" >
                     <option value="<?php echo __('Locks & Security'); ?>"><?php echo __('Locks & Security'); ?></option>
                     <option value="<?php echo __('Decorative Lighting'); ?>"><?php echo __('Decorative Lighting'); ?></option>
@@ -183,10 +182,10 @@
                 </select>
             </div>
         </div>
-        <div class="field comment required">
+        <div class="field comment">
             <label class="label" for="comment"><span><?php /* @escapeNotVerified */ echo __('Message') ?></span></label>
             <div class="control-textarea">
-                <textarea name="comment" id="comment" title="<?php /* @escapeNotVerified */ echo __('Message') ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
+                <textarea name="comment" id="comment" title="<?php /* @escapeNotVerified */ echo __('Message') ?>" class="input-text" cols="5" rows="3" ></textarea>
             </div>
         </div>
         <?php echo $block->getChildHtml('form.additional.info'); ?>
