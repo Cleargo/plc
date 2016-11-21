@@ -1,0 +1,76 @@
+<?php
+$attrSets = $block->getAllAttrSetId();
+$pdfs = $block->getPdfs();
+?>
+<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('brand_top_navigation')->toHtml();?>
+
+<?php
+
+/**/
+?>
+
+
+<?php foreach ($attrSets as $attrSet): ?>
+    <?php if($attrSet['value'] != '4' && isset($pdfs[$attrSet['value']]) ): ?>
+        <div id="categoryContainer<?php echo $attrSet['value']; ?>" class="category-container">
+            <h2> <?php echo $attrSet['label']; ?> </h2>
+            <table id="categoryTable<?php echo $attrSet['value']; ?>" class="category-table">
+                <tbody>
+                <?php foreach ( $pdfs[$attrSet['value']] as $brand_id => $brands ): ?>
+                    <tr>
+                        <td class="brand-td">
+                            <?php $brandName = $block->getBrandLabelFormId($brand_id); ?>
+                            <?php $brandImgPath = $block->getFullMediaUrl('wysiwyg/pdf-download-page/'.$block->cleanSpecialChar(urlencode($brandName)).'.jpg') ?>
+                            <?php if( $block->checkUrlExist( $brandImgPath ) ): ?>
+                                <img class="brand-img " src="<?php echo $brandImgPath ?>" />
+                            <?php else: ?>
+                                <?php echo $brandName ; ?>
+                            <?php endif; ?>
+                            <span style="display: none;"><?php echo $block->cleanSpecialChar(urlencode($brandName)) ; ?></span>
+                        </td>
+                        <td>
+                            <?php foreach ($brands as $pdf ): ?>
+                                <?php
+                                    $fullPathOfPreviewImage = 'wysiwyg/pdf-download-page/preview/'.$pdf['id'].'.png';///var/www/vhosts/plchk/pub/media/
+                                    $fullPathOfPreviewImage = $block->getFullMediaUrl($fullPathOfPreviewImage);///var/www/vhosts/plchk/pub/media/
+                                    $fullPathOfCurrentFile =  $block->getFullMediaUrl($pdf['path']);
+                                    $name =  $pdf['name'] ;
+                                    if( substr( $fullPathOfCurrentFile , -3 ) == 'pdf' && !file_exists($this->getMideaDirectory() ."wysiwyg/pdf-download-page/preview/". $pdf['id'] .".png")  ) {
+                                        try {
+                                            $fileHandle = fopen($this->getMideaDirectory() . "wysiwyg/pdf-download-page/preview/". $pdf['id'] .".png", "w");
+                                            $im = new Imagick();
+                                            $im->setSize( 105,72 );
+                                            $im->readimage($fullPathOfCurrentFile);
+                                            $im->setImageFormat('jpeg');
+                                            $im->writeImageFile($fileHandle);
+                                            $im->clear();
+                                            $im->destroy();
+                                            fclose($fileHandle);
+                                        } catch (Exception $e){
+
+                                        }
+                                    }
+                                ?>
+                                <?php if(substr( $fullPathOfCurrentFile , -3 ) == 'pdf' ):?>
+                                    <a class="pdf-square-link" href="<?php echo $fullPathOfCurrentFile; ?>">
+                                        <div class="pdf-square">
+                                            <div class="img">
+                                                <img src="<?php echo $fullPathOfPreviewImage ; ?>">
+                                            </div>
+                                            <div class="txt">
+                                                <?php echo $pdf['name']; ?> <br/>
+                                                ( <?php echo $block->getFormatedFileSize($pdf['id']);?> MB )
+                                            </div>
+                                        </div>
+                                    </a>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+
+    <?php endif; ?>
+<?php endforeach; ?>

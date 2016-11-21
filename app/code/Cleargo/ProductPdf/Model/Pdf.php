@@ -89,7 +89,11 @@ class Pdf extends \Magento\Framework\Model\AbstractModel implements PdfInterface
         return $this->getData(self::PDF_PATH);
     }
 
-    
+
+    public function getProductId()
+    {
+        return $this->getData(self::LINKED_PRODUCT_ID);
+    }
 
     /**
      * Retrieve block creation time
@@ -166,6 +170,7 @@ class Pdf extends \Magento\Framework\Model\AbstractModel implements PdfInterface
     {
         return $this->setData(self::UPDATE_TIME, $updateTime);
     }
+
 
     /**
      * Set is active

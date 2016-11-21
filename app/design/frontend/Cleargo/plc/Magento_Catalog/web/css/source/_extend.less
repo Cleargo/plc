@@ -69,6 +69,18 @@
                         color:@color-brandred;
                     }
                 }
+                &.active{
+                    img{
+                        opacity:0;
+                        color:#0b0b0b;
+                        &.active{
+                            opacity:1;
+                        }
+                    }
+                    span{
+                        color:@color-brandred;
+                    }
+                }
             }
         }
     }
@@ -792,6 +804,30 @@
                     margin:0;
                 }
                 &:hover{
+                    span{
+                        position:relative;
+                        &:after{
+                            content:"";
+                            display:block;
+                            position:absolute;
+                            bottom: -25px;
+                            border-top:1px solid @color-brandred;
+                            width: 90%;
+                            margin-left: 5%;
+                        }
+                        &:before{
+                            content:"";
+                            display:block;
+                            position:absolute;
+                            bottom: -26px;
+                            border-top:3px solid @color-brandred;
+                            width: 40%;
+                            margin-left: -20%;
+                            left: 50%;
+                        }
+                    }
+                }
+                &.active{
                     span{
                         position:relative;
                         &:after{

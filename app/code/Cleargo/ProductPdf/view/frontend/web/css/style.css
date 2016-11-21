@@ -1,0 +1,35 @@
+.category-container{
+    display: none;
+}
+#categoryContainer10{
+    display: block;
+}
+.brand-img{
+    width: 100px;
+    max-width: 100px;
+    padding: 0 15px;
+}
+.brand-td{
+    text-align: center;
+}
+.pdf-square-link{
+    display: inline-block;
+}
+.pdf-square{
+    display: inline-block;
+    width: 128px;
+    vertical-align: top;
+    text-align: center;
+    margin: 0 0 20px 0;
+}
+.pdf-square .img img{
+    width: 72px;
+    height: 105px;
+    border: 1px solid black;
+}
+.pdf-square .txt{
+    font: 9px/14px Arial, Helvetica, sans-serif;
+    color: #666;
+    word-wrap: break-word;
+    padding: 0 10px;
+}
