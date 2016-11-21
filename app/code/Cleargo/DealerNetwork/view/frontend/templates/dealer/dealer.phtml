@@ -40,21 +40,40 @@ $countries = $this->getCountryList();
             </div>
             <div class="brand-filter">
                 <div class="filter-label">
-                    <span><?php echo __('Brand') ?></span>
+                    <span><?php echo __('Brand Filter') ?></span>
                 </div>
                 <div class="filter-options-container">
-                    <?php $brands = $this->getBrandList(); ?>
-                    <select name="brand">
-                        <option value=""><?php echo __('Show All') ?></option>
-                        <?php foreach($brands as $brand): ?>
-                        <option value="<?php echo $brand->getId() ?>"><?php echo $brand->getName() ?></option>
-                        <?php endforeach; ?>
-                    </select>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div class="checkboxes-container">
+    <div class="checkboxes">
+        <?php $brands = $this->getBrandList(); ?>
+        <table name="brand" id="brandSelect" >
+            <?php $i = 0; ?>
+            <?php foreach($brands as $brand): ?>
+                <?php if($i%4 == 0) :?>
+                    <tr>
+                <?php endif;?>
+                <td>
+                    <input type="checkbox" value="<?php echo $brand->getId() ?>" name="brands[]" id="checkbox<?php echo $brand->getId() ?>" class="css-checkbox" />
+                    <label for="checkbox<?php echo $brand->getId() ?>" class="css-label"><?php echo $brand->getName() ?></label>
+                </td>
+                <?php if($i%4 == 3) :?>
+                    </tr>
+                <?php endif;?>
+                <?php $i++; ?>
+
+            <?php endforeach; ?>
+        </table>
+    </div>
+
+</div>
+
+
 <div class="dealer-list-container">
     <ul class="country-list">
         <?php foreach($countries as $country): ?>

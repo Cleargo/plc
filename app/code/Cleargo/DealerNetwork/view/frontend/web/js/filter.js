@@ -3,6 +3,11 @@ require([
     'mage/translate'
 ], function($){
     $(document).ready(function() {
+        $('.brand-filter').click(function () {
+            $(this).toggleClass('active');
+            $('.checkboxes-container').toggle();
+        });
+
         $('.region-filter input[type="checkbox"]').change(function() {
             updateDealerList();
         });
@@ -11,10 +16,24 @@ require([
             updateDealerList();
         });
 
-        $('.brand-filter select').change(function() {
+        $('#brandSelect input[type="checkbox"]').change(function() {
             updateDealerList();
         });
 
+        function getBrandVals() {
+            var returnStr = '';
+            $.each($('#brandSelect').find('.css-checkbox') , function () {
+                if($(this).prop('checked')){
+                    if(returnStr == ''){
+                        returnStr += $(this).val();
+                    } else {
+                        returnStr += ','+ $(this).val();
+                    }
+                }
+            });
+            return returnStr;
+        }
+        
         function updateDealerList() {
             var queryString = "";
             var country = [];
@@ -31,7 +50,7 @@ require([
                     }
                 }
             });
-            queryString = "country="+country.join(',')+"&region="+region.join(',')+"&brand="+$('.brand-filter select').val();
+            queryString = "country="+country.join(',')+"&region="+region.join(',')+"&brand="+getBrandVals();
 
             var filterURL = document.location.protocol + '//' + document.location.host + document.location.pathname + "?" + queryString;
 

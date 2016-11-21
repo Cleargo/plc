@@ -147,6 +147,13 @@ class DealerRepository implements DealerRepositoryInterface
                 if ($filter->getField() === 'store_id') {
                     $collection->addStoreFilter($filter->getValue(), true);
                     continue;
+                } else if ($filter->getField() === 'brand_id') {
+                    $valArr = [];
+                    foreach ( $filter->getValue() as $val){
+                        $valArr[] =  array('finset'=>$val) ;
+                    }
+                    $collection->addFieldToFilter('brand_id', $valArr );
+                    continue;
                 }
                 $condition = $filter->getConditionType() ?: 'eq';
                 $collection->addFieldToFilter($filter->getField(), [$condition => $filter->getValue()]);
@@ -165,6 +172,7 @@ class DealerRepository implements DealerRepositoryInterface
         }
         $collection->setCurPage($criteria->getCurrentPage());
         $collection->setPageSize($criteria->getPageSize());
+
         $dealers = [];
         /** @var Dealer $dealerModel */
         foreach ($collection as $dealerModel) {

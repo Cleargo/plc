@@ -260,16 +260,17 @@ class Dealer extends \Magento\Framework\View\Element\Template
         $brandParam = $this->getRequest()->getParam('brand');
         if($brandParam != null && $brandParam != "") {
             $brandParam = explode(',',$brandParam);
-
             $brandFilter = $this->_filterBuilder
                 ->setField('brand_id')
-                ->setConditionType('in')
+                ->setConditionType('finset')
                 ->setValue($brandParam)
                 ->create();
 
             $filterGroup[] = $this->_filterGroupBuilder
                 ->addFilter($brandFilter)
                 ->create();
+
+
         }
 
         $sortOrder = $this->_sortOrderBuilder
