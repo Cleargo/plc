@@ -9,27 +9,27 @@
 /** @var $block \Magento\Catalog\Block\Product\View */
 ?>
 <?php $_product = $block->getProduct(); ?>
-<?php if ($_product->isSaleable()): ?>
-<div class="box-tocart box-qty">
-        <?php if ($block->shouldRenderQuantity()): ?>
-        <div class="field qty">
-            <label class="label" for="qty"><span><?php /* @escapeNotVerified */ echo __('Qty') ?></span></label>
-            <div class="control">
-                <input type="number"
-                       name="qty"
-                       id="qty"
-                       maxlength="12"
-                       value="<?php /* @escapeNotVerified */ echo $block->getProductDefaultQty() * 1 ?>"
-                       title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" class="input-text qty"
-                       data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
-                       />
+<?php if ($_product->isSaleable() && !$_product->getIsShowOnly()): ?>
+    <div class="box-tocart box-qty">
+            <?php if ($block->shouldRenderQuantity()): ?>
+            <div class="field qty">
+                <label class="label" for="qty"><span><?php /* @escapeNotVerified */ echo __('Qty') ?></span></label>
+                <div class="control">
+                    <input type="number"
+                           name="qty"
+                           id="qty"
+                           maxlength="12"
+                           value="<?php /* @escapeNotVerified */ echo $block->getProductDefaultQty() * 1 ?>"
+                           title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" class="input-text qty"
+                           data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                           />
+                </div>
+                <?php endif; ?>
+                <?php if ($_product->isSaleable()){ ?>
+                    <div class="in-stock"><span><?php echo __('In stock') ?></span></div>
+                <?php }else{ ?>
+                    <div class="in-stock"><span class="out-of-stock"><?php echo __('Out of stock') ?></span></div>
+                <?php } ?>
             </div>
-            <?php endif; ?>
-            <?php if ($_product->isSaleable()){ ?>
-                <div class="in-stock"><span><?php echo __('In stock') ?></span></div>
-            <?php }else{ ?>
-                <div class="in-stock"><span class="out-of-stock"><?php echo __('Out of stock') ?></span></div>
-            <?php } ?>
-        </div>
-</div>
+    </div>
 <?php endif; ?>

@@ -10,7 +10,7 @@
 ?>
 <?php $_product = $block->getProduct(); ?>
 <?php $buttonTitle = __('Add to Cart'); ?>
-<?php if ($_product->isSaleable()): ?>
+<?php if ($_product->isSaleable() && !$_product->getIsShowOnly()): ?>
 <div class="box-tocart add-to-cart">
     <div class="fieldset">
         <div class="actions">
