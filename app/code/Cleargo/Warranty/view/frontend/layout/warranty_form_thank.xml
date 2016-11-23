@@ -8,6 +8,7 @@
     <head>
         <title>MT5 Registration</title>
         <css src="Cleargo_Warranty::resources/form.css"/>
+        <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
     </head>
     <body>
         <referenceContainer name="content">
