@@ -52,6 +52,7 @@ class Post extends \Magento\Framework\App\Action\Action
      */
     protected $storeManager;
     protected $warranty;
+    protected $customerSession;
 
     /**
      * @param \Magento\Framework\App\Action\Context $context
@@ -66,6 +67,7 @@ class Post extends \Magento\Framework\App\Action\Action
         \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Cleargo\Warranty\Model\Warranty $warranty,
+        \Magento\Customer\Model\Session $customerSession,
         \Magento\Store\Model\StoreManagerInterface $storeManager
     ) {
         parent::__construct($context);
@@ -73,6 +75,7 @@ class Post extends \Magento\Framework\App\Action\Action
         $this->inlineTranslation = $inlineTranslation;
         $this->scopeConfig = $scopeConfig;
         $this->warranty = $warranty;
+        $this->customerSession = $customerSession;
         $this->storeManager = $storeManager;
     }
 
@@ -188,7 +191,9 @@ class Post extends \Magento\Framework\App\Action\Action
             $this->messageManager->addSuccess(
                 __('Thank you for your MT5 registration!')
             );
-            $this->_redirect('thank-you-for-mt5-registration');
+            $this->getRequest()->setActionName('data');
+            $this->customerSession->setIsFromWarrantyPost(true);
+            $this->_redirect('*/*/thank');
             return;
         } catch (\Exception $e) {
             $this->inlineTranslation->resume();
