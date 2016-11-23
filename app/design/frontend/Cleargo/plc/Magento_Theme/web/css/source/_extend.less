@@ -21,6 +21,9 @@
             padding-left:30px;
             padding-right:30px;
         }
+        &:visited{
+            color:@color-white;
+        } 
     }
 
     .logo {
@@ -1088,22 +1091,28 @@
     }
     /* change limit @ 1280px to unlimited */
     .page-header, .page-footer {
+
         .switcher {
             display:inline-block;
-            border:1px solid #CCC;
-            padding:3px 25px 3px 12px;
             margin:10px 20px 5px 5px;
-            .lib-css(border-radius, @button__border-radius);
             .options {
+                .action.toggle{
+                    border:1px solid #CCC;
+                    padding:3px 25px 3px 12px;
+                    .lib-css(border-radius, @button__border-radius);
+                }
                 .action.toggle:after {
                     content:"\e607";
                     position:absolute;
-                    right:-13px;
-                    top:0;
+                    right:9px;
+                    top:3px;
 
                 }
                 .action.toggle.active:after {
-                    content:"\e618"
+                    content:"\e618";
+                }
+                ul.dropdown{
+                    min-width:100%;
                 }
             }
 
