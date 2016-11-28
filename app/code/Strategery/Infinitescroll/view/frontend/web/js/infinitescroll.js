@@ -13,8 +13,10 @@
  */
 define([
     "jqueryIas",
-    "infinitescroll"
-], function($, jqueryIas, infinitescroll) {
+    "infinitescroll",
+    'magnificPopup',
+    'weltpixel_quickview'
+], function($, jqueryIas, infinitescroll, quickview) {
     "use strict";
     window.SgyIAS = {
         debug: window.iasConfig.mode,
@@ -83,9 +85,16 @@ define([
                 });
                 window.ias.on('render', function(items){
                     SgyIAS._log({eventName: 'render', items: items});
+
                 });
                 window.ias.on('rendered', function(items){
                     SgyIAS._log({eventName: 'render', items: items});
+                    $('.weltpixel-quickview').bind('click', function() {
+                        var prodUrl = $(this).attr('data-quickview-url');
+                        if (prodUrl.length) {
+                            quickview.displayContent(prodUrl);
+                        }
+                    });
                 });
                 window.ias.on('noneLeft', function(){
                     SgyIAS._log({eventName: 'noneLeft'});

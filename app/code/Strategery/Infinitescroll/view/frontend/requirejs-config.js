@@ -15,12 +15,13 @@ var config = {
     map: {
         '*': {
             infinitescroll: 'Strategery_Infinitescroll/js/infinitescroll',
-            jqueryIas: 'Strategery_Infinitescroll/js/jquery-ias.min'
+            jqueryIas: 'Strategery_Infinitescroll/js/jquery-ias.min',
+            weltpixel_quickview: 'WeltPixel_Quickview/js/weltpixel_quickview'
         }
     },
     shim: {
         'jqueryIas':{
-            'deps':['jquery']
+            'deps':['jquery','magnificPopup','weltpixel_quickview']
         }
     }
 };
