@@ -65,6 +65,7 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
      */
     protected $filesystem;
     protected $option;
+    protected $optionModel;
 
     /**
      * Save constructor.
@@ -84,6 +85,7 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
         \Magento\Catalog\Model\Product\TypeTransitionManager $productTypeManager,
         \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
         \Cleargo\CustomOption\Model\ResourceModel\Product\Option $option,
+        \Magento\Catalog\Model\Product\OptionFactory $optionModel,
         \Magento\Framework\Image\AdapterFactory $adapterFactory,
         \Magento\MediaStorage\Model\File\UploaderFactory $uploader,
         \Magento\Framework\Filesystem $filesystem
@@ -95,6 +97,7 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
         $this->productRepository = $productRepository;
         $this->adapterFactory = $adapterFactory;
         $this->uploader = $uploader;
+        $this->optionModel = $optionModel;
         $this->filesystem = $filesystem;
         parent::__construct($context, $productBuilder);
     }
@@ -228,18 +231,54 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
                     $tempRequest['options'] = $data['product']['options'];
                     $this->getRequest()->setParams($tempRequest);
                 }
+
                 $product = $this->initializationHelper->initialize(
                     $this->productBuilder->build($this->getRequest())
                 );
-                //$product->setData($data);
+               /*foreach ( $product->getOptions() as $p){
+                    echo '<pre>';
+                    var_dump($data['product']['options']);
+                }*/
+
+
+                if(isset($data['product']['options'])){
+                    $updatedOptions = [];
+                    $deletedOptions = [];
+                    foreach ($data['product']['options'] as $p ){
+                        if(!isset($p['is_delete'])){
+                            $tempOpt = $this->optionModel->create();
+                            $tempOpt->setData($p);
+                            $tempOpt->setProductSku( $product->getSku());
+                            $tempOpt->setStoreId( $this->getRequest()->getParam('store') );
+                            $updatedOptions[] =  $tempOpt;
+                        } else {
+                            if($p['is_delete'] == 1){
+                                $tempOpt = $this->optionModel->create();
+                                $tempOpt->setData($p);
+                                $tempOpt->setProductSku( $product->getSku());
+                                $deletedOptions[] = $tempOpt;
+                            }
+                        }
+                    }
+                    $product->setOptions($updatedOptions);
+                    $product->setDeletedOptions($deletedOptions);
+                }
+
+
+
+               /*foreach ( $product->getDeletedOptions() as $p){
+                   echo "<pre>";
+                    var_dump($p->getData());
+                }*/
                 $this->productTypeManager->processProduct($product);
 
                 if (isset($data['product'][$product->getIdFieldName()])) {
                     throw new \Magento\Framework\Exception\LocalizedException(__('Unable to save product'));
                 }
                 $originalSku = $product->getSku();
-
                 $product->save();
+                /*var_dump("just after product save");
+               die();*/
 
                 // finish product save
                 //die();

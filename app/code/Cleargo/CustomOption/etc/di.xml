@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
 
+    <preference for="Magento\Catalog\Model\Product\Option\Value"
+                type="Cleargo\CustomOption\Model\Product\Option\Value" />
+    <preference for="Magento\Catalog\Model\Product\Option\SaveHandler"
+                type="Cleargo\CustomOption\Model\Product\Option\SaveHandler" />
     <preference for="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\CustomOptions"
                 type="Cleargo\CustomOption\Ui\DataProvider\Product\Form\Modifier\CustomOptions" />
     <preference for="Magento\Catalog\Model\ResourceModel\Product\Option"

@@ -39,8 +39,10 @@ class Option extends OriginalResourceModel{
     protected $adapterFactory;
     protected $uploader;
     protected $filesystem;
+    protected $request;
 
     public function __construct(
+        \Magento\Framework\App\Request\Http $request,
         \Magento\Framework\Model\ResourceModel\Db\Context $context,
         \Magento\Directory\Model\CurrencyFactory $currencyFactory,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
@@ -53,6 +55,7 @@ class Option extends OriginalResourceModel{
         $this->adapterFactory = $adapterFactory;
         $this->uploader = $uploader;
         $this->filesystem = $filesystem;
+        $this->request = $request;
         parent::__construct($context, $currencyFactory,$storeManager,$config, $connectionName);
     }
 
@@ -129,6 +132,7 @@ class Option extends OriginalResourceModel{
     {
 
         $data = $object->getData();
+       // var_dump(123); die();
         if(isset($data['image'])){
             unset($data['image']);
         }
@@ -139,44 +143,47 @@ class Option extends OriginalResourceModel{
 
 
             if (strpos($key, 'old_option_') !== false || strpos($key, 'new_option_') !== false ) {//
-
-
-
                 if(!isset($temp['image'])){
                     $temp = $this->mapImageToOption($key,$data);
-
-                    //break;
-                }
-                if(isset($temp['image'])){
-                    var_dump($temp['image']);
                 }
             }
         };
         if(isset($temp['image'])){
             $object->setData($temp);
+        } else {
+            //$object->setImage(null);
         }
+
 
         $finalData = $object->getData();
 
-        $this->_saveValuePrices($object);
+        if($this->request->getParam('store')){
+            $object->setStoreId($this->request->getParam('store'));
+        }
         $this->_saveValueTitles($object);
+        $this->_saveValuePrices($object);
         $this->_saveValueImages($object);
         return parent::_afterSave($object);
     }
-    
-        
+
+
+
     protected function _saveValueImages(\Magento\Framework\Model\AbstractModel $object)
     {
         $connection = $this->getConnection();
         $imageTableName = $this->getTable('catalog_product_option_image');
-        foreach ([\Magento\Store\Model\Store::DEFAULT_STORE_ID, $object->getStoreId()] as $storeId) {
+
+
+        foreach ([ $object->getStoreId()] as $storeId) {
             $existInCurrentStore = $this->getColFromOptionTable($imageTableName, (int)$object->getId(), (int)$storeId);
             $existInDefaultStore = $this->getColFromOptionTable(
                 $imageTableName,
                 (int)$object->getId(),
                 \Magento\Store\Model\Store::DEFAULT_STORE_ID
             );
+
             if ($object->getImage() && !$object->getDeleteImage()) {
+
                 if ($existInCurrentStore) {
                     if ($object->getStoreId() == $storeId) {
                         $data = $this->_prepareDataForTable(
@@ -193,10 +200,11 @@ class Option extends OriginalResourceModel{
                         );
                     }
                 } else {
-                    // we should insert record into not default store only of if it does not exist in default store
+                    // we should insert record into non default store only of if it does not exist in default store
                     if (($storeId == \Magento\Store\Model\Store::DEFAULT_STORE_ID && !$existInDefaultStore)
                         || ($storeId != \Magento\Store\Model\Store::DEFAULT_STORE_ID && !$existInCurrentStore)
                     ) {
+
                         $data = $this->_prepareDataForTable(
                             new \Magento\Framework\DataObject(
                                 [
@@ -207,7 +215,12 @@ class Option extends OriginalResourceModel{
                             ),
                             $imageTableName
                         );
+                        //var_dump($data); die();
+                        $sql = "INSERT INTO " . $imageTableName . "(option_id, store_id,image) VALUES (".$object->getId().", ".$storeId.",  '".$object->getImage()."' )";
+                        //var_dump($sql); die();
+                        //$connection->query($sql);
                         $connection->insert($imageTableName, $data);
+
                     }
                 }
             } else {
@@ -225,4 +238,6 @@ class Option extends OriginalResourceModel{
             }
         }
     }
+        
+
 }

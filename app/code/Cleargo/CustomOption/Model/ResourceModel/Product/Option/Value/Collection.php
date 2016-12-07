@@ -109,7 +109,6 @@ Class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Option\Val
             ['store_image' => 'image', 'image' => $imageExpr]
         )
         ;
-        //var_dump($this->getSelect()->assemble());die();
         return $this;
     }
     /**
@@ -137,9 +136,8 @@ Class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Option\Val
             ['store_value_description' => $optionDescriptionTable],
             $joinExpr,
             ['store_description' => 'description', 'description' => $descriptionExpr]
-        )
+        )->group("option_type_id");
         ;
-        //var_dump($this->getSelect()->assemble());die();
         return $this;
     }
 }

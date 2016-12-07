@@ -37,9 +37,11 @@ Class Value extends \Magento\Catalog\Model\ResourceModel\Product\Option\Value{
     protected $adapterFactory;
     protected $uploader;
     protected $filesystem;
+    protected $request;
 
 
     public function __construct(
+        \Magento\Framework\App\Request\Http $request,
         \Magento\Framework\Model\ResourceModel\Db\Context $context,
         \Magento\Directory\Model\CurrencyFactory $currencyFactory,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
@@ -52,6 +54,7 @@ Class Value extends \Magento\Catalog\Model\ResourceModel\Product\Option\Value{
         $this->adapterFactory = $adapterFactory;
         $this->uploader = $uploader;
         $this->filesystem = $filesystem;
+        $this->request = $request;
         parent::__construct($context, $currencyFactory,$storeManager,$config, $connectionName);
     }
 
@@ -137,6 +140,9 @@ Class Value extends \Magento\Catalog\Model\ResourceModel\Product\Option\Value{
             $object->setData($temp);
         }
 
+        if($this->request->getParam('store')){
+            $object->setStoreId($this->request->getParam('store'));
+        }
 
         $this->_saveValuePrices($object);
         $this->_saveValueTitles($object);

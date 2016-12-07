@@ -98,6 +98,7 @@ Class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Option\Col
             ),
             ['store_image' => 'image', 'image' => $imageExpr]
         )
+            ->group("option_id");
            /* ->where(
             'default_option_image.store_id = ?',
             \Magento\Store\Model\Store::DEFAULT_STORE_ID
