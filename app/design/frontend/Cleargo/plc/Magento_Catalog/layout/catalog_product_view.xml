@@ -12,8 +12,10 @@
     <body>
         <referenceContainer name="product.info.form.content">
             <block class="Magento\Catalog\Block\Product\View" name="product.info.qty" template="Magento_Catalog::product/view/qty.phtml" before="-"/>
-       </referenceContainer>
-
+        </referenceContainer>
+        <referenceContainer name="product.info.price">
+            <block class="Cleargo\CategoryWhatsapp\Block\Whatsapp" name="product.info.whatsapp" template="Magento_Catalog::product/view/whatsapp.phtml"/>
+        </referenceContainer>
         <referenceBlock name="product.info.form.content">
             
         </referenceBlock>

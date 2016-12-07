@@ -1,0 +1,25 @@
+{
+    "name": "cleargo/module-categorywhatsapp",
+    "description": "add flag for displaying category whatsapp",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "info@mage2gen.com",
+            "name": "Mage2Gen"
+        },
+        {
+            "email": "vestige01@gmail.com",
+            "name": "Yau Thomas"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Cleargo\\CategoryWhatsapp\\": ""
+        }
+    }
+}

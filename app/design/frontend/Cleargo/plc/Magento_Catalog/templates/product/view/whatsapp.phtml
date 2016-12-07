@@ -1,0 +1,30 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product view template
+ *
+ * @see \Magento\Catalog\Block\Product\View
+ */
+?>  
+<?php
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_product = $block->getProduct();
+$_attributeValue = 213;
+$whatsappNum = $block->getWhatsapp();
+?>
+
+<?php if ($whatsappNum): ?>
+<div class="product attibute">
+    <div class="value" style="padding-bottom: 10px;">
+        <?php /* @escapeNotVerified */ echo __("For any enquiries, please WhatsApp : "); ?>
+        <?php /* @escapeNotVerified */ echo $whatsappNum; ?>
+    </div>
+</div>
+<?php endif; ?>
+
