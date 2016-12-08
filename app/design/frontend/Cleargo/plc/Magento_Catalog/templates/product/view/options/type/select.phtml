@@ -39,7 +39,11 @@ $mediaUrl = $block->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) 
                             <?php if($val->getDescription()) echo $val->getDescription(); ?>
                         </div>
                         <div class="price">
-                            <?php if($val->getPrice()) echo '+'.$val->getPrice(); ?>
+                            <?php
+                                if($val->getPrice()) {
+                                    echo '+'. $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($val->getPrice(),true,false);
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>
