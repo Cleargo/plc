@@ -104,7 +104,7 @@ class Save extends \Magento\Backend\App\Action
         if(array_key_exists("products",$data)){
             $tempProduct  = explode("&",$data["products"] );
             if(sizeof($tempProduct) ){
-                $data ["product_id"] = $tempProduct[0];
+                $data ["product_id"] = end($tempProduct);
             }
 
         }
@@ -128,12 +128,13 @@ class Save extends \Magento\Backend\App\Action
             $id = $this->getRequest()->getParam('lock_id');
             if ($id) {
                 $model->load($id);
+
             }
 
 
             $data = $this->mapImageToField(['logo','before_image1','before_image2','after_image1','after_image2'],$data);
             $data = $this->handleProductField($data);
-//var_dump($data);die();
+
 
             $model->setData($data);
             try {
