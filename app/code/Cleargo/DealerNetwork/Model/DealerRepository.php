@@ -150,9 +150,10 @@ class DealerRepository implements DealerRepositoryInterface
                 } else if ($filter->getField() === 'brand_id') {
                     $valArr = [];
                     foreach ( $filter->getValue() as $val){
-                        $valArr[] =  array('finset'=>$val) ;
+                        //$valArr[] =  array('finset'=>$val) ;
+                        $collection->addFieldToFilter('brand_id', array('finset'=>$val) );
                     }
-                    $collection->addFieldToFilter('brand_id', $valArr );
+
                     continue;
                 }
                 $condition = $filter->getConditionType() ?: 'eq';
