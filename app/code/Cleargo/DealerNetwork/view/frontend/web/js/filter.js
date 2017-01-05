@@ -3,7 +3,7 @@ require([
     'mage/translate'
 ], function($){
     $(document).ready(function() {
-        $('.filter-checkboxs-list').find('input[type="checkbox"]').first().prop('checked',true);
+        $('.filter-checkboxs-list').find('input[type="checkbox"]').first().prop('checked',true).change();
         $('.brand-filter').click(function () {
             $(this).toggleClass('active');
             $('.checkboxes-container').toggle();

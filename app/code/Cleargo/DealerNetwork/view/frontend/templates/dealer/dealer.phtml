@@ -25,10 +25,11 @@ $countries = $this->getCountryList();
                             ?>
                                 <?php if($region_shown_num > 1): ?>
                                 <select name="region_<?php echo $country->getId() ?>">
+                                    <option value=""><?php echo __('All'); ?></option>
                                     <?php foreach($regions as $region): ?>
-                                    <?php if($region->getIsShownFrontend()): ?>
-                                    <option value="<?php echo $region->getId() ?>"><?php echo $region->getName() ?></option>
-                                    <?php endif; ?>
+                                        <?php if($region->getIsShownFrontend()): ?>
+                                            <option value="<?php echo $region->getId() ?>"><?php echo $region->getName() ?></option>
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 </select>
                                 <?php endif; ?>
