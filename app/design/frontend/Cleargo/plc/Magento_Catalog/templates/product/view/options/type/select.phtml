@@ -75,6 +75,7 @@ $mediaUrl = $block->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) 
                     maxW = $(this).outerWidth();
                 }
             });
+            maxH = maxH > 89? maxH: 90;
             $(this).find('.option-button').outerHeight(maxH);
             //$(this).find('.option-button').outerWidth(maxW);
             $(this).find('.value-img').outerHeight(maxH );
