@@ -65,3 +65,14 @@ $_wishlistSubmitParams = $this->helper('Magento\Wishlist\Helper\Data')->getAddPa
         }
     }
 </script>
+
+<?php if ( $_product->getIsShowOnly() ): ?>
+    <script type="text/javascript">
+        require(["jquery"], function(){
+            jQuery(document).ready(function(){
+                jQuery('.price-box.price-final_price').remove();
+            });
+        });
+    </script>
+<?php endif; ?>
+
