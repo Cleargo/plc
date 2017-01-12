@@ -73,10 +73,6 @@ class Recent extends \Magefan\Blog\Block\Post\PostList\AbstractList implements \
      */
     public function _toHtml()
     {
-        $this->setTemplate(
-            $this->getData('template') ?: 'widget/recent.phtml'
-        );
-
         return parent::_toHtml();
     }
 
@@ -97,11 +93,14 @@ class Recent extends \Magefan\Blog\Block\Post\PostList\AbstractList implements \
      */
     protected function _preparePostCollection()
     {
+        //var_dump(123); die();
         parent::_preparePostCollection();
         if ($category = $this->getCategory()) {
             $categories = $category->getChildrenIds();
             $categories[] = $category->getId();
             $this->_postCollection->addCategoryFilter($categories);
+        } else { // added by Thomas for home page
+            $this->_postCollection->addCategoryFilter([1,2]);
         }
     }
 
@@ -142,13 +141,28 @@ class Recent extends \Magefan\Blog\Block\Post\PostList\AbstractList implements \
         $pageBraker = '<!-- pagebreak -->';
 
         $isMb = function_exists('mb_strpos');
-        $p = $isMb ? strpos($content, $pageBraker) : mb_strpos($content, $pageBraker);
-
+        $p = $isMb ? mb_strpos($content, $pageBraker, 0, 'UTF-8'): strpos($content, $pageBraker);
         if ($p) {
-            $content = mb_substr($content, 0, $p);
+            $content = mb_substr($content, 0, $p , 'UTF-8');
+        } else {
+            //$content = mb_substr($content, 0, 125);
         }
-
         return $this->_filterProvider->getPageFilter()->filter($content);
     }
+
+    /**
+     * Prepare posts collection
+     *
+     * @return \Magefan\Blog\Model\ResourceModel\Post\Collection
+     */
+    public function getPostCollection()
+    {
+        if (is_null($this->_postCollection)) {
+            $this->_preparePostCollection();
+        }
+
+        return $this->_postCollection;
+    }
+
 }
 
