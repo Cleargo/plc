@@ -83,6 +83,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getBaseUrlMedia($path = '', $secure = false)
     {
+        if($this->_storeManager->getStore()->isCurrentlySecure()) {
+            $secure = true;
+        }
         return $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA, $secure) . $path;
     }
 
