@@ -7,8 +7,7 @@
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="Cleargo\Showroom\Block\Map" name="showroom" template="showroom.phtml">
-            </block>
+            <block class="Cleargo\Showroom\Block\Map" name="showroom" template="showroom.phtml" cacheable="false" />
         </referenceContainer>
     </body>
 </page>
