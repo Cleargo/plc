@@ -24,7 +24,7 @@
         <referenceContainer name="product.info.options.wrapper.bottom">
             <block class="Magento\Catalog\Block\Product\View" name="product.info.qty.additional" as="product.info.qty" template="Magento_Catalog::product/view/qty.phtml" before="product.info.addtocart.additional"/>
         
-            <block class="Magento\Catalog\Pricing\Render" name="product.price.final.additional" as="product.price." after="product.info.qty.additional">
+            <block class="Magento\Catalog\Pricing\Render" name="product.price.final.additional" as="product.price.final" after="product.info.qty.additional">
                 <arguments>
                     <argument name="price_render" xsi:type="string">product.price.render.default</argument>
                     <argument name="price_type_code" xsi:type="string">final_price</argument>
