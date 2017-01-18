@@ -33,7 +33,7 @@ class Index extends \Magento\Backend\App\Action
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('Cleargo_PopupForm::option');
+        return $this->_authorization->isAllowed('Cleargo_PopupForm::add_row2');
     }
 
     /**
