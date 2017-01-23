@@ -16,7 +16,7 @@
                 <?php endforeach; ?>
                 <div  border="0" cellpadding="0" cellspacing="0" class="regisdivation-form-info">
                     <h2 class="heading">
-                        <div  valign="top" class="div-head"><div class="regisdivation-form-title">Customer Information</div></div>
+                        <div  valign="top" class="div-head"><div class="regisdivation-form-title"><?php echo __("Customer Information"); ?></div></div>
                         <div  valign="top">&nbsp;</div>
                     </h2>
                     <div>
@@ -188,7 +188,7 @@
                         <div>&nbsp;</div>
                     </div>
                     <h2  class="heading">
-                        <div class="div-head"><div class="regisdivation-form-title">Product Information </div></div>
+                        <div class="div-head"><div class="regisdivation-form-title"><?php echo __("Product Information"); ?> </div></div>
                         <div  valign="top">&nbsp;</div>
                     </h2>
                     <div>
@@ -199,7 +199,7 @@
                     </div>
                     <div>
                         <div class="dt" id="pc_div" >
-                            *Product Category</div>
+                            *<?php echo __('Product Category'); ?></div>
                         <div class="dd">
                             <?php echo ($this->getProduct()[$inputed['product_type'] - 1 ]["label"]); ?>
                         </div>
@@ -211,33 +211,33 @@
                     </div>
                     <div bgcolor="#FFFFFF">
                         <div valign="top" class="dt"><font id="keyInfo_sp" >
-                                *Keycard Information</font></div>
+                                *<?php echo __('Keycard Information'); ?></font></div>
                         <div class="dd">
                             <div cellpadding="0" cellspacing="2" border="0">
                                 <div>
                                     <div width="110"><font id="sn_sp" color="#9999CC" size="-2">
-                                            <b>1. Serial Number</b></font></div>
+                                            <b>1. <?php echo __('Serial Number'); ?></b></font></div>
                                     <div>
                                         <span><?php echo isset($inputed['serial_num'])?$inputed['serial_num']:"" ?></span>
                                     </div>
                                 </div>
                                 <div>
                                     <div><font id="pn_sp" color="#9999CC" size="-2">
-                                            <b>2. Profile</b></font></div>
+                                            <b>2. <?php echo __('Profile'); ?></b></font></div>
                                     <div>
                                         <span><?php echo isset($inputed['profile'])?$inputed['profile']:"" ?></span>
                                     </div>
                                 </div>
                                 <div>
                                     <div><font id="pins_sp" color="#9999CC" size="-2">
-                                            <b>3. T-Combination</b></font></div>
+                                            <b><?php echo __('3. T-Combination'); ?></b></font></div>
                                     <div>
                                         <span><?php echo isset($inputed['t_combination'])?$inputed['t_combination']:"" ?></span>
                                     </div>
                                 </div>
                                 <div>
                                     <div><font id="snake_sp" color="#9999CC" size="-2">
-                                            <b>4. FP-Combination</b></font></div>
+                                            <b><?php echo __('4. FP-Combination'); ?></b></font></div>
                                    <div>
                                         <span><?php echo isset($inputed['fp_combination'])?$inputed['fp_combination']:"" ?></span>
                                     </div>
@@ -262,7 +262,7 @@
                         <div>&nbsp;</div>
                     </div>
                     <h2  class="heading">
-                        <div class="div-head"><div class="regisdivation-form-title">Purchase Information</div></div>
+                        <div class="div-head"><div class="regisdivation-form-title"><?php echo __("Purchase Information"); ?> </div></div>
                         <div  valign="top">&nbsp;</div>
                     </h2>
 
@@ -274,7 +274,7 @@
                     <div>
 
                         <div class="dt">
-                            <font id="dealer_sp" >*Date</font></div>
+                            <font id="dealer_sp" >*<?php echo __('Date')?></font></div>
                         <div class="dd">
                             <span><?php echo isset($inputed['date_of_purchase'])?$inputed['date_of_purchase']:"" ?></span>
                         </div>
@@ -282,7 +282,7 @@
                     <div>
 
                         <div class="dt">
-                            <font id="dealer_sp" >*Name of Dealer</font></div>
+                            <font id="dealer_sp" >*<?php echo __('Name of Dealer')?></font></div>
                         <div class="dd">
                             <span><?php echo isset($inputed['name_of_dealer'])?$inputed['name_of_dealer']:"" ?></span>
                         </div>
@@ -290,7 +290,7 @@
 
                     <div>
 
-                        <div class="dt">&nbsp;Invoice No.</div>
+                        <div class="dt">&nbsp;<?php echo __('Invoice No.')?></div>
                         <div class="dd">
                             <span><?php echo isset($inputed['invoice_no'])?$inputed['invoice_no']:"" ?></span>
                         </div>

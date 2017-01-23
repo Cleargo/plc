@@ -116,11 +116,11 @@ class Map extends \Magento\Framework\View\Element\Template
                 echo ")'>";
 
                 echo $location["address"];
-                echo '<br/>TEL:';
+                echo '<br/>'.__('TEL').':';
                 echo $location["telephone"];
                 echo '/';
                 echo $location["whatsapp"];
-                echo '(WHATSAPP)<br/>Business Hours:';
+                echo __('(WHATSAPP)').'<br/>'.__('Business Hours').':';
                 echo $location["office_hour"];
                 echo '</span>';
             }
@@ -142,11 +142,11 @@ class Map extends \Magento\Framework\View\Element\Template
                 echo ")'>";
 
                 echo $location["address"];
-                echo '<br/>TEL:';
+                echo '<br/>'.__('TEL').':';
                 echo $location["telephone"];
                 echo '/';
                 echo $location["whatsapp"];
-                echo '(WHATSAPP)<br/>Business Hours:';
+                echo __('(WHATSAPP)').'<br/>'.__('Business Hours').':';
                 echo $location["office_hour"];
                 echo '</span>';
             }
@@ -167,11 +167,11 @@ class Map extends \Magento\Framework\View\Element\Template
                 echo ")'>";
 
                 echo $location["address"];
-                echo '<br/>TEL:';
+                echo '<br/>'.__('TEL').':';
                 echo $location["telephone"];
                 echo '/';
                 echo $location["whatsapp"];
-                echo '(WHATSAPP)<br/>Business Hours:';
+                echo __('(WHATSAPP)').'<br/>'.__('Business Hours').':';
                 echo $location["office_hour"];
                 echo '</span>';
             }
