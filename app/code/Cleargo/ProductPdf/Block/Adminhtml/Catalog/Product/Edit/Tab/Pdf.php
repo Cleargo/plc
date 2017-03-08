@@ -27,13 +27,12 @@ class Pdf extends \Magento\Framework\View\Element\Template
     public function __construct(
         Context $context,
         Registry $registry,
-        \Magento\Framework\Data\Form\FormKey $formKey,
         \Cleargo\ProductPdf\Model\PdfRepository $_pdfRepository,
         array $data = []
     )
     {
         $this->_coreRegistry = $registry;
-        $this->formKey = $formKey;
+        $this->formKey = $context->getFormKey();
         $this->_pdfRepository = $_pdfRepository;
         parent::__construct($context, $data);
     }

@@ -62,10 +62,7 @@ class Index extends Template
 
     protected $_pdfCollectionFactory;
 
-    /**
-     * @var \Magento\Framework\Filesystem
-     */
-    protected $_filesystem;
+
 
     public function __construct(
         Context $context,
@@ -78,7 +75,6 @@ class Index extends Template
         attributeSetOptions $_attributeSetOptions,
         pdfCollectionFactory $_pdfCollectionFactory,
         productModel $_productModel,
-        Filesystem $_filesystem,
         array $data = []
     ) {
         $this->_searchCriteriaBuilder = $_searchCriteriaBuilder;
@@ -90,7 +86,6 @@ class Index extends Template
         $this->_attributeSetOptions = $_attributeSetOptions;
         $this->_pdfCollectionFactory = $_pdfCollectionFactory;
         $this->_productModel = $_productModel;
-        $this->_filesystem = $_filesystem;
         parent::__construct($context, $data);
     }
 
