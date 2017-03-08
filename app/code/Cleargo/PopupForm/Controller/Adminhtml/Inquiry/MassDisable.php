@@ -7,7 +7,7 @@ namespace Cleargo\PopupForm\Controller\Adminhtml\Inquiry;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Backend\App\Action\Context;
 use Magento\Ui\Component\MassAction\Filter;
-use Cleargo\PopupForm\Model\ResourceModel\PopupForm\CollectionFactory;
+use Cleargo\PopupForm\Model\ResourceModel\Inquiry\CollectionFactory;
 
 /**
  * Class MassDisable
