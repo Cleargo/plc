@@ -116,4 +116,7 @@ class MultipleSelect implements FilterTemplate {
             }
         }
     }
+    public function getTitle() {
+        return __('Swatches');
+    }
 }

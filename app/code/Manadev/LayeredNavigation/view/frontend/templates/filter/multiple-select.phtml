@@ -11,7 +11,7 @@
 <ol class="items">
     <?php foreach ($data as $item): ?>
         <?php if ($item['is_selected']) : ?>
-            <li class="m-selected item">
+            <li class="mana-selected item">
                 <a href="<?php echo $block->getRemoveItemUrl($engineFilter, $item) ?>">
                     <?php echo $block->escapeItemLabel($engineFilter, $item['label']) ?>
                     <?php if ($block->shouldDisplayProductCountOnLayer()): ?>

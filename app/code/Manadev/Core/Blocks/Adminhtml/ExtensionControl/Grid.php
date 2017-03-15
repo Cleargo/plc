@@ -5,18 +5,12 @@
  */
 namespace Manadev\Core\Blocks\Adminhtml\ExtensionControl;
 
-use Manadev\Core\Model\Source\Status;
-
 class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 {
     /**
      * @var \Magento\Framework\Data\CollectionFactory
      */
     private $collectionFactory;
-    /**
-     * @var Status
-     */
-    private $sourceStatus;
 
     /**
      * @param \Magento\Backend\Block\Template\Context $context
@@ -27,11 +21,9 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Backend\Helper\Data $backendHelper,
         \Manadev\Core\Resources\ExtensionCollectionFactory $collectionFactory,
-        Status $sourceStatus,
         array $data = []
     ) {
         $this->collectionFactory = $collectionFactory;
-        $this->sourceStatus = $sourceStatus;
         parent::__construct($context, $backendHelper, $data);
     }
 
@@ -51,86 +43,54 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
      */
     protected function _prepareCollection() {
         $collection = $this->collectionFactory->create();
-        $collection->setStore($this->_getStore());
+        $collection->setStore($this->getRequest()->getParam('store', 0));
         $this->setCollection($collection);
 
         parent::_prepareCollection();
-        $this->getCollection()->setOrder('order', 'ASC');
         return $this;
     }
 
-    /**
-     * @return $this
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
-     */
     protected function _prepareColumns() {
-        $this->addColumn(
-            'title',
-            [
-                'header' => __('Extension Name'),
-                'sortable' => false,
-                'filter' => false,
-                'index' => 'title',
-                'width' => '200px',
-                'align' => 'left',
-                'renderer' => '\Manadev\Core\Blocks\Adminhtml\ExtensionControl\Feature\ExtensionNameColumn',
-            ]
-        );
-        $this->addColumn(
-            'version',
-            [
-                'header' => __('Version'),
-                'sortable' => false,
-                'filter' => false,
-                'index' => 'version',
-                'width' => '200px',
-                'align' => 'left',
-            ]
-        );
-        $this->addColumn(
-            'is_enabled',
-            [
-                'header' => __('Status'),
-                'sortable' => false,
-                'filter' => false,
-                'name' => 'is_enabled',
-                'index' => 'is_enabled',
-                'width' => '50px',
-                'align' => 'left',
-                'type' => 'options',
-                'options' => $this->sourceStatus->getOptions(),
+        $this->addColumn('title', [
+            'header' => __('Extension Name'),
+            'sortable' => false,
+            'filter' => false,
+            'index' => 'title',
+            'width' => '200px',
+            'align' => 'left',
+            'renderer' => '\Manadev\Core\Blocks\Adminhtml\ExtensionControl\Feature\ExtensionNameColumn',
+        ]);
+        $this->addColumn('version', [
+            'header' => __('Installed Version'),
+            'sortable' => false,
+            'filter' => false,
+            'index' => 'version',
+            'width' => '200px',
+            'align' => 'left',
+        ]);
 
-                'editable' => true,
-                'edit_only' => true,
-                'renderer' => '\Manadev\Core\Blocks\Adminhtml\ExtensionControl\Feature\IsEnabledColumn',
-                'column_css_class' => 'mc-unit',
+        $this->addColumn('available_version', [
+            'header' => __('Available Version'),
+            'sortable' => false,
+            'filter' => false,
+            'index' => 'available_version',
+            'width' => '200px',
+            'align' => 'left',
+        ]);
+        $this->addColumn('is_enabled', [
+            'header' => __('Status'),
+            'sortable' => false,
+            'filter' => false,
+            'name' => 'is_enabled',
+            'width' => '50px',
+            'align' => 'left',
+            'renderer' => '\Manadev\Core\Blocks\Adminhtml\ExtensionControl\Feature\IsEnabledColumn',
+        ]);
 
-                'default_store_label' => __('Same for All Stores'),
-            ]
-        );
         return parent::_prepareColumns();
     }
 
-    public function getSerializeData() {
-        $items = [];
-        $extensionCollection = $this->collectionFactory->create();
-        $extensionCollection->setStore($this->_getStore());
-        foreach($extensionCollection->getItems() as $item) {
-            $item->setData('is_enabled', (string)$item->getData('is_enabled'));
-            $items[$item->getData('id')] = $item->toArray();
-        }
-        return $items;
-    }
-
-    /**
-     * @param \Manadev\Sorting\Models\Method $row
-     * @return string
-     */
     public function getRowUrl($row) {
         return '';
-    }
-
-    protected function _getStore() {
-        return $this->getRequest()->getParam('store', 0);
     }
 }

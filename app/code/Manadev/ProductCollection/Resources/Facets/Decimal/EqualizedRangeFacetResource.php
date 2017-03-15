@@ -25,18 +25,7 @@ class EqualizedRangeFacetResource extends FacetResource
 
     protected function expr(Select $select, Facet $facet) {
         /* @var $facet EqualizedRangeFacet */
-        $db = $this->getConnection();
-
-        $from = $select->getPart(Select::FROM);
-
-        if (!isset($from['eav'])) {
-            $select->joinInner(array('eav' => $this->getMainTable()),
-                "`eav`.`entity_id` = `e`.`entity_id` AND
-                {$db->quoteInto("`eav`.`attribute_id` = ?", $facet->getAttributeId())} AND
-                {$db->quoteInto("`eav`.`store_id` = ?", $this->getStoreId())}", null);
-        }
-
-        return "`eav`.`value`";
+        return $this->helperResource->getEavExpr($select, $this->getMainTable(), $facet->getAttributeId());
     }
 
     protected function statSelect(Select $select, Facet $facet) {

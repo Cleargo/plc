@@ -45,4 +45,6 @@ interface FilterTemplate {
     public function getAppliedItems(ProductCollection $productCollection, Filter $filter);
 
     public function isLabelHtmlEscaped();
+
+    public function getTitle();
 }

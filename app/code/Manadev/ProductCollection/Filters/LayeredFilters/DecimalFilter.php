@@ -23,12 +23,17 @@ class DecimalFilter extends Filter
      * @var string
      */
     protected $operation;
+    /**
+     * @var bool
+     */
+    protected $isToRangeInclusive;
 
-    public function __construct($name, $attributeId, $ranges, $operation = Operation::LOGICAL_OR) {
+    public function __construct($name, $attributeId, $ranges, $isToRangeInclusive = false, $operation = Operation::LOGICAL_OR) {
         parent::__construct($name);
         $this->attributeId = $attributeId;
         $this->ranges = $ranges;
         $this->operation = $operation;
+        $this->isToRangeInclusive = $isToRangeInclusive;
     }
 
     public function getType() {
@@ -45,5 +50,9 @@ class DecimalFilter extends Filter
 
     public function getOperation() {
         return $this->operation;
+    }
+
+    public function getIsToRangeInclusive() {
+        return $this->isToRangeInclusive;
     }
 }

@@ -104,6 +104,24 @@ class HelperResource extends Db\AbstractDb
         }
     }
 
+    public function formatCustomRangeFacet(&$item, $from, $to, $format, $showThousandSeparator) {
+        if($showThousandSeparator) {
+            $from = number_format($from);
+            $to = number_format($to);
+        }
+        $item['label'] = __("%1 - %2", str_replace("0", $from, $format), str_replace("0", $to, $format));
+        if (!isset($item['value'])) {
+            $item['value'] = "{$from}-{$to}";
+        }
+    }
+
+    public function formatDropdownRangeFacet(&$item, $from, $to) {
+        $item['label'] = __("%1 - %2", $from, $to);
+        if (!isset($item['value'])) {
+            $item['value'] = "{$from}-{$to}";
+        }
+    }
+
     public function clearFacetSelect(Select $select) {
         $select->reset(Select::COLUMNS);
         $select->reset(Select::ORDER);
@@ -169,6 +187,22 @@ class HelperResource extends Db\AbstractDb
         return function (Filter $filter) {
             return strpos($filter->getFullName(), 'layered_nav_') !== 0;
         };
+    }
+
+    public function getEavExpr(Select $select, $tableName, $attributeId){
+        $storeId = $this->storeManager->getStore()->getId();
+        $db = $this->getConnection();
+
+        $from = $select->getPart(Select::FROM);
+
+        if (!isset($from['eav'])) {
+            $select->joinInner(array('eav' => $tableName),
+                "`eav`.`entity_id` = `e`.`entity_id` AND
+                {$db->quoteInto("`eav`.`attribute_id` = ?", $attributeId)} AND
+                {$db->quoteInto("`eav`.`store_id` = ?", $storeId)}", null);
+        }
+
+        return "`eav`.`value`";
     }
 
 }

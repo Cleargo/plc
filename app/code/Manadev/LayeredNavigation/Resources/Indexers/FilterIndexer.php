@@ -12,6 +12,7 @@ use Magento\Store\Model\Store;
 use Magento\Store\Model\StoreManagerInterface;
 use Manadev\Core\Exceptions\NotImplemented;
 use Manadev\Core\QueryLogger;
+use Manadev\LayeredNavigation\Models\Filter;
 use Manadev\LayeredNavigation\Registries\FilterIndexers\PrimaryFilterIndexers;
 use Manadev\LayeredNavigation\Registries\FilterIndexers\SecondaryFilterIndexers;
 use Psr\Log\LoggerInterface as Logger;
@@ -130,37 +131,45 @@ class FilterIndexer extends Db\AbstractDb {
     }
 
     /**
-     * Called when store configuration changes. Checks if changed store
-     * configuration affect this indexer and if so indexes dependent data
-     * sources and all store level settings
-     *
-     * @param bool|string[] $paths
-     * @param int $storeId If 0, global and store level settings are indexed,
-     *                     otherwise only settings on specified store level
-     *                     are indexed.
-     * @param bool $useTransaction
-     * @throws Exception
+     * @param $model Filter
+     * @return array
      */
-    public function reindexChangedStoreConfiguration($paths = false,
-        $storeId = 0, $useTransaction = true)
-    {
-        throw new NotImplemented();
-        /*if (!$paths) {
-            // get keys from table which tracks changes in store configuration
-        }
+    public function loadDefaults($model) {
+        $result = [];
+        $changes = [
+            'filters' => [$model->getData('filter_id') => "'" . $model->getData('unique_key') . "'"],
+            'store' => $model->getData('store_id'),
+            'load_defaults' => true,
+        ];
 
-        $allIndexers = $this->indexerManager->getList();
-        $indexers = [];
-        foreach($allIndexers as $indexerName => $dataSource) {
-            if (count(array_intersect($paths,
-                $dataSource->getUsedStoreConfigPaths()))) {
-                $indexers[] = $indexerName;
+        if (!$model->getData('store_id')) {
+            foreach ($this->primaryFilterIndexers->getList() as $indexer) {
+                $this->mergeDefaults($result, $indexer->index($changes));
+            }
+
+            foreach ($this->secondaryFilterIndexers->getList() as $indexer) {
+                $this->mergeDefaults($result, $indexer->index($changes));
             }
         }
+        else {
+            $this->mergeDefaults($result, $this->indexForStore($this->storeManager->getStore($changes['store']), $changes));
+        }
 
-        if (count($indexers)) {
-            $this->index(['dataSources' => $indexers, 'store' => $storeId], $useTransaction);
-        }*/
+        return $model->getResource()->filterData($model, $result);
+    }
+
+
+    protected function mergeDefaults(&$result, $select) {
+        $db = $this->getConnection();
+
+        if (!$select) {
+            return;
+        }
+
+        $data = $db->fetchRow($select);
+        if (!empty($data)) {
+            $result = array_merge($result, $data);
+        }
     }
 
     protected function index($changes = ['all'], $useTransaction = true) {
@@ -168,7 +177,7 @@ class FilterIndexer extends Db\AbstractDb {
             $this->queryLogger->begin('filter-index');
         }
         // Clear config cache if config is not set
-        if(is_null($this->configuration->getDefaultShowIn())) {
+        if(is_null($this->configuration->getDefaultShowInMainSidebar())) {
             $this->cacheTypeList->cleanType('config');
             throw new Exception('Manadev_LayeredNavigation config is not yet set. Please try again.');
         }
@@ -246,31 +255,91 @@ class FilterIndexer extends Db\AbstractDb {
     /**
      * @param Store $store
      * @param array $changes
+     * @return \Magento\Framework\DB\Select
      */
     protected function indexForStore($store, $changes = ['all']) {
         $db = $this->getConnection();
 
-        $fields = [
-            'edit_id' => new Zend_Db_Expr("`fse`.`id`"),
-            'filter_id' => new Zend_Db_Expr("`fg`.`id`"),
-            'store_id' => new Zend_Db_Expr($store->getId()),
-            'is_deleted' => new Zend_Db_Expr("0"),
-            'attribute_id' => new Zend_Db_Expr("`fg`.`attribute_id`"),
-            'attribute_code' => new Zend_Db_Expr("`fg`.`attribute_code`"),
-            'swatch_input_type' => new Zend_Db_Expr("`fg`.`swatch_input_type`"),
-            'unique_key' => new Zend_Db_Expr("CONCAT(`fg`.`unique_key`, '-{$store->getId()}')"),
-            'param_name' => new Zend_Db_Expr("`fg`.`param_name`"),
-            'type' => new Zend_Db_Expr("`fg`.`type`"),
+        if (empty($changes['load_defaults'])) {
+            $fields = [
+                'edit_id' => new Zend_Db_Expr("`fse`.`id`"),
+                'filter_id' => new Zend_Db_Expr("`fg`.`id`"),
+                'store_id' => new Zend_Db_Expr($store->getId()),
+                'is_deleted' => new Zend_Db_Expr("0"),
+                'attribute_id' => new Zend_Db_Expr("`fg`.`attribute_id`"),
+                'attribute_code' => new Zend_Db_Expr("`fg`.`attribute_code`"),
+                'swatch_input_type' => new Zend_Db_Expr("`fg`.`swatch_input_type`"),
+                'unique_key' => new Zend_Db_Expr("CONCAT(`fg`.`unique_key`, '-{$store->getId()}')"),
+                'param_name' => new Zend_Db_Expr("COALESCE(`fse`.`param_name`, `fg`.`param_name`)"),
+                'type' => new Zend_Db_Expr("`fg`.`type`"),
 
-            'title' => new Zend_Db_Expr("COALESCE(`fse`.`title`, `al`.`value`, `fg`.`title`)"),
-            'position' => new Zend_Db_Expr("COALESCE(`fse`.`position`, `fg`.`position`)"),
-            'template' => new Zend_Db_Expr("COALESCE(`fse`.`template`, `fg`.`template`)"),
-            'show_in' => new Zend_Db_Expr("COALESCE(`fse`.`show_in`, `fg`.`show_in`)"),
-            'is_enabled_in_categories' => new Zend_Db_Expr("COALESCE(`fse`.`is_enabled_in_categories`, `fg`.`is_enabled_in_categories`)"),
-            'is_enabled_in_search' => new Zend_Db_Expr("COALESCE(`fse`.`is_enabled_in_search`, `fg`.`is_enabled_in_search`)"),
-            'minimum_product_count_per_option' => new Zend_Db_Expr("COALESCE(`fse`.`minimum_product_count_per_option`,
-                `fg`.`minimum_product_count_per_option`)"),
-        ];
+                'title' => new Zend_Db_Expr("COALESCE(`fse`.`title`, `al`.`value`, `fg`.`title`)"),
+                'position' => new Zend_Db_Expr("COALESCE(`fse`.`position`, `fg`.`position`)"),
+                'template' => new Zend_Db_Expr("COALESCE(`fse`.`template`, `fg`.`template`)"),
+                'show_in_main_sidebar' => new Zend_Db_Expr("COALESCE(`fse`.`show_in_main_sidebar`, `fg`.`show_in_main_sidebar`)"),
+                'show_in_additional_sidebar' => new Zend_Db_Expr("COALESCE(`fse`.`show_in_additional_sidebar`, `fg`.`show_in_additional_sidebar`)"),
+                'show_above_products' => new Zend_Db_Expr("COALESCE(`fse`.`show_above_products`, `fg`.`show_above_products`)"),
+                'show_on_mobile' => new Zend_Db_Expr("COALESCE(`fse`.`show_on_mobile`, `fg`.`show_on_mobile`)"),
+                'is_enabled_in_categories' => new Zend_Db_Expr("COALESCE(`fse`.`is_enabled_in_categories`, `fg`.`is_enabled_in_categories`)"),
+                'is_enabled_in_search' => new Zend_Db_Expr("COALESCE(`fse`.`is_enabled_in_search`, `fg`.`is_enabled_in_search`)"),
+                'minimum_product_count_per_option' => new Zend_Db_Expr("COALESCE(`fse`.`minimum_product_count_per_option`,
+                    `fg`.`minimum_product_count_per_option`)"),
+
+                'calculate_slider_min_max_based_on' => new Zend_Db_Expr("COALESCE(`fse`.`calculate_slider_min_max_based_on`,
+                    `fg`.`calculate_slider_min_max_based_on`)"),
+                'number_format' => new Zend_Db_Expr("COALESCE(`fse`.`number_format`, `fg`.`number_format`)"),
+                'decimal_digits' => new Zend_Db_Expr("COALESCE(`fse`.`decimal_digits`, `fg`.`decimal_digits`)"),
+                'is_two_number_formats' => new Zend_Db_Expr("COALESCE(`fse`.`is_two_number_formats`, `fg`.`is_two_number_formats`)"),
+                'use_second_number_format_on' => new Zend_Db_Expr("COALESCE(`fse`.`use_second_number_format_on`, `fg`.`use_second_number_format_on`)"),
+                'second_number_format' => new Zend_Db_Expr("COALESCE(`fse`.`second_number_format`, `fg`.`second_number_format`)"),
+                'second_decimal_digits' => new Zend_Db_Expr("COALESCE(`fse`.`second_decimal_digits`, `fg`.`second_decimal_digits`)"),
+                'show_thousand_separator' => new Zend_Db_Expr("COALESCE(`fse`.`show_thousand_separator`, `fg`.`show_thousand_separator`)"),
+                'is_slide_on_existing_values' => new Zend_Db_Expr("COALESCE(`fse`.`is_slide_on_existing_values`, `fg`.`is_slide_on_existing_values`)"),
+                'is_manual_range' => new Zend_Db_Expr("COALESCE(`fse`.`is_manual_range`, `fg`.`is_manual_range`)"),
+                'slider_style' => new Zend_Db_Expr("COALESCE(`fse`.`slider_style`, `fg`.`slider_style`)"),
+                'min_max_role' => new Zend_Db_Expr("COALESCE(`fse`.`min_max_role`, `fg`.`min_max_role`)"),
+                'min_slider_code' => new Zend_Db_Expr("COALESCE(`fse`.`min_slider_code`, `fg`.`min_slider_code`)"),
+            ];
+        }
+        else {
+            $fields = [
+                'edit_id' => new Zend_Db_Expr("NULL"),
+                'filter_id' => new Zend_Db_Expr("`fg`.`id`"),
+                'store_id' => new Zend_Db_Expr($store->getId()),
+                'is_deleted' => new Zend_Db_Expr("0"),
+                'attribute_id' => new Zend_Db_Expr("`fg`.`attribute_id`"),
+                'attribute_code' => new Zend_Db_Expr("`fg`.`attribute_code`"),
+                'swatch_input_type' => new Zend_Db_Expr("`fg`.`swatch_input_type`"),
+                'unique_key' => new Zend_Db_Expr("CONCAT(`fg`.`unique_key`, '-{$store->getId()}')"),
+                'param_name' => new Zend_Db_Expr("`fg`.`param_name`"),
+                'type' => new Zend_Db_Expr("`fg`.`type`"),
+
+                'title' => new Zend_Db_Expr("COALESCE(`al`.`value`, `fg`.`title`)"),
+                'position' => new Zend_Db_Expr("`fg`.`position`"),
+                'template' => new Zend_Db_Expr("`fg`.`template`"),
+                'show_in_main_sidebar' => new Zend_Db_Expr("`fg`.`show_in_main_sidebar`"),
+                'show_in_additional_sidebar' => new Zend_Db_Expr("`fg`.`show_in_additional_sidebar`"),
+                'show_above_products' => new Zend_Db_Expr("`fg`.`show_above_products`"),
+                'show_on_mobile' => new Zend_Db_Expr("`fg`.`show_on_mobile`"),
+                'is_enabled_in_categories' => new Zend_Db_Expr("`fg`.`is_enabled_in_categories`"),
+                'is_enabled_in_search' => new Zend_Db_Expr("`fg`.`is_enabled_in_search`"),
+                'minimum_product_count_per_option' => new Zend_Db_Expr("`fg`.`minimum_product_count_per_option`"),
+
+                'calculate_slider_min_max_based_on' => new Zend_Db_Expr("`fg`.`calculate_slider_min_max_based_on`"),
+                'number_format' => new Zend_Db_Expr("`fg`.`number_format`"),
+                'decimal_digits' => new Zend_Db_Expr("`fg`.`decimal_digits`"),
+                'is_two_number_formats' => new Zend_Db_Expr("`fg`.`is_two_number_formats`"),
+                'use_second_number_format_on' => new Zend_Db_Expr("`fg`.`use_second_number_format_on`"),
+                'second_number_format' => new Zend_Db_Expr("`fg`.`second_number_format`"),
+                'second_decimal_digits' => new Zend_Db_Expr("`fg`.`second_decimal_digits`"),
+                'show_thousand_separator' => new Zend_Db_Expr("`fg`.`show_thousand_separator`"),
+                'is_slide_on_existing_values' => new Zend_Db_Expr("`fg`.`is_slide_on_existing_values`"),
+                'is_manual_range' => new Zend_Db_Expr("`fg`.`is_manual_range`"),
+                'slider_style' => new Zend_Db_Expr("`fg`.`slider_style`"),
+                'min_max_role' => new Zend_Db_Expr("`fg`.`min_max_role`"),
+                'min_slider_code' => new Zend_Db_Expr("`fg`.`min_slider_code`"),
+            ];
+        }
 
         $select = $db->select()
             ->distinct()
@@ -282,14 +351,18 @@ class FilterIndexer extends Db\AbstractDb {
                 $db->quoteInto("`al`.`attribute_id` = `fg`.`attribute_id` AND `al`.`store_id` = ?", $store->getId()), null)
             ->columns($fields);
 
-        if ($whereClause = $this->scope->limitStoreLevelIndexing($changes)) {
+        if ($whereClause = $this->scope->limitStoreLevelIndexing($changes, $fields)) {
             $select->where($whereClause);
         }
 
-        // convert SELECT into UPDATE which acts as INSERT on DUPLICATE unique keys
-        $sql = $select->insertFromSelect($this->getMainTable(), array_keys($fields));
+        if (empty($changes['load_defaults'])) {
+            // convert SELECT into UPDATE which acts as INSERT on DUPLICATE unique keys
+            $sql = $select->insertFromSelect($this->getMainTable(), array_keys($fields));
 
-        // run the statement
-        $db->query($sql);
+            // run the statement
+            $db->query($sql);
+        }
+
+        return $select;
     }
 }

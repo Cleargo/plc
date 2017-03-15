@@ -6,6 +6,8 @@
 
 namespace Manadev\LayeredNavigation\Contracts;
 
+use Manadev\LayeredNavigation\Sources\TemplateSource;
+
 interface FilterTemplates {
     /**
      * Returns filter template by its internal name. Returns false if no filter template with specified name is
@@ -15,4 +17,14 @@ interface FilterTemplates {
      * @return bool|FilterTemplate
      */
     public function get($type);
+
+    /**
+     * @return FilterTemplate[]
+     */
+    public function getList();
+
+    /**
+     * @return TemplateSource
+     */
+    public function getSource();
 }

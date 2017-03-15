@@ -8,6 +8,8 @@
 namespace Manadev\LayeredNavigation\Contracts;
 
 
+use Manadev\LayeredNavigation\Models\Filter;
+
 interface FilterIndexer {
     /**
      * Returns array of store configuration paths which are used in `index`
@@ -19,6 +21,7 @@ interface FilterIndexer {
     /**
      * Inserts or updates records in `mana_filter` table on global level
      * @param array $changes
+     * @return \Magento\Framework\DB\Select
      */
     public function index($changes = ['all']);
 }

@@ -27,4 +27,14 @@ class DropdownFilter implements FilterType {
     public function getTemplates() {
         return $this->templates;
     }
+
+    /**
+     * Returns (possible modified) array of field definitions tailored for this filter type.
+     *
+     * @param array $fields
+     * @return array
+     */
+    public function refineFields($fields) {
+        return $fields;
+    }
 }

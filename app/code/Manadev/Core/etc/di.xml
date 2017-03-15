@@ -10,44 +10,8 @@
     <type name="Magento\Framework\Console\CommandList">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="manaSaveConfigCommand" xsi:type="object">Manadev\Core\ConsoleCommands\SaveConfigCommand</item>
                 <item name="manaExtensionStatusUpdateCommand" xsi:type="object">Manadev\Core\ConsoleCommands\ExtensionStatusUpdateCommand</item>
                 <item name="manaPostInstallCommand" xsi:type="object">Manadev\Core\ConsoleCommands\PostInstallCommand</item>
-            </argument>
-        </arguments>
-    </type>
-    <type name="Manadev\Core\Registries\ConfigurationReaders">
-        <arguments>
-            <argument name="readers" xsi:type="array">
-                <item name="system" xsi:type="string">Magento\Config\Model\Config\Structure\Reader</item>
-                <item name="menu" xsi:type="string">Magento\Backend\Model\Menu\Config\Reader</item>
-                <item name="catalog_attribute" xsi:type="string">Magento\Catalog\Model\Attribute\Config\Reader</item>
-                <item name="product_options" xsi:type="string">Magento\Catalog\Model\ProductOptions\Config\Reader</item>
-                <item name="product_types" xsi:type="string">Magento\Catalog\Model\ProductTypes\Config\Reader</item>
-                <item name="crontab" xsi:type="string">Magento\Cron\Model\Config\Reader\Xml</item>
-                <item name="cron_groups" xsi:type="string">Magento\Cron\Model\Groups\Config\Reader\Xml</item>
-                <item name="zip_codes" xsi:type="string">Magento\Directory\Model\Country\Postcode\Config\Reader</item>
-                <item name="email_templates" xsi:type="string">Magento\Email\Model\Template\Config\Reader</item>
-                <item name="export" xsi:type="string">Magento\ImportExport\Model\Export\Config\Reader</item>
-                <item name="import" xsi:type="string">Magento\ImportExport\Model\Import\Config\Reader</item>
-                <item name="indexer" xsi:type="string">Magento\Indexer\Model\Config\Reader</item>
-                <item name="integration-config" xsi:type="string">Magento\Integration\Model\Config\Reader</item>
-                <item name="integration-api" xsi:type="string">Magento\Integration\Model\Config\Integration\Reader</item>
-                <!--<item name="paypal-rules" xsi:type="string">Magento\Paypal\Model\Config\Rules\Reader</item>-->
-                <item name="sales" xsi:type="string">Magento\Sales\Model\Config\Reader</item>
-                <item name="webapi" xsi:type="string">Magento\Webapi\Model\Config\Reader</item>
-                <item name="widget" xsi:type="string">Magento\Widget\Model\Config\Reader</item>
-                <item name="acl" xsi:type="string">Magento\Framework\Acl\Resource\Config\Reader\Filesystem</item>
-                <item name="extension_attributes" xsi:type="string">Magento\Framework\Api\ExtensionAttribute\Config\Reader</item>
-                <item name="config" xsi:type="string">Magento\Framework\App\Config\Initial\Reader</item>
-                <item name="resources" xsi:type="string">Magento\Framework\App\Resource\Config\Reader</item>
-                <item name="routes" xsi:type="string">Magento\Framework\App\Route\Config\Reader</item>
-                <item name="cache" xsi:type="string">Magento\Framework\Cache\Config\Reader</item>
-                <item name="events" xsi:type="string">Magento\Framework\Event\Config\Reader</item>
-                <item name="mview" xsi:type="string">Magento\Framework\Mview\Config\Reader</item>
-                <item name="feldset" xsi:type="string">Magento\Framework\Object\Copy\Config\Reader</item>
-                <item name="di" xsi:type="string">Magento\Framework\ObjectManager\Config\Reader\Dom</item>
-                <item name="search_request" xsi:type="string">Magento\Framework\Search\Request\Config\FilesystemReader</item>
             </argument>
         </arguments>
     </type>
@@ -66,27 +30,13 @@
         </arguments>
     </type>
 
-    <type name="Manadev\Core\ConsoleCommands\SaveConfigCommand">
-        <arguments>
-            <argument name="scopes" xsi:type="array">
-                <item name="adminhtml" xsi:type="string" />
-                <item name="frontend" xsi:type="string" />
-                <item name="primary" xsi:type="string" />
-            </argument>
-        </arguments>
-    </type>
-    <type name="Manadev\Core\Model\Feature\Config\Reader">
-        <arguments>
-            <argument name="fileResolver" xsi:type="object">Manadev\Core\Model\Feature\Config\FileResolver</argument>
-        </arguments>
-    </type>
     <!-- Plugins -->
 
     <type name="Magento\Framework\DB\LoggerInterface">
         <plugin name="Manadev\Core" type="Manadev\Core\Plugins\DbLogger" />
     </type>
     <type name="Magento\Catalog\Block\Product\ListProduct">
-        <plugin name="Manadev\Core" type="Manadev\Core\Plugins\ProductListBlock" />
+        <plugin name="Manadev\Core\Plugins\ProductListBlock" type="Manadev\Core\Plugins\ProductListBlock" />
     </type>
     <type name="Magento\Framework\View\Design\FileResolution\Fallback\Resolver\Simple">
         <plugin name="Manadev\Core" type="Manadev\Core\Plugins\ThemeFileResolver" />
@@ -94,14 +44,18 @@
     <type name="Magento\Framework\View\Element\Template\File\Validator">
         <plugin name="Manadev\Core" type="Manadev\Core\Plugins\TemplateFileValidator" />
     </type>
-    <type name="Magento\Framework\View\File\Collector\Decorator\ModuleOutput">
-        <plugin name="Manadev\Core" type="Manadev\Core\Plugins\ModuleOutput"/>
+    <type name="Magento\Framework\View\Element\Template">
+        <plugin name="Manadev\Core\Plugins\ViewWithTemplate" type="Manadev\Core\Plugins\ViewWithTemplate"/>
     </type>
-
     <type name="Magento\Framework\App\Route\Config\Reader">
         <plugin name="Manadev\Core" type="Manadev\Core\Plugins\RouteConfigReader" />
     </type>
+    <type name="Magento\Framework\View\Layout\GeneratorPool">
+        <plugin name="Manadev\Core\Plugins\LayoutGeneratorPool" type="Manadev\Core\Plugins\LayoutGeneratorPool"/>
+    </type>
 
     <!-- Preferences -->
+
     <preference for="Magento\Indexer\Model\Config\Data" type="Manadev\Core\Preferences\IndexerConfigData" />
+
 </config>

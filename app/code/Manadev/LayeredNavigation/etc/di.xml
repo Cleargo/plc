@@ -1,3 +1,9 @@
+<!--
+ @category    Mana
+ @package     Manadev_LayeredNavigation
+ @copyright   Copyright (c) http://www.manadev.com
+ @license     http://www.manadev.com/license  Proprietary License
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <!--
         Registries
@@ -32,6 +38,7 @@
     </type>
     <type name="Manadev\LayeredNavigation\Registries\FilterTemplates\CategoryFilterTemplates">
         <arguments>
+            <argument name="defaultFilterTemplate" xsi:type="string">text_single_select</argument>
             <argument name="filterTemplates" xsi:type="array">
                 <item name="text_single_select" xsi:type="object">Manadev\LayeredNavigation\FilterTemplates\Category\TextSingleSelect</item>
             </argument>
@@ -39,6 +46,7 @@
     </type>
     <type name="Manadev\LayeredNavigation\Registries\FilterTemplates\DropdownFilterTemplates">
         <arguments>
+            <argument name="defaultFilterTemplate" xsi:type="string">text_multiple_select</argument>
             <argument name="filterTemplates" xsi:type="array">
                 <item name="text_multiple_select" xsi:type="object">Manadev\LayeredNavigation\FilterTemplates\Dropdown\TextMultipleSelect</item>
             </argument>
@@ -46,13 +54,16 @@
     </type>
     <type name="Manadev\LayeredNavigation\Registries\FilterTemplates\SwatchFilterTemplates">
         <arguments>
+            <argument name="defaultFilterTemplate" xsi:type="string">swatch_multiple_select</argument>
             <argument name="filterTemplates" xsi:type="array">
                 <item name="swatch_multiple_select" xsi:type="object">Manadev\LayeredNavigation\FilterTemplates\Swatch\MultipleSelect</item>
+                <item name="text_multiple_select" xsi:type="object">Manadev\LayeredNavigation\FilterTemplates\Dropdown\TextMultipleSelect</item>
             </argument>
         </arguments>
     </type>
     <type name="Manadev\LayeredNavigation\Registries\FilterTemplates\PriceFilterTemplates">
         <arguments>
+            <argument name="defaultFilterTemplate" xsi:type="string">text_multiple_select</argument>
             <argument name="filterTemplates" xsi:type="array">
                 <item name="text_multiple_select" xsi:type="object">Manadev\LayeredNavigation\FilterTemplates\Price\TextMultipleSelect</item>
             </argument>
@@ -60,6 +71,7 @@
     </type>
     <type name="Manadev\LayeredNavigation\Registries\FilterTemplates\DecimalFilterTemplates">
         <arguments>
+            <argument name="defaultFilterTemplate" xsi:type="string">text_multiple_select</argument>
             <argument name="filterTemplates" xsi:type="array">
                 <item name="text_multiple_select" xsi:type="object">Manadev\LayeredNavigation\FilterTemplates\Decimal\TextMultipleSelect</item>
             </argument>
@@ -80,5 +92,9 @@
 
     <type name="Magento\Framework\View\Result\Layout">
         <plugin name="Manadev\LayeredNavigation" type="Manadev\LayeredNavigation\Plugins\ResultLayoutView" />
+    </type>
+
+    <type name="Magento\Config\Model\Config">
+        <plugin name="Manadev\LayeredNavigation" type="Manadev\LayeredNavigation\Plugins\ConfigModel" />
     </type>
 </config>

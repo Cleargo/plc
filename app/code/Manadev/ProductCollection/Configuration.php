@@ -16,6 +16,7 @@ class Configuration
     const DEFAULT_PRICE_NAVIGATION_STEP = 'catalog/layered_navigation/price_range_step';
     const MAX_NUMBER_OF_PRICE_INTERVALS = 'catalog/layered_navigation/price_range_max_intervals';
     const PRICE_RANGE_CALCULATION_METHOD = 'catalog/layered_navigation/price_range_calculation';
+    const PRODUCT_COLLECTION_QUERY_LOGGING = 'mana_core/log/product_collection_queries';
 
     /**
      * @var ScopeConfigInterface
@@ -55,5 +56,9 @@ class Configuration
 
     public function getPriceRangeCalculationMethod() {
         return $this->scopeConfig->getValue(static::PRICE_RANGE_CALCULATION_METHOD, ScopeInterface::SCOPE_STORE);
+    }
+
+    public function isProductCollectionQueryLoggingEnabled() {
+        return $this->scopeConfig->isSetFlag(static::PRODUCT_COLLECTION_QUERY_LOGGING);
     }
 }

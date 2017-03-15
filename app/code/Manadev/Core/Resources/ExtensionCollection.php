@@ -5,34 +5,24 @@
  */
 namespace Manadev\Core\Resources;
 
+use Magento\Framework\Data\Collection;
 use Magento\Framework\Data\Collection\EntityFactoryInterface;
 use Magento\Framework\DataObject;
-use Manadev\Core\Helper\LetterCase;
-use Manadev\Core\Model\Extension;
-use Symfony\Component\Config\Definition\Exception\Exception;
+use Manadev\Core\Features;
+use Exception;
 
-class ExtensionCollection extends Virtual\Collection
+class ExtensionCollection extends Collection
 {
     protected $_store;
     /**
-     * @var \Manadev\Core\Model\Extension\Config
+     * @var Features
      */
-    private $extensionConfig;
+    protected $features;
 
-    /**
-     * @param EntityFactoryInterface $entityFactory
-     * @param LetterCase $caseHelper
-     * @param \Manadev\Core\Auth $auth
-     * @param \Manadev\Core\Model\Extension\Config $extensionConfig
-     * @param \Manadev\Core\Model\ExtensionFactory $extensionFactory
-     */
-    public function __construct(
-        EntityFactoryInterface $entityFactory,
-        LetterCase $caseHelper,
-        \Manadev\Core\Model\Feature\Config $extensionConfig
-    ) {
-        $this->extensionConfig = $extensionConfig;
-        parent::__construct($entityFactory, $caseHelper);
+    public function __construct(EntityFactoryInterface $entityFactory, Features $features)
+    {
+        parent::__construct($entityFactory);
+        $this->features = $features;
     }
 
     public function setStore($store_id) {
@@ -44,28 +34,147 @@ class ExtensionCollection extends Virtual\Collection
         return $this->_store;
     }
 
-    protected function _addMissingOriginalItems() {
+    protected function sort(&$features) {
+        uasort($features, function($a, $b) {
+            if (!isset($a['sort_order'])) return 1;
+            if (!isset($b['sort_order'])) return -1;
+
+            if (intval($a['sort_order']) < intval($b['sort_order'])) return -1;
+            if (intval($a['sort_order']) > intval($b['sort_order'])) return 1;
+
+            return 0;
+        });
+    }
+    public function loadData($printQuery = false, $logQuery = false) {
+        if ($this->_isCollectionLoaded) {
+            return $this;
+        }
+
         if(is_null($this->getStore())) {
             throw new Exception(__(sprintf("You must call setStore(...) before calling load() on %s objects.", get_class($this))));
         }
 
-        $x = 0;
-        foreach ($this->extensionConfig->getExtensions($this->getStore()) as $extension) {
-            $extension->setData('order', $x++);
-            $extension->setData('is_extension', true);
-            $this->addItem($extension);
-            /** @var Extension $feature */
-            foreach($extension->getData('features') as $feature) {
-                $feature->setData('order', $x++);
-                $feature->setData('is_extension', false);
-                if(isset($this->_items[$feature->getId()])) {
-                    // Append order to id so it becomes string instead of integer.
-                    // The purpose is in `Manadev\Core\Blocks\Adminhtml\ExtensionControl\Feature\IsEnabledColumn` where non-numeric id's are disabled
-                    $feature->setData('id', $feature->getId().'-'.$x);
+        $features = $this->getFeatures();
+
+        foreach ($features as $extensionName => $extension) {
+            if (!$this->isExtension($features, $extensionName)) {
+                continue;
+            }
+
+            $version = $extension['version'];
+            foreach ($features as $featureName => $feature) {
+                if (!$this->isFeature($features, $extensionName, $featureName)) {
+                    continue;
                 }
-                $this->addItem($feature);
+
+                if (version_compare($version, $feature['version']) < 0) {
+                    $version = $feature['version'];
+                }
+            }
+
+            $this->addItem(new DataObject(array_merge($extension,
+                ['name' => $extensionName, 'is_extension' => true, 'version' => $version])));
+
+            foreach ($features as $featureName => $feature) {
+                if (empty($feature['enabled']) || empty($feature['title'])) {
+                    continue;
+                }
+
+                if (!$this->isFeature($features, $extensionName, $featureName)) {
+                    continue;
+                }
+
+                $this->addItem(new DataObject(array_merge($feature, ['name' => $featureName,'version' => ''])));
             }
         }
+
+        $this->_isCollectionLoaded = true;
         return $this;
+    }
+
+    protected function isFeature($features, $extensionName, $featureName) {
+        if ($extensionName == $featureName) {
+            return false;
+        }
+
+        if (!($module = $this->features->getModule($extensionName))) {
+            return false;
+        }
+
+        if (!isset($features[$extensionName])) {
+            return false;
+        }
+
+        foreach ($module['sequence'] as $name) {
+            if ($name == $featureName) {
+                return true;
+            }
+            if ($this->isFeature($features, $name, $featureName)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    protected function getFeatures() {
+        $features = $this->features->getAvailableFeatures(0, $this->getStore());
+        if ($this->getStore()) {
+            $localFeatures = $this->features->getAvailableFeatures($this->getStore(), $this->getStore());
+            foreach ($features as $featureName => &$feature) {
+                if (!isset($localFeatures[$featureName])) {
+                    continue;
+                }
+
+                if (isset($localFeatures[$featureName]['disabled'])) {
+                    $feature['locally_disabled'] = $localFeatures[$featureName]['disabled'];
+                }
+
+                if (!empty($localFeatures[$featureName]['manually_disabled'])) {
+                    $feature['locally_manually_disabled'] = true;
+                }
+            }
+
+            $globalFeatures = $this->features->getAvailableFeatures(0, 0);
+            foreach ($features as $featureName => &$feature) {
+                if (!isset($globalFeatures[$featureName])) {
+                    continue;
+                }
+
+                if (!empty($globalFeatures[$featureName]['disabled'])) {
+                    $feature['globally_disabled'] = true;
+                }
+
+                if (!empty($globalFeatures[$featureName]['manually_disabled'])) {
+                    $feature['globally_manually_disabled'] = true;
+                }
+            }
+        }
+        $this->sort($features);
+
+        return $features;
+    }
+
+    protected function isExtension($features, $featureName) {
+        if (!isset($features[$featureName])) {
+            return false;
+        }
+
+        $feature = $features[$featureName];
+        if (empty($feature['code']) || empty($feature['enabled'])) {
+            return false;
+        }
+
+        foreach (array_keys($feature) as $key) {
+            if (strpos($key, 'removed_by_') !== 0) {
+                continue;
+            }
+
+            if ($this->isExtension($features, substr($key, strlen('removed_by_')))) {
+                return false;
+            }
+        }
+        return true;
+
     }
 }

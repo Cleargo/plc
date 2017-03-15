@@ -1,27 +1,46 @@
 <?xml version="1.0"?>
 <!--
-/**
- * Copyright © 2015 Magento. All rights reserved.
- * See COPYING.txt for license details.
- */
+ @category    Mana
+ @package     Manadev_LayeredNavigation
+ @copyright   Copyright (c) http://www.manadev.com
+ @license     http://www.manadev.com/license  Proprietary License
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <mana_core>
-            <log>
-                <filter_index_queries>1</filter_index_queries>
-            </log>
-            <debug>
-                <product_list_select>1</product_list_select>
-            </debug>
-        </mana_core>
+        <manadev_features>
+            <Manadev_LayeredNavigation>
+                <version>16.12.0521</version>
+                <code>layered-navigation-filters-multiple-select-magento-2</code>
+                <title>Layered Navigation (Filters) with Multiple Select</title>
+                <sort_order>200</sort_order>
+            </Manadev_LayeredNavigation>
+        </manadev_features>
         <mana_layered_navigation>
-            <display>
-                <default_dropdown_template>text_multiple_select</default_dropdown_template>
-                <default_swatch_template>swatch_multiple_select</default_swatch_template>
-                <default_decimal_template>text_multiple_select</default_decimal_template>
-                <default_show_in>left</default_show_in>
-            </display>
+            <default_templates>
+                <dropdown>text_multiple_select</dropdown>
+                <swatch>swatch_multiple_select</swatch>
+                <decimal>text_multiple_select</decimal>
+                <price>text_multiple_select</price>
+                <category>text_single_select</category>
+            </default_templates>
+            <default_positions>
+                <in_main_sidebar>1</in_main_sidebar>
+                <in_additional_sidebar>0</in_additional_sidebar>
+                <above_products>0</above_products>
+                <on_mobile>0</on_mobile>
+            </default_positions>
+            <show_applied_filter>
+                <show_in_main_sidebar>1</show_in_main_sidebar>
+                <show_in_additional_sidebar>1</show_in_additional_sidebar>
+            </show_applied_filter>
+            <slider>
+                <calculate_slider_min_max_based_on>page</calculate_slider_min_max_based_on>
+                <style/>
+                <style_mobile>same_as_desktop</style_mobile>
+            </slider>
+            <filter_positioning>
+                <is_slider_inline_in_dropdown_menu>0</is_slider_inline_in_dropdown_menu>
+            </filter_positioning>
         </mana_layered_navigation>
     </default>
 </config>

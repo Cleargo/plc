@@ -46,9 +46,9 @@ class Factory {
             compact('name', 'ids', 'operation'));
     }
 
-    public function createLayeredDecimalFilter($name, $attributeId, $ranges, $operation = Operation::LOGICAL_OR) {
+    public function createLayeredDecimalFilter($name, $attributeId, $ranges, $isToRangeInclusive = false, $operation = Operation::LOGICAL_OR) {
         return $this->objectManager->create('Manadev\ProductCollection\Filters\LayeredFilters\DecimalFilter',
-            compact('name', 'attributeId', 'ranges', 'operation'));
+            compact('name', 'attributeId', 'ranges', 'isToRangeInclusive', 'operation'));
     }
 
     public function createLayeredDropdownFilter($name, $attributeId, $optionIds, $operation = Operation::LOGICAL_OR) {
@@ -108,6 +108,26 @@ class Factory {
     public function createEqualizedRangeDecimalFacet($name, $attributeId, $appliedRanges) {
         return $this->objectManager->create('Manadev\ProductCollection\Facets\Decimal\EqualizedRangeFacet',
             compact('name', 'attributeId', 'appliedRanges'));
+    }
+
+    public function createSliderMinMaxDecimalFacet($name, $attributeId, $appliedRanges, $calculateSliderMinMax, $numberFormat, $showThousandSeparator, $minMaxRole, $minAttributeCode, $precision, $maxFilterId = null){
+        return $this->objectManager->create('Manadev\LayeredNavigationSliders\Facets\Decimal\MinMaxSliderRangeFacet',
+            compact('name', 'attributeId', 'appliedRanges', 'calculateSliderMinMax', 'numberFormat', 'showThousandSeparator', 'minMaxRole', 'minAttributeCode', 'precision', 'maxFilterId'));
+    }
+
+    public function createSliderRangeDecimalFacet($name, $attributeId, $appliedRanges, $calculateSliderMinMax, $numberFormat, $showThousandSeparator, $precision) {
+        return $this->objectManager->create('Manadev\LayeredNavigationSliders\Facets\Decimal\SliderRangeFacet',
+            compact('name', 'attributeId', 'appliedRanges', 'calculateSliderMinMax', 'numberFormat', 'showThousandSeparator', 'precision'));
+    }
+
+    public function createSliderRangePriceFacet($name, $attributeId, $appliedRanges, $calculateSliderMinMax, $numberFormat, $showThousandSeparator, $precision) {
+        return $this->objectManager->create('Manadev\LayeredNavigationSliders\Facets\Price\PriceSliderRangeFacet',
+            compact('name', 'attributeId', 'appliedRanges', 'calculateSliderMinMax', 'numberFormat', 'showThousandSeparator', 'precision'));
+    }
+
+    public function createSliderRangeDropdownFacet($name, $attributeId, $selectedOptionIds, $calculateSliderMinMax) {
+        return $this->objectManager->create('Manadev\LayeredNavigationSliders\Facets\Dropdown\DropdownSliderRangeFacet',
+            compact('name', 'attributeId', 'selectedOptionIds', 'calculateSliderMinMax'));
     }
 
     /**

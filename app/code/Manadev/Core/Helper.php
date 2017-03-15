@@ -20,11 +20,10 @@ class Helper {
      */
     protected $pageTypes;
 
-    /**
-     * @param RequestInterface $request
-     * @param PageTypes $pageTypes
-     */
-    public function __construct(RequestInterface $request, PageTypes $pageTypes) {
+    public function __construct(
+        RequestInterface $request,
+        PageTypes $pageTypes
+    ) {
         $this->request = $request;
         $this->pageTypes = $pageTypes;
     }
@@ -48,5 +47,44 @@ class Helper {
         }
 
         return $result;
+    }
+
+    public function merge($a, $b) {
+        if (is_object($a)) {
+            if (!is_object($b)) {
+                return $a;
+            }
+            foreach ($b as $key => $value) {
+                if (isset($a->$key)) {
+                    $a->$key = $this->merge($a->$key, $value);
+                }
+                else {
+                    $a->$key = $value;
+                }
+            }
+
+            return $a;
+        }
+        elseif (is_array($a)) {
+            if (!is_array($b)) {
+                return $a;
+            }
+            foreach ($b as $key => $value) {
+                if (is_numeric($key)) {
+                    $a[$key] = $value;
+                }
+                if (isset($a[$key])) {
+                    $a[$key] = $this->merge($a[$key], $value);
+                }
+                else {
+                    $a[$key] = $value;
+                }
+            }
+
+            return $a;
+        }
+        else {
+            return $b;
+        }
     }
 }

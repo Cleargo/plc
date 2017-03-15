@@ -7,7 +7,7 @@
 namespace Manadev\LayeredNavigation\Blocks;
 
 use Magento\Framework\View\Element\Template;
-use Manadev\Core\Exceptions\NotImplemented;
+use Manadev\LayeredNavigation\Configuration;
 use Manadev\LayeredNavigation\Engine;
 use Manadev\LayeredNavigation\EngineFilter;
 use Manadev\LayeredNavigation\UrlGenerator;
@@ -21,13 +21,26 @@ class Navigation extends Template {
      * @var UrlGenerator
      */
     protected $urlGenerator;
+    /**
+     * @var Configuration
+     */
+    protected $config;
+
+    protected $_scripts = [];
 
     public function __construct(Template\Context $context, Engine $engine, UrlGenerator $urlGenerator,
-        array $data = [])
+        Configuration $config,
+        array $data = []
+    )
     {
         parent::__construct($context, $data);
         $this->engine = $engine;
         $this->urlGenerator = $urlGenerator;
+        $this->config = $config;
+    }
+
+    public function renderScripts() {
+        return json_encode($this->_scripts, JSON_PRETTY_PRINT);
     }
 
     protected function _prepareLayout() {
@@ -36,12 +49,27 @@ class Navigation extends Template {
         return $this;
     }
 
+    public function addScript($scriptName, $config = array(), $target = '*') {
+        if(!isset($this->_scripts[$target])) {
+            $this->_scripts[$target] = [];
+        }
+
+        $this->_scripts[$target][$scriptName] = $config;
+
+        return $this;
+    }
+
+    public function getScripts() {
+        return $this->_scripts;
+    }
+
     public function setCategoryId($category_id) {
         $this->engine->setCurrentCategory($category_id);
         $this->engine->prepareFiltersToShowIn($this->getData('position'));
     }
 
     public function isVisible() {
+        $this->engine->getProductCollection()->loadFacets();
         foreach ($this->engine->getFiltersToShowIn($this->getData('position')) as $engineFilter) {
             if ($engineFilter->isVisible()) {
                 return true;
@@ -63,6 +91,13 @@ class Navigation extends Template {
 
     public function getClearUrl() {
         return $this->escapeUrl($this->urlGenerator->getClearAllUrl());
+    }
+
+    public function getRemoveFilterUrl(EngineFilter $engineFilter) {
+        /** @var FilterRenderer $filterRenderer */
+        $filterRenderer = $this->getChildBlock('filter_renderer');
+
+        return $filterRenderer->getRemoveItemUrl($engineFilter);
     }
 
     /**
@@ -115,4 +150,10 @@ class Navigation extends Template {
         return $appliedItemRenderer->render($engineFilter, $item);
     }
 
+    /**
+     * @return bool
+     */
+    public function isAppliedFilterVisible() {
+        return $this->config->isAppliedFilterVisible($this->getData('position'));
+    }
 }

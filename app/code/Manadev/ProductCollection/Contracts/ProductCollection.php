@@ -17,4 +17,9 @@ interface ProductCollection
      */
     public function getQuery();
 
+    public function load($printQuery = false, $logQuery = false);
+
+    public function isLoaded();
+
+    public function loadFacets();
 }

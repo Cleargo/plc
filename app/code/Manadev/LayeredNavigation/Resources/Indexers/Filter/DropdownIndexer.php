@@ -10,14 +10,22 @@ use Zend_Db_Expr;
 
 class DropdownIndexer extends AttributeIndexer
 {
-    protected function getIndexedFields() {
+    protected function getIndexedFields($changes) {
         $db = $this->getConnection();
 
-        return array_merge(parent::getIndexedFields(), [
-            'type' => new Zend_Db_Expr("'dropdown'"),
-            'template' => new Zend_Db_Expr($db->quoteInto("COALESCE(`fge`.`template`, ?)",
-                $this->configuration->getDefaultDropdownTemplate())),
-        ]);
+        if (empty($changes['load_defaults'])) {
+            return array_merge(parent::getIndexedFields($changes), [
+                'type' => new Zend_Db_Expr("'dropdown'"),
+                'template' => new Zend_Db_Expr($db->quoteInto("COALESCE(`fge`.`template`, ?)",
+                    $this->configuration->getDefaultDropdownTemplate())),
+            ]);
+        }
+        else {
+            return array_merge(parent::getIndexedFields($changes), [
+                'type' => new Zend_Db_Expr("'dropdown'"),
+                'template' => new Zend_Db_Expr($db->quoteInto("?", $this->configuration->getDefaultDropdownTemplate())),
+            ]);
+        }
     }
 
     protected function select($fields) {

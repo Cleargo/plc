@@ -6,29 +6,23 @@
 
 use Closure;
 use Magento\Framework\Indexer\Config\Reader;
+use Manadev\Core\Features;
 
 class IndexerConfigReaderModel {
     /**
-     * @var \Manadev\Core\Auth
+     * @var Features
      */
-    private $auth;
+    protected $features;
 
-    /**
-     * @param \Manadev\Core\Auth $auth
-     */
-    public function __construct(
-        \Manadev\Core\Auth $auth
-    ) {
-        $this->auth = $auth;
+    public function __construct(Features $features) {
+        $this->features = $features;
     }
 
     public function aroundRead(Reader $subject, Closure $proceed, $scope = null){
         $output = $proceed($scope);
 
         foreach($output as $key => $data) {
-            $parts = explode('\\', $data['action_class']);
-            $module = implode("_", [$parts[0], $parts[1]]);
-            if(!$this->auth->isModuleEnabled($module, 0)){
+            if(!$this->features->isEnabled($data['action_class'], 0)) {
                 unset($output[$key]);
             }
         }

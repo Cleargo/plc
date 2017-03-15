@@ -4,29 +4,17 @@
  @copyright   Copyright (c) http://www.manadev.com
  @license     http://www.manadev.com/license  Proprietary License
 -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="page.main.actions">
             <block class="Magento\Backend\Block\Store\Switcher" name="store_switcher">
                 <action method="setUseConfirm">
-                    <argument name="params" xsi:type="string">1</argument>
+                    <argument name="params" xsi:type="string">0</argument>
                 </action>
             </block>
         </referenceContainer>
         <referenceContainer name="content">
             <block class="Manadev\Core\Blocks\Adminhtml\ExtensionControl\EditContainer" name="container" />
-            <block class="Magento\Backend\Block\Widget\Grid\Serializer" name="feature_grid_serializer" template="Manadev_Core::serializer.phtml">
-                <arguments>
-                    <argument name="grid_block" xsi:type="string">container.form.extensionGrid</argument>
-                    <argument name="callback" xsi:type="string">getSerializeData</argument>
-                    <argument name="form_id" xsi:type="string">edit_form</argument>
-                    <argument name="grid_id" xsi:type="string">extensionGrid</argument>
-                    <argument name="input_element_name" xsi:type="string">features</argument>
-                    <argument name="input_names" xsi:type="array">
-                        <item name="0" xsi:type="string">is_enabled</item>
-                    </argument>
-                </arguments>
-            </block>
         </referenceContainer>
     </body>
 </page>

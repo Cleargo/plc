@@ -7,6 +7,8 @@
 
 namespace Manadev\Core\Contracts;
 
+use Magento\Store\Model\Store;
+
 abstract class PageType
 {
     protected $route;
@@ -29,4 +31,12 @@ abstract class PageType
      * @param \Manadev\LayeredNavigation\Resources\Collections\FilterCollection $filters
      */
     abstract public function limitFilterCollection($filters);
+
+    /**
+     * @param Store $store
+     * @return array
+     */
+    public function getSitemapItems($store) {
+        return [];
+    }
 }

@@ -8,47 +8,31 @@ namespace Manadev\Core\Controller\Adminhtml\ExtensionControl;
 use Magento\Backend\App\AbstractAction;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Page;
-use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
-use Magento\Store\Model\StoreManagerInterface;
-use Manadev\Core\Resources\ExtensionCollectionFactory;
+use Manadev\Core\Features;
 
 class Index extends AbstractAction
 {
     /**
      * @var PageFactory
      */
-    private $resultPageFactory;
+    protected $resultPageFactory;
     /**
-     * @var ExtensionCollectionFactory
+     * @var Features
      */
-    private $extensionCollectionFactory;
+    protected $features;
 
-    /**
-     * @param Context $context
-     * @param PageFactory $resultPageFactory
-     * @param StoreManagerInterface $storeManager
-     * @param Registry $registry
-     */
-    public function __construct(
-        Context $context,
-        PageFactory $resultPageFactory,
-        ExtensionCollectionFactory $extensionCollectionFactory
-    ) {
+    public function __construct(Context $context, PageFactory $resultPageFactory, Features $features) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
-        $this->extensionCollectionFactory = $extensionCollectionFactory;
+        $this->features = $features;
     }
 
-    /**
-     * @return Page\Interceptor
-     */
     public function execute()
     {
-        $collection = $this->extensionCollectionFactory->create();
-        $collection->setStore(0)->addFieldToFilter('is_pending', ['eq'=>'1']);
-        if($collection->count()) {
-            $this->messageManager->addNotice('Please run command `bin/magento mana:update`.');
+        if (count($this->features->getModulesToBeDisabledOrEnabled())) {
+            $this->messageManager->addNotice('Please run the following command to actually enable/disable modules: ' .
+                '<b><code>php bin/magento mana:update -cd</code></b>');
         }
         /** @var Page $resultPage */
         $resultPage = $this->resultPageFactory->create();

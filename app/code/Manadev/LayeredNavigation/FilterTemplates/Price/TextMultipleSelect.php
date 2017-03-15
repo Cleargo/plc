@@ -125,4 +125,8 @@ class TextMultipleSelect implements FilterTemplate {
 
         return array_map(function($range) { return implode('-', $range); }, $ranges);
     }
+
+    public function getTitle() {
+        return __('Multiple Select Text');
+    }
 }

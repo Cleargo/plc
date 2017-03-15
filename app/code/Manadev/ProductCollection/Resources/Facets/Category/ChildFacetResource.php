@@ -66,14 +66,14 @@ class ChildFacetResource extends FacetResource
                 continue;
             }
 
-            if (!$childCategory->getProductCount()) {
+            if (!$childCategory->getData('product_count')) {
                 continue;
             }
 
             $result[] = [
                 'label' => $childCategory->getName(),
                 'value' => $childCategory->getId(),
-                'count' => $childCategory->getProductCount(),
+                'count' => $childCategory->getData('product_count'),
                 'is_selected' => 0,
                 'sort_order' => count($result),
             ];

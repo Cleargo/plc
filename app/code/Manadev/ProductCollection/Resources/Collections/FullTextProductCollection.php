@@ -6,9 +6,10 @@
 
 namespace Manadev\ProductCollection\Resources\Collections;
 
-use Magento\Catalog\Model\ResourceModel\Product;
-use Manadev\Core\Auth;
+use Magento\Framework\Search\Adapter\Mysql\TemporaryStorage;
+use Manadev\Core\Features;
 use Manadev\Core\QueryLogger;
+use Manadev\ProductCollection\Configuration;
 use Manadev\ProductCollection\Contracts\ProductCollection;
 use Manadev\ProductCollection\FacetGenerator;
 use Manadev\ProductCollection\Factory;
@@ -16,6 +17,7 @@ use Manadev\ProductCollection\FilterGenerator;
 use Manadev\ProductCollection\Filters\SearchFilter;
 use Manadev\ProductCollection\Query;
 use Manadev\ProductCollection\QueryRunner;
+use Magento\Framework\DB\Select;
 
 class FullTextProductCollection extends \Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection implements ProductCollection
 {
@@ -37,17 +39,23 @@ class FullTextProductCollection extends \Magento\CatalogSearch\Model\ResourceMod
      */
     protected $factory;
     /**
-     * @var Auth
-     */
-    private $auth;
-    /**
      * @var FacetGenerator
      */
-    private $facetGenerator;
+    protected $facetGenerator;
     /**
      * @var FilterGenerator
      */
-    private $filterGenerator;
+    protected $filterGenerator;
+    /**
+     * @var Configuration
+     */
+    protected $configuration;
+    /**
+     * @var Features
+     */
+    protected $features;
+
+    protected $facetsLoaded = false;
 
     /**
      * @param \Magento\Framework\Data\Collection\EntityFactory $entityFactory
@@ -104,17 +112,13 @@ class FullTextProductCollection extends \Magento\CatalogSearch\Model\ResourceMod
         QueryLogger $queryLogger,
         Factory $factory,
         QueryRunner $queryRunner,
-        Auth $auth,
+        Features $features,
         FacetGenerator $facetGenerator,
         FilterGenerator $filterGenerator,
+        Configuration $configuration,
         \Magento\Framework\DB\Adapter\AdapterInterface $connection = null,
         $searchRequestName = 'catalog_view_container'
     ) {
-        parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $eavConfig, $resource, $eavEntityFactory,
-            $resourceHelper, $universalFactory, $storeManager, $moduleManager, $catalogProductFlatState, $scopeConfig, $productOptionFactory,
-            $catalogUrl, $localeDate, $customerSession, $dateTime, $groupManagement, $catalogSearchData, $requestBuilder, $searchEngine,
-            $temporaryStorageFactory, $connection, $searchRequestName
-        );
         $this->queryLogger = $queryLogger;
 
         $this->query = $factory->createQuery();
@@ -122,26 +126,52 @@ class FullTextProductCollection extends \Magento\CatalogSearch\Model\ResourceMod
 
         $this->queryRunner = $queryRunner;
         $this->factory = $factory;
-        $this->auth = $auth;
+        $this->features = $features;
         $facetGenerator->setCollection($this);
         $this->facetGenerator = $facetGenerator;
         $this->filterGenerator = $filterGenerator;
+        $this->configuration = $configuration;
+        parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $eavConfig, $resource, $eavEntityFactory,
+            $resourceHelper, $universalFactory, $storeManager, $moduleManager, $catalogProductFlatState, $scopeConfig, $productOptionFactory,
+            $catalogUrl, $localeDate, $customerSession, $dateTime, $groupManagement, $catalogSearchData, $requestBuilder, $searchEngine,
+            $temporaryStorageFactory, $connection, $searchRequestName
+        );
     }
 
     public function load($printQuery = false, $logQuery = false) {
-        $this->queryLogger->begin('product-collection');
+        if (!$this->features->isEnabled(__CLASS__)) {
+            return parent::load($printQuery, $logQuery);
+        }
+
+        if ($this->configuration->isProductCollectionQueryLoggingEnabled()) {
+            $this->queryLogger->begin('product-collection');
+        }
+
         parent::load($printQuery, $logQuery);
-        $this->queryLogger->end('product-collection');
+
+        if ($this->configuration->isProductCollectionQueryLoggingEnabled()) {
+            $this->queryLogger->end('product-collection');
+        }
 
         return $this;
     }
 
     protected function _renderFiltersBefore() {
-        if($this->auth->isModuleEnabled('Manadev_ProductCollection', $this->_storeManager->getStore()->getId())) {
-            $this->queryRunner->run($this);
-        } else {
+        if (!$this->features->isEnabled(__CLASS__)) {
             parent::_renderFiltersBefore();
+            return;
         }
+
+        $this->loadFacets();
+    }
+    public function loadFacets() {
+        if ($this->facetsLoaded) {
+            return;
+        }
+
+        $this->queryRunner->run($this);
+
+        $this->facetsLoaded = true;
     }
 
     /**
@@ -153,16 +183,28 @@ class FullTextProductCollection extends \Magento\CatalogSearch\Model\ResourceMod
 
     protected function _initSelect() {
         parent::_initSelect();
+        if (!$this->features->isEnabled(__CLASS__)) {
+            return $this;
+        }
+
         $this->getSelect()->distinct();
         return $this;
     }
 
     public function getFacetedData($field) {
+        if (!$this->features->isEnabled(__CLASS__)) {
+            return parent::getFacetedData($field);
+        }
+
         $this->_renderFilters();
         return $this->facetGenerator->getFacetedData($field);
     }
 
     public function addFieldToFilter($field, $condition = null) {
+        if (!$this->features->isEnabled(__CLASS__)) {
+            return parent::addFieldToFilter($field, $condition);
+        }
+
         $filterGroup = $this->query->getFilterGroup('productcollection');
         if(!$filterGroup->getOperand($field)) {
             $filter = $this->filterGenerator->getFilter($field, $condition);
@@ -175,6 +217,10 @@ class FullTextProductCollection extends \Magento\CatalogSearch\Model\ResourceMod
 
     public function addCategoryFilter(\Magento\Catalog\Model\Category $category) {
         parent::addCategoryFilter($category);
+        if (!$this->features->isEnabled(__CLASS__)) {
+            return $this;
+        }
+
         $this->query->setCategory($category);
         return $this;
     }
@@ -187,6 +233,10 @@ class FullTextProductCollection extends \Magento\CatalogSearch\Model\ResourceMod
      */
     public function addSearchFilter($query)
     {
+        if (!$this->features->isEnabled(__CLASS__)) {
+            return parent::addSearchFilter($query);
+        }
+
         $self = $this;
 
         /* @var $searchFilter SearchFilter */
@@ -199,4 +249,24 @@ class FullTextProductCollection extends \Magento\CatalogSearch\Model\ResourceMod
         return parent::addSearchFilter($query);
     }
 
+    public function setOrder($attribute, $dir = Select::SQL_DESC) {
+        parent::setOrder($attribute, $dir);
+
+        if (!$this->features->isEnabled(__CLASS__)) {
+            return $this;
+        }
+
+        if ($attribute == 'relevance') {
+            // sort by relevance fix
+            $class = new \ReflectionClass('Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection');
+            $property = $class->getProperty('order');
+            $property->setAccessible(true);
+            $order = $property->getValue($this);
+            if ($order && 'relevance' === $order['field']) {
+                $this->getSelect()->order('search_result.'. TemporaryStorage::FIELD_SCORE . ' ' . $order['dir']);
+            }
+        }
+
+        return $this;
+    }
 }

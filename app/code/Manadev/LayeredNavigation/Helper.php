@@ -35,7 +35,7 @@ class Helper {
     }
 
     /**
-     * @return Filter[]
+     * @return \Manadev\LayeredNavigation\Resources\Collections\FilterCollection
      */
     public function getAllFiltersForCurrentStore() {
         if (!$this->filters) {

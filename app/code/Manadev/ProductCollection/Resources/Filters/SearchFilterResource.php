@@ -7,6 +7,7 @@
 namespace Manadev\ProductCollection\Resources\Filters;
 
 use Magento\Framework\DB\Select;
+use Magento\Framework\Search\Adapter\Mysql\TemporaryStorage;
 use Manadev\ProductCollection\Contracts\Filter;
 use Manadev\ProductCollection\Contracts\FilterResource;
 use Manadev\ProductCollection\Filters\SearchFilter;
@@ -22,13 +23,20 @@ class SearchFilterResource extends FilterResource
      */
     protected $searchEngine;
 
+    /**
+     * @var \Magento\Framework\Search\Adapter\Mysql\TemporaryStorageFactory
+     */
+    protected $temporaryStorageFactory;
+
     public function __construct(Db\Context $context, Factory $factory,
         StoreManagerInterface $storeManager, HelperResource $helperResource,
         \Magento\Search\Model\SearchEngine $searchEngine,
+        \Magento\Framework\Search\Adapter\Mysql\TemporaryStorageFactory $temporaryStorageFactory,
         $resourcePrefix = null)
     {
         parent::__construct($context, $factory, $storeManager, $helperResource, $resourcePrefix);
         $this->searchEngine = $searchEngine;
+        $this->temporaryStorageFactory = $temporaryStorageFactory;
     }
 
     /**
@@ -56,12 +64,10 @@ class SearchFilterResource extends FilterResource
         $request = $requestBuilder->create();
         $response = $this->searchEngine->search($request);
 
-        $ids = [0];
-        /** @var \Magento\Framework\Search\Document $document */
-        foreach ($response as $document) {
-            $ids[] = $document->getId();
-        }
+        $temporaryStorage = $this->temporaryStorageFactory->create();
+        $table = $temporaryStorage->storeApiDocuments(iterator_to_array($response->getIterator()));
 
-        $select->where("`e`.`entity_id` IN (" . implode(',', $ids) . ")");
+        $select->joinInner(['search_result' => $table->getName()],
+            'e.entity_id = search_result.' . TemporaryStorage::FIELD_ENTITY_ID, []);
     }
 }

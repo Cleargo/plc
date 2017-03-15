@@ -115,4 +115,8 @@ class TextSingleSelect implements FilterTemplate {
             ];
         }
     }
+
+    public function getTitle() {
+        return __('Single Select Text');
+    }
 }

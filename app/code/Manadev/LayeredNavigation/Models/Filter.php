@@ -49,8 +49,25 @@ class Filter  extends AbstractModel {
     public function edit(array $data) {
         $this->getResource()->edit($this, $data);
     }
+    
+    public function loadEdit(){
+        return $this->getResource()->loadEdit($this);
+    }
+    
+    public function loadDefaults() {
+        return $this->indexer->loadDefaults($this);
+    }
+
+    public function addEditedData(&$edit, $defaults, $data) {
+        $this->getResource()->addEditedData($this, $edit, $defaults, $data);
+    }
 
     public function afterEdit() {
-        $this->indexer->reindexChangedFilters([$this->getId()], $this->getData('store_id'));
+        $this->indexer->reindexChangedFilters([$this->getData('filter_id') => "'" . $this->getData('unique_key') . "'"], 
+            $this->getData('store_id'));
+    }
+    
+    public function getFields() {
+        return $this->getResource()->getFields($this);
     }
 }

@@ -23,7 +23,7 @@ class SwatchIndexer extends AttributeIndexer
 
         $select->where("`ca`.`additional_data` IS NOT NULL");
 
-        if ($whereClause = $this->scope->limitAttributeIndexing($changes)) {
+        if ($whereClause = $this->scope->limitAttributeIndexing($changes, $fields)) {
             $select->where($whereClause);
         }
 
@@ -40,16 +40,23 @@ class SwatchIndexer extends AttributeIndexer
                     ];
 
                     $select = $this->select($fields);
-
-                    // convert SELECT into UPDATE which acts as INSERT on DUPLICATE unique keys
-                    $sql = $select->insertFromSelect($this->getMainTable(), array_keys($fields));
-
-                    // run the statement
-                    $db->query($sql);
+                    
+                    if (empty($changes['load_defaults'])) {
+                        // convert SELECT into UPDATE which acts as INSERT on DUPLICATE unique keys
+                        $sql = $select->insertFromSelect($this->getMainTable(), array_keys($fields));
+    
+                        // run the statement
+                        $db->query($sql);
+                    }
+                    else {
+                        return $select;
+                    }
                 }
             }
 
         }
+        
+        return null;
     }
 
     protected function select($fields) {

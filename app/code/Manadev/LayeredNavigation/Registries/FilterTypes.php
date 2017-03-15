@@ -33,4 +33,8 @@ class FilterTypes {
     public function get($type) {
         return isset($this->filterTypes[$type]) ? $this->filterTypes[$type] : false;
     }
+
+    public function getList() {
+        return $this->filterTypes;
+    }
 }

@@ -6,17 +6,38 @@
 
 namespace Manadev\LayeredNavigation\Registries\FilterTemplates;
 
+use Magento\Framework\ObjectManagerInterface;
 use Manadev\Core\Exceptions\InterfaceNotImplemented;
+use Manadev\Core\Features;
 use Manadev\LayeredNavigation\Contracts\FilterTemplate;
 use Manadev\LayeredNavigation\Contracts\FilterTemplates;
+use Manadev\LayeredNavigation\Sources\TemplateSource;
 
 abstract class BaseFilterTemplates implements FilterTemplates {
     /**
      * @var FilterTemplate[]
      */
     protected $filterTemplates;
+    /**
+     * @var ObjectManagerInterface
+     */
+    protected $objectManager;
 
-    public function __construct(array $filterTemplates)
+    /**
+     * @var TemplateSource
+     */
+    protected $source;
+    /**
+     * @var string
+     */
+    protected $defaultFilterTemplate;
+    /**
+     * @var Features
+     */
+    protected $features;
+
+    public function __construct(ObjectManagerInterface $objectManager, Features $features,
+        $defaultFilterTemplate, array $filterTemplates)
     {
         foreach ($filterTemplates as $filterTemplate) {
             if (!($filterTemplate instanceof FilterTemplate)) {
@@ -25,6 +46,9 @@ abstract class BaseFilterTemplates implements FilterTemplates {
             }
         }
         $this->filterTemplates = $filterTemplates;
+        $this->objectManager = $objectManager;
+        $this->defaultFilterTemplate = $defaultFilterTemplate;
+        $this->features = $features;
     }
 
     /**
@@ -35,7 +59,38 @@ abstract class BaseFilterTemplates implements FilterTemplates {
      * @return bool|FilterTemplate
      */
     public function get($type) {
-        return isset($this->filterTemplates[$type])? $this->filterTemplates[$type] : false;
+        if (!isset($this->filterTemplates[$type])) {
+            return $this->filterTemplates[$this->defaultFilterTemplate];
+        }
+
+        $result = $this->filterTemplates[$type];
+        if (!$this->features->isEnabled(get_class($result))) {
+            return $this->filterTemplates[$this->defaultFilterTemplate];
+        }
+
+        return $result;
     }
 
+    /**
+     * @return FilterTemplate[]
+     */
+    public function getList() {
+        $self = $this;
+        return array_filter($this->filterTemplates, function($filterTemplate) use ($self){
+            return $self->features->isEnabled(get_class($filterTemplate), 0);
+        });
+    }
+
+    /**
+     * @return TemplateSource
+     */
+    public function getSource() {
+        if (!$this->source) {
+            $this->source = $this->objectManager->create('Manadev\LayeredNavigation\Sources\TemplateSource', [
+                'filterTemplates' => $this
+            ]);
+        }
+
+        return $this->source;
+    }
 }

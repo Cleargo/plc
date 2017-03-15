@@ -65,7 +65,7 @@ class Engine {
                 continue;
             }
 
-            if (!in_array($position, explode(',', $filter->getData('show_in')))) {
+            if (!$filter->getData($position)) {
                 continue;
             }
 
@@ -94,7 +94,7 @@ class Engine {
      */
     public function getFiltersToShowIn($position) {
         foreach ($this->filters as $engineFilter) {
-            if (!in_array($position, explode(',', $engineFilter->getFilter()->getData('show_in')))) {
+            if (!$engineFilter->getFilter()->getData($position)) {
                 continue;
             }
 

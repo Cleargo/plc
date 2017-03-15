@@ -27,4 +27,16 @@ class PriceFilter implements FilterType {
     public function getTemplates() {
         return $this->templates;
     }
+
+    /**
+     * Returns (possible modified) array of field definitions tailored for this filter type.
+     *
+     * @param array $fields
+     * @return array
+     */
+    public function refineFields($fields) {
+        unset($fields['template']['global_use_default_label']);
+
+        return $fields;
+    }
 }

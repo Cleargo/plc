@@ -59,18 +59,30 @@ class UrlGenerator
         return $this->getUrl([$engineFilter->getFilter()->getData('param_name') => $combinedValues]);
     }
 
+    public function getMarkRangeUrl(EngineFilter $engineFilter){
+        $rangePattern = "__0__-__1__";
+        return $this->getUrl([$engineFilter->getFilter()->getData('param_name') => $rangePattern], false);
+    }
+
+    public function getMarkAddItemUrl(EngineFilter $engineFilter) {
+        return $this->getUrl([$engineFilter->getFilter()->getData('param_name') => "__0__"], false);
+    }
+
     /**
      * @param EngineFilter $engineFilter
      * @param $item
      * @return string
      */
-    public function getRemoveItemUrl(EngineFilter $engineFilter, $item) {
+    public function getRemoveItemUrl(EngineFilter $engineFilter, $item = null) {
         $combinedValues = $engineFilter->getAppliedOptions() ?: [];
         if (!is_array($combinedValues)) {
             $combinedValues = [$combinedValues];
         }
 
-        if (($index = array_search($item['value'], $combinedValues)) !== false) {
+        if(is_null($item)) {
+            $combinedValues = [];
+        }
+        elseif (($index = array_search($item['value'], $combinedValues)) !== false) {
             unset($combinedValues[$index]);
         }
 
@@ -84,12 +96,12 @@ class UrlGenerator
         return $this->getUrl([$engineFilter->getFilter()->getData('param_name') => $combinedValues]);
     }
 
-    protected function getUrl($queryParameters) {
+    protected function getUrl($queryParameters, $escape = true) {
         return $this->urlBuilder->getUrl('*/*/*', [
             '_current' => true,
             '_use_rewrite' => true,
             '_query' => $queryParameters,
-            '_escape' => true,
+            '_escape' => $escape,
         ]);
     }
 

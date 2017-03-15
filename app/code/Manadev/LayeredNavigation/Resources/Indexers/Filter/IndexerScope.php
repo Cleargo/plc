@@ -29,7 +29,8 @@ class IndexerScope {
             $condition .= " AND $attributeIdExpr IN (" . implode(', ', $changes['attributes']) . ")";
         }
         elseif (isset($changes['filters'])) {
-            $condition .= " AND $filterIdExpr IN (" . implode(', ', $changes['filters']) . ")";
+            // nothing to mark
+            $condition .= " AND (1 <> 1)";
         }
         elseif (in_array('all', $changes)) {
             // nothing to limit
@@ -61,7 +62,8 @@ class IndexerScope {
             $condition .= " AND $attributeIdExpr IN (" . implode(', ', $changes['attributes']) . ")";
         }
         elseif (isset($changes['filters'])) {
-            $condition .= " AND $filterIdExpr IN (" . implode(', ', $changes['filters']) . ")";
+            // nothing to delete
+            $condition .= " AND (1 <> 1)";
         }
         elseif (in_array('all', $changes)) {
             // nothing to limit
@@ -93,7 +95,7 @@ class IndexerScope {
             $condition .= " AND $attributeIdExpr IN (" . implode(', ', $changes['attributes']) . ")";
         }
         elseif (isset($changes['filters'])) {
-            $condition .= " AND $filterIdExpr IN (" . implode(', ', $changes['filters']) . ")";
+            $condition .= " AND $filterIdExpr IN (" . implode(', ', array_keys($changes['filters'])) . ")";
         }
         elseif (in_array('all', $changes)) {
             // nothing to limit
@@ -110,10 +112,11 @@ class IndexerScope {
      * indexed or empty string if all records should be processed.
      * @param array $changes indicates which exactly changes happened in the
      *                       system
+     * @param $fields
      * @return string
      * @throws NotImplemented
      */
-    public function limitAttributeIndexing($changes) {
+    public function limitAttributeIndexing($changes, $fields) {
         $attributeIdExpr = '`a`.`attribute_id`';
         $filterIdExpr = '`fge`.`filter_id`';
 
@@ -123,7 +126,7 @@ class IndexerScope {
             $condition = "$attributeIdExpr IN (" . implode(', ', $changes['attributes']) . ")";
         }
         elseif (isset($changes['filters'])) {
-            $condition = "$filterIdExpr IN (" . implode(', ', $changes['filters']) . ")";
+            $condition = "{$fields['unique_key']} IN (" . implode(', ', array_values($changes['filters'])) . ")";
         }
         elseif (in_array('all', $changes)) {
             // nothing to limit
@@ -140,10 +143,11 @@ class IndexerScope {
      * string if category filter should be indexed
      * @param array $changes indicates which exactly changes happened in the
      *                       system
+     * @param $fields
      * @return string
      * @throws NotImplemented
      */
-    public function limitCategoryIndexing($changes) {
+    public function limitCategoryIndexing($changes, $fields) {
         $filterIdExpr = '`fge`.`filter_id`';
 
         $condition = "";
@@ -152,7 +156,7 @@ class IndexerScope {
             $condition = "1 <> 1";
         }
         elseif (isset($changes['filters'])) {
-            $condition = "$filterIdExpr IN (" . implode(', ', $changes['filters']) . ")";
+            $condition = "{$fields['unique_key']} IN (" . implode(', ', array_values($changes['filters'])) . ")";
         }
         elseif (in_array('all', $changes)) {
             // nothing to limit
@@ -169,10 +173,11 @@ class IndexerScope {
      * indexed or empty string if all records should be processed.
      * @param array $changes indicates which exactly changes happened in the
      *                       system
+     * @param $fields
      * @return string
      * @throws NotImplemented
      */
-    public function limitStoreLevelIndexing($changes) {
+    public function limitStoreLevelIndexing($changes, $fields) {
         $attributeIdExpr = "`fg`.`attribute_id`";
         $filterIdExpr = '`fg`.`filter_id`';
 
@@ -182,7 +187,7 @@ class IndexerScope {
             $condition .= " AND $attributeIdExpr IN (" . implode(', ', $changes['attributes']) . ")";
         }
         elseif (isset($changes['filters'])) {
-            $condition .= " AND $filterIdExpr IN (" . implode(', ', $changes['filters']) . ")";
+            $condition .= " AND $filterIdExpr IN (" . implode(', ', array_keys($changes['filters'])) . ")";
         }
         elseif (in_array('all', $changes)) {
             // nothing to limit

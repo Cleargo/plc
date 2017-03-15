@@ -14,10 +14,23 @@ class Configuration {
 
     const FILTER_INDEX_QUERY_LOGGING = 'mana_core/log/filter_index_queries';
 
-    const DEFAULT_DROPDOWN_TEMPLATE = 'mana_layered_navigation/display/default_dropdown_template';
-    const DEFAULT_SWATCH_TEMPLATE = 'mana_layered_navigation/display/default_swatch_template';
-    const DEFAULT_DECIMAL_TEMPLATE = 'mana_layered_navigation/display/default_decimal_template';
-    const DEFAULT_SHOW_IN = 'mana_layered_navigation/display/default_show_in';
+    const DEFAULT_DROPDOWN_TEMPLATE = 'mana_layered_navigation/default_templates/dropdown';
+    const DEFAULT_SWATCH_TEMPLATE = 'mana_layered_navigation/default_templates/swatch';
+    const DEFAULT_DECIMAL_TEMPLATE = 'mana_layered_navigation/default_templates/decimal';
+    const DEFAULT_PRICE_TEMPLATE = 'mana_layered_navigation/default_templates/price';
+    const DEFAULT_CATEGORY_TEMPLATE = 'mana_layered_navigation/default_templates/category';
+
+    const DEFAULT_SHOW_IN_MAIN_SIDEBAR = 'mana_layered_navigation/default_positions/in_main_sidebar';
+    const DEFAULT_SHOW_IN_ADDITIONAL_SIDEBAR = 'mana_layered_navigation/default_positions/in_additional_sidebar';
+    const DEFAULT_SHOW_ABOVE_PRODUCTS = 'mana_layered_navigation/default_positions/above_products';
+    const DEFAULT_SHOW_ON_MOBILE = 'mana_layered_navigation/default_positions/on_mobile';
+
+    const SHOW_APPLIED_FILTER = 'mana_layered_navigation/show_applied_filter/%s';
+
+    const CALCULATE_SLIDER_MIN_MAX_BASED_ON = "mana_layered_navigation/slider/calculate_slider_min_max_based_on";
+    const SLIDER_STYLE = 'mana_layered_navigation/slider/style';
+    const MOBILE_SLIDER_STYLE = 'mana_layered_navigation/slider/style_mobile';
+    const IS_SLIDER_INLINE_DROPDOWN_MENU = 'mana_layered_navigation/slider/is_slider_inline_in_dropdown_menu';
 
     /**
      * @var ScopeConfigInterface
@@ -42,15 +55,27 @@ class Configuration {
     }
 
     public function getDefaultPriceTemplate() {
-        return 'text_multiple_select';
+        return $this->scopeConfig->getValue(static::DEFAULT_PRICE_TEMPLATE);
     }
 
     public function getDefaultCategoryTemplate() {
-        return 'text_single_select';
+        return $this->scopeConfig->getValue(static::DEFAULT_CATEGORY_TEMPLATE);
     }
 
-    public function getDefaultShowIn() {
-        return $this->scopeConfig->getValue(static::DEFAULT_SHOW_IN);
+    public function getDefaultShowInMainSidebar() {
+        return $this->scopeConfig->isSetFlag(static::DEFAULT_SHOW_IN_MAIN_SIDEBAR);
+    }
+
+    public function getDefaultShowInAdditionalSidebar() {
+        return $this->scopeConfig->isSetFlag(static::DEFAULT_SHOW_IN_ADDITIONAL_SIDEBAR);
+    }
+
+    public function getDefaultShowAboveProducts() {
+        return $this->scopeConfig->isSetFlag(static::DEFAULT_SHOW_ABOVE_PRODUCTS);
+    }
+
+    public function getDefaultShowOnMobile() {
+        return $this->scopeConfig->isSetFlag(static::DEFAULT_SHOW_ON_MOBILE);
     }
 
     public function isFilterIndexQueryLoggingEnabled() {
@@ -61,4 +86,24 @@ class Configuration {
         return $this->scopeConfig->getValue(static::PRICE_RANGE_CALCULATION_METHOD, ScopeInterface::SCOPE_STORE);
     }
 
+    public function isAppliedFilterVisible($position) {
+        $configKey = sprintf(self::SHOW_APPLIED_FILTER, $position);
+        return $this->scopeConfig->isSetFlag($configKey, ScopeInterface::SCOPE_STORE);
+    }
+
+    public function getCalculateSliderMinMaxBasedOn() {
+        return $this->scopeConfig->getValue(static::CALCULATE_SLIDER_MIN_MAX_BASED_ON);
+    }
+
+    public function getSliderStyle() {
+        return $this->scopeConfig->getValue(static::SLIDER_STYLE);
+    }
+
+    public function getSliderStyleForMobile() {
+        return $this->scopeConfig->getValue(static::MOBILE_SLIDER_STYLE);
+    }
+
+    public function getIsSliderInlineInDropdownMenu() {
+        return $this->scopeConfig->getValue(self::IS_SLIDER_INLINE_DROPDOWN_MENU);
+    }
 }

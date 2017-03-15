@@ -66,7 +66,7 @@ class FilterRenderer extends Template
         return $this->escapeUrl($this->urlGenerator->getAddItemUrl($engineFilter, $item));
     }
 
-    public function getRemoveItemUrl(EngineFilter $engineFilter, $item) {
+    public function getRemoveItemUrl(EngineFilter $engineFilter, $item = null) {
         return $this->escapeUrl($this->urlGenerator->getRemoveItemUrl($engineFilter, $item));
     }
 
@@ -81,6 +81,14 @@ class FilterRenderer extends Template
         else {
             return $label;
         }
+    }
+
+    public function getRangeSliderApplyUrl(EngineFilter $engineFilter){
+        return $this->urlGenerator->getMarkRangeUrl($engineFilter);
+    }
+
+    public function getMultiSelectSliderApplyUrl(EngineFilter $engineFilter) {
+        return $this->urlGenerator->getMarkAddItemUrl($engineFilter);
     }
 
     public function getSwatchData($data) {

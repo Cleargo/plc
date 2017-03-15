@@ -6,41 +6,29 @@
 
 namespace Manadev\Core\ConsoleCommands;
 
-use Manadev\Core\Model\Extension;
+use Magento\Framework\Filesystem;
+use Manadev\Core\Features;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\StringInput;
-use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class ExtensionStatusUpdateCommand extends Command
 {
     /**
-     * @var \Manadev\Core\Model\Feature\Config
+     * @var Filesystem
      */
-    private $extensionConfig;
+    protected $filesystem;
     /**
-     * @var \Magento\Framework\Filesystem
+     * @var Features
      */
-    private $filesystem;
+    protected $features;
 
-    /**
-     * Constructor.
-     *
-     * @param string|null $name The name of the command; passing null means it must be set in configure()
-     *
-     * @throws \LogicException When the command name is empty
-     *
-     * @api
-     */
-    public function __construct(
-        \Manadev\Core\Model\Feature\Config $extensionConfig,
-        \Magento\Framework\Filesystem $filesystem,
-        $name = null
-    ) {
-        $this->extensionConfig = $extensionConfig;
+    public function __construct(Features $features, Filesystem $filesystem, $name = null) {
         $this->filesystem = $filesystem;
         parent::__construct($name);
+        $this->features = $features;
     }
 
     /**
@@ -49,55 +37,47 @@ class ExtensionStatusUpdateCommand extends Command
     protected function configure()
     {
         $this->setName('mana:update')
-            ->setDescription("Renames MANAdev modules' `registration.php` to `registration.php_` if it is disabled and sets it back to `registration.php` if it is enabled.");
+            ->setDescription("Enables/disables modules as configured in Installed MANAdev Extensions menu.")
+            ->addOption('di-compile', 'c', InputOption::VALUE_NONE, 'Run setup:di:compile afterwards')
+            ->addOption('static-content-deploy', 'd', InputOption::VALUE_NONE, 'Run setup:static-content:deploy afterwards');
+
         parent::configure();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) {
-        foreach($this->extensionConfig->getExtensions(0) as $extension) {
-            $extensionChanged = $extension->updateModuleXml();
-
-            if(!is_null($extensionChanged) && $extensionChanged) {
-                $this->_notifyChange($extension, $output);
-            }
-            /** @var Extension $feature */
-            foreach($extension->getData('features') as $feature) {
-                $featureChanged = $feature->updateModuleXml();
-                if (!is_null($featureChanged) && $featureChanged) {
-                    $this->_notifyChange($feature, $output);
-                }
-            }
-
-            $this->_cascadeToRemovedExtensions($extension, $output);
-            $changes = $this->extensionConfig->disableDependentModules();
-            foreach($changes as $changedtmpExtension) {
-                $this->_notifyChange($changedtmpExtension, $output);
-            }
+        $modules = $this->features->getModulesToBeDisabledOrEnabled();
+        if (!count($modules)) {
+            $output->writeln("<info>There are no modules to be disabled or enabled.</info>");
+            return;
         }
+        
+        $modulesToBeEnabled = array_keys(array_filter($modules, function ($s) { return $s;}));
+        $modulesToBeDisabled = array_keys(array_filter($modules, function ($s) { return !$s;}));
 
-        $this->executeMagentoCommand("setup:upgrade", $output);
-        $this->executeMagentoCommand("cache:clean", $output);
-        $this->executeMagentoCommand("mana:post-install", $output);
-    }
-
-    protected function _cascadeToRemovedExtensions($extension, $output) {
-        foreach($this->extensionConfig->getExtensionsRemovedByModule($extension->getData('module')) as $removedExtension) {
-            $changed = $removedExtension->setData('is_enabled', $extension->getData('is_enabled'))->save()->updateModuleXml();
-            if(!is_null($changed) && $changed) {
-                $this->_notifyChange($removedExtension, $output);
-            }
-            $this->_cascadeToRemovedExtensions($removedExtension, $output);
+        if (count($modulesToBeDisabled)) {
+            $this->call('module:disable', [
+                'module' => $modulesToBeDisabled,
+                '--clear-static-content' => true,
+            ], $output);
+        }
+        if (count($modulesToBeEnabled)) {
+            $this->call('module:enable', [
+                'module' => $modulesToBeEnabled,
+                '--clear-static-content' => true,
+            ], $output);
+            $this->call('setup:upgrade', [], $output);
+        }
+        if ($input->getOption('di-compile')) {
+            $this->call('setup:di:compile', [], $output);
+        }
+        if ($input->getOption('static-content-deploy')) {
+            $this->call('setup:static-content:deploy', [], $output);
         }
     }
 
-    protected function _notifyChange(Extension $extension, OutputInterface $output) {
-        $status = $extension->getData('is_enabled') ? "enabled" : "disabled";
-        $output->writeln("Module `".$extension->getData('module')."` has been ". $status .".");
-    }
-
-    private function executeMagentoCommand($command, OutputInterface $output) {
-        $rootPath = $this->filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::ROOT)->getAbsolutePath();
-        $output->writeln("Running {$command} command...");
-        @exec("php {$rootPath}bin/magento {$command}");
+    protected function call($name, $arguments, OutputInterface $output) {
+        $command = $this->getApplication()->find($name);
+        $arguments = array_merge(['command' => $name], $arguments);
+        return $command->run(new ArrayInput($arguments), $output);
     }
 }

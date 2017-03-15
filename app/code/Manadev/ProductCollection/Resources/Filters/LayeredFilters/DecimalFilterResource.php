@@ -53,7 +53,10 @@ class DecimalFilterResource extends FilterResource
                 $expr = $db->quoteInto("$valueExpr >= ?", $from);
             }
             if ($to !== '') {
-                $to -= 0.001;
+                if(!$filter->getIsToRangeInclusive()) {
+                    $to -= 0.001;
+                }
+
                 if ($expr) {
                     $expr .= " AND ";
                 }

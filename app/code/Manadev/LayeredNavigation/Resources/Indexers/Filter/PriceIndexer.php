@@ -10,14 +10,22 @@ use Zend_Db_Expr;
 
 class PriceIndexer extends AttributeIndexer
 {
-    protected function getIndexedFields() {
+    protected function getIndexedFields($changes) {
         $db = $this->getConnection();
 
-        return array_merge(parent::getIndexedFields(), [
-            'type' => new Zend_Db_Expr("'price'"),
-            'template' => new Zend_Db_Expr($db->quoteInto("COALESCE(`fge`.`template`, ?)",
-                $this->configuration->getDefaultPriceTemplate())),
-        ]);
+        if (empty($changes['load_defaults'])) {
+            return array_merge(parent::getIndexedFields($changes), [
+                'type' => new Zend_Db_Expr("'price'"),
+                'template' => new Zend_Db_Expr($db->quoteInto("COALESCE(`fge`.`template`, ?)",
+                    $this->configuration->getDefaultPriceTemplate())),
+            ]);
+        }
+        else {
+            return array_merge(parent::getIndexedFields($changes), [
+                'type' => new Zend_Db_Expr("'price'"),
+                'template' => new Zend_Db_Expr($db->quoteInto("?", $this->configuration->getDefaultPriceTemplate())),
+            ]);
+        }
     }
 
     protected function select($fields) {

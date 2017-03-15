@@ -14,7 +14,7 @@
     <div class="swatch-attribute-options clearfix">
         <?php foreach ($data as $item): ?>
             <?php if ($item['is_selected']) : ?>
-                <a href="<?php echo $block->getRemoveItemUrl($engineFilter, $item) ?>" class="swatch-option-link-layered m-selected">
+                <a href="<?php echo $block->getRemoveItemUrl($engineFilter, $item) ?>" class="swatch-option-link-layered mana-selected">
             <?php elseif ($item['count'] > 0) : ?>
                 <a href="<?php echo $block->getAddItemUrl($engineFilter, $item) ?>" class="swatch-option-link-layered">
             <?php else : ?>

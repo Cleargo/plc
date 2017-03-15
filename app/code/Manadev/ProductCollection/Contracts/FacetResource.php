@@ -51,8 +51,8 @@ abstract class FacetResource extends Db\AbstractDb
 
     /**
      * @param Select $select
-     * @param $preparationSelect
-     * @param Facet $facet
+     * @param Facet  $facet
+     *
      * @return mixed
      */
     abstract public function count(Select $select, Facet $facet);

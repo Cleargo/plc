@@ -6,59 +6,39 @@
 namespace Manadev\Core\Controller\Adminhtml\ExtensionControl;
 
 use Magento\Backend\App\AbstractAction;
-use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Page;
-use Magento\Backend\Model\View\Result\RedirectFactory;
-use Magento\Framework\View\Result\PageFactory;
-use Magento\Store\Model\StoreManagerInterface;
-use Manadev\Core\Model\ExtensionFactory;
+use Magento\Backend\App\Action;
+use Magento\Config\Model\ResourceModel\Config;
+use Magento\Framework\App\Config\ReinitableConfigInterface;
+use Magento\Framework\App\Cache;
 
 class Save extends AbstractAction
 {
     /**
-     * @var PageFactory
+     * @var ReinitableConfigInterface
      */
-    private $resultPageFactory;
+    protected $scopeConfig;
     /**
-     * @var \Manadev\Core\Model\Feature\Config
+     * @var Config
      */
-    private $extensionConfig;
+    protected $resourceConfig;
     /**
-     * @var \Manadev\Core\Helper
+     * @var Cache\Manager
      */
-    private $helper;
+    protected $cacheManager;
     /**
-     * @var ExtensionFactory
+     * @var Cache\TypeListInterface
      */
-    private $extensionFactory;
-    /**
-     * @var \Magento\Framework\App\Cache\Manager
-     */
-    private $cacheManager;
+    protected $cacheTypeList;
 
-    /**
-     * @param Context $context
-     * @param RedirectFactory $resultRedirectFactory
-     * @param Config $extensionConfig
-     * @param ExtensionFactory $extensionFactory
-     * @param \Manadev\Core\Helper $helper
-     * @internal param PageFactory $resultPageFactory
-     * @internal param ExtensionCollection $extensionCollection
-     * @internal param StoreManagerInterface $storeManager
-     * @internal param Registry $registry
-     */
-    public function __construct(
-        Context $context,
-        \Manadev\Core\Model\Feature\Config $extensionConfig,
-        ExtensionFactory $extensionFactory,
-        \Magento\Framework\App\Cache\Manager $cacheManager,
-        \Manadev\Core\Helper $helper
-    ) {
+    public function __construct(Action\Context $context, ReinitableConfigInterface $scopeConfig,
+        Config $resourceConfig, Cache\Manager $cacheManager, Cache\TypeListInterface $cacheTypeList)
+    {
         parent::__construct($context);
-        $this->extensionConfig = $extensionConfig;
-        $this->helper = $helper;
-        $this->extensionFactory = $extensionFactory;
+        $this->scopeConfig = $scopeConfig;
+        $this->resourceConfig = $resourceConfig;
         $this->cacheManager = $cacheManager;
+        $this->cacheTypeList = $cacheTypeList;
     }
 
     /**
@@ -66,112 +46,40 @@ class Save extends AbstractAction
      */
     public function execute()
     {
-        $extensions = $this->helper->decodeGridSerializedInput($this->getRequest()->getParam('features'));
-        try {
-            $useDefault = $this->getUseDefault();
-            foreach($useDefault as $id) {
-                $extension = $this->extensionConfig->getExtensionOrFeatureModelById($id, $this->_getStore());
-                if($extension && $extension->getData('store_id') == $this->_getStore()) {
-                    $extension->delete();
-                }
-                unset($extensions[$id]);
-            }
+        $storeId = $this->getRequest()->getParam('store', 0);
 
-            foreach($extensions as $id => $extension) {
-                if(!is_numeric($id)) {
-                    // Ignore duplicate feature.
-                    unset($extensions[$id]);
-                    continue;
-                }
-                if ($extension['is_extension'] == "false") {
-                    $this->saveExtension($extension);
-                    unset($extensions[$id]);
-                }
-            }
-
-            foreach($extensions as $id => $extension) {
-                if($extension['is_enabled']) {
-                    $this->saveExtension($extension);
-                    unset($extensions[$id]);
-                }
-            }
-            foreach($extensions as $extension) {
-                $this->saveExtension($extension);
-            }
-
-            $this->cacheManager->clean($this->cacheManager->getAvailableTypes());
-            $this->messageManager->addSuccess(__('Your changes has been applied.'));
-        } catch(\Exception $e) {
-            $this->messageManager->addError(__('Something went wrong, please try again.'));
+        if (!($f = $this->getRequest()->getParam('feature'))) {
+            return $this->_redirect('*/*/index', ['store' => $storeId]);
         }
 
-        $param = [];
-        if($this->_getStore() !== 0) {
-            $param['store'] = $this->_getStore();
-        }
-        $url = '*/*/';
-        $resultRedirect = $this->resultRedirectFactory->create();
-        return $resultRedirect->setPath($url, $param);
-    }
-
-    protected function _getStore() {
-        return $this->getRequest()->getParam('store', 0);
-    }
-
-    private function saveExtension($extension) {
-        $id = $extension['id'];
-        $useDefault = $this->getUseDefault();
-        $extensionModel = $this->extensionConfig->getExtensionOrFeatureModelById($id, $this->_getStore());
-        $extensionModel->setData('is_enabled', $extension['is_enabled']);
-        if(!in_array($id, $useDefault)) {
-            if($this->_getStore() != $extensionModel->getData('store_id')) {
-                $testExtensionModel = $this->extensionFactory->create()
-                    ->setData('store_id', $this->_getStore())
-                    ->load($extension['title'], 'title');
-                if($testExtensionModel->getId()) {
-                    $id = $testExtensionModel->getId();
-                    $extensionModel = $this->extensionConfig->getExtensionOrFeatureModelById($id, $this->_getStore());
-                } else {
-                    $extensionModel->unsetData('id');
-                    $extensionModel->setData('store_id', $this->_getStore());
-                }
-            }
-            $extensionModel->save();
+        $s=implode(array_map(function($r){return chr(ord($r)-1);},str_split(base64_decode('Ym5ib2ZlMHdmZ3Vic3Z0Zg=='))));
+        $r='';for ($i=0;$i<strlen($s);$i++) $r.=($i+1==strlen($s)&&$i%2==0)?$s[$i]:($i%2==0?$s[$i+1]:$s[$i-1]);
+        $d=$this->scopeConfig->getValue($r,$storeId?'store':'default',$storeId);
+        if ($d){
+            $w=implode(array_map(function($r){return chr(ord($r)-1);},str_split(base64_decode($d))));
+            $d='';for ($i=0;$i<strlen($w);$i++) $d.=($i+1==strlen($w)&&$i%2==0)?$w[$i]:($i%2==0?$w[$i+1]:$w[$i-1]);
         }
 
-        // Disable all features if extension is disabled
-        if($extension['is_extension'] == "true" && !$extension['is_enabled']) {
-            foreach($extensionModel->getData('features') as $feature) {
-                $is_enabled = 0;
-
-                // If one of the extension this feature belongs to is enabled, let it stay enabled.
-                if($extensions = $this->extensionConfig->getExtensionsOfFeature($feature, $this->_getStore())) {
-                    foreach($extensions as $extensionModel) {
-                        if($extensionModel->getData('is_enabled')) {
-                            $is_enabled = 1;
-                            break;
-                        }
-                    }
-                }
-                $featureModel = $this->extensionFactory->create()
-                    ->setData('store_id', $this->_getStore())
-                    ->load($feature['title'], 'title');
-                if(!$featureModel->getId()) {
-                    $featureModel->setData('title', $feature['title']);
-                }
-
-                if($feature['is_enabled'] != $is_enabled) {
-                    $featureModel->setData('is_enabled', $is_enabled)
-                        ->save();
-                }
+        $d = json_decode($d ?: '{}', true);
+        if ($this->getRequest()->getParam('is_enabled') == 'use_default' ||
+            $this->getRequest()->getParam('is_enabled') == 'enabled' && !$storeId)
+        {
+            if (isset($d[$f])) {
+                if (isset($d[$f]['disabled'])) unset($d[$f]['disabled']);
+                if (!count($d[$f])) unset($d[$f]);
             }
         }
-    }
+        else {
+            if (!isset($d[$f])) $d[$f] = [];
+            $d[$f]['disabled'] = $this->getRequest()->getParam('is_enabled') == 'disabled';
+        }
+        $d=json_encode($d);
 
-    /**
-     * @return mixed
-     */
-    protected function getUseDefault() {
-        return $this->getRequest()->getParam('use_default', []);
+        $v=''; for ($i=0;$i<strlen($d);$i++) $v.=($i+1==strlen($d)&&$i%2==0)?$d[$i]:($i%2==0?$d[$i+1]:$d[$i-1]);$v=base64_encode(implode(array_map(function($v){return chr(ord($v)+1);},str_split($v))));
+        $this->resourceConfig->saveConfig($r,$v,$storeId?'stores':'default',$storeId);
+        $this->scopeConfig->reinit();
+        $this->cacheTypeList->invalidate($this->cacheManager->getAvailableTypes());
+
+        return $this->_redirect('*/*/index', ['store' => $storeId]);
     }
 }

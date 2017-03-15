@@ -5,20 +5,22 @@
  */
 namespace Manadev\LayeredNavigation;
 
-use Manadev\LayeredNavigation\Resources\Indexers\FilterIndexer;
+use Manadev\Core\ConsoleHelper;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Application;
 
 class PostInstallScript implements \Manadev\Core\Contracts\PostInstallScript
 {
     /**
-     * @var FilterIndexer
+     * @var ConsoleHelper
      */
-    private $filterIndexer;
+    protected $consoleHelper;
 
-    public function __construct(FilterIndexer $filterIndexer) {
-        $this->filterIndexer = $filterIndexer;
+    public function __construct(ConsoleHelper $consoleHelper) {
+        $this->consoleHelper = $consoleHelper;
     }
 
-    public function execute() {
-        $this->filterIndexer->reindexAll();
+    public function execute(Application $application, OutputInterface $output, $mage) {
+        $this->consoleHelper->run("$mage indexer:reindex mana_filter_attribute");
     }
 }

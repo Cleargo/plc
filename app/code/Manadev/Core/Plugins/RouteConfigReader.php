@@ -8,40 +8,28 @@ namespace Manadev\Core\Plugins;
 use Closure;
 use Magento\Framework\App\Route\Config\Reader;
 use Magento\Store\Model\StoreManagerInterface;
+use Manadev\Core\Features;
 
 class RouteConfigReader
 {
     /**
-     * @var \Manadev\Core\Auth
+     * @var Features
      */
-    private $auth;
-    /**
-     * @var StoreManagerInterface
-     */
-    private $storeManager;
+    protected $features;
 
-    /**
-     * @param \Manadev\Core\Auth $auth
-     */
-    public function __construct(
-        \Manadev\Core\Auth $auth,
-        StoreManagerInterface $storeManager
-    ) {
-        $this->auth = $auth;
-        $this->storeManager = $storeManager;
+    public function __construct(Features $features) {
+        $this->features = $features;
     }
 
     public function aroundRead(Reader $subject, Closure $proceed, $scope = null) {
         $output = $proceed($scope);
 
         foreach ($output as &$router) {
-            foreach($router['routes'] as &$route) {
-                foreach($route['modules'] as &$module) {
-                    if(
-                        $this->auth->isInstalledManaModule($module) &&
-                        $this->auth->isModuleEnabled($module, $this->storeManager->getStore()->getId())
-                    ) {
-                        unset($route);
+            foreach(array_keys($router['routes']) as $routeKey) {
+                foreach($router['routes'][$routeKey]['modules'] as $module) {
+                    if(!$this->features->isEnabled($module, 0)) {
+                        unset($router['routes'][$routeKey]);
+                        break;
                     }
                 }
             }

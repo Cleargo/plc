@@ -12,4 +12,12 @@ interface FilterType {
      * @return FilterTemplates
      */
     public function getTemplates();
+
+    /**
+     * Returns (possible modified) array of field definitions tailored for this filter type.
+     *
+     * @param array $fields
+     * @return array
+     */
+    public function refineFields($fields);
 }

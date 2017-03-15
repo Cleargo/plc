@@ -1,7 +1,13 @@
 <?xml version="1.0"?>
+<!--
+ @category    Mana
+ @package     Manadev_LayeredNavigation
+ @copyright   Copyright (c) http://www.manadev.com
+ @license     http://www.manadev.com/license  Proprietary License
+-->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="mana_layered_navigation"/>
     <head>
-        <css src="Manadev_LayeredNavigation::css/styles.css"/>
         <css src="Magento_Swatches::css/swatches.css"/>
     </head>
     <body>
@@ -11,7 +17,7 @@
         </referenceBlock>
 
         <referenceContainer name="content">
-            <block class="Magento\Catalog\Block\Product\ListProduct" name="category.products.list" as="product_list" template="Magento_Catalog::product/list.phtml" before="-">
+            <block class="Magento\Catalog\Block\Product\ListProduct" name="category.products.list" as="product_list" template="Magento_Catalog::product/list.phtml">
                 <container name="category.product.list.additional" as="additional"/>
                 <block class="Magento\Framework\View\Element\RendererList" name="category.product.type.details.renderers" as="details.renderers">
                     <block class="Magento\Framework\View\Element\Template" as="default"/>
@@ -69,16 +75,6 @@
                 <action method="setToolbarBlockName">
                     <argument name="name" xsi:type="string">product_list_toolbar</argument>
                 </action>
-            </block>
-        </referenceContainer>
-
-        <referenceContainer name="sidebar.additional">
-            <block class="Manadev\LayeredNavigation\Blocks\Navigation" name="left.mana.layered_nav" before="-" template="Manadev_LayeredNavigation::navigation.phtml">
-                <arguments>
-                    <argument name="position" xsi:type="string">left</argument>
-                </arguments>
-                <block class="Manadev\LayeredNavigation\Blocks\FilterRenderer" name="left.mana.layered_nav.filter_renderer" as="filter_renderer"/>
-                <block class="Manadev\LayeredNavigation\Blocks\AppliedItemRenderer" name="left.mana.layered_nav.applied_item_renderer" as="applied_item_renderer"/>
             </block>
         </referenceContainer>
     </body>

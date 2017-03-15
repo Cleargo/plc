@@ -7,30 +7,27 @@ namespace Manadev\Core\Plugins;
 
 use Closure;
 use Magento\Backend\Model\Menu\Config\Reader;
+use Manadev\Core\Features;
 
 class MenuConfigReaderModel {
     /**
-     * @var \Manadev\Core\Auth
+     * @var Features
      */
-    private $auth;
+    protected $features;
 
-    /**
-     * @param \Manadev\Core\Auth $auth
-     * @param \Manadev\Core\Model\ExtensionConfigReader $extensionConfigReader
-     */
-    public function __construct(
-        \Manadev\Core\Auth $auth
-    ) {
-        $this->auth = $auth;
+    public function __construct(Features $features) {
+        $this->features = $features;
     }
 
     public function aroundRead(Reader $subject, Closure $proceed, $scope = null){
         $output = $proceed($scope);
 
-        foreach($output as $key => $data) {
-            if(!isset($data['module'])) continue;
-            $module = $data['module'];
-            if(!$this->auth->isModuleEnabled($module, 0)){
+        foreach(array_keys($output) as $key) {
+            if(!isset($output[$key]['module'])) {
+                continue;
+            }
+
+            if(!$this->features->isEnabled($output[$key]['module'], 0)){
                 unset($output[$key]);
             }
         }

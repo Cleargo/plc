@@ -6,8 +6,10 @@
 
 namespace Manadev\Core\Contracts;
 
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Application;
 
 interface PostInstallScript
 {
-    public function execute();
+    public function execute(Application $application, OutputInterface $output, $mage);
 }

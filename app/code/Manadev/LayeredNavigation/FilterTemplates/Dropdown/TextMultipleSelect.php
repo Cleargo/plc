@@ -116,4 +116,8 @@ class TextMultipleSelect implements FilterTemplate {
             }
         }
     }
+
+    public function getTitle() {
+        return __('Multiple Select Text');
+    }
 }
