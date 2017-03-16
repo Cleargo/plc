@@ -2,3 +2,8 @@
 "Create New Customer Account","Create Customer Account"
 "Customer Login","Login or Create an Account"
 "Proceed to Checkout","Checkout"
+"SKU","Module No."
+"Mage_Catalog::SKU","Module No."
+"Mage_Sales::SKU","Module No."
+"Shop By","Filter & Sort"
+"Shopping Options","Filter by"
