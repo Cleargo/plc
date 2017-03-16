@@ -38,12 +38,6 @@
     <type name="Magento\Catalog\Block\Product\ListProduct">
         <plugin name="Manadev\Core\Plugins\ProductListBlock" type="Manadev\Core\Plugins\ProductListBlock" />
     </type>
-    <type name="Magento\Framework\View\Design\FileResolution\Fallback\Resolver\Simple">
-        <plugin name="Manadev\Core" type="Manadev\Core\Plugins\ThemeFileResolver" />
-    </type>
-    <type name="Magento\Framework\View\Element\Template\File\Validator">
-        <plugin name="Manadev\Core" type="Manadev\Core\Plugins\TemplateFileValidator" />
-    </type>
     <type name="Magento\Framework\View\Element\Template">
         <plugin name="Manadev\Core\Plugins\ViewWithTemplate" type="Manadev\Core\Plugins\ViewWithTemplate"/>
     </type>
