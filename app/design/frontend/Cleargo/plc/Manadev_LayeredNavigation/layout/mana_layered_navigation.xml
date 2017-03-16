@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+ @category    Mana
+ @package     Manadev_LayeredNavigation
+ @copyright   Copyright (c) http://www.manadev.com
+ @license     http://www.manadev.com/license  Proprietary License
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="main.mana.layered_nav" destination="category.product.list.additional" before="-"/>
+    </body>
+</page>
