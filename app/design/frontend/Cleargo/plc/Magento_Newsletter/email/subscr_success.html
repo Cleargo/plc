@@ -16,7 +16,7 @@
 <table class="button" width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td align="center">
-            <h2 style="font-size:30px;color:#c3161c;letter-spacing:0px;text-align:center;font-style:italic;">{{trans "WE'RE SO"}}<br/>{{trans "THRILLED TO HAVE YOU!"}}</h2>
+            <h2 style="font-size:30px;color:#c3161c;letter-spacing:0px;text-align:center;font-style:italic;">{{trans "WE'RE SO"}}<br/>{{trans "DELIGHTED TO HAVE YOU!"}}</h2>
         </td>
     </tr>
     <tr>
@@ -33,10 +33,12 @@
                 {{trans "Thank you for subscribing to our newsletter. We can now share with you updates on the latest news, new arrivals, and exclusive deals."}}<br />
                 <br />
                 {{trans "At PLC we take first impressions seriously, so new members get a treat!"}}<br />
-                {{trans "To help you get started with your online shopping experiencehere's"}}<br />
-                {{trans "a "}}<span style="color:#c3161c; font-size:14px; font-weight:bold">$100</span>{{trans " gift coupon*."}}<br />
+                {{trans "To help you get started with your online shopping experiencehere's<br />a}}<span style="color:#c3161c; font-size:14px; font-weight:bold">{{trans " $100 " }}</span>{{trans "gift coupon*."}}<br />
                 <br />
-                {{trans "Simply "}}<a href='{{store url=""}}'>{{trans "click here"}}</a>{{trans " to start shopping and enter this code:"}} <span style="color:#c3161c; font-size:14px; font-weight:bold">PLC100CASH</span>{{trans " when you checkout."}}
+                {{trans "Simply <a href='%store_url'>click here</a> to start shopping and enter this code:"
+                store_url=$this.getUrl($store,'',[_nosid:1])
+                |raw
+                }} <span style="color:#c3161c; font-size:14px; font-weight:bold">PLC100CASH</span>{{trans " when you checkout."}}
             </p><br /><br />
             <p style="
                 font-size:14px;
@@ -76,13 +78,9 @@
 <p style="font-size:10px;color:#7f7f7f;line-height:12px;font-style:normal;margin:0 -20px;">
     *{{trans "Gift voucher valid for 1 week only"}} | 
     {{trans "For one-time use only"}} |
-    {{trans "Applicable to purchases above HK$500"}} |
-    {{trans "Applicable on discounted items"}} |
+    {{trans "Applicable to purchases above HK$1,000"}} |
     {{trans "Not valid on non-sale brands"}} |
-    {{trans "Voucher amount will be shared between all regular priced items and discounted items; 
-    discount proportion is based on the value of the items."}} |
-    {{trans "Redeemed by logging in to account, discount code to be inserted at checkout."}}
-    {{trans "For any questions, contact our Customer Service Team at: 2765 9667 or plc@plc.com.hk"}}
+    {{trans "For any questions, contact our Customer Service Team at: %store_phone or %store_email" store_phone=$store_phone store_email=$store_email}}
 </p>
 
 {{template config_path="design/email/footer_template"}}

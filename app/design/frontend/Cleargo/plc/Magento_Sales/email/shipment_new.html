@@ -24,13 +24,16 @@
 <table>
     <tr class="email-intro">
         <td>
-            <p class="greeting">{{trans "%name," name=$order.getCustomerName()}}</p>
+            <p class="greeting" style="font-weight: bold;">{{trans "Dear %customer_name," customer_name=$order.getCustomerName()}}</p>
             <p>
                 {{trans "Thank you for your order from %store_name." store_name=$store.getFrontendName()}}
-                {{trans 'You can check the status of your order by <a href="%account_url">logging into your account</a>.' account_url=$this.getUrl($store,'customer/account/',[_nosid:1]) |raw}}
-                {{trans 'If you have questions about your order, you can email us at <a href="mailto:%store_email">%store_email</a>' store_email=$store_email |raw}}{{depend store_phone}} {{trans 'or call us at <a href="tel:%store_phone">%store_phone</a>' store_phone=$store_phone |raw}}{{/depend}}.
+                {{trans "Once your package ships we will send you a tracking number."}}
+                {{trans "You can check the status of your order by <a href='%account_url'>logging into your account</a>." account_url=$this.getUrl($store,'customer/account/',[_nosid:1]) |raw}}
+            </p>
+            <p>
+                {{trans "If you have questions about your order, you can email us at <a href='mailto:%store_email'>%store_email</a>" store_email=$store_email |raw}}{{depend store_phone}} {{trans "or call us at <a href='tel:%store_phone'>%store_phone</a>" store_phone=$store_phone |raw}}{{/depend}}.
                 {{depend store_hours}}
-                    {{trans 'Our hours are <span class="no-link">%store_hours</span>.' store_hours=$store_hours |raw}}
+                {{trans "Our hours are <span class='no-link'>%store_hours</span>." store_hours=$store_hours |raw}}
                 {{/depend}}
             </p>
         </td>
@@ -39,7 +42,7 @@
         <td>
             <p>{{trans "Your shipping confirmation is below. Thank you again for your business."}}</p>
 
-            <h1>{{trans "Your Shipment #%shipment_id for Order #%order_id" shipment_id=$shipment.increment_id order_id=$order.increment_id}}</h1>
+            <h2>{{trans "Your Shipment #%shipment_id for Order #%order_id" shipment_id=$shipment.increment_id order_id=$order.increment_id}}</h2>
         </td>
     </tr>
     <tr class="email-information">
@@ -86,3 +89,5 @@
 </table>
 
 {{template config_path="design/email/footer_template"}}
+{{layout handle="footer_tnc" }}
+

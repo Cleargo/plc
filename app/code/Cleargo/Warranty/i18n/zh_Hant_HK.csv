@@ -1,159 +1,166 @@
-"Warrantys","保養"
-"Add New Warranty","添加新保養"
-"Save Warranty","儲存保養"
-"Delete Warranty","刪除保養"
-"Save and Continue Edit","儲存並繼續編輯"
+Warrantys,保養
+"Add New Warranty",新增保養
+"Save Warranty",儲存保養
+"Delete Warranty",刪除保養
+"Save and Continue Edit",儲存並繼續編輯
 "Edit Warranty '%1'","編輯保養 '%1'"
-"New Warranty","新增保養"
-"Warranty Information","保養資訊"
-"Customer Information","顧客資訊"
-"General Information","一般資訊"
-"Increment No.","增量編號"
-"Salutation","稱謂"
-"English First Name","英文名字"
-"English Last Name","英文姓"
-"Chinese Name","中文名字"
-"Company","公司"
-"Contact No. (1) Country Code","聯繫號碼（1）國家代碼"
-"Contact No. (1)","聯繫號碼（1）"
-"Contact No. (2) Country Code","聯繫號碼（2）國家代碼"
-"Contact No. (2)","聯繫號碼（2）"
-"Email","電子郵件"
-"Quesetin Type","問題類型"
-"Answer","答案"
-"Birthday","生日"
-"Status","狀態"
-"Product Information","產品信息"
-"Product Type","產品類別"
-"Serial Number","序號"
-"Profile","簡介"
-"T Combination","T組合"
-"FP Combination","FP組合"
-"Purchase Information","購買信息"
-"Date","日期"
-"Name of Dealer","經銷商名稱"
-" Invoice No.","?發票號碼"
-"Information","信息"
-"My Warranties","我的保養"
-"Home","首頁"
-"Go to Home Page","去首頁"
-"Warranty Review","保養審查"
-"MT5 Registration","MT5登記"
-"Warranty Form","保養表格"
-"The warranty has been deleted.","保養已被刪除。"
-"We can't find a warranty to delete.","我們無法找到要刪除的保養。"
-"This warranty no longer exists.","此保養已不存在。"
-"Edit Warranty","編輯保養"
-"Warranty","保養"
-"Manage Warrantys","管理保養"
-"Please correct the data sent.","請更正發送的數據。"
-"A total of %1 record(s) have been deleted.","共有%1條記錄已被刪除。"
-"A total of %1 record(s) have been disabled.","共有%1條記錄已被停用。"
-"A total of %1 record(s) have been enabled.","共有%1條記錄已被啟用。"
-"You saved this warranty.","您已儲存了此保養。"
-"Thank you for your MT5 registration!","感謝您登記MT5註冊保養！"
-"We can't process your request right now. ","我們目前無法處理您的請求。"
-"Who is your favourite singer?","你最喜歡的歌手是誰？"
-"What is your favourite pastime?","你最喜歡的消遣是什麼？"
-"What is your favourite sports team?","你最喜歡的運動隊伍是什麼？"
-"What is the name of your primary school?","你就讀的小學的名稱是什麼？"
-"What is your pet? name?","你的寵物的名字是什麼？"
-"What colour do you like best?","你最喜歡什麼顏色？"
-"Which is your favourite festival?","那個是你最喜歡的節日？"
-"What is your favourite fruit?","你最喜歡的水果是什麼？"
-"Enabled","上線"
-"Disabled","下線"
-"Auxiliary Lock","附加鎖"
-"Cylinder","鎖膽"
-"Entrance Lockset","大門鎖"
-"Others","其他"
-"District Warranty with id ""%1"" does not exist.","ID為""%1""的區域保養並不存在。"
-"Edit","編輯"
-"Delete","刪除"
-"Delete ${ $.$data.title }","刪除${ $.$data.title }"
+"New Warranty",新保養
+"Warranty Information",保養信息
+"Customer Information",客戶資訊
+"General Information",一般資訊
+"Increment No.",增量編號
+Salutation,稱謂
+"English First Name",英文名字
+"English Last Name",英文姓氏
+"Chinese Name",中文名字
+Company,公司
+"Contact No. (1) Country Code",聯絡電話（1）國家編碼
+"Contact No. (1)",聯絡電話（1）
+"Contact No. (2) Country Code",聯絡電話（2）國家編碼
+"Contact No. (2)",聯絡電話（2）
+Email,電郵
+"Quesetin Type",問題類型
+Answer,答案
+Birthday,生日
+Status,狀態
+"Product Information",產品信息
+"Product Type",產品類別
+"Serial Number",序號
+Profile,個人資料
+"T Combination",Ť組合
+"FP Combination",FP組合
+"Purchase Information",購買信息
+Date,日期
+"Name of Dealer",經銷商名稱
+" Invoice No.",發票號碼
+Information,信息
+"My Warranties",我的保養
+Home,首頁
+"Go to Home Page",前往首頁
+"Warranty Review",保養審查
+"MT5 Registration",MT5登記
+"Warranty Form",保養表格
+"The warranty has been deleted.",保養已刪除。
+"We can't find a warranty to delete.",我們無法找到要刪除的保養。
+"This warranty no longer exists.",保養不存在。
+"Edit Warranty",編輯保養
+Warranty,保養
+"Manage Warrantys",管理保養
+"Please correct the data sent.",請更正發送的資料。
+"A total of %1 record(s) have been deleted.",共有%1紀錄已被刪除。
+"A total of %1 record(s) have been disabled.",共有%1結果已被下線。
+"A total of %1 record(s) have been enabled.",共有%1結果已上線。
+"You saved this warranty.",您已儲存此保養。
+"Thank you for your MT5 registration!",多謝使用MT5登記服務！
+"We can't process your request right now. ",我們目前無法處理您的請求。
+"Who is your favourite singer?",誰是您最喜歡的歌手？
+"What is your favourite pastime?",您最喜歡的嗜好是甚麼？
+"What is your favourite sports team?",您最喜歡的運動隊伍是甚麼？
+"What is the name of your primary school?",您就讀哪一間小學？
+"What is your pet? name?",您飼養的寵物叫甚麼名字？
+"What colour do you like best?",您最喜歡甚麼顏色？
+"Which is your favourite festival?",你最喜歡哪一個節日？
+"What is your favourite fruit?",你最喜歡甚麼水果？
+Enabled,上線
+Disabled,下線
+"Auxiliary Lock",附加鎖
+Cylinder,鎖膽
+"Entrance Lockset",大門門鎖
+Others,其他
+"District Warranty with id ""%1"" does not exist.","編號""%1""的區域保養證並不存在。"
+Edit,編輯
+Delete,刪除
+"Delete ${ $.$data.title }","刪除$ {$。$ data。title}"
 "Are you sure you wan't to delete a ${ $.$data.title } record?","您確定要刪除 ${ $.$data.title }紀錄嗎？"
-"* Required Fields","*必填欄位"
-"Mr","先生"
-"Mrs","太太"
-"Miss","小姐"
-"Chinese Name (if applicable)","中文名稱（如適用）"
-"Company Name (if applicable)","公司名稱（如適用）"
-"Hong Kong ID / Passport or<br>&nbsp;other ID","香港身份證 / 護照或<br>其他身份證明號碼"
-"HKID","香港身份證"
-"Passport or other ID","護照或其他身份證明號碼"
-"first 4 digit, including the first letter)","前4位，包括第一個字母"
-"*Contact No. (1)","*聯絡電話（1）"
-"Coundivy Code","國家代碼"
-"Number","號碼"
-"E-mail Address","電子郵件"
-"A copy of this regisdivationform will be sent to the e-mail address provided for reference.","此註冊表格的副本將發送到提供參考的電子郵件。"
-"Security question","安全問題"
-"Your answer","你的答案"
-"Date of Birth","出生日期"
-"Product Information ","產品信息"
-"Brand","品牌"
-"Product Category","產品類別"
-"Keycard Information","卡片信息"
-"Invoice No","發票號碼"
-"Warranty Details","保養詳情"
-"Invoice No.","發票號碼"
-"Date of Purchase","購買日期"
-"Date of Warranty Creation","保養創建日期"
-"Detail Info","詳細信息"
-"Warranty #","保養#"
+"* Required Fields",*必填欄位
+Mr,先生
+Mrs,太太
+Miss,小姐
+"Chinese Name (if applicable)","中文姓名 (如適用)"
+"Company Name (if applicable)",公司名稱(如適用)
+"Hong Kong ID / Passport or<br>&nbsp;other ID","香港身份證號碼 / 護照或<br>&nbsp;其他身份證明號碼"
+HKID,香港身份證
+"Passport or other ID",護照或其他身份證明號碼
+"first 4 digit, including the first letter)",前4位，包括第一個字母
+"*Contact No. (1)",*聯絡電話（1）
+"Coundivy Code",國家代碼
+Number,號碼
+"E-mail Address",電郵地址
+"A copy of this regisdivationform will be sent to the e-mail address provided for reference.",此註冊表格的副本將發送到提供參考的電子郵件。
+"Security question",保安問題
+"Your answer",您的答案
+"Date of Birth",出生日期
+"Product Information ",產品信息
+Brand,品牌
+"Product Category",產品類別
+"Keycard Information",卡片信息
+"Invoice No",發票號碼
+"Warranty Details",保養詳情
+"Invoice No.",發票號碼
+"Date of Purchase",購買日期
+"Date of Warranty Creation",保養創建日期
+"Detail Info",詳細信息
+"Warranty #",保養#
 "Serial Number : ","序號 ："
-"Profile : ","資料："
-"T combination : ","T組合："
-"FP combination : ","FP組合："
-"Actions","操作"
-"View Warranty","查看保養"
-"You have no warranties.","您沒有保養。"
-"ID Type","ID類型"
-"Hong Kong ID","香港身份證"
-"ID Number","身份證號碼"
-"Sumbit Above Information","提交以上信息"
-"Reference No.","參考編號"
+"Profile : ",資料：
+"T combination : ",T組合：
+"FP combination : ",FP組合：
+Actions,操作
+"View Warranty",查看保養
+"You have no warranties.",您沒有保養。
+"ID Type",身份證明文件類型
+"Hong Kong ID",香港身份證
+"ID Number",身份證號碼
+"Sumbit Above Information",提交上述資料
+"Reference No.",參考編號
 "Dear %name,","親愛的 %name,"
 "Thank you for using our online registration service. Attached please kindly find a copy of your registration form for reference.","感謝您使用我們的在線註冊服務。 附件有您的註冊表副本以供參考。"
-"Customer Information ","客戶信息"
-"Hong Kong ID /Passport or other ID","護照或其他身份證明號碼"
-"%name","%name"
-"Your answer ","你的答案"
+"Customer Information ",客戶信息
+"Hong Kong ID /Passport or other ID",香港身份證號碼 / 護照或其他身份證明號碼
+%name,%name
+"Your answer ",您的答案
 "Mul-T-Lock MT5","Mul-T-Lock MT5"
-"Key Information","鑰匙信息"
-"1. Serial Number","1.序號"
-"2. Profile ","2.簡介"
-"3. T-Combination","3.T-組合"
-"4. FP-Combination","4.FP組合"
-"Purchase Information ","購買信息"
-"Should you have any enquiries, please call our customer service hotline at 852-2765 9667 for assistance.","如有任何查詢，請致電客戶服務熱線852-2765 9667尋求協助。"
-"Yours faithfully,","謹啟"
-"The PLC Group","PLC集團"
-"Enter Valid HKID/Passport Number","輸入有效的香港身份證/護照號碼"
-"CSV","CSV"
+"Key Information",卡片信息
+"1. Serial Number",1.序號
+"2. Profile ",2.簡介
+"3. T-Combination",3.T-組合
+"4. FP-Combination",4.FP組合
+"Purchase Information ",購買信息
+"Should you have any enquiries, please call our customer service hotline at 852-2765 9667 for assistance.","如有任何疑問，請致電我們的客戶服務熱線852-2765 9667查詢。"
+"Yours faithfully,",謹啟
+"The PLC Group",PLC集團
+"Enter Valid HKID/Passport Number",輸入有效的香港身份證/護照號碼
+CSV,CSV
 "Excel XML","Excel XML"
-"Delete items","刪除項目"
-"Are you sure you wan't to delete selected items?","您確定要刪除所選項目嗎？"
-"Disable","下線"
-"Enable","上線"
-"ID","ID"
-"English Frist Name","英文名字"
-"Chinese Frist Name","中文名字"
-"Chinese Last Name","中文姓氏"
-"Passport Number","護照號碼"
+"Delete items",刪除項目
+"Are you sure you wan't to delete selected items?",您確定要刪除所選項目嗎？
+Disable,下線
+Enable,上線
+ID,ID
+"English Frist Name",英文名字
+"Chinese Frist Name",中文名字
+"Chinese Last Name",中文姓氏
+"Passport Number",護照號碼
 "Contact One Country Code","聯繫一 國家代碼"
 "Contact One Phone","聯繫一 電話"
 "Contact Two Country Code","聯繫二 國家代碼"
 "Contact Two Phone","聯繫二 電話"
-"Security Question","安全問題"
-"Date Of Birth","出生日期"
-"T-combination","T組合"
-"FP-combination","FP組合"
-"Name Of Dealer","經銷商名稱"
-"Invoice Number","發票號碼"
-"Created","創建"
-"Modified","更改"
-"My Warranty Record","我的保養記錄"
-"My Warranty Detail","我的保養詳情"
-"Thank you!","謝謝！"
+"Security Question",安全問題
+"Date Of Birth",出生日期
+T-combination,T組合
+FP-combination,FP組合
+"Name Of Dealer",經銷商名稱
+"Invoice Number",發票號碼
+Created,創建
+Modified,更改
+"My Warranty Record",我的保養記錄
+"My Warranty Detail",我的保養詳情
+"Thank you!",謝謝！
 "Thank you for registering your Mul-T-Lock MT5 product. You should receive a confirmation email shortly. Please call our CS Hotline @ 2765 9667 or email to plc@plc.com.hk if you have any questions regarding your product.","感謝您註冊您的Mul-T-Lock MT5產品。 您很快就會收到確認電子郵件。 如有任何有關您的產品的問題，請致電我們的客戶服務熱線2765 9667或電郵至plc@plc.com.hk。"
+"Edit Warranty %1",編輯保養%1
+"Chinese First Name",中文名字
+"Dealer Network",經銷商網絡
+"We cant find a warranty to delete.",我們無法刪除保養資料。
+"We cant process your request right now. ",我們目前無法處理您的要請求。
+"Are you sure you want to delete a ${ $.$data.title } record?","您確定您想刪除$ {$。$ data。title}記錄？"
+"Question Type",問題類型

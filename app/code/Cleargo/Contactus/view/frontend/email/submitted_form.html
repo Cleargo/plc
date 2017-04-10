@@ -75,7 +75,7 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
     </tr>
 </table>
 
-<p>{{trans "Should you have any enquiries, please call our customer service hotline at 852-2765 9667 for assistance."}}</p>
+<p>{{trans "Should you have any enquiries, please call our customer service hotline at <a href='tel:%store_phone'>%store_phone</a> for assistance." store_phone=$store_phone |raw}}</p>
 <p>{{trans "Yours faithfully,"}}</p>
 <p>{{trans "The PLC Group"}}</p>
 
