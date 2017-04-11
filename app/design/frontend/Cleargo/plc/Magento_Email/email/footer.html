@@ -51,8 +51,8 @@
                 <tr>
                     <td class="footer">
                         <p class="closing" style="text-align: center;font-size:12px;color:#afafaf;">{{trans "To ensure our emails reach your inbox, add %store_email to your address book. We promise not to share your information. Click here to view our privacy policy." store_email=$store_email }}</p>
-
-                        <p class="closing" style="text-align: center;font-size:12px;color:#afafaf;">{{trans "Unit A-D, 9/F., Gemstar Tower, 23 Man Lok Street, Hunghom, Kowloon, Hong Kong.  Monday – Friday 9:30am - 6pm , Saturday 9:30am-1pm (excluding public holidays).  ©2017 THE PLC GROUP"}}</p>
+                        
+                        <p class="closing" style="text-align: center;font-size:12px;color:#afafaf;">{{config path="general/store_information/street_line1"}}{{trans ".  %store_hours.  %copyright" store_hours=$store_hours copyright='©2017 THE PLC GROUP'"}}</p>
                     </td>
                 </tr>
             </table>
