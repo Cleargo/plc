@@ -64,6 +64,8 @@
              aria-hidden="false">
             <!-- ko if: rates().length  -->
             <form class="form methods-shipping" id="co-shipping-method-form" data-bind="submit: setShippingInformation" novalidate="novalidate">
+                <div id="checkout-shipping-method-text" data-bind="i18n: 'Your products will be delivered by the following logistics providers: PLC, S.F. Express, Third Party Logistics Provider.'">
+                </div>
                 <div id="checkout-shipping-method-load">
                     <table class="table-checkout-shipping-method">
                         <thead>
