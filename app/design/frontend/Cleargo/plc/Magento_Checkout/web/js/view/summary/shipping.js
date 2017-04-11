@@ -110,14 +110,11 @@ define(
                 totalItemsWeight += parseInt(this.weight);
             });
         }
-        console.log(totalItemsWeight);
 
         if(totalItemsWeight > 90){
             totalItemsWeight = 90;
         }
         totalItemsWeight = Math.floor(totalItemsWeight);
-
-        console.log(weightArr[totalItemsWeight]);
 
         return Component.extend({
             defaults: {
