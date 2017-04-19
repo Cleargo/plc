@@ -15,4 +15,5 @@
     <preference for="Magento\Sales\Model\Order\Pdf\Creditmemo" type="Cleargo\AdminTheme\Model\Order\Pdf\Creditmemo"/>
     <preference for="Magento\Sales\Model\Order\Pdf\Invoice" type="Cleargo\AdminTheme\Model\Order\Pdf\Invoice"/>
     <preference for="Magento\Sales\Model\Order\Pdf\Shipment" type="Cleargo\AdminTheme\Model\Order\Pdf\Shipment"/>
+    <preference for="Magento\Rma\Model\Pdf\Rma" type="Cleargo\AdminTheme\Model\Order\Pdf\Rma"/>
 </config>

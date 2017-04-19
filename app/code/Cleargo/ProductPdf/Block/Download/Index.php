@@ -18,6 +18,7 @@ use \Magento\Catalog\Model\Product\AttributeSet\Options as attributeSetOptions;
 use \Magento\Catalog\Model\Product as productModel;
 use Cleargo\ProductPdf\Model\ResourceModel\Pdf\CollectionFactory as pdfCollectionFactory;
 use Magento\Framework\Filesystem;
+use Magento\Framework\Filesystem\Io\File;
 
 class Index extends Template
 {
@@ -62,6 +63,8 @@ class Index extends Template
 
     protected $_pdfCollectionFactory;
 
+    protected $file;
+
 
 
     public function __construct(
@@ -75,6 +78,7 @@ class Index extends Template
         attributeSetOptions $_attributeSetOptions,
         pdfCollectionFactory $_pdfCollectionFactory,
         productModel $_productModel,
+        File $file,
         array $data = []
     ) {
         $this->_searchCriteriaBuilder = $_searchCriteriaBuilder;
@@ -86,6 +90,7 @@ class Index extends Template
         $this->_attributeSetOptions = $_attributeSetOptions;
         $this->_pdfCollectionFactory = $_pdfCollectionFactory;
         $this->_productModel = $_productModel;
+        $this->file = $file;
         parent::__construct($context, $data);
     }
 
@@ -112,8 +117,7 @@ class Index extends Template
     }
 
     public function getFullMediaUrl($relative){
-        return $this->_storeManager->getStore()
-            ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA).$relative;
+        return $this->getBaseUrl().'pub/media/'.$relative;
     }
 
     public function getFormatedFileSize($pdfId){
@@ -141,13 +145,9 @@ class Index extends Template
     }
 
     public function checkUrlExist($file){
-        $file_headers = @get_headers($file);
-        if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
-            $exists = false;
-        }
-        else {
-            $exists = true;
-        }
+        $serverPath =  $this->_filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA)->getAbsolutePath($file);
+        $exists = $this->file->fileExists($serverPath);
+
         return $exists;
     }
 
