@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * @var $block \Cleargo\ProductPdf\Block\Download\Index
+ */
+
 $attrSets = $block->getAllAttrSetId();
 $pdfs = $block->getPdfs();
 ?>
@@ -21,13 +26,13 @@ $pdfs = $block->getPdfs();
                         <td class="brand-td">
                             <?php $brandName = $block->getBrandLabelFormId($brand_id); ?>
                             <?php $brandImgPath = $block->getFullMediaUrl('wysiwyg/pdf-download-page/'.$block->cleanSpecialChar(urlencode($brandName)).'.jpg') ?>
-                            <?php if( $block->checkUrlExist( $brandImgPath ) ): ?>
+
+                            <?php if( $block->checkUrlExist( 'wysiwyg/pdf-download-page/'.$block->cleanSpecialChar(urlencode($brandName)).'.jpg' ) ): ?>
                                 <img class="brand-img " src="<?php echo $brandImgPath ?>" />
                             <?php else: ?>
                                 <?php echo $brandName ; ?>
                             <?php endif; ?>
-                            <span style="display: none;"><?php echo $block->cleanSpecialChar(urlencode($brandName)) ; ?></span>
-                        </td>
+                         </td>
                         <td>
                             <?php foreach ($brands as $pdf ): ?>
                                 <?php
