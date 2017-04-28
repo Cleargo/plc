@@ -29,15 +29,15 @@
                     <td style=" text-align: center;padding-top:20px;padding-bottom:20px">
                         <table align="center">
                             <tr>
-                                <td><span style="">
+                                <td><a href="{{store url=""}}"><span style="">
                         <img src="
                               {{view url='Magento_Email/small-plc.png'}}" style="vertical-align: middle;  padding: 0 12px;
     border-right: 1px solid #AFAFAF !important;" />
-                        </span></td>
-                                <td><span style="">
+                        </span></a></td>
+                                <td><a href="https://www.facebook.com/The-PLC-Group-481498965237214/"><span style="">
                         <img src="{{view url='Magento_Email/fb.png'}}" style="vertical-align: middle;  padding: 0 12px;
     border-right: 1px solid #AFAFAF !important; "  />
-                        </span></td>
+                        </span></a></td>
                                 <td><span >
                         <img src="{{view url='Magento_Email/email-icon.png'}}" style="vertical-align: middle;
     padding: 0 12px; " />
@@ -50,7 +50,7 @@
                 </tr>
                 <tr>
                     <td class="footer">
-                        <p class="closing" style="text-align: center;font-size:12px;color:#afafaf;">{{trans "To ensure our emails reach your inbox, add %store_email to your address book. We promise not to share your information. Click here to view our privacy policy." store_email=$store_email }}</p>
+                        <p class="closing" style="text-align: center;font-size:12px;color:#afafaf;">{{trans "To ensure our emails reach your inbox, add %store_email to your address book. We promise not to share your information. Click <a href='%store_url'>here</a> to view our privacy policy." store_email=$store_email {{trans "You can check the status of your order by <a href='%account_url'>logging into your account</a>." store_url=$this.getUrl($store,'/',[_nosid:1]) |raw}}</p>
                         
                         <p class="closing" style="text-align: center;font-size:12px;color:#afafaf;">{{config path="general/store_information/street_line1"}}{{trans ".  %store_hours.  %copyright" store_hours=$store_hours copyright='©2017 THE PLC GROUP'"}}</p>
                     </td>
