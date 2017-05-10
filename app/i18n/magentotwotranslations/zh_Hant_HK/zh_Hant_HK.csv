@@ -9411,7 +9411,7 @@ Localized Exception,本地化異常,module,"Magento_Cms,Magento_Reminder,Magento
 "LOCKS & SECURITY",門鎖及保安
 "SMART HOME",智能家居
 "SHOWCASE",產品展示
-"To ensure our emails reach your inbox, add %store_email to your address book. We promise not to share your information. Click <a href='%policy_url'>here</a> to view our privacy policy.","為確保我們的電子郵件能發送到您的收件箱，請將 %store_email 添加到您的通訊錄中。 我們承諾不會洩露您的資料。 點擊您可以通過登入到<a href='%store_url'>這裡</a>查看我們的隱私政策。","module","Magento_Email"
+"To ensure our emails reach your inbox, add %store_email to your address book. We promise not to share your information. Click <a href='%store_url'>here</a> to view our privacy policy.","為確保我們的電子郵件能發送到您的收件箱，請將 %store_email 添加到您的通訊錄中。 我們承諾不會洩露您的資料。 點擊您可以通過登入到<a href='%store_url'>這裡</a>查看我們的隱私政策。","module","Magento_Email"
 ".  %store_hours.  %copyright","。%store_hours。 %copyright"
 "You can check the status of your order by <a href='%account_url'>logging into your account</a>.",您可以通過登入到<a href='%account_url'>您的帳戶</a>查看訂單狀態。,"module","Magento_Sales"
 "Your Invoice #%invoice_id for Order #%order_id",您的發票#%invoice_id為訂單#%order_id,"module","Magento_Sales"
