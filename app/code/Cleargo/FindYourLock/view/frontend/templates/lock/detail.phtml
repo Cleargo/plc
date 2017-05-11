@@ -11,7 +11,7 @@
         </span>
     </h1>
     <?php if($this->getImageLock()->getLogo()):?>
-        <img class="lock-logo" src="<?php echo $this->getImageLock()->getLogo() ?>"/>
+        <img class="lock-logo" src="<?php echo $this->getBaseUrl(). 'pub/media/' .  $this->getImageLock()->getLogo() ?>"/>
     <?php endif ?>
 </div>
 
@@ -149,14 +149,14 @@
             <h3 class="img-hading"><?php echo __("Before Installation") ?></h3>
         <?php endif ?>
     <?php if($this->getImageLock()->getBeforeImage1()):?>
-        <a class="img-wrapper" href="<?php echo $this->getImageLock()->getBeforeImage1() ?>">
-            <img class="before-img" src="<?php echo $this->getImageLock()->getBeforeImage1() ?>"/>
+        <a class="img-wrapper" href="<?php echo $this->getBaseUrl(). 'pub/media/' . $this->getImageLock()->getBeforeImage1() ?>">
+            <img class="before-img" src="<?php echo $this->getBaseUrl(). 'pub/media/' . $this->getImageLock()->getBeforeImage1() ?>"/>
         </a>
     <?php endif ?>
 
     <?php if($this->getImageLock()->getBeforeImage2()):?>
-        <a class="img-wrapper" href="<?php echo $this->getImageLock()->getBeforeImage2() ?>">
-            <img class="before-img" src="<?php echo $this->getImageLock()->getBeforeImage2() ?>"/>
+        <a class="img-wrapper" href="<?php echo $this->getBaseUrl(). 'pub/media/' . $this->getImageLock()->getBeforeImage2() ?>">
+            <img class="before-img" src="<?php echo $this->getBaseUrl(). 'pub/media/' . $this->getImageLock()->getBeforeImage2() ?>"/>
         </a>
     <?php endif ?>
     </div>
@@ -165,14 +165,14 @@
             <h3 class="img-hading"><?php echo __("After Installation") ?></h3>
         <?php endif ?>
     <?php if($this->getImageLock()->getAfterImage1()):?>
-        <a class="img-wrapper" href="<?php echo $this->getImageLock()->getAfterImage1() ?>">
-            <img class="before-img" src="<?php echo $this->getImageLock()->getAfterImage1() ?>"/>
+        <a class="img-wrapper" href="<?php echo $this->getBaseUrl(). 'pub/media/' .  $this->getImageLock()->getAfterImage1() ?>">
+            <img class="before-img" src="<?php echo $this->getBaseUrl(). 'pub/media/' .  $this->getImageLock()->getAfterImage1() ?>"/>
         </a>
     <?php endif ?>
 
     <?php if($this->getImageLock()->getAfterImage2()):?>
-        <a class="img-wrapper" href="<?php echo $this->getImageLock()->getAfterImage2() ?>">
-            <img class="after-img" src="<?php echo $this->getImageLock()->getAfterImage2() ?>"/>
+        <a class="img-wrapper" href="<?php echo $this->getBaseUrl(). 'pub/media/' . $this->getImageLock()->getAfterImage2() ?>">
+            <img class="after-img" src="<?php echo $this->getBaseUrl() . 'pub/media/' . $this->getImageLock()->getAfterImage2() ?>"/>
         </a>
     <?php endif ?>
     </div>
