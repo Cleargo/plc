@@ -78,6 +78,11 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
             'text',
             ['name' => 'default_label', 'label' => __('default_label'), 'title' => __('default_label'), 'required' => true]
         );
+        $fieldset->addField(
+            'bbc_email',
+            'text',
+            ['name' => 'bbc_email', 'label' => 'Email copy to (Please use ";" to separate)', 'title' =>'Email copy to (Please use ";" to separate)', 'required' => false]
+        );
 
         $fieldset->addField(
             'is_active',
