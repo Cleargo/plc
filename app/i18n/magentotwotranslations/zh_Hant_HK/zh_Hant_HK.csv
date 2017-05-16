@@ -9484,7 +9484,7 @@ Localized Exception,本地化異常,module,"Magento_Cms,Magento_Reminder,Magento
 "ONLINE ENQUIRY FORM","網上查詢表格"
 "Please enter Property name / Address / Lock brands ...","請輸入屋苑名稱/地址/門鎖牌子..."
 "Show All (District)","顯示全部 (地區)"
-"Basic Infomation","基本資料"
+"Basic Information","基本資料"
 "Type of lock:","門鎖種類"
 "Features & Specifications","特點和規格"
 "Download Product Details PDF","下載產品詳細信息 PDF"
@@ -9492,3 +9492,4 @@ Localized Exception,本地化異常,module,"Magento_Cms,Magento_Reminder,Magento
 "Brand List","品牌"
 "End User","產品用家"
 "Reseller / Dearler","經銷商"
+
