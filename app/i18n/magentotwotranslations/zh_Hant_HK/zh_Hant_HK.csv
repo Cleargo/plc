@@ -9486,10 +9486,10 @@ Localized Exception,本地化異常,module,"Magento_Cms,Magento_Reminder,Magento
 "Show All (District)","顯示全部 (地區)",module,Cleargo_FindYourLock
 "Basic Information","基本資料",module,Cleargo_FindYourLock
 "Type of lock:","門鎖種類",module,Cleargo_FindYourLock
-"Features & Specifications","特點和規格"
-"Download Product Details PDF","下載產品詳細信息 PDF"
-"Share On","分享到"
-"Brand List","品牌"
+"Features & Specifications","特點和規格",module,Magento_Catalog
+"Download Product Details PDF","下載產品詳細信息 PDF",module,Magento_Catalog
+"Share On","分享到",module,Magento_Catalog,module,Magento_Catalog
+"Brand List","品牌",module,Cleargo_DealerNetwork
 "End User","產品用家",module,Cleargo_Contactus
 "Reseller / Dealer","經銷商",module,Cleargo_Contactus
 
