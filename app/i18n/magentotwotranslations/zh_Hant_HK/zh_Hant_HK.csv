@@ -9474,3 +9474,4 @@ Localized Exception,本地化異常,module,"Magento_Cms,Magento_Reminder,Magento
 "Applicable to purchases above HK$1,000","只適用於港幣1,000元以上的購物","module","Magento_Newsletter"
 "Not valid on non-sale brands","不適用於指定品牌","module","Magento_Newsletter"
 "For any questions, contact our Customer Service Team at: %store_phone or %store_email","如有任何問題，請聯絡我們的客戶服務團隊：%store_phone或%store_email","module","Magento_Newsletter"
+"Your products will be delivered by the following logistics providers: PLC, S.F. Express, Third Party Logistics Provider.","您的產品將會由以下運輸商運送﹕PLC、順豐速運、第三方運輸商。",theme,frontend/Cleargo/plc
