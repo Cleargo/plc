@@ -85,7 +85,18 @@ class UpgradeSchema implements UpgradeSchemaInterface
             );
             $installer->getConnection()->createTable($table);
         }
-
+        if (version_compare($context->getVersion(), '1.0.3', '<')){
+            $setup->getConnection()->addColumn(
+                $setup->getTable('customer_inquiry_option'),
+                'bbc_email',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    'nullable' => true,
+                    'default' => null,
+                    'comment' => 'Email Copy To'
+                ]
+            );
+        }
         $installer->endSetup();
     }
 }

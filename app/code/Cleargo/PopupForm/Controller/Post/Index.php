@@ -130,24 +130,16 @@ class  Index  extends \Magento\Framework\App\Action\Action
             $to = array($post['email'],$post['name']);
 
             $bcc = array();
-            if(in_array( 1 , $questionArray)){
-                $bcc[] = 'jackwong@plc.com.hk';
-                $bcc[] = 'ckchung@plc.com.hk';
-                $bcc[] = 'anthonyleung@plc.com.hk';
-                $bcc[] = 'lstsui@plc.com.hk';
-                $bcc[] = 'angelachan@plc.com.hk';
-                $bcc[] = 'angelachan@plc.com.hk';
-                $bcc[] = 'wah@plc.com.hk';
-                $bcc[] = 'conniechan@plc.com.hk';
-            }
-            if(in_array( 2 , $questionArray)){
-                $bcc[] = 'lstsui@plc.com.hk';
-                $bcc[] = 'anthonyleung@plc.com.hk';
-                $bcc[] = 'ckchung@plc.com.hk';
-                $bcc[] = 'jackwong@plc.com.hk';
-                $bcc[] = 'angelachan@plc.com.hk';
-                $bcc[] = 'wah@plc.com.hk';
-                $bcc[] = 'conniechan@plc.com.hk';
+
+            foreach ($questionArray as $questionId){
+                $entity = $this->optionRepository->getById($questionId);
+                $emails =  $entity->getData('bbc_email');
+                if($emails){
+                    $emails = explode(';',$emails);
+                    foreach ($emails as $email){
+                        $bcc[] = $email;
+                    }
+                }
             }
 
             $postObject = new \Magento\Framework\DataObject();
