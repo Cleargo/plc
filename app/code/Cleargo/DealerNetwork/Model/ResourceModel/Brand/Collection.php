@@ -116,7 +116,9 @@ class Collection extends AbstractCollection
                     $entityId = $item->getData($columnName);
                     $frontend_labels = array();
                     foreach($result as $sub_result) {
-                        $frontend_labels[$sub_result['store_id']] = $sub_result['value'];
+                        if($sub_result[$columnName] == $entityId) {
+                            $frontend_labels[$sub_result['store_id']] = $sub_result['value'];
+                        }
                     }
                     $item->setData('frontend_label', $frontend_labels);
                 }
