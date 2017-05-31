@@ -9506,3 +9506,10 @@ Localized Exception,本地化異常,module,"Magento_Cms,Magento_Reminder,Magento
 "Decorative Lighting","燈飾",module,Cleargo_BrandList
 "Commercial Lighting","工程燈",module,Cleargo_BrandList
 "Smart Home","智能家居",module,Cleargo_BrandList
+"My Warranties","MT5 保養","module","Magento_Customer"
+"Brand Filter","品牌分類",module,Cleargo_DealerNetwork
+"Yale Safes","Yale 夾萬",module,Cleargo_DealerNetwork
+"MT5 Key Duplication Center","MT5 配匙中心",module,Cleargo_DealerNetwork
+"PLC Auto System","PLC 汽車防盜系統",module,Cleargo_DealerNetwork
+"Samsung Smart Doorlock","Samsung 智能門鎖",module,Cleargo_DealerNetwork
+"Blog","網誌",module,Magento_Cms
