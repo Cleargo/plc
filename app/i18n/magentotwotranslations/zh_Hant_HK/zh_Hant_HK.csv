@@ -236,7 +236,7 @@ Region Information,地區資料,module,Cleargo_FindYourLock
 Region Name,區域名稱,module,Cleargo_FindYourLock
 Home,首頁,module,Cleargo_FindYourLock
 Go to Home Page,前往首頁,module,Cleargo_FindYourLock
-Find Your Lock,尋找您的鎖具,module,Cleargo_FindYourLock
+Find Your Lock,屋苑安裝示範,module,Cleargo_FindYourLock
 The district has been deleted.,已刪除區域資料。,module,Cleargo_FindYourLock
 We cant find a district to delete.,我們無法刪除區域資料。,module,Cleargo_FindYourLock
 Manage Districts,管理地區,module,Cleargo_FindYourLock
@@ -620,7 +620,7 @@ Name,名字,theme,frontend/Cleargo/plc
 Email,電郵,theme,frontend/Cleargo/plc
 Country,國家,theme,frontend/Cleargo/plc
 Your enquiry is about:,您的查詢是關於：,theme,frontend/Cleargo/plc
-You are,名稱,theme,frontend/Cleargo/plc
+You are,您是,theme,frontend/Cleargo/plc
 Company,公司,theme,frontend/Cleargo/plc
 What? on your mind?,你有什麼意見？,theme,frontend/Cleargo/plc
 Submit,提交,theme,frontend/Cleargo/plc
@@ -7925,7 +7925,7 @@ Tracking Number:,追蹤號碼：,module,Magento_Shipping
 Carrier:,運輸商：,module,Magento_Shipping
 Error:,錯誤：,module,Magento_Shipping
 Tracking information is currently not available. Please ,暫未能提供運輸追踪信息。 請,module,Magento_Shipping
-contact us,聯繫我們,module,Magento_Shipping
+Contact Us,聯繫我們,module,Magento_Shipping
  for more information or ,如需更多資料,module,Magento_Shipping
 email us at ,發電子郵件給我們,module,Magento_Shipping
 Info:,信息：,module,Magento_Shipping
@@ -9475,3 +9475,41 @@ Localized Exception,本地化異常,module,"Magento_Cms,Magento_Reminder,Magento
 "Not valid on non-sale brands","不適用於指定品牌","module","Magento_Newsletter"
 "For any questions, contact our Customer Service Team at: %store_phone or %store_email","如有任何問題，請聯絡我們的客戶服務團隊：%store_phone或%store_email","module","Magento_Newsletter"
 "Your products will be delivered by the following logistics providers: PLC, S.F. Express, Third Party Logistics Provider.","您的產品將會由以下運輸商運送﹕PLC、順豐速運、第三方運輸商。",theme,frontend/Cleargo/plc
+"My Dashboard","我的帳戶資訊","module","Magento_Customer"
+"Account Dashboard","帳戶資訊","module","Magento_Customer"
+"Edit Information","編輯資料","module","Magento_Customer"
+"Newsletter Subscriptions","通訊訂閱","module","Magento_Customer"
+"You don't subscribe to our newsletter.","您沒有訂閱我們的通訊。","module","Magento_Customer"
+"Office Hours:","辦公時間",module,Cleargo_Contactus
+"ONLINE ENQUIRY FORM","網上查詢表格",module,Cleargo_Contactus
+"Please enter Property name / Address / Lock brands ...","請輸入屋苑名稱/地址/門鎖牌子...",module,Cleargo_FindYourLock
+"Show All (District)","顯示全部 (地區)",module,Cleargo_FindYourLock
+"Basic Information","基本資料",module,Cleargo_FindYourLock
+"Type of lock:","門鎖種類",module,Cleargo_FindYourLock
+"Features & Specifications","特點和規格",module,Magento_Catalog
+"Download Product Details PDF","下載產品詳細信息 PDF",module,Magento_Catalog
+"Share On","分享到",module,Magento_Catalog,module,Magento_Catalog
+"Brand List","品牌",module,Cleargo_DealerNetwork
+"End User","產品用家",module,Cleargo_Contactus
+"Reseller / Dealer","經銷商",module,Cleargo_Contactus
+"Project Customer","工程客戶",module,CLeargo_Contactus
+"Vendor","供應商",module,Cleargo_Contactus
+"Media","傳媒",module,Cleargo_Contactus
+"Locks & Security","門鎖及保安",module,Cleargo_Contactus
+"Decorative Lighting","燈飾",module,Cleargo_Contactus
+"Commercial Lighting","工程燈",module,Cleargo_Contactus
+"Smart Home","智能家居",module,Cleargo_Contactus
+"VIP Membership Services","VIP會員服務",module,Cleargo_Contactus
+"Below %1","低於 %1",module,Magento_CatalogSearch
+"For any enquiries, please WhatsApp or WeChat : ","如有查詢,請WhatsApp或WeChat :",module,Megento_Catalog
+"Locks & Security","門鎖及保安",module,Cleargo_BrandList
+"Decorative Lighting","燈飾",module,Cleargo_BrandList
+"Commercial Lighting","工程燈",module,Cleargo_BrandList
+"Smart Home","智能家居",module,Cleargo_BrandList
+"My Warranties","MT5 保養","module","Magento_Customer"
+"Brand Filter","品牌分類",module,Cleargo_DealerNetwork
+"Yale Safes","Yale 夾萬",module,Cleargo_DealerNetwork
+"MT5 Key Duplication Center","MT5 配匙中心",module,Cleargo_DealerNetwork
+"PLC Auto System","PLC 汽車防盜系統",module,Cleargo_DealerNetwork
+"Samsung Smart Doorlock","Samsung 智能門鎖",module,Cleargo_DealerNetwork
+"Blog","網誌",module,Magento_Cms

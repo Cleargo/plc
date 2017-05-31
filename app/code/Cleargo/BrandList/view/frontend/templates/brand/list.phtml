@@ -1,13 +1,15 @@
 <?php
+    /*
+     *  \Cleargo\BrandList\Block\Listing.php $block
+     * */
     $attrSets = $block->getAllAttrSetId();
 ?>
-
 <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('brand_top_navigation')->toHtml();?>
 
 <?php foreach ($attrSets as $attrSet): ?>
     <?php if($attrSet['value'] != '4'): ?>
         <ul class="brands_list" id="brandList<?php echo $attrSet['value']; ?>">
-            <h2> <?php echo $attrSet['label']; ?> </h2>
+            <h2> <?php echo __($attrSet['label']); ?> </h2>
             <?php foreach(range('A','Z') as $i): ?>
 
                 <?php
@@ -19,7 +21,7 @@
                 ?>
 
                 <?php if($isDisplay):?>
-                    <li> <h2><?php echo $i ?></h2>
+                    <li> <h2><?php echo __($i) ?></h2>
                 <?php endif; ?>
 
                 <?php foreach ($allBrands as $brand):?>
