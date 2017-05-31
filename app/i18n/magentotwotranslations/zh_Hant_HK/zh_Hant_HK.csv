@@ -9513,3 +9513,9 @@ Localized Exception,本地化異常,module,"Magento_Cms,Magento_Reminder,Magento
 "PLC Auto System","PLC 汽車防盜系統",module,Cleargo_DealerNetwork
 "Samsung Smart Doorlock","Samsung 智能門鎖",module,Cleargo_DealerNetwork
 "Blog","網誌",module,Magento_Cms
+"Warranty Form","MT5保養表格",module,Cleargo_Warranty
+"CATALOGUE & DOWNLOADS","目錄和下載",module,Cleargo_ProductPdf
+"LOCKS & SECURITY","門鎖及保安",module,Cleargo_ProductPdf
+"DECORATIVE LIGHTING","飾燈",module,Cleargo_ProductPdf
+"COMMERCIAL LIGHTING","工程燈",module,Cleargo_ProductPdf
+"SMART HOME","智能家居",module,Cleargo_ProductPdf
