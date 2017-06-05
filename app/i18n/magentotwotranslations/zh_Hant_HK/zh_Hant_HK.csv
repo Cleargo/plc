@@ -9519,3 +9519,13 @@ Localized Exception,本地化異常,module,"Magento_Cms,Magento_Reminder,Magento
 "DECORATIVE LIGHTING","飾燈",module,Cleargo_ProductPdf
 "COMMERCIAL LIGHTING","工程燈",module,Cleargo_ProductPdf
 "SMART HOME","智能家居",module,Cleargo_ProductPdf
+"Showroom","PLC門市",module,Cleargo_Showroom
+"PLC Lighting","PLC燈飾",module,Cleargo_Showroom
+"PLC Locks & Illumination","PLC鎖類照明",module,Cleargo_Showroom
+"Order Details","詳細資料",module,Magento_Sales
+"Order Details - Invoice","詳細資料 - 發票",module,Magento_Sales
+"Select One","選擇以下選項",module,Cleargo_Warranty
+"What is your pet's name?","您養的寵物叫什麼名字？",module,Cleargo_Warranty
+"Endivance Lockset","機械大門套裝鎖",module,Cleargo_Warranty
+"Warranty Review","預覽表格",module,Cleargo_Warranty
+"Title","稱謂",module,Magento_Customer
