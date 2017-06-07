@@ -174,6 +174,8 @@ Class Value extends \Magento\Catalog\Model\ResourceModel\Product\Option\Value{
             );
             $optionTypeId = $this->getConnection()->fetchOne($select);
             $existInCurrentStore = $this->getOptionIdFromOptionTable($descriptionTable, (int)$object->getId(), (int)$storeId);
+
+           // var_dump($object->getData()); die();
             if ($object->getDescription()) {
                 if ($existInCurrentStore) {
                     if ($storeId == $object->getStoreId()) {
@@ -203,9 +205,9 @@ Class Value extends \Magento\Catalog\Model\ResourceModel\Product\Option\Value{
                     }
                 }
             } else {
-                if ($storeId
+                if ($storeId !== null
                     && $optionTypeId
-                    && $object->getStoreId() > \Magento\Store\Model\Store::DEFAULT_STORE_ID
+                   // && $object->getStoreId() > \Magento\Store\Model\Store::DEFAULT_STORE_ID
                 ) {
                     $where = [
                         'option_type_id = ?' => (int)$optionTypeId,

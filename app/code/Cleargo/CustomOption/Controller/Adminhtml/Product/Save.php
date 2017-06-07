@@ -247,11 +247,16 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
                     foreach ($data['product']['options'] as $p ){
                         if(!isset($p['is_delete'])){
                             $tempOpt = $this->optionModel->create();
+                            echo '<pre>';
+                            //var_dump($p); die();
+                            $p = $this->changeEmptyToNull($p);
+                            //var_dump($p);
+                            //var_dump('<--------------------------------------------------------------------->');
                             $tempOpt->setData($p);
                             $tempOpt->setProductSku( $product->getSku());
                             $tempOpt->setStoreId( $this->getRequest()->getParam('store') );
                             $updatedOptions[] =  $tempOpt;
-                        } else {
+                        } else {  // delete product option
                             if($p['is_delete'] == 1){
                                 $tempOpt = $this->optionModel->create();
                                 $tempOpt->setData($p);
@@ -377,6 +382,18 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
                 }
             }
         }
+    }
+
+    private function changeEmptyToNull($arr){
+        foreach ($arr as $key=>$val){
+            if(is_string($val) && empty(trim($val))){
+                $arr[$key] = null;
+            } elseif ( is_array($val) ){
+                $val = $this->changeEmptyToNull($val);
+                $arr[$key] =$val;
+            }
+        }
+        return $arr;
     }
 
     /**
