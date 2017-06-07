@@ -96,6 +96,12 @@ select {
 .button-container {
     padding: 30px 0;
 }
+.button-container a{
+    text-decoration: none;
+}
+.button-container a:hover{
+    text-decoration: none;
+}
 .button-container span{
     background: #c3161c;
     border-radius: 100px;
