@@ -38,21 +38,22 @@ $pdfs = $block->getPdfs();
                                 <?php
                                     $fullPathOfPreviewImage = 'wysiwyg/pdf-download-page/preview/'.$pdf['id'].'.png';///var/www/vhosts/plchk/pub/media/
                                     $fullPathOfPreviewImage = $block->getFullMediaUrl($fullPathOfPreviewImage);///var/www/vhosts/plchk/pub/media/
-                                    $fullPathOfCurrentFile =  $block->getFullMediaUrl($pdf['path']);
+                                    $fullPathOfCurrentFile =  $this->getMideaDirectory() . $pdf['path'];
                                     $name =  $pdf['name'] ;
                                     if( substr( $fullPathOfCurrentFile , -3 ) == 'pdf' && !file_exists($this->getMideaDirectory() ."wysiwyg/pdf-download-page/preview/". $pdf['id'] .".png")  ) {
                                         try {
+                                            $image = file_get_contents($fullPathOfCurrentFile);
                                             $fileHandle = fopen($this->getMideaDirectory() . "wysiwyg/pdf-download-page/preview/". $pdf['id'] .".png", "w");
                                             $im = new Imagick();
                                             $im->setSize( 105,72 );
-                                            $im->readimage($fullPathOfCurrentFile);
-                                            $im->setImageFormat('jpeg');
+                                            $im->readImageBlob($image);
+                                            $im->setImageFormat('png');
                                             $im->writeImageFile($fileHandle);
                                             $im->clear();
                                             $im->destroy();
                                             fclose($fileHandle);
                                         } catch (Exception $e){
-
+                                            echo $e->getMessage();
                                         }
                                     }
                                 ?>

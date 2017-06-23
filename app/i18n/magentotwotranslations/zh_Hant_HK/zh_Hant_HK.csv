@@ -9480,8 +9480,8 @@ Localized Exception,本地化異常,module,"Magento_Cms,Magento_Reminder,Magento
 "Edit Information","編輯資料","module","Magento_Customer"
 "Newsletter Subscriptions","通訊訂閱","module","Magento_Customer"
 "You don't subscribe to our newsletter.","您沒有訂閱我們的通訊。","module","Magento_Customer"
-"Office Hours:","辦公時間",module,Cleargo_Contactus
-"ONLINE ENQUIRY FORM","網上查詢表格",module,Cleargo_Contactus
+"Office Hours","辦公時間",module,Cleargo_Contactus
+"Online Enquiry Form","網上查詢表格",module,Cleargo_Contactus
 "Please enter Property name / Address / Lock brands ...","請輸入屋苑名稱/地址/門鎖牌子...",module,Cleargo_FindYourLock
 "Show All (District)","顯示全部 (地區)",module,Cleargo_FindYourLock
 "Basic Information","基本資料",module,Cleargo_FindYourLock
@@ -9534,3 +9534,19 @@ Localized Exception,本地化異常,module,"Magento_Cms,Magento_Reminder,Magento
 "Add All to Cart","加到購物車",module,Magento_MultipleWishlist
 "Share Wish List","分享收藏清單",module,Magento_MultipleWishlist
 "Return Details","退貨資料",module,Magento_Sales
+"Don't see what you're looking for?","找不到你想要的產品?",module,Magento_CatalogSearch
+We can't find any items matching these search criteria.,未能找到與條件匹配的產品。,module,Magento_CatalogSearch
+QUESTION TO US?,聯絡我們,module,Cleargo_PopupForm
+Please enter a valid email address (Ex: johndoe@domain.com).,請輸入有效的電郵地 (例:johndoe@domain.com).,module,Magento_Ui
+"Please specify product's required option(s).",請選擇產品的購買選項。,module,Magento_Catalog
+"We don't have as many ""%1"" as you requested.","""%1""沒有足夠存貨",module,Magento_CatalogInventory
+This is a required field.,必填欄位,module,Magento_Ui
+There is no result.,沒有搜尋結果,module,Cleargo_DealerNetwork
+Posted:,發表,module,Magefan_Blog
+Categories:,類別,module,Magefan_Blog
+"Read more &#187;","查看更多 &#187;",module,Magefan_Blog
+"%1 has been added to your Wish List.","%1 已加到您的收藏清單。",module,Magento_Wishlist
+Options Details,詳細購買選項,module,Magento_Wishlist
+"Email addresses, separated by commas","電郵地址，以逗號分隔",module,Magento_Wishlist
+Review this form,預覽表格,module,Cleargo_Warranty
+Please select one of the options.,請選擇一個選項,module,Magento_AdminGws
