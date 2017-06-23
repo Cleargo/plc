@@ -120,9 +120,9 @@ class Index extends Template
         return $this->getBaseUrl().'pub/media/'.$relative;
     }
 
-    public function getFormatedFileSize($pdfId){
+    public function getFormatedFileSize($path){
         return number_format(
-                (float) filesize($this->getMideaDirectory() ."wysiwyg/pdf-download-page/preview/". $pdfId .".png") / 1024 /1024 ,
+                (float) filesize($path) / 1024 /1024 ,
                 2,
                 '.',
                 ''
