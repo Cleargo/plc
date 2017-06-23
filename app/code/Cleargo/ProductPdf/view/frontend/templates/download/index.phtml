@@ -58,14 +58,14 @@ $pdfs = $block->getPdfs();
                                     }
                                 ?>
                                 <?php if(substr( $fullPathOfCurrentFile , -3 ) == 'pdf' ):?>
-                                    <a class="pdf-square-link" href="<?php echo $fullPathOfCurrentFile; ?>">
+                                    <a class="pdf-square-link" href="<?php echo $block->getFullMediaUrl($pdf['path']); ?>">
                                         <div class="pdf-square">
                                             <div class="img">
                                                 <img src="<?php echo $fullPathOfPreviewImage ; ?>">
                                             </div>
                                             <div class="txt">
                                                 <?php echo $pdf['name']; ?> <br/>
-                                                ( <?php echo $block->getFormatedFileSize($pdf['id']);?> MB )
+                                                ( <?php echo $block->getFormatedFileSize($fullPathOfCurrentFile);?> MB )
                                             </div>
                                         </div>
                                     </a>
