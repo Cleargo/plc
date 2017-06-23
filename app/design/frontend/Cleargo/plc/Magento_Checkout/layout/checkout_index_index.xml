@@ -22,14 +22,20 @@
                 </argument>
             </action>
             <action method="addCrumb">
-                <argument name="crumbName" xsi:type="string">Check Out</argument>
+                <argument name="crumbName" xsi:type="string">Checkout</argument>
                 <argument name="crumbInfo" xsi:type="array">
-                    <item name="title" xsi:type="string" translate="true">Check Out</item>
-                    <item name="label" xsi:type="string" translate="true">Check Out</item>
+                    <item name="title" xsi:type="string" translate="true">Checkout</item>
+                    <item name="label" xsi:type="string" translate="true">Checkout</item>
                     <item name="link" xsi:type="string">/checkout/</item>
                 </argument>
             </action>
         </referenceBlock>
-        <move element="logo" destination="header-wrapper"/>
+
+        <move destination="header-wrapper" element="logo" before="-" />
+        <move destination="header-wrapper" element="top.search" after="logo" />
+        <move destination="header-wrapper" element="minicart" after="top.search" />
+        <move destination="header-wrapper" element="store_language" after="customer" />
+        <move destination="header-wrapper" element="customer" after="multiple-wish-list-link" />
+        <move destination="header-wrapper" element="multiple-wish-list-link" after="minicart" />
     </body>
 </page>
