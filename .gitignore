@@ -69,3 +69,4 @@ atlassian*
 !/composer.json
 !/composer.lock
 !/README.md
+/app/code/Cleargo/ProductPdf/etc/ui_definition.xsd

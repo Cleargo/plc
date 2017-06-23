@@ -7341,7 +7341,7 @@ Are you sure you want to delete this item?,你确定要删除这个项目吗？,
 Edit Account Information,编辑帐户信息,module,Magento_Customer
 Password forgotten,忘记密码,module,Magento_Customer
 My Dashboard,我的控制面板,module,Magento_Customer
-You are signed out.,您注销。,module,Magento_Customer
+You are signed out,已注销,module,Magento_Customer
 Store Credit Options,店铺信誉选项,module,Magento_CustomerBalance
 Enable Store Credit Functionality,启用存储信用功能,module,Magento_CustomerBalance
 Show Store Credit History to Customers,展会商店信用记录的客户,module,Magento_CustomerBalance
@@ -8420,3 +8420,18 @@ Menu,菜单,theme,frontend/Magento/blank
 Account,帐户,theme,frontend/Magento/blank
 Settings,设置,theme,frontend/Magento/blank
 Dealer Network,经销商网络,module,Cleargo_DealerNetwork
+"Please select one of the options.","请选择一个选项",lib,lib/web/mage/validation/validation.js
+"This is a required field.","必填栏位",theme,frontend/Cleargo/plc
+"Video","短片",theme,frontend/Cleargo/plc
+"Cart Subtotal","购物车小计",module,Magento_Checkout
+"Go to Checkout","结帐",module,Magento_Checkout
+"View and edit cart","查看及修改购物车",module,Magento_Checkout
+"Are you sure you would like to remove this item from the shopping cart?","您确定要从购物车删除此产品?",module,Magento_Checkout
+"OK","确定",module,Magento_Checkout
+"Review & Payments","预览及结帐",module,Magento_Checkout
+"Order Summary","订单概要",module,Magento_Checkout
+"Ship Here","送货到此地址",module,Magento_Checkout
+"Checkout Success","結帳成功",module,Magento_Checkout
+"Print receipt","列印收據",module,Magento_Checkout
+"We\'ll email you an order confirmation with details and tracking info.","我們會把訂單確認及送貨資料以電郵傳送給您。",module,Magento_Checkout
+"Business Hours","办公时间",module,Cleargo_Showroom
