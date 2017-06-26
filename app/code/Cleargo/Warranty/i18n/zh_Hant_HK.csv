@@ -166,3 +166,4 @@ Modified,更改
 "Are you sure you want to delete a ${ $.$data.title } record?","您確定您想刪除$ {$。$ data。title}記錄？"
 "Question Type",問題類型
 "Please select one of the options.","請選擇一個選項"
+"Select One","選擇以下選項"
