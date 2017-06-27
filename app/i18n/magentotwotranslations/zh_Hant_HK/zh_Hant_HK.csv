@@ -9563,7 +9563,7 @@ Enter Valid HKID/Passport Number,請選擇一個選項,module,Cleargo_Warranty
 "View and edit cart","查看及修改購物車",module,Magento_Checkout
 "Are you sure you would like to remove this item from the shopping cart?","您確定要從購物車刪除此產品?",module,Magento_Checkout
 "OK","確定",module,Magento_Checkout
-"Review & Payments","預覽及結帳",module,Magento_Checkout
+"Review & Payments","付款方式",module,Magento_Checkout
 "Order Summary","訂單概要",module,Magento_Checkout
 "Ship Here","送貨到此地址",module,Magento_Checkout
 "Checkout Success","結帳成功",module,Magento_Checkout
@@ -9573,5 +9573,6 @@ Enter Valid HKID/Passport Number,請選擇一個選項,module,Cleargo_Warranty
 "Business Hours","辦公時間",module,Cleargo_Showroom
 "Thank You For Your Question","謝謝您的查詢",theme,frontend/Cleargo/plc
 "We will response to you Soon","我們會盡快回覆",theme,frontend/Cleargo/plc
-"Ship to:","送貨到：",module,Magento_Checkout
+"Ship to:","送貨地址",module,Magento_Checkout
 "Payment","付款",module,Magento_Checkout
+"You saved the shipping fee: ","運費減免",module,Magento_Checkout
