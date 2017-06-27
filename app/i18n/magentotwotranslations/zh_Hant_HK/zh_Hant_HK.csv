@@ -2407,7 +2407,7 @@ Product Name,產品名稱,module,Magento_Checkout
 Incl. Tax,含稅,module,Magento_Checkout
 Your order number is: %1.,您的訂單號為：%1。,module,Magento_Checkout
 Your order # is: <span>%1</span>.,您的訂單是＃：<SPAN>%1 </ SPAN>。,module,Magento_Checkout
-Well email you an order confirmation with details and tracking info.,我們會向您發送電郵：包含訂單確認細節和送貨資訊。,module,Magento_Checkout
+We'll email you an order confirmation with details and tracking info.,我們會向您發送電郵：包含訂單確認細節和送貨資訊。,module,Magento_Checkout
 This block no longer exists.,此版塊已不存在。,module,Magento_CmsStaging
 Future Update in this time range already exists. Select a different range to add a new Future Update.,此時間範圍內未來更新已存在。請選擇其他時間範圍以添加新的未來更新。,module,Magento_CmsStaging
 Error,錯誤,module,Magento_CmsStaging
@@ -9567,8 +9567,11 @@ Enter Valid HKID/Passport Number,請選擇一個選項,module,Cleargo_Warranty
 "Order Summary","訂單概要",module,Magento_Checkout
 "Ship Here","送貨到此地址",module,Magento_Checkout
 "Checkout Success","結帳成功",module,Magento_Checkout
-"Print receipt","列印收據",module,Magento_Checkout
-"We\'ll email you an order confirmation with details and tracking info.","我們會把訂單確認及送貨資料以電郵傳送給您。",module,Magento_Checkout
+"Checkout Success","結帳成功",theme,frontend/Cleargo/plc
+"Print receipt","列印收據",theme,frontend/Cleargo/plc
+"We'll email you an order confirmation with details and tracking info.","我們會把訂單確認及送貨資料以電郵傳送給您。",module,Magento_Checkout
 "Business Hours","辦公時間",module,Cleargo_Showroom
 "Thank You For Your Question","謝謝您的查詢",theme,frontend/Cleargo/plc
 "We will response to you Soon","我們會盡快回覆",theme,frontend/Cleargo/plc
+"Ship to:","送貨到：",module,Magento_Checkout
+"Payment","付款",module,Magento_Checkout
