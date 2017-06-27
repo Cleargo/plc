@@ -1641,7 +1641,7 @@ Grid,網格,module,Magento_CatalogSearch
 List,列表,module,Magento_CatalogSearch
 Search Weight,搜尋重量,module,Magento_CatalogSearch
 Relevance,相關性,module,Magento_CatalogSearch
-Search results for: %1,%1的搜尋結果,module,Magento_CatalogSearch
+Search results for: '%1',搜尋結果：“%1”,module,Magento_CatalogSearch
 Minimum Search query length is %1,搜尋關鍵字的最短長度是 %1,module,Magento_CatalogSearch
 Please specify at least one search term.,請指定最少一個搜尋條件。,module,Magento_CatalogSearch
 %1 and greater,%1及更多／%1及更大,module,Magento_CatalogSearch
@@ -9386,7 +9386,7 @@ Invalid item option format.,產品選項的格式無效。,module,Magento_Wishli
 We cant add this item to your shopping cart right now.,我們未能新增這項產品到購物車。,module,Magento_Wishlist
 We couldnt add the following product(s) to the shopping cart: %1.,我們未能將以下產品新增到購物車：%1。,module,Magento_Wishlist
 We cant update the Wish List right now.,我們暫未能更新收藏清單。,module,Magento_Wishlist
-%1 product(s) have been added to shopping cart: %2., %1 件產品已新增到購物車: %2。,module,Magento_Wishlist
+%1 product(s) have been added to shopping cart: %2., “%2” 已新增至到購物車, 數量: %1 ,module,Magento_Wishlist
 Comment:,評論：,module,Magento_Wishlist
 We cannot retrieve the Wish List.,我們未能檢索收藏清單。,module,Magento_Wishlist
 %1s Wishlist,%1的收藏清單,module,Magento_Wishlist
@@ -9539,6 +9539,7 @@ Localized Exception,本地化異常,module,"Magento_Cms,Magento_Reminder,Magento
 "Don't see what you're looking for?","找不到你想要的產品?",module,Magento_CatalogSearch
 We can't find any items matching these search criteria.,未能找到與條件匹配的產品。,module,Magento_CatalogSearch
 QUESTION TO US?,聯絡我們,module,Cleargo_PopupForm
+QUESTION TO US?,聯絡我們,theme,frontend/Cleargo/plc
 Please enter a valid email address (Ex: johndoe@domain.com).,"請輸入有效的電郵地址 (例:johndoe@domain.com).",lib,lib/web/mage/validation/validation.js
 "Please specify product's required option(s).",請選擇產品的購買選項。,module,Magento_Catalog
 "We don't have as many ""%1"" as you requested.","""%1""沒有足夠存貨",module,Magento_CatalogInventory
@@ -9569,3 +9570,5 @@ Enter Valid HKID/Passport Number,請選擇一個選項,module,Cleargo_Warranty
 "Print receipt","列印收據",module,Magento_Checkout
 "We\'ll email you an order confirmation with details and tracking info.","我們會把訂單確認及送貨資料以電郵傳送給您。",module,Magento_Checkout
 "Business Hours","辦公時間",module,Cleargo_Showroom
+"Thank You For Your Question","謝謝您的查詢",theme,frontend/Cleargo/plc
+"We will response to you Soon","我們會盡快回覆",theme,frontend/Cleargo/plc
