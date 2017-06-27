@@ -3483,7 +3483,7 @@ We can't move %1 items.,我们不能移动%1项。,module,Magento_MultipleWishli
 We can't add the item to shopping cart.,我们的项目不能添加到购物车。,module,Magento_MultipleWishlist
 We can't add the following product(s) to shopping cart: %1.,我们可以在以下产品（S）不能添加到购物车：%1。,module,Magento_MultipleWishlist
 Product(s) %1 have required options. Each product can only be added individually.,产品（第）%1所必需的选项。每个产品只能单独添加。,module,Magento_MultipleWishlist
-%1 product(s) have been added to shopping cart: %2.,%1产品（第）已被添加到购物车：%2。,module,"Magento_MultipleWishlist,Magento_Wishlist"
+%1 product(s) have been added to shopping cart: %2.,%1 件产品已被添加到购物车：%2。,module,"Magento_MultipleWishlist,Magento_Wishlist"
 Please reenter your search options.,请重新输入您的搜索选项。,module,Magento_MultipleWishlist
 We could not perform the search.,我们无法执行搜索。,module,Magento_MultipleWishlist
 Owner Name,业主名称,module,Magento_MultipleWishlist

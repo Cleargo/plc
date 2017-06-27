@@ -9386,7 +9386,7 @@ Invalid item option format.,產品選項的格式無效。,module,Magento_Wishli
 We cant add this item to your shopping cart right now.,我們未能新增這項產品到購物車。,module,Magento_Wishlist
 We couldnt add the following product(s) to the shopping cart: %1.,我們未能將以下產品新增到購物車：%1。,module,Magento_Wishlist
 We cant update the Wish List right now.,我們暫未能更新收藏清單。,module,Magento_Wishlist
-%1 product(s) have been added to shopping cart: %2.,產品%1 已新增到購物車: %2。,module,Magento_Wishlist
+%1 product(s) have been added to shopping cart: %2., %1 件產品已新增到購物車: %2。,module,Magento_Wishlist
 Comment:,評論：,module,Magento_Wishlist
 We cannot retrieve the Wish List.,我們未能檢索收藏清單。,module,Magento_Wishlist
 %1s Wishlist,%1的收藏清單,module,Magento_Wishlist
