@@ -9574,5 +9574,6 @@ Enter Valid HKID/Passport Number,請選擇一個選項,module,Cleargo_Warranty
 "Thank You For Your Question","謝謝您的查詢",theme,frontend/Cleargo/plc
 "We will response to you Soon","我們會盡快回覆",theme,frontend/Cleargo/plc
 "Ship to:","送貨地址",module,Magento_Checkout
+"Ship To:","送貨地址",module,Magento_Checkout
 "Payment","付款",module,Magento_Checkout
 "You saved the shipping fee: ","運費減免",module,Magento_Checkout
