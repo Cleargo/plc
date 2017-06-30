@@ -35,7 +35,7 @@ class Csv extends Action
     public function __construct(
         Context $context,
         ConvertToCsv $converter,
-        Filesystem $filesystem,
+        \Magento\Framework\Filesystem $filesystem,
         FileFactory $fileFactory
     ) {
         parent::__construct($context);

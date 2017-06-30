@@ -40,7 +40,7 @@ class Csv extends Action
         Context $context,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         ConvertToCsv $converter,
-        Filesystem $filesystem,
+        \Magento\Framework\Filesystem $filesystem,
         \Cleargo\Warranty\Model\WarrantyRepository $warrantyRepository,
         \Magento\Framework\App\ResourceConnection $resourceConnection,
         FileFactory $fileFactory
