@@ -1,0 +1,169 @@
+Warrantys,保养
+"Add New Warranty",新增保养
+"Save Warranty",储存保养
+"Delete Warranty",删除保养
+"Save and Continue Edit",储存并继续编辑
+"Edit Warranty '%1'","编辑保养 '%1'"
+"New Warranty",新保养
+"Warranty Information",保养信息
+"Customer Information",客户资讯
+"General Information",一般资讯
+"Increment No.",增量编号
+Salutation,称谓
+"English First Name",英文名字
+"English Last Name",英文姓氏
+"Chinese Name",中文名字
+Company,公司
+"Contact No. (1) Country Code",联络电话（1）国家编码
+"Contact No. (1)",联络电话（1）
+"Contact No. (2) Country Code",联络电话（2）国家编码
+"Contact No. (2)",联络电话（2）
+Email,电邮
+"Quesetin Type",问题类型
+Answer,答案
+Birthday,生日
+Status,状态
+"Product Information",产品信息
+"Product Type",产品类别
+"Serial Number",序号
+Profile,个人资料
+"T Combination",Ť组合
+"FP Combination",FP组合
+"Purchase Information",购买信息
+Date,日期
+"Name of Dealer",经销商名称
+" Invoice No.",发票号码
+Information,信息
+"My Warranties",我的保养
+Home,首页
+"Go to Home Page",前往首页
+"Warranty Review",保养审查
+"MT5 Registration",MT5登记
+"Warranty Form",保养表格
+"The warranty has been deleted.",保养已删除。
+"We can't find a warranty to delete.",我们无法找到要删除的保养。
+"This warranty no longer exists.",保养不存在。
+"Edit Warranty",编辑保养
+Warranty,保养
+"Manage Warrantys",管理保养
+"Please correct the data sent.",请更正发送的资料。
+"A total of %1 record(s) have been deleted.",共有%1纪录已被删除。
+"A total of %1 record(s) have been disabled.",共有%1结果已被下线。
+"A total of %1 record(s) have been enabled.",共有%1结果已上线。
+"You saved this warranty.",您已储存此保养。
+"Thank you for your MT5 registration!",多谢使用MT5登记服务！
+"We can't process your request right now. ",我们目前无法处理您的请求。
+"Who is your favourite singer?",谁是您最喜欢的歌手？
+"What is your favourite pastime?",您最喜欢的嗜好是什么？
+"What is your favourite sports team?",您最喜欢的运动队伍是什么？
+"What is the name of your primary school?",您就读哪一间小学？
+"What is your pet? name?",您饲养的宠物叫什么名字？
+"What colour do you like best?",您最喜欢什么颜色？
+"Which is your favourite festival?",你最喜欢哪一个节日？
+"What is your favourite fruit?",你最喜欢什么水果？
+Enabled,上线
+Disabled,下线
+"Auxiliary Lock",附加锁
+Cylinder,锁胆
+"Entrance Lockset",大门门锁
+Others,其他
+"District Warranty with id ""%1"" does not exist.","编号""%1""的区域保养证并不存在。"
+Edit,编辑
+Delete,删除
+"Delete ${ $.$data.title }","删除$ {$。$ data。title}"
+"Are you sure you wan't to delete a ${ $.$data.title } record?","您确定要删除 ${ $.$data.title }纪录吗？"
+"* Required Fields",*必填栏位
+"* Required Fields",*必填栏位
+Mr,先生
+Mrs,太太
+Miss,小姐
+"Chinese Name (if applicable)","中文姓名 (如适用)"
+"Company Name (if applicable)",公司名称(如适用)
+"Hong Kong ID / Passport or<br>&nbsp;other ID","香港身份证号码 / 护照或<br>&nbsp;其他身份证明号码"
+HKID,香港身份证
+"Passport or other ID",护照或其他身份证明号码
+"first 4 digit, including the first letter)",前4位，包括第一个字母
+"*Contact No. (1)",*联络电话（1）
+"Coundivy Code",国家代码
+Number,号码
+"E-mail Address",电邮地址
+"A copy of this regisdivationform will be sent to the e-mail address provided for reference.",此注册表格的副本将发送到提供参考的电子邮件。
+"Security question",保安问题
+"Your answer",您的答案
+"Date of Birth",出生日期
+"Product Information ",产品信息
+Brand,品牌
+"Product Category",产品类别
+"Keycard Information",卡片信息
+"Invoice No",发票号码
+"Warranty Details",保养详情
+"Invoice No.",发票号码
+"Date of Purchase",购买日期
+"Date of Warranty Creation",保养创建日期
+"Detail Info",详细信息
+"Warranty #",保养#
+"Serial Number : ","序号 ："
+"Profile : ",资料：
+"T combination : ",T组合：
+"FP combination : ",FP组合：
+Actions,操作
+"View Warranty",查看保养
+"You have no warranties.",您没有保养。
+"ID Type",身份证明文件类型
+"Hong Kong ID",香港身份证
+"ID Number",身份证号码
+"Sumbit Above Information",提交上述资料
+"Reference No.",参考编号
+"Dear %name,","亲爱的 %name,"
+"Thank you for using our online registration service. Attached please kindly find a copy of your registration form for reference.","感谢您使用我们的在线注册服务。 附件有您的注册表副本以供参考。"
+"Customer Information ",客户信息
+"Hong Kong ID /Passport or other ID","香港身份证号码 / 护照或其他身份证明号码"
+%name,%name
+"Your answer ",您的答案
+"Mul-T-Lock MT5","Mul-T-Lock MT5"
+"Key Information",卡片信息
+"1. Serial Number",1.序号
+"2. Profile ",2.简介
+"3. T-Combination",3.T-组合
+"4. FP-Combination",4.FP组合
+"Purchase Information ",购买信息
+"Should you have any enquiries, please call our customer service hotline at 852-2765 9667 for assistance.","如有任何疑问，请致电我们的客户服务热线852-2765 9667查询。"
+"Yours faithfully,",谨启
+"The PLC Group",PLC集团
+"Enter Valid HKID/Passport Number",输入有效的香港身份证/护照号码
+CSV,CSV
+"Excel XML","Excel XML"
+"Delete items",删除项目
+"Are you sure you wan't to delete selected items?",您确定要删除所选项目吗？
+Disable,下线
+Enable,上线
+ID,ID
+"English Frist Name",英文名字
+"Chinese Frist Name",中文名字
+"Chinese Last Name",中文姓氏
+"Passport Number",护照号码
+"Contact One Country Code","联系一 国家代码"
+"Contact One Phone","联系一 电话"
+"Contact Two Country Code","联系二 国家代码"
+"Contact Two Phone","联系二 电话"
+"Security Question",安全问题
+"Date Of Birth",出生日期
+T-combination,T组合
+FP-combination,FP组合
+"Name Of Dealer",经销商名称
+"Invoice Number",发票号码
+Created,创建
+Modified,更改
+"My Warranty Record",我的保养记录
+"My Warranty Detail",我的保养详情
+"Thank you!",谢谢！
+"Thank you for registering your Mul-T-Lock MT5 product. You should receive a confirmation email shortly. Please call our CS Hotline @ 2765 9667 or email to plc@plc.com.hk if you have any questions regarding your product." ,"感谢您注册您的Mul-T-Lock MT5产品。 您很快就会收到确认电子邮件。 如有任何有关您的产品的问题，请致电我们的客户服务热线2765 9667或电邮至plc@ plc.com.hk。"
+"Edit Warranty %1",编辑保养%1
+"Chinese First Name",中文名字
+"Dealer Network",经销商网络
+"We cant find a warranty to delete.",我们无法删除保养资料。
+"We cant process your request right now. ",我们目前无法处理您的要请求。
+"Are you sure you want to delete a ${ $.$data.title } record?","您确定您想删除$ {$。$ data。title}记录？"
+"Question Type",问题类型
+"Please select one of the options.","请选择一个选项"
+"Select One","选择以下选项"

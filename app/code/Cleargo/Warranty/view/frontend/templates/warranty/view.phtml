@@ -11,7 +11,7 @@
                 <?php endforeach; ?>
                 <div  border="0" cellpadding="0" cellspacing="0" class="regisdivation-form-info">
                     <h3 class="heading">
-                        <div  valign="top" class="div-head"><div class="regisdivation-form-title">Customer Information</div></div>
+                        <div  valign="top" class="div-head"><div class="regisdivation-form-title"><?php echo __('Customer Information') ?></div></div>
                         <div  valign="top">&nbsp;</div>
                     </h3>
                     <div>
@@ -31,7 +31,7 @@
                     <div>
                         <div class="dt"><font id="salu_sp" ><?php echo __('Salutation') ?></font></div>
                         <div class="dd">
-                            <span><?php echo isset($inputed['salutation'])?$inputed['salutation']:"" ?></span>
+                            <span><?php echo __(isset($inputed['salutation'])?$inputed['salutation']:"") ?></span>
                         </div>
                     </div>
                     <div>
@@ -207,19 +207,19 @@
                     </div>
                     <div bgcolor="#FFFFFF">
                         <div valign="top" class="dt"><font id="keyInfo_sp" >
-                                Keycard Information</font></div>
+<?php echo __('Keycard Information')?></font></div>
                         <div class="dd">
                             <div cellpadding="0" cellspacing="2" border="0">
                                 <div>
                                     <div width="110"><font id="sn_sp" color="#9999CC" size="-2">
                                             <b><?php echo __('1. Serial Number'); ?></b></font></div>
                                     <div>
-                                        <span><?php echo isset($inputed['serial_num'])?$inputed['serial_num']:"" ?></span>
+                                        <span><?php echo __(isset($inputed['serial_num'])?$inputed['serial_num']:"") ?></span>
                                     </div>
                                 </div>
                                 <div>
                                     <div><font id="pn_sp" color="#9999CC" size="-2">
-                                            <b><?php echo __('2. Profile'); ?></b></font></div>
+                                            <b><?php echo __('2. Profile '); ?></b></font></div>
                                     <div>
                                         <span><?php echo isset($inputed['profile'])?$inputed['profile']:"" ?></span>
                                     </div>
@@ -258,7 +258,7 @@
                         <div>&nbsp;</div>
                     </div>
                     <h3  class="heading">
-                        <div class="div-head"><div class="regisdivation-form-title">Purchase Information</div></div>
+                        <div class="div-head"><div class="regisdivation-form-title"><?php echo __('Purchase Information')?></div></div>
                         <div  valign="top">&nbsp;</div>
                     </h3>
 
@@ -270,7 +270,7 @@
                     <div>
 
                         <div class="dt">
-                            <font id="dealer_sp" >Date</font></div>
+                            <font id="dealer_sp" ><?php echo __('Date')?></font></div>
                         <div class="dd">
                             <span><?php echo isset($inputed['date_of_purchase'])?$inputed['date_of_purchase']:"" ?></span>
                         </div>
@@ -278,7 +278,7 @@
                     <div>
 
                         <div class="dt">
-                            <font id="dealer_sp" >Name of Dealer</font></div>
+                            <font id="dealer_sp" ><?php echo __('Name of Dealer')?></font></div>
                         <div class="dd">
                             <span><?php echo isset($inputed['name_of_dealer'])?$inputed['name_of_dealer']:"" ?></span>
                         </div>
@@ -286,7 +286,7 @@
 
                     <div>
 
-                        <div class="dt">&nbsp;Invoice No.</div>
+                        <div class="dt">&nbsp;<?php echo __('Invoice No.')?></div>
                         <div class="dd">
                             <span><?php echo isset($inputed['invoice_no'])?$inputed['invoice_no']:"" ?></span>
                         </div>

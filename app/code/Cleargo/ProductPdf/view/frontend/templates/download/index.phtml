@@ -18,7 +18,7 @@ $pdfs = $block->getPdfs();
 <?php foreach ($attrSets as $attrSet): ?>
     <?php if($attrSet['value'] != '4' && isset($pdfs[$attrSet['value']]) ): ?>
         <div id="categoryContainer<?php echo $attrSet['value']; ?>" class="category-container">
-            <h2> <?php echo $attrSet['label']; ?> </h2>
+            <h2> <?php echo __($attrSet['label']); ?> </h2>
             <table id="categoryTable<?php echo $attrSet['value']; ?>" class="category-table">
                 <tbody>
                 <?php foreach ( $pdfs[$attrSet['value']] as $brand_id => $brands ): ?>

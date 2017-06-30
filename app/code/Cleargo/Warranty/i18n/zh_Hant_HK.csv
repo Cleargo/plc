@@ -73,6 +73,7 @@ Delete,刪除
 "Delete ${ $.$data.title }","刪除$ {$。$ data。title}"
 "Are you sure you wan't to delete a ${ $.$data.title } record?","您確定要刪除 ${ $.$data.title }紀錄嗎？"
 "* Required Fields",*必填欄位
+"* Required Fields",*必填欄位
 Mr,先生
 Mrs,太太
 Miss,小姐
@@ -116,7 +117,7 @@ Actions,操作
 "Dear %name,","親愛的 %name,"
 "Thank you for using our online registration service. Attached please kindly find a copy of your registration form for reference.","感謝您使用我們的在線註冊服務。 附件有您的註冊表副本以供參考。"
 "Customer Information ",客戶信息
-"Hong Kong ID /Passport or other ID",香港身份證號碼 / 護照或其他身份證明號碼
+"Hong Kong ID /Passport or other ID","香港身份證號碼 / 護照或其他身份證明號碼"
 %name,%name
 "Your answer ",您的答案
 "Mul-T-Lock MT5","Mul-T-Lock MT5"
@@ -164,3 +165,5 @@ Modified,更改
 "We cant process your request right now. ",我們目前無法處理您的要請求。
 "Are you sure you want to delete a ${ $.$data.title } record?","您確定您想刪除$ {$。$ data。title}記錄？"
 "Question Type",問題類型
+"Please select one of the options.","請選擇一個選項"
+"Select One","選擇以下選項"
