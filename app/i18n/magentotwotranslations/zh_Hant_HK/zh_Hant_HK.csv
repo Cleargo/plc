@@ -9500,7 +9500,7 @@ Localized Exception,本地化異常,module,"Magento_Cms,Magento_Reminder,Magento
 "Vendor","供應商",module,Cleargo_Contactus
 "Media","傳媒",module,Cleargo_Contactus
 "Locks & Security","門鎖及保安",module,Cleargo_Contactus
-"Decorative Lighting","燈飾",module,Cleargo_Contactus
+"Decorative Lighting","飾燈",module,Cleargo_Contactus
 "Commercial Lighting","工程燈",module,Cleargo_Contactus
 "Smart Home","智能家居",module,Cleargo_Contactus
 "VIP Membership Services","VIP會員服務",module,Cleargo_Contactus
@@ -9525,7 +9525,7 @@ Localized Exception,本地化異常,module,"Magento_Cms,Magento_Reminder,Magento
 "SMART HOME","智能家居",module,Cleargo_ProductPdf
 "SMART HOME","智能家居",module,Cleargo_ProductPdf
 "Showroom","PLC門市",module,Cleargo_Showroom
-"PLC Lighting","PLC燈飾",module,Cleargo_Showroom
+"PLC Lighting","PLC飾燈",module,Cleargo_Showroom
 "PLC Locks & Illumination","PLC鎖類照明",module,Cleargo_Showroom
 "Order Details","詳細資料",module,Magento_Sales
 "Order Details - Invoice","詳細資料 - 發票",module,Magento_Sales
