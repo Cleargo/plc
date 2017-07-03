@@ -360,8 +360,11 @@ Delete Warranty,刪除保養,module,Cleargo_Warranty
 Save and Continue Edit,儲存並繼續編輯,module,Cleargo_Warranty
 Edit Warranty %1,編輯保養%1,module,Cleargo_Warranty
 New Warranty,新保養,module,Cleargo_Warranty
+Keycard Information,匙卡資料,module,Cleargo_Warranty
 Warranty Information,保養信息,module,Cleargo_Warranty
-Customer Information,客戶資訊,module,Cleargo_Warranty
+Customer Information,顧客資訊,module,Cleargo_Warranty
+Product Category,產品類別,module,Cleargo_Warranty
+Product Information,產品資料,module,Cleargo_Warranty
 General Information,一般資訊,module,Cleargo_Warranty
 Salutation,稱謂,module,Cleargo_Warranty
 English First Name,英文名字,module,Cleargo_Warranty
@@ -6618,7 +6621,7 @@ Order # ,訂單#,module,Magento_Rma
 Ordered: ,已訂購：,module,Magento_Rma
 Shipping Address:,收貨地址：,module,Magento_Rma
 Return Address:,退貨地址：,module,Magento_Rma
-Condition,條款,module,Magento_Rma
+Condition,產品狀態,module,Magento_Rma
 Qty,數量,module,Magento_Rma
 There is an error in quantities for item %1.,在產品%1的數量位置有錯誤。,module,Magento_Rma
 Authorized Qty,已授權數量,module,Magento_Rma
@@ -9504,7 +9507,7 @@ Localized Exception,本地化異常,module,"Magento_Cms,Magento_Reminder,Magento
 "Below %1","低於 %1",module,Magento_CatalogSearch
 "For any enquiries, please WhatsApp or WeChat : ","如有查詢,請WhatsApp或WeChat :",module,Megento_Catalog
 "Locks & Security","門鎖及保安",module,Cleargo_BrandList
-"Decorative Lighting","燈飾",module,Cleargo_BrandList
+"Decorative Lighting","飾燈",module,Cleargo_BrandList
 "Commercial Lighting","工程燈",module,Cleargo_BrandList
 "Smart Home","智能家居",module,Cleargo_BrandList
 "My Warranties","MT5 保養","module","Magento_Customer"
