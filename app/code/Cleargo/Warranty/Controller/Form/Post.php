@@ -82,12 +82,14 @@ class Post extends \Magento\Framework\App\Action\Action
     public function execute($coreRoute = null)//contact_email_email_template2
     {
         $post = $this->getRequest()->getPostValue();
-        /*var_dump($post);
-        die();*/
         if (!$post) {
             $this->_redirect('*/*/');
             return;
         }
+        $post['date_of_birth'] = $this->formatDate($post['date_of_birth']);
+        $post['date_of_purchase'] = $this->formatDate($post['date_of_purchase'] );
+        /*var_dump($post);
+        die();*/
 
         $this->inlineTranslation->suspend();
         try {
@@ -203,5 +205,9 @@ class Post extends \Magento\Framework\App\Action\Action
             $this->_redirect('*/*');
             return;
         }
+    }
+    private function formatDate($date){
+        $date=date_create();
+        return date_format($date,"Y-m-d");
     }
 }

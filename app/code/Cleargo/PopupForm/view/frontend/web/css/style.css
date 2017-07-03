@@ -19,6 +19,7 @@
 .popup-question-mark{
     position: fixed;
     bottom: 80px;
+	right:0;
     cursor: pointer;
     display: none;
     z-index: 99;

@@ -100,7 +100,14 @@ class Recent extends \Magefan\Blog\Block\Post\PostList\AbstractList implements \
             $categories[] = $category->getId();
             $this->_postCollection->addCategoryFilter($categories);
         } else { // added by Thomas for home page
-            $this->_postCollection->addCategoryFilter([1,2]);
+            $storeId = $this->_storeManager->getStore()->getId();
+            if($storeId == 1) {
+                $this->_postCollection->addCategoryFilter([1, 2]);
+            } elseif ($storeId == 2) {
+                $this->_postCollection->addCategoryFilter([6, 9]);
+            } elseif ($storeId == 3) {
+                $this->_postCollection->addCategoryFilter([7, 8]);
+            }
         }
     }
 

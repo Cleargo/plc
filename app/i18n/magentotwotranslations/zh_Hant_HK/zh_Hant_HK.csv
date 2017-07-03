@@ -1644,7 +1644,7 @@ Grid,網格,module,Magento_CatalogSearch
 List,列表,module,Magento_CatalogSearch
 Search Weight,搜尋重量,module,Magento_CatalogSearch
 Relevance,相關性,module,Magento_CatalogSearch
-Search results for: %1,%1的搜尋結果,module,Magento_CatalogSearch
+Search results for: '%1',搜尋結果：“%1”,module,Magento_CatalogSearch
 Minimum Search query length is %1,搜尋關鍵字的最短長度是 %1,module,Magento_CatalogSearch
 Please specify at least one search term.,請指定最少一個搜尋條件。,module,Magento_CatalogSearch
 %1 and greater,%1及更多／%1及更大,module,Magento_CatalogSearch
@@ -2410,7 +2410,7 @@ Product Name,產品名稱,module,Magento_Checkout
 Incl. Tax,含稅,module,Magento_Checkout
 Your order number is: %1.,您的訂單號為：%1。,module,Magento_Checkout
 Your order # is: <span>%1</span>.,您的訂單是＃：<SPAN>%1 </ SPAN>。,module,Magento_Checkout
-Well email you an order confirmation with details and tracking info.,我們會向您發送電郵：包含訂單確認細節和送貨資訊。,module,Magento_Checkout
+We'll email you an order confirmation with details and tracking info.,我們會向您發送電郵：包含訂單確認細節和送貨資訊。,module,Magento_Checkout
 This block no longer exists.,此版塊已不存在。,module,Magento_CmsStaging
 Future Update in this time range already exists. Select a different range to add a new Future Update.,此時間範圍內未來更新已存在。請選擇其他時間範圍以添加新的未來更新。,module,Magento_CmsStaging
 Error,錯誤,module,Magento_CmsStaging
@@ -7350,6 +7350,7 @@ State/Province,州/省,module,Magento_Sales
 Street Address,街道地址,module,Magento_Sales
 Phone Number,電話號碼,module,Magento_Sales
 Zip/Postal Code,郵編,module,Magento_Sales
+You are signed out,您已登出,module,Magento_Customer
 We cant save the address:\n%1,我們不能儲存地址：\n%1,module,Magento_Sales
 Cannot save comment:\n%1,無法儲存評價：\n%1,module,Magento_Sales
 We dont have enough information to save the parent transaction ID.,我們沒有充足的資訊儲存主交易ID,module,Magento_Sales
@@ -9388,7 +9389,7 @@ Invalid item option format.,產品選項的格式無效。,module,Magento_Wishli
 We cant add this item to your shopping cart right now.,我們未能新增這項產品到購物車。,module,Magento_Wishlist
 We couldnt add the following product(s) to the shopping cart: %1.,我們未能將以下產品新增到購物車：%1。,module,Magento_Wishlist
 We cant update the Wish List right now.,我們暫未能更新收藏清單。,module,Magento_Wishlist
-%1 product(s) have been added to shopping cart: %2.,產品%1 已新增到購物車: %2。,module,Magento_Wishlist
+%1 product(s) have been added to shopping cart: %2., “%2” 已新增至到購物車, 數量: %1 ,module,Magento_Wishlist
 Comment:,評論：,module,Magento_Wishlist
 We cannot retrieve the Wish List.,我們未能檢索收藏清單。,module,Magento_Wishlist
 %1s Wishlist,%1的收藏清單,module,Magento_Wishlist
@@ -9410,10 +9411,10 @@ Localized Exception,本地化異常,module,"Magento_Cms,Magento_Reminder,Magento
 "Placed on <span class='no-link'>%created_at</span>",訂單時間<span class='no-link'>%created_at</span>,"module","Magento_Sales"
 "Billing Info",賬單地址,"module","Magento_Sales"
 "Shipping Info",送貨地址,"module","Magento_Sales"
-"LIGHTING",飾燈
-"LOCKS & SECURITY",門鎖及保安
-"SMART HOME",智能家居
-"SHOWCASE",產品展示
+"LIGHTING",飾燈,theme,frontend/Cleargo/plc
+"LOCKS & SECURITY",門鎖及保安,theme,frontend/Cleargo/plc
+"SMART HOME",智能家居,theme,frontend/Cleargo/plc
+"SHOWCASE",產品展示,theme,frontend/Cleargo/plc
 "To ensure our emails reach your inbox, add %store_email to your address book. We promise not to share your information. Click <a href='%store_url'>here</a> to view our privacy policy.","為確保我們的電子郵件能發送到您的收件箱，請將 %store_email 添加到您的通訊錄中。 我們承諾不會洩露您的資料。 點擊您可以通過登入到<a href='%store_url'>這裡</a>查看我們的隱私政策。","module","Magento_Email"
 ".  %store_hours.  %copyright","。%store_hours。 %copyright"
 "You can check the status of your order by <a href='%account_url'>logging into your account</a>.",您可以通過登入到<a href='%account_url'>您的帳戶</a>查看訂單狀態。,"module","Magento_Sales"
@@ -9483,8 +9484,8 @@ Localized Exception,本地化異常,module,"Magento_Cms,Magento_Reminder,Magento
 "Edit Information","編輯資料","module","Magento_Customer"
 "Newsletter Subscriptions","通訊訂閱","module","Magento_Customer"
 "You don't subscribe to our newsletter.","您沒有訂閱我們的通訊。","module","Magento_Customer"
-"Office Hours:","辦公時間",module,Cleargo_Contactus
-"ONLINE ENQUIRY FORM","網上查詢表格",module,Cleargo_Contactus
+"Office Hours","辦公時間",module,Cleargo_Contactus
+"Online Enquiry Form","網上查詢表格",module,Cleargo_Contactus
 "Please enter Property name / Address / Lock brands ...","請輸入屋苑名稱/地址/門鎖牌子...",module,Cleargo_FindYourLock
 "Show All (District)","顯示全部 (地區)",module,Cleargo_FindYourLock
 "Basic Information","基本資料",module,Cleargo_FindYourLock
@@ -9531,9 +9532,54 @@ Localized Exception,本地化異常,module,"Magento_Cms,Magento_Reminder,Magento
 "Select One","選擇以下選項",module,Cleargo_Warranty
 "What is your pet's name?","您養的寵物叫什麼名字？",module,Cleargo_Warranty
 "Endivance Lockset","機械大門套裝鎖",module,Cleargo_Warranty
+"Select One","選擇以下選項",module,Cleargo_Warranty
 "Warranty Review","預覽表格",module,Cleargo_Warranty
 "Title","稱謂",module,Magento_Customer
 "Update Wish List","更新收藏清單",module,Magento_MultipleWishlist
 "Add All to Cart","加到購物車",module,Magento_MultipleWishlist
 "Share Wish List","分享收藏清單",module,Magento_MultipleWishlist
 "Return Details","退貨資料",module,Magento_Sales
+<<<<<<< HEAD
+=======
+"Don't see what you're looking for?","找不到你想要的產品?",module,Magento_CatalogSearch
+We can't find any items matching these search criteria.,未能找到與條件匹配的產品。,module,Magento_CatalogSearch
+QUESTION TO US?,聯絡我們,module,Cleargo_PopupForm
+QUESTION TO US?,聯絡我們,theme,frontend/Cleargo/plc
+Please enter a valid email address (Ex: johndoe@domain.com).,"請輸入有效的電郵地址 (例:johndoe@domain.com).",lib,lib/web/mage/validation/validation.js
+"Please specify product's required option(s).",請選擇產品的購買選項。,module,Magento_Catalog
+"We don't have as many ""%1"" as you requested.","""%1""沒有足夠存貨",module,Magento_CatalogInventory
+This is a required field.,必填欄位,module,Magento_Ui
+There is no result.,沒有搜尋結果,module,Cleargo_DealerNetwork
+Posted:,發表,module,Magefan_Blog
+Categories:,類別,module,Magefan_Blog
+"Read more &#187;","查看更多 &#187;",module,Magefan_Blog
+"%1 has been added to your Wish List.","%1 已加到您的收藏清單。",module,Magento_Wishlist
+Options Details,詳細購買選項,module,Magento_Wishlist
+"Email addresses, separated by commas","電郵地址，以逗號分隔",module,Magento_Wishlist
+Review this form,預覽表格,module,Cleargo_Warranty
+Please select one of the options.,請選擇一個選項,module,Magento_AdminGws
+Please select one of the options.,請選擇一個選項,module,Cleargo_Warranty
+Enter Valid HKID/Passport Number,請選擇一個選項,module,Cleargo_Warranty
+"Please select one of the options.","請選擇一個選項",module,Magento_Ui
+"This is a required field.","必填欄位",theme,frontend/Cleargo/plc
+"Video","短片",theme,frontend/Cleargo/plc
+"Cart Subtotal","購物車小計",module,Magento_Checkout
+"Go to Checkout","結帳",module,Magento_Checkout
+"View and edit cart","查看及修改購物車",module,Magento_Checkout
+"Are you sure you would like to remove this item from the shopping cart?","您確定要從購物車刪除此產品?",module,Magento_Checkout
+"OK","確定",module,Magento_Checkout
+"Review & Payments","付款方式",module,Magento_Checkout
+"Order Summary","訂單概要",module,Magento_Checkout
+"Ship Here","送貨到此地址",module,Magento_Checkout
+"Checkout Success","結帳成功",module,Magento_Checkout
+"Checkout Success","結帳成功",theme,frontend/Cleargo/plc
+"Print receipt","列印收據",theme,frontend/Cleargo/plc
+"We'll email you an order confirmation with details and tracking info.","我們會把訂單確認及送貨資料以電郵傳送給您。",module,Magento_Checkout
+"Business Hours","辦公時間",module,Cleargo_Showroom
+"Thank You For Your Question","謝謝您的查詢",theme,frontend/Cleargo/plc
+"We will response to you Soon","我們會盡快回覆",theme,frontend/Cleargo/plc
+"Ship to:","送貨地址",module,Magento_Checkout
+"Ship To:","送貨地址",module,Magento_Checkout
+"Payment","付款",module,Magento_Checkout
+"You saved the shipping fee: ","運費減免",module,Magento_Checkout
+>>>>>>> d859e197b10f2abef7da4d089aed4e4224dfca86
