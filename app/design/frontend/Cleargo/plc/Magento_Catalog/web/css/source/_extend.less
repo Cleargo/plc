@@ -35,15 +35,16 @@
                 padding-bottom:5px;
 
 
-                span{
+                span.name{
                     white-space: normal;
                     font-size:2.6vw;
                     display: block;
                     margin: 0 10px;
                 }
 
-                span:first-child{
+                span.img{
                     margin:0 auto;
+                    display: block;
                     max-width:140px;
                     position:relative;
                     
@@ -60,26 +61,29 @@
                 }
 
                 &:hover{
-                    
-                    img{
-                        opacity:0;
-                        &.active{
-                            opacity:1;
+                    span.img {
+                        img {
+                            opacity:0;
+                            &.active {
+                                opacity:1;
+                            }
                         }
                     }
-                    span{
+                    span.name{
                         color:@color-brandred;
                     }
                 }
                 &.active{
-                    img{
-                        opacity:0;
-                        color:#0b0b0b;
-                        &.active{
-                            opacity:1;
+                    span.img {
+                        img {
+                            opacity:0;
+                            color:#0b0b0b;
+                            &.active {
+                                opacity:1;
+                            }
                         }
                     }
-                    span{
+                    span.name{
                         color:@color-brandred;
                     }
                 }
@@ -839,13 +843,13 @@
         li{
             border-right:1px solid #979797;
             a{
-                span{
+                span.name{
                     font-size:16px;
                     display:inline-block;
                     margin:0;
                 }
                 &:hover{
-                    span{
+                    span.name{
                         position:relative;
                         &:after{
                             content:"";
@@ -869,7 +873,7 @@
                     }
                 }
                 &.active{
-                    span{
+                    span.name{
                         position:relative;
                         &:after{
                             content:"";
