@@ -74,6 +74,7 @@ Delete,刪除
 "Are you sure you wan't to delete a ${ $.$data.title } record?","您確定要刪除 ${ $.$data.title }紀錄嗎？"
 "* Required Fields",*必填欄位
 "* Required Fields",*必填欄位
+Please select one of the options.,請選擇一個選項
 Mr,先生
 Mrs,太太
 Miss,小姐
@@ -130,7 +131,7 @@ Actions,操作
 "Should you have any enquiries, please call our customer service hotline at 852-2765 9667 for assistance.","如有任何疑問，請致電我們的客戶服務熱線852-2765 9667查詢。"
 "Yours faithfully,",謹啟
 "The PLC Group",PLC集團
-"Enter Valid HKID/Passport Number",輸入有效的香港身份證/護照號碼
+"Enter Valid HKID/Passport Number","輸入有效的香港身份證/護照號碼"
 CSV,CSV
 "Excel XML","Excel XML"
 "Delete items",刪除項目

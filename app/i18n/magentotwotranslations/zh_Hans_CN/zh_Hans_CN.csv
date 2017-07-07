@@ -6721,6 +6721,7 @@ Empty Value.,空值。,module,Magento_Ui
 Please enter a valid phone number. For example (123) 456-7890 or 123-456-7890.,请输入一个有效的电话号码。例如（123）456-7890或123-456-7890。,module,Magento_Ui
 Please enter a valid fax number (Ex: 123-456-7890).,请输入有效的传真号码（例：123-456-7890）。,module,Magento_Ui
 Please enter a valid email address (Ex: johndoe@domain.com).,请输入一个有效的电子邮件地址（例如：johndoe@domain.com）。,module,Magento_Ui
+Please enter a valid email address (Ex: johndoe@domain.com).,请输入一个有效的电子邮件地址（例如：johndoe@domain.com）。,"lib","lib/web/mage/validation.js"
 Please enter 6 or more characters. Leading or trailing spaces will be ignored.,请输入6个或更多的字符。开头或结尾空格会被忽略。,module,Magento_Ui
 "Please enter 7 or more characters, using both numeric and alphabetic.",请输入7个或更多的字符，同时使用数字和字母。,module,Magento_Ui
 "Please enter a valid URL. Protocol is required (http://, https:// or ftp://).",请输入有效网址。协议要求上（http：//，https：//开头或ftp：//）。,module,Magento_Ui
