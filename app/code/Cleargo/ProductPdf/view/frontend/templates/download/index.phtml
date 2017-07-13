@@ -21,7 +21,7 @@ $pdfs = $block->getPdfs();
             <h2> <?php echo __($attrSet['label']); ?> </h2>
             <table id="categoryTable<?php echo $attrSet['value']; ?>" class="category-table">
                 <tbody>
-                <?php foreach ( $pdfs[$attrSet['value']] as $brand_id => $brands ): ?>
+                <?php foreach ( $pdfs[$attrSet['value']] as $brand_id => $brand ): ?>
                     <tr>
                         <td class="brand-td">
                             <?php $brandName = $block->getBrandLabelFormId($brand_id); ?>
@@ -34,12 +34,13 @@ $pdfs = $block->getPdfs();
                             <?php endif; ?>
                          </td>
                         <td>
-                            <?php foreach ($brands as $pdf ): ?>
+                            <?php foreach ($brand as $pdf ): ?>
                                 <?php
                                     $fullPathOfPreviewImage = 'wysiwyg/pdf-download-page/preview/'.$pdf['id'].'.png';///var/www/vhosts/plchk/pub/media/
                                     $fullPathOfPreviewImage = $block->getFullMediaUrl($fullPathOfPreviewImage);///var/www/vhosts/plchk/pub/media/
                                     $fullPathOfCurrentFile =  $this->getMideaDirectory() . $pdf['path'];
-                                    $name =  $pdf['name'] ;
+
+
                                     if( substr( $fullPathOfCurrentFile , -3 ) == 'pdf' && !file_exists($this->getMideaDirectory() ."wysiwyg/pdf-download-page/preview/". $pdf['id'] .".png")  ) {
                                         try {
                                             $image = file_get_contents($fullPathOfCurrentFile);
@@ -58,14 +59,24 @@ $pdfs = $block->getPdfs();
                                     }
                                 ?>
                                 <?php if(substr( $fullPathOfCurrentFile , -3 ) == 'pdf' ):?>
+                                    <?php
+                                        $name =  $pdf['name'] ;
+                                        $sizeOfImg = $block->getFormatedFileSize($fullPathOfCurrentFile);
+
+                                        if( fnmatch('*_?.pdf',$name) || fnmatch('*_??.pdf',$name) ){
+                                            continue;
+                                        }
+
+                                    ?>
+
                                     <a class="pdf-square-link" href="<?php echo $block->getFullMediaUrl($pdf['path']); ?>">
                                         <div class="pdf-square">
                                             <div class="img">
                                                 <img src="<?php echo $fullPathOfPreviewImage ; ?>">
                                             </div>
                                             <div class="txt">
-                                                <?php echo $pdf['name']; ?> <br/>
-                                                ( <?php echo $block->getFormatedFileSize($fullPathOfCurrentFile);?> MB )
+                                                <?php echo $name; ?> <br/>
+                                                ( <?php echo $sizeOfImg ?> MB )
                                             </div>
                                         </div>
                                     </a>
