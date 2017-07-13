@@ -1084,9 +1084,9 @@ The option type to get group instance is incorrect.,該選項類型獲得組實�
 Select type options required values rows.,需要選擇類型選項值的行。,module,Magento_Catalog
 Could not save product option,無法保存產品選項,module,Magento_Catalog
 Could not remove custom option,無法刪除自定義選項,module,Magento_Catalog
-Please specify date required option(s).,請指定日期所需的選項（S）。,module,Magento_Catalog
-Please specify time required option(s).,請指定所需時間的選項（S）。,module,Magento_Catalog
-Please specify product's required option(s).,請指定產品所需的選項（S）。,module,Magento_Catalog
+Please specify date required option(s).,請指定日期所需的選項,module,Magento_Catalog
+Please specify time required option(s).,請指定所需時間的選項,module,Magento_Catalog
+Please specify product's required option(s).,請指定產品所需的選項,module,Magento_Catalog
 The option instance type in options group is incorrect.,在選項組中的選項實例的類型不正確。,module,Magento_Catalog
 The product instance type in options group is incorrect.,在選項組中的產品實例類型不正確。,module,Magento_Catalog
 The configuration item option instance in options group is incorrect.,在選項組中的配置項選項實例是不正確。,module,Magento_Catalog
@@ -8439,3 +8439,7 @@ Please select one of the options.,請選擇一個選項,theme,frontend/Cleargo/p
 "Print receipt","列印收據",module,Magento_Checkout
 "We\'ll email you an order confirmation with details and tracking info.","我們會把訂單確認及送貨資料以電郵傳送給您。",module,Magento_Checkout
 "Business Hours","辦公時間",module,Cleargo_Showroom
+"Basic Information","基本資料",module,Cleargo_FindYourLock
+"Phrase:","期數",module,Cleargo_FindYourLock
+"Remarks:","備註",module,Cleargo_FindYourLock
+"Forgot Your Password","忘記密碼",module,Magento_Customer
