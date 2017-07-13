@@ -1,7 +1,10 @@
 <?php
-    /*
-     *  \Cleargo\BrandList\Block\Listing.php $block
-     * */
+    /*@var */
+
+
+/**
+ * @var $block Cleargo\BrandList\Block\Listing
+ */
     $attrSets = $block->getAllAttrSetId();
 ?>
 <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('brand_top_navigation')->toHtml();?>
@@ -14,6 +17,7 @@
 
                 <?php
                 $allBrands = $block->getAllBrandByAttrSet($attrSet['value']);
+
                 $isDisplay = false;
                 foreach ($allBrands as $brand){
                     if( $brand['group'] == $i) $isDisplay = true;
