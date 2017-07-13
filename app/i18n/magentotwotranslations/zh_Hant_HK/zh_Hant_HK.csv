@@ -1,5 +1,3 @@
-All,全部,module,"Magento_AdminGws,Magento_Catalog,Magento_CatalogSearch,Magento_CustomerSegment,Magento_Integration,Magento_Sitemap,Magento_User,Magento_Widget"
-None,無,module,"Magento_AdminGws,Magento_Bundle,Magento_Catalog,Magento_CustomerCustomAttributes,Magento_Dhl,Magento_Eav,Magento_Fedex,Magento_GiftRegistry,Magento_GiftWrapping,Magento_OfflineShipping,Magento_Reward,Magento_Rma,Magento_Sitemap,Magento_Tax,Magento_Ups,Magento_Usps,Magento_Widget,Magento_Worldpay"
 Allowed Scopes,允許的範圍,module,Magento_AdminGws
 You need more permissions to delete this item(s): %1.,您需要更多的權限刪除此項目:1%。,module,Magento_AdminGws
 You need more permissions to apply some of the rule updates.,您需要更多的權限更新此規則。,module,Magento_AdminGws
@@ -2097,6 +2095,7 @@ Registered Customers,注冊用戶,module,"Magento_Customer,Magento_CustomerSegme
 "If you have an account, sign in with your email address.",如果你有一個帳戶，請使用您的電子郵件地址。,module,Magento_Customer
 Login,登錄,module,"Magento_Customer,Magento_Logging,Magento_Paypal"
 Forgot Your Password?,忘記密碼了嗎？,module,Magento_Customer
+Forgot Your Password,忘記密碼,module,Magento_Customer
 Subscription option,認購期權,module,Magento_Customer
 General Subscription,一般認購,module,Magento_Customer
 Sign Up for Newsletter,電子郵件注冊,module,"Magento_Customer,Magento_CustomerCustomAttributes"
@@ -6081,6 +6080,7 @@ Email address,電子郵件地址,module,Magento_User
 Retrieve Password,找回密碼,module,Magento_User
 Back to Sign in,返回登錄,module,Magento_User
 Forgot your password?,忘記密碼了嗎？,module,Magento_User
+Forgot Your Password,忘記密碼,module,Magento_User
 Reset a Password,重置密碼,module,Magento_User
 Roles Resources,角色資源,module,Magento_User
 Warning!\r\nThis action will remove this user from already assigned role\r\nAre you sure?,警告！\ r \ n該操作將刪除從指定的角色\ r \ n確定該用戶嗎？,module,Magento_User
@@ -8443,3 +8443,24 @@ Please select one of the options.,請選擇一個選項,theme,frontend/Cleargo/p
 "Phrase:","期數",module,Cleargo_FindYourLock
 "Remarks:","備註",module,Cleargo_FindYourLock
 "Forgot Your Password","忘記密碼",module,Magento_Customer
+Brand:,品牌：,module,Cleargo_FindYourLock
+District: ,區域：,module,Cleargo_FindYourLock
+Region: ,地區：,module,Cleargo_FindYourLock
+Basic Information,基本資訊,module,Cleargo_FindYourLock
+Address:,地址：,module,Cleargo_FindYourLock
+Date of tenancy:,入伙日期：,module,Cleargo_FindYourLock
+Developer:,地產商：,module,Cleargo_FindYourLock
+Block:,座數：,module,Cleargo_FindYourLock
+Ceiling Height:,天花高度：,module,Cleargo_FindYourLock
+No. of units:,單位數目：,module,Cleargo_FindYourLock
+No. of units on each floor:,每樓層的單位數目：,module,Cleargo_FindYourLock
+Size:,尺寸：,module,Cleargo_FindYourLock
+Brand of lock:,門鎖品牌：,module,Cleargo_FindYourLock
+Door thickness:,門身厚度：,module,Cleargo_FindYourLock
+Backset:,鎖中尺寸：,module,Cleargo_FindYourLock
+Phrase:,期數:,module,Cleargo_FindYourLock
+Remarks:,備註:,module,Cleargo_FindYourLock
+Lock replacement recommendation,門鎖更換建議,module,Cleargo_FindYourLock
+Lockset:,大門門鎖：,module,Cleargo_FindYourLock
+Cylinder:,鎖膽：,module,Cleargo_FindYourLock
+"View More Detail","查看更多",theme,frontend/Cleargo/plc
