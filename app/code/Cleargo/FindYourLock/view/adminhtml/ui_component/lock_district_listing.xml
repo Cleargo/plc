@@ -106,12 +106,15 @@
             </argument>
             <filterSelect name="store_id">
                 <argument name="optionsProvider" xsi:type="configurableObject">
-                    <argument name="class" xsi:type="string">Cleargo\FindYourLock\Ui\Component\Listing\Column\Lock\Options</argument>
+                    <argument name="class" xsi:type="string">Magento\Cms\Ui\Component\Listing\Column\Cms\Options</argument>
                 </argument>
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
+                        <item name="provider" xsi:type="string">${ $.parentName }</item>
+                        <!-- data that will be sent to server -->
                         <item name="dataScope" xsi:type="string">store_id</item>
-                        <item name="label" xsi:type="string" translate="true">Store View</item>
+                        <item name="label" xsi:type="string" translate="true">Store View </item>
+                        <!-- default value -->
                         <item name="captionValue" xsi:type="string">0</item>
                     </item>
                 </argument>
