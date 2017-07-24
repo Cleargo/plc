@@ -175,7 +175,7 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
     protected function performAfterLoadForType($tableName, $columnName)
     {
         $idArr = [];
-        $test =0 ;
+        $test = 0 ;
         $items = $this->getColumnValues($columnName);
         if (count($items)) {
             $connection = $this->getConnection();
@@ -186,19 +186,12 @@ abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel
                 foreach ($this as $item) {
                     $entityId = $item->getData('location_id');
 
-
-
-                    $storeId = $result[$item->getData($columnName) - 1];
-
-
-                    $item->setData('_first_type_id', $storeId["type_id"]);
-
-                   // var_dump($row);
                     foreach ($result as $row){
                         if($entityId ==$row["location_id"] ){
                             $idArr[] = $row["type_id"];
                         }
                     }
+
                     $item->setData('type_id', $idArr);
                     $idArr =[];
                 }
