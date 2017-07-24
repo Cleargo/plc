@@ -4258,7 +4258,7 @@ Tax Amount,税额,module,"Magento_Reports,Magento_Sales"
 Abandoned carts,被遗弃的车,module,Magento_Reports
 Applied Coupon,应用优惠券,module,Magento_Reports
 IP Address,IP地址,module,"Magento_Reports,Magento_SendFriend,Magento_Logging"
-Items in Cart,在车中的物品,module,Magento_Reports
+Items in Cart,件产品在购物车,module,Magento_Reports
 Products in carts,在推车产品,module,Magento_Reports
 Carts,车,module,Magento_Reports
 Wish Lists,收藏清单,module,Magento_Reports
