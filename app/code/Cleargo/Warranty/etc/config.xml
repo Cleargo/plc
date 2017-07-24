@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <customer>
+            <captcha>
+                <shown_to_logged_in_user>
+                    <warranty>1</warranty>
+                </shown_to_logged_in_user>
+                <always_for>
+                    <warranty>1</warranty>
+                </always_for>
+            </captcha>
+        </customer>
+        <captcha translate="label">
+            <frontend>
+                <areas>
+                    <warranty>
+                        <label>warranty</label>
+                    </warranty>
+                </areas>
+            </frontend>
+        </captcha>
+    </default>
+</config>

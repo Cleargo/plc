@@ -38,7 +38,8 @@ class Index extends Action
         /** @var \Magento\Framework\View\Result\Page $resultPage */
 
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->getLayout()->initMessages();
+       // $resultPage->getLayout()->initMessages();
+
         return $resultPage;
     }
 }

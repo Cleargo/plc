@@ -11,7 +11,16 @@
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="Cleargo\Warranty\Block\Warranty" name="warranty_form"/>
+        <block class="Cleargo\Warranty\Block\Warranty" name="warranty_form">
+            <block class="Magento\Captcha\Block\Captcha" name="warranty_captcha" after="-" cacheable="false">
+                <action method="setFormId">
+                    <argument name="formId" xsi:type="string">warranty</argument>
+                </action>
+            </block>
+        </block>
         </referenceContainer>
+        <referenceBlock name="head.components">
+            <block class="Magento\Framework\View\Element\Js\Components" name="captcha_page_head_components" template="Magento_Captcha::js/components.phtml"/>
+        </referenceBlock>
     </body>
 </page>
