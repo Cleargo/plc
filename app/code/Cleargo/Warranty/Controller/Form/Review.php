@@ -24,7 +24,7 @@ class Review extends Action
         Context $context,
         PageFactory $resultPageFactory
     ) {
-        $this->resultPageFactory = $resultPageFactory;
+       $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context);
     }
 
@@ -35,17 +35,19 @@ class Review extends Action
      */
     public function execute()
     {
+
         $post = $this->getRequest()->getPostValue();
-        /*var_dump($post);
-        die();*/
-        if (!$post) {
-            $this->_redirect('*/*/');
+
+
+       if (!$post) {
+           $this->_redirect('*/*/');
             return;
         }
         /** @var \Magento\Framework\View\Result\Page $resultPage */
 
         $resultPage = $this->resultPageFactory->create();
         $resultPage->getLayout()->initMessages();
+        $this->_eventManager->dispatch('warranty_form_indexpost');
         return $resultPage;
     }
 }

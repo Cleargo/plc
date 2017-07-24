@@ -8,13 +8,14 @@
               data-mage-init='{"validation":{}}'>
 
             <fieldset class="fieldset">
+
                     <div  border="0" cellpadding="0" cellspacing="0" class="regisdivation-form-info">
                         <h2 class="heading">
                             <div  valign="top" class="div-head"><div class="regisdivation-form-title"><?php echo __('Customer Information'); ?></div></div>
                             <div  valign="top">&nbsp;</div>
                         </h2>
+
                         <div>
-                           
                             <!--<div valign="top"><div align="right"><img src="ssl.jpg"/></div></div>-->
                         </div>
                         <div>
@@ -415,7 +416,8 @@
                         </div>
                     </div>
             </fieldset>
-
+           <!-- Captcha -->
+           <?php echo $block->getChildHtml('warranty_captcha'); ?>
             <div>
                 <div colspan="2" align="center" height="60" valign="middle" bgcolor="#FFFFFF">
                     <button type="submit" class="action submit primary regisdivation-agree">
