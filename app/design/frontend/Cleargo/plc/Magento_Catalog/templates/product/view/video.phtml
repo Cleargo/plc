@@ -31,9 +31,13 @@ $_product = $block->getProduct();
         </div>
     <?php endif; ?>
     <?php if(preg_match("/vimeo\.com/",$mediaGalleryImage->getVideoUrl())): ?>
-
+        <?php
+        $url = $mediaGalleryImage->getVideoUrl();
+        $vimeoVideoId =  parse_url($url);
+        ?>
+        
         <div class="videoWrapper">
-            <iframe width="100%" src="<?php echo $mediaGalleryImage->getVideoUrl() ?>"
+            <iframe width="100%" src="http://player.vimeo.com/video<?php echo str_replace(" ","",$vimeoVideoId['path']);?>"
                     frameborder="0" allowfullscreen>></iframe>
         </div>
     <?php endif; ?>
