@@ -8424,6 +8424,7 @@ Dealer Network,经销商网络,module,Cleargo_DealerNetwork
 "Please select one of the options.","请选择一个选项",lib,lib/web/mage/validation/validation.js
 "This is a required field.","必填栏位",theme,frontend/Cleargo/plc
 "Video","短片",theme,frontend/Cleargo/plc
+"View More Detail","查看更多",theme,frontend/Cleargo/plc
 "Cart Subtotal","购物车小计",module,Magento_Checkout
 "Go to Checkout","结帐",module,Magento_Checkout
 "View and edit cart","查看及修改购物车",module,Magento_Checkout
@@ -8436,3 +8437,31 @@ Dealer Network,经销商网络,module,Cleargo_DealerNetwork
 "Print receipt","列印收據",module,Magento_Checkout
 "We\'ll email you an order confirmation with details and tracking info.","我們會把訂單確認及送貨資料以電郵傳送給您。",module,Magento_Checkout
 "Business Hours","办公时间",module,Cleargo_Showroom
+"Edit Information","编辑资料",module,Magento_Customer
+"Newsletter Subscriptions",通讯订阅,module,Magento_Customer
+"Review this form","预览列印",module,Cleargo_Warranty
+"Address:","地址：",module,Cleargo_FindYourLock
+"Date of tenancy:","入伙日期：",module,Cleargo_FindYourLock
+"Developer:","地产商：",module,Cleargo_FindYourLock
+"Block:","座数：",module,Cleargo_FindYourLock
+"Phrase:","期数：",module,Cleargo_FindYourLock
+"Type of lock:","门锁种类：",module,Cleargo_FindYourLock
+"Door thickness:","门身厚度：",module,Cleargo_FindYourLock
+"Backset:","锁中尺寸：",module,Cleargo_FindYourLock
+"Basic Information","基本资料",module,Cleargo_FindYourLock
+"Lock replacement recommendation","门锁更换建议",module,Cleargo_FindYourLock
+"Lockset:","大门门锁",module,Cleargo_FindYourLock
+"Cylinder:","锁胆",module,Cleargo_FindYourLock
+"Remarks:","备注",module,Cleargo_FindYourLock
+"Before Installation","安装前",module,Cleargo_FindYourLock
+"After Installation","安装後",module,Cleargo_FindYourLock
+"BACK","返回",module,Cleargo_FindYourLock
+"GO TO PRODUCT DETAILS","前往产品详细资料",module,Cleargo_FindYourLock
+"Share On","分享到",module,Cleargo_FindYourLock
+"Find Your Lock","屋苑安装示范",module,Cleargo_FindYourLock
+"Region","地区",module,Cleargo_FindYourLock
+"Show All (District)","显示全部（地区）",module,Cleargo_FindYourLock
+"Please enter Property name / Address / Lock brands ...","请输入屋苑名称/地址/门锁牌子...",module,Cleargo_FindYourLock
+"QUESTION TO US?","联络我们",module,Cleargo_FindYourLock
+"*Required Fields","*必填栏位",module,Cleargo_FindYourLock
+"Quickview","快速查看","module","WeltPixel_Quickview",,
