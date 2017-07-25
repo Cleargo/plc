@@ -65,4 +65,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $this->_quickviewOptions['general']['enable_shopping_checkout_product_buttons'];
     }
 
+
+    public function isQuickViewModeOn(){
+        $isEnabled = $this->scopeConfig->getValue('weltpixel_quickview/general/enable_product_listing',  \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+        return $isEnabled;
+    }
 }
