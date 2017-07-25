@@ -62,13 +62,16 @@
 
                 </div>
 
-
                 <div class="field content">
                     <div class="control-textarea">
                         <textarea name="content" id="content" title="<?php /* @escapeNotVerified */ echo __('What’s on your mind?') ?>" class="input-textarea" cols="5" rows="3" ></textarea>
                     </div>
                 </div>
             </fieldset>
+            <?php echo $block->getChildHtml('popupform_captcha'); ?>
+
+
+            
             <div class="actions-toolbar">
                 <div class="warn-text"><?php echo __("*Required Fields") ?></div>
                 <div class="primary">
@@ -179,21 +182,39 @@
 
             $('.fixed_bottom .form-wrapper form .submit').click(function(e){
 
+                console.log("sunny");
+                $(".form.popup-form").find('#errmsg').html("");
                 var formToValidate = $('#popupForm');
                 var check = $(formToValidate).validation({
                     submitHandler: function(form) {
-                        $('#popupForm').addClass('loading');
-                        $.post("<?php echo $block->getAjaxUrl()?>",
-                            formToValidate.serialize(),
-                            function (data) {
-                                $('#popupForm').removeClass('loading');
-                                $('.fixed_bottom').find('.popup-form').hide();
-                                $('.fixed_bottom').find('.thank-container').show();
-                                setTimeout(function () {
-                                   //addDeviceClassToContainer();
-                                },10)
+                        $.ajax({
+                            url: "<?php echo $block->getDispatchUrl()?>",
+                            type: 'POST',
+                            data:  {
+                                captcha_popupform : $('#captcha_popupform').val()
+                            },
+                            error: function(xhr) {
+
+                            },
+                            success: function(response) {
+                                if(response === "Correct"){
+                                    $('#popupForm').addClass('loading');
+                                    $.post("<?php echo $block->getAjaxUrl()?>",
+                                        formToValidate.serialize(),
+                                        function (data) {
+                                            $('#popupForm').removeClass('loading');
+                                            $('.fixed_bottom').find('.popup-form').hide();
+                                            $('.fixed_bottom').find('.thank-container').show();
+                                            setTimeout(function () {
+                                                //addDeviceClassToContainer();
+                                            },10)
+                                        }
+                                    )
+                                }else{
+                                    $(".form.popup-form").find('#errmsg').text("<?php echo __('Incorrect CAPTCHA.') ?>").show();
+                                }
                             }
-                        )
+                        })
                     },
                     invalidHandler: function () {
                         setTimeout(function () {
@@ -201,8 +222,6 @@
                         },10)
                     }
                 });
-
-
             });
         });
     });

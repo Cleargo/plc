@@ -7,7 +7,8 @@
     <preference for="Cleargo\PopupForm\Api\Data\OptionSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
     <preference for="Cleargo\PopupForm\Api\Data\OptionInterface" type="Cleargo\PopupForm\Model\Option" />
     <preference for="Cleargo\PopupForm\Api\OptionRepositoryInterface" type="Cleargo\PopupForm\Model\OptionRepository" />
-    
+    <preference for="Magento\Captcha\Model\DefaultModel" type="Cleargo\PopupForm\Model\DefaultModel" />
+
     <virtualType name="InquiryGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
         <arguments>
             <argument name="collection" xsi:type="object" shared="false">Cleargo\PopupForm\Model\Resource\Inquiry\Collection</argument>

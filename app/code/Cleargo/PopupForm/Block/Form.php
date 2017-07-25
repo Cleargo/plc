@@ -25,9 +25,12 @@ class Form extends \Magento\Framework\View\Element\Template
     public function getCheckBox(){
         return $this->optionFactory->create()->toCheckboxArray($this->_storeManager->getStore()->getCode());
     }
-
+    
     public function getAjaxUrl(){
         return $this->getUrl('popupForm/post');
     }
-
+    
+    public function getDispatchUrl(){
+        return $this->getUrl('popupForm/dispatch');
+    }
 }

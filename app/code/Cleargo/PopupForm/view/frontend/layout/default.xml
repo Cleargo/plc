@@ -11,7 +11,16 @@
     </head>
     <body>
         <referenceContainer name="before.body.end">
-            <block class="Cleargo\PopupForm\Block\Form" name="popup.form" template="popup.phtml" />
+            <block class="Cleargo\PopupForm\Block\Form" name="popup.form" template="popup.phtml" >
+                <block class="Magento\Captcha\Block\Captcha" name="popupform_captcha" after="-" cacheable="false">
+                    <action method="setFormId">
+                        <argument name="formId" xsi:type="string">popupform</argument>
+                    </action>
+                </block>
+            </block>
         </referenceContainer>
+        <referenceBlock name="head.components">
+            <block class="Magento\Framework\View\Element\Js\Components" name="captcha_page_head_components" template="Magento_Captcha::js/components.phtml"/>
+        </referenceBlock>
     </body>
 </page>
