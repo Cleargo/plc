@@ -18,6 +18,7 @@ use Magento\Framework\App\Action\Action;
 <?php
 $_productCollection = $block->getLoadedProductCollection();
 $_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_quickViewHelper = $this->helper('WeltPixel\Quickview\Helper\Data');
 ?>
 <?php if (!$_productCollection->count()): ?>
     <div class="message info empty"><div><?php /* @escapeNotVerified */ echo __('We can\'t find products matching the selection.') ?></div></div>
@@ -63,7 +64,6 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                     <a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
                         <?php echo $productImage->toHtml(); ?>
                     </a>
-                    <?php echo $block->getProductDetailsHtml($_product); ?>
                     <div class="product details product-item-details">
                         <?php
                             $_productNameStripped = $block->stripTags($_product->getName(), null, true);
@@ -75,8 +75,12 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                             </a>
                         </strong>
                         <?php /* @escapeNotVerified */ echo $block->getProductPrice($_product) ?>
-                        <?php echo $block->getReviewsSummaryHtml($_product, $templateType); ?>
-
+                        <?php //echo $block->getReviewsSummaryHtml($_product, $templateType); ?>
+                        <?php //echo $block->getProductDetailsHtml($_product); ?>
+                        <?php if($_quickViewHelper->isQuickViewModeOn()): ?>
+                            <a class="weltpixel-quickview weltpixel_quickview_button_v1" data-quickview-url='<?php echo $this->getBaseUrl();?>weltpixel_quickview/catalog_product/view/id/<?php /* @escapeNotVerified */ echo $_product->getId(); ?>' href="javascript:void(0);"><span><?php echo __("Quickview");?></span></a>
+                        <?php endif; ?>
+                        
                         <div class="product-item-inner">
                             <div class="product actions product-item-actions"<?php echo strpos($pos, $viewMode . '-actions') ? $position : ''; ?>>
                                 <div class="actions-primary"<?php echo strpos($pos, $viewMode . '-primary') ? $position : ''; ?>>
