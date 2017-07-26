@@ -111,6 +111,8 @@
     padding: 29px 19px;
 }
 .fixed_bottom .form-wrapper .popup-form .actions-toolbar .primary{
+    padding-left: 15px;
+    padding-right: 15px;
     float: right;
 }.fixed_bottom.mobile .form-wrapper .popup-form .actions-toolbar .primary{
     float: none;
@@ -118,10 +120,11 @@
 .fixed_bottom .form-wrapper .popup-form .actions-toolbar .warn-text{
     float: left;
     font-family:MyriadPro-Regular;
-    font-size:10px;
+    font-size:14px;
     color:#c3161c;
     letter-spacing:0.03px;
     text-align:left;
+    margin-top: -10px;
 }
 .fixed_bottom.mobile .form-wrapper .popup-form .actions-toolbar .warn-text{
     display: none;
@@ -170,7 +173,7 @@
     word-break: break-all;
 }
 .fixed_bottom .form-wrapper .popup-form fieldset .field .input-text{
-    width: 204.5px;
+    width: 320.5px;
     height: 19.5px;
     float: right;
 }
@@ -184,11 +187,64 @@
     margin-right: 8px;
 }
 
+#popupForm
+    .field.captcha.required
+        .control.captcha
+            #captcha_popupform{
+    width: 190px;
+    vertical-align: top;
+    margin-top: 30px;
+}
+
+#popupForm
+    .field.captcha.required
+        label span{
+            position: relative;
+            top:25px;
+        }
+
+#popupForm
+    .nested{
+        display: inline-block;
+    }
+
+
+    #errmsg {
+        color: red;
+    }
+
+#popupForm
+    .nested
+        a
+            {
+                background:  url('../images/reload.png') no-repeat  30px center ;
+                margin-bottom:40px;
+                cursor: pointer;
+                display: block;
+                text-align: center;
+                text-decoration: none;
+            }
+
+
 @media (max-width: 768px) {
     .popup-question-mark{
         display: block;
     }
     .fixed_bottom{
         display: none;
+    }
+}
+
+@media screen and (min-width:767px){
+    #popupForm .control.captcha .nested{
+        width: 190px;
+        position:absolute;
+        right:0;
+        top:0;
+        bottom: 0;
+    }
+    #popupForm .control.captcha{
+        position:relative;
+        min-height:100px;
     }
 }
