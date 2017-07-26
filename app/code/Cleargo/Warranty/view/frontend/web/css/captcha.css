@@ -76,15 +76,23 @@ span{
     }
 }
 
+.form.contact div .btn-review{
+    margin-top: 40px;
+}
+
 @media screen and (max-width:767px){
+
+    .warranty_cap .field.captcha.required{
+        text-align: left;
+    }
 
     .warranty_cap .nested #captcha-container-warranty .control a
     {
-        width: 160px;
+        padding-left: 20px;
         cursor: pointer;
         text-decoration: none;
         display: block;
-        background: url(../images/reload.png) no-repeat 10px center;
+        background: url(../images/reload.png) no-repeat 0px;
     }
 
 }
