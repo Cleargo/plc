@@ -1,0 +1,90 @@
+.warranty_cap{
+
+}
+
+.warranty_cap .field.captcha.required{
+
+}
+
+.warranty_cap
+.field.captcha.required
+.label
+span{
+
+}
+
+.warranty_cap
+.field.captcha.required
+.control.captcha
+{
+
+}
+
+.warranty_cap
+.field.captcha.required
+.control.captcha
+#captcha_warranty
+{
+    width: 200px;
+}
+
+.warranty_cap
+.nested{
+
+
+}
+
+
+
+.warranty_cap
+.field.captcha.required
+.label span {
+}
+
+/*.warranty_cap .nested #captcha-container-warranty .control a
+{
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    background: url(../images/reload.png) no-repeat 0px center;
+}*/
+
+.warranty_cap .action.submit.primary.regisdivation-agree{
+    margin-top: 30px;
+}
+
+@media screen and (min-width:767px){
+    .warranty_cap .field.captcha.required{
+        display: inline-block;
+        position: relative;
+        padding-right: 240px;
+        min-height: 100px;
+    }
+
+    .warranty_cap .nested #captcha-container-warranty .control a
+    {
+        cursor: pointer;
+        text-decoration: none;
+        display: block;
+        background: url(../images/reload.png) no-repeat 30px center;
+    }
+
+    .warranty_cap .nested{
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}
+
+@media screen and (max-width:767px){
+
+    .warranty_cap .nested #captcha-container-warranty .control a
+    {
+        width: 160px;
+        cursor: pointer;
+        text-decoration: none;
+        display: block;
+        background: url(../images/reload.png) no-repeat 10px center;
+    }
+
+}
