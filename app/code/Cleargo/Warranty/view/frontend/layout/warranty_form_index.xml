@@ -8,6 +8,7 @@
     <head>
         <title>Warranty Form</title>
         <css src="Cleargo_Warranty::resources/form.css"/>
+        <css src="Cleargo_Warranty::css/captcha.css"/>
     </head>
     <body>
         <referenceContainer name="content">
