@@ -87,17 +87,17 @@
                 </item>
             </argument>
             <!-- Department ID Filter -->
-            <filterRange name="grid_id">
+            <!--<filterRange name="grid_id">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
-                        <item name="dataScope" xsi:type="string">location_id</item> <!-- Column name in DB -->
-                        <item name="label" xsi:type="string" translate="true">ID</item> <!-- Label on grid -->
+                        <item name="dataScope" xsi:type="string">location_id</item>
+                        <item name="label" xsi:type="string" translate="true">ID</item>
                         <item name="childDefaults" xsi:type="array">
                             <item name="provider" xsi:type="string">contactus_grid_listing.contactus_grid_listing.listing_top.listing_filters</item>
                         </item>
                     </item>
-                </argument>
-                <filterInput name="from">
+                </argument>-->
+                <!--<filterInput name="from">
                     <argument name="data" xsi:type="array">
                         <item name="config" xsi:type="array">
                             <item name="dataScope" xsi:type="string">from</item>
@@ -105,26 +105,26 @@
                             <item name="placeholder" xsi:type="string" translate="true">From</item>
                         </item>
                     </argument>
-                </filterInput>
-                <filterInput name="to">
-                    <argument name="data" xsi:type="array">
-                        <item name="config" xsi:type="array">
-                            <item name="dataScope" xsi:type="string">to</item>
-                            <item name="label" xsi:type="string" translate="true">to</item>
-                            <item name="placeholder" xsi:type="string" translate="true">To</item>
-                        </item>
-                    </argument>
-                </filterInput>
-            </filterRange>
-            <!-- Department name Filter -->
-            <filterInput name="grid_title">
+                </filterInput>-->
+            <!--<filterInput name="to">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
-                        <item name="dataScope" xsi:type="string">title</item> <!-- Column name in DB -->
-                        <item name="label" xsi:type="string" translate="true">Title</item> <!-- Label on grid -->
+                        <item name="dataScope" xsi:type="string">to</item>
+                        <item name="label" xsi:type="string" translate="true">to</item>
+                        <item name="placeholder" xsi:type="string" translate="true">To</item>
                     </item>
                 </argument>
             </filterInput>
+        </filterRange>-->
+        <!-- Department name Filter -->
+            <!--<filterInput name="grid_title">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataScope" xsi:type="string">title</item>
+                        <item name="label" xsi:type="string" translate="true">title</item>
+                    </item>
+                </argument>
+            </filterInput>-->
             <filterSelect name="store_id">
                 <argument name="optionsProvider" xsi:type="configurableObject">
                     <argument name="class" xsi:type="string">Cleargo\DealerNetwork\Ui\Component\Listing\Column\Dealer\Options</argument>
@@ -132,6 +132,7 @@
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
                         <item name="dataScope" xsi:type="string">store_id</item>
+                        <item name="provider" xsi:type="string">${ $.parentName }</item>
                         <item name="label" xsi:type="string" translate="true">Store View</item>
                         <item name="captionValue" xsi:type="string">0</item>
                     </item>
@@ -283,6 +284,7 @@
                 </item>
             </argument>
         </column>
+
         <column name="sort_order">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
