@@ -162,7 +162,7 @@
                             <item name="required-entry" xsi:type="boolean">true</item>
                         </item>
                     </item>
-                    <item name="label" xsi:type="string" translate="true">Chinese Frist Name</item>
+                    <item name="label" xsi:type="string" translate="true">Chinese Name</item>
                 </item>
             </argument>
         </column>
