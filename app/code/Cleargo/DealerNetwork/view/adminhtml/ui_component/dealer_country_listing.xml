@@ -12,7 +12,7 @@
         <item name="buttons" xsi:type="array">
             <item name="add" xsi:type="array">
                 <item name="name" xsi:type="string">add</item>
-                <item name="label" xsi:type="string" translate="true">Add New Lock</item>
+                <item name="label" xsi:type="string" translate="true">Add New Country</item>
                 <item name="class" xsi:type="string">primary</item>
                 <item name="url" xsi:type="string">*/*/new</item> <!-- magento will translate it by jobs/department/new -->
             </item>
