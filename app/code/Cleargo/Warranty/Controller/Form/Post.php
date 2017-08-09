@@ -175,8 +175,8 @@ class Post extends \Magento\Framework\App\Action\Action
                 $postObject = new \Magento\Framework\DataObject();
                 $postObject->setData($this->warranty->getData());
 
-                $postObject->setQuestion( $question[$post['question_type']]);
-                $postObject->setProduct( $prodcut[$post['product_type']]);
+                $postObject->setQuestion( __($question[$post['question_type']]) );
+                $postObject->setProduct( __($prodcut[$post['product_type']]));
 
 
                 $this->inlineTranslation->suspend();
