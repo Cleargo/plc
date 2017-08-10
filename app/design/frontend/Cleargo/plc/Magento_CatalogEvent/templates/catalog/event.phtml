@@ -1,5 +1,6 @@
-<?php $cur_cate_id =  $block->getCurrentCategory()->getId(); ?>
 <?php if($block->canDisplay()): ?>
+
+    <?php $cur_cate_id =  $block->getCurrentCategory()->getId(); ?>
 <?php foreach ($block->getEvents() as $_event): ?>
     <?php $_category = $_event->getCategory(); ?>
         <?php if($cur_cate_id == $_category->getId()): ?>
