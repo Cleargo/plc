@@ -8465,3 +8465,7 @@ Dealer Network,经销商网络,module,Cleargo_DealerNetwork
 "QUESTION TO US?","联络我们",module,Cleargo_FindYourLock
 "*Required Fields","*必填栏位",module,Cleargo_FindYourLock
 "Quickview","快速查看","module","WeltPixel_Quickview",,
+"Friendly Reminder","请注意","module","Cleargo_Warranty",,
+"For users who have registered PLC eShop account, please login first before you fill in the warranty form.<br/>Or you can choose to proceed as a guest.","如您已申请PLC网上商店帐号，请先登入，然後再填写保养表格。<br/>或您可选择以游客身份继续。","module","Cleargo_Warranty",,
+"Proceed as Guest","以游客身份继续","module","Cleargo_Warranty",,
+"Login","登入","module","Cleargo_Warranty",,
