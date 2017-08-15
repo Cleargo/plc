@@ -13,6 +13,7 @@ define([
             this._super();
             customerData.reload();
             this.customer = customerData.get('customer');
+            window.isCustomerLoggedIn = this.customer().firstname? true : false ;
         }
     });
 });
