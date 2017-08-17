@@ -12,12 +12,16 @@ class ContactForm extends \Magento\Contact\Block\ContactForm
 {
     protected $locationFactory;
 
+    protected $_catalogSession;
+
     public function __construct(
         Template\Context $context,
+        \Magento\Catalog\Model\Session $catalogSession,
         \Cleargo\Contactus\Model\ResourceModel\Grid\CollectionFactory $locationFactory,
         array $data = []
     ){
         parent::__construct($context, $data);
+        $this->_catalogSession = $catalogSession;
         $this->_isScopePrivate = true;
         $this->locationFactory = $locationFactory;
     }
@@ -98,5 +102,15 @@ class ContactForm extends \Magento\Contact\Block\ContactForm
                 echo '</div>';
             }
         }
+    }
+
+    public function setIncCapData($key, $value)
+    {
+        return $this->_catalogSession->setData($key, $value);
+    }
+
+    public function getIncCapData($key, $remove = false)
+    {
+        return $this->_catalogSession->getData($key, $remove);
     }
 }

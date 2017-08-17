@@ -2,6 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
     <preference for="Magento\Contact\Controller\Index\Post" type="Cleargo\Contactus\Controller\Index\Post" />
     <preference for="Magento\Contact\Block\ContactForm" type="Cleargo\Contactus\Block\ContactForm" />
+    <preference for="Magento\Captcha\Observer\CheckContactUsFormObserver" type="Cleargo\Contactus\Observer\CheckContactUsFormObserver" />
     <virtualType name="ContactusGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
         <arguments>
             <argument name="collection" xsi:type="object" shared="false">Cleargo\Contactus\Model\Resource\Grid\Collection</argument>
