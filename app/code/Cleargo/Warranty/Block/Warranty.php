@@ -53,19 +53,25 @@ class Warranty extends \Magento\Framework\View\Element\Template
      */
     protected $_filterGroupBuilder;
 
+    protected $_formIncorrectData;
+
+    protected $_catalogSession;
     /**
+     *
      * @var \Magento\Framework\Api\SortOrderBuilder
      */
     protected $_sortOrderBuilder;
-
+    protected $_request;
     public function __construct(
         Context $context,
         SearchCriteriaBuilder $_searchCriteriaBuilder,
         FilterBuilder $_filterBuilder,
         FilterGroupBuilder $_filterGroupBuilder,
         SortOrderBuilder $_sortOrderBuilder,
+        \Magento\Catalog\Model\Session $catalogSession,
         array $data = []
     ) {
+        $this->_catalogSession = $catalogSession;
         $this->_searchCriteriaBuilder = $_searchCriteriaBuilder;
         $this->_filterBuilder = $_filterBuilder;
         $this->_filterGroupBuilder = $_filterGroupBuilder;
@@ -82,6 +88,26 @@ class Warranty extends \Magento\Framework\View\Element\Template
     {
         $this->_addBreadcrumbs();
         return parent::_prepareLayout();
+    }
+
+    public function setIncCapData($key, $value)
+    {
+        return $this->_catalogSession->setData($key, $value);
+    }
+
+    public function getIncCapData($key, $remove = false)
+    {
+        return $this->_catalogSession->getData($key, $remove);
+    }
+
+    public function setIncCapStatus($key, $value)
+    {
+        return $this->_catalogSession->setData($key, $value);
+    }
+
+    public function getIncCapStatus($key, $remove = false)
+    {
+        return $this->_catalogSession->getData($key, $remove);
     }
 
     /**

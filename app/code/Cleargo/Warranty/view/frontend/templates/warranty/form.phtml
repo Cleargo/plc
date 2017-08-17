@@ -1,3 +1,9 @@
+<?php
+    $IncCapData = null;
+    if((int)$this->getIncCapStatus('IncCapStatus') == 1){
+        $IncCapData = $this->getIncCapData("IncCapData");
+    }
+?>
 <div id="formTotalContainer" style="margin:0 auto; ">
     <div  border="0" align="center" cellpadding="0" cellspacing="0">
        <form class="form contact"
@@ -21,15 +27,15 @@
                         <div>
                             <div class="dt"><font id="salu_sp" >*<?php echo __('Salutation') ?></font></div>
                             <div class="dd">
-                                    <input type="radio" class="radio" id="bundle-option-3-5" data-validate="{'validate-one-required-by-name':true}" name="salutation" value="Mr">
+                                    <input type="radio" class="radio" id="bundle-option-3-5" data-validate="{'validate-one-required-by-name':true}" name="salutation" value="Mr" <?php if ($IncCapData['salutation'] == 'Mr') {echo 'checked';} ?> />
                                     <label class="label" for="bundle-option-3-5">
                                         <?php echo __('Mr'); ?>
                                     </label>
-                                    <input type="radio" class="radio" id="bundle-option-3-6" data-validate="{'validate-one-required-by-name':true}" name="salutation" value="Mrs">
+                                    <input type="radio" class="radio" id="bundle-option-3-6" data-validate="{'validate-one-required-by-name':true}" name="salutation" value="Mrs" <?php if ($IncCapData['salutation'] == 'Mrs') {echo 'checked';} ?> />
                                     <label class="label" for="bundle-option-3-6">
                                         <?php echo __('Mrs'); ?>
                                     </label>
-                                    <input type="radio" class="radio" id="bundle-option-3-7" data-validate="{'validate-one-required-by-name':true}" name="salutation" value="Miss">
+                                    <input type="radio" class="radio" id="bundle-option-3-7" data-validate="{'validate-one-required-by-name':true}" name="salutation" value="Miss" <?php if ($IncCapData['salutation'] == 'Miss') {echo 'checked';} ?> />
                                     <label class="label" for="bundle-option-3-7">
                                         <?php echo __('Miss'); ?>
                                     </label>
@@ -43,7 +49,7 @@
                         <div>
                             
                             <div class="dt"><font id="fname_sp" >*<?php echo __('English First Name') ?></font></div>
-                            <div class="dd"><input type="text" name="eng_first_name" maxlength="50" class="fieldWidth" data-validate="{required:true}" aria-required="true"  data-validate="{required:true}" aria-required="true" value=""/></div>
+                            <div class="dd"><input type="text" name="eng_first_name" maxlength="50" class="fieldWidth" data-validate="{required:true}" aria-required="true"  data-validate="{required:true}" aria-required="true" value="<?php echo $IncCapData['eng_first_name'];?>"/></div>
                         </div>
                         <div>
                             
@@ -53,7 +59,7 @@
                         <div>
                             
                             <div class="dt"><font id="lname_sp" >*<?php echo __('English Last Name') ?></font></div>
-                            <div class="dd"><input type="text" name="eng_last_name" maxlength="50" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value=""/></div>
+                            <div class="dd"><input type="text" name="eng_last_name" maxlength="50" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value="<?php echo $IncCapData['eng_last_name'];?>"/></div>
                         </div>
                         <div>
                             
@@ -62,7 +68,7 @@
                         </div>
                         <div>
                             <div class="dt" id="cname_div" >&nbsp;<?php echo __('Chinese Name (if applicable)') ?></div>
-                            <div class="dd"><input type="text" name="chi_name" maxlength="25" class="fieldWidth"  value=""/></div>
+                            <div class="dd"><input type="text" name="chi_name" maxlength="25" class="fieldWidth"  value="<?php echo $IncCapData['chi_name'];?>"/></div>
                         </div>
                         <div>
                             
@@ -72,7 +78,7 @@
                         <div>
                             
                             <div class="dt">&nbsp;<?php echo __('Company Name (if applicable)') ?></div>
-                            <div class="dd"><input type="text" name="company" maxlength="100" class="fieldWidth" value=""/></div>
+                            <div class="dd"><input type="text" name="company" maxlength="100" class="fieldWidth" value="<?php echo $IncCapData['company'];?>"/></div>
                         </div>
                         <div>
                             
@@ -131,14 +137,20 @@
                                     *<?php echo __('Hong Kong ID / Passport or<br>&nbsp;other ID') ?></font></div>
                             <div class="dd">
                                 <select name="isHKID" id="isHKID" onChange="changeID()" data-validate="{required:true}" aria-required="true" >
-                                    <option value="1" selected><?php echo __('HKID')?></option>
-                                    <option value="2" ><?php echo __("Passport or other ID")?></option>
-                                </select><br><div id="hkid">
-                                    <input type="text" name="hkid" class="text id-num" data-validate="{'validate-hkid-passport':true}" maxlength="4" size="1" value=""/>
+                                    <option value="1" <?php if($IncCapData['isHKID']=='1'){ print 'selected'; }?> ><?php echo __('HKID')?></option>
+                                    <option value="2" <?php if($IncCapData['isHKID']=='2'){ print 'selected'; }?> ><?php echo __("Passport or other ID")?></option>
+                                </select><br>
+
+                                <div id="hkid">
+                                    <input type="text" name="hkid" class="text id-num" data-validate="{'validate-hkid-passport':true}" maxlength="4" size="1" value="<?php echo $IncCapData['hkid'];?>"/>
                                     A123&nbsp;<br><?php echo __('first 4 digit, including the first letter)')?></div>
+
+
                                 <div id="pport" style="display:none">
-                                    <input type="text" name="passport_num" class="text id-num"  data-validate="{'validate-hkid-passport':true}" maxlength="20" class="fieldWidth" value=""/></div>
-                            </div>
+                                    <input type="text" name="passport_num" class="text id-num"  data-validate="{'validate-hkid-passport':true}" maxlength="20" class="fieldWidth" value="<?php echo $IncCapData['passport_num'];?>"/>
+                                </div>
+
+                                </div>
                         </div>
 
 
@@ -159,7 +171,7 @@
                                         <div class="country-code">
                                             <input type="text" name="contact_one_country_code" maxlength="4" size="4" value="852" class="fieldWidth" data-validate="{required:true}" aria-required="true" /></div>
                                         <div class="separate"align="center">-</div>
-                                        <div class="tel"><input type="text" name="contact_one_phone" maxlength="20" size="14" class="fieldWidth" data-validate="{'validate-digits':true}" aria-required="true" value=""/></div>
+                                        <div class="tel"><input type="text" name="contact_one_phone" maxlength="20" size="14" class="fieldWidth" data-validate="{'validate-digits':true}" aria-required="true" value="<?php echo $IncCapData['contact_one_phone'];?>"/></div>
                                     </div>
                                     <div>
                                         <!--<div id="contact1_ac" style="font-size:10px">(Area Code)</div>
@@ -190,7 +202,7 @@
                                         <div class="country-code">
                                             <input type="text" name="contact_two_country_code" maxlength="4" size="4" value="852"/></div>
                                         <div class="separate" align="center">-</div>
-                                        <div class="tel"><input type="text" name="contact_two_phone" data-validate="{'validate-digits':true}" maxlength="20" size="14" value=""/></div>
+                                        <div class="tel"><input type="text" name="contact_two_phone" data-validate="{'validate-digits':true}" maxlength="20" size="14" value="<?php echo $IncCapData['contact_two_phone'];?>"/></div>
                                     </div>
                                     <div>
                                         <!--<div id="contact2_ac" style="font-size:10px">(Area Code)</div>
@@ -212,7 +224,7 @@
                         <div>
                             <div valign="top" class="dt" id="email_div" >&nbsp;<?php echo __('E-mail Address') ?></div>
                             <div class="dd">
-                                <input type="text" name="email" maxlength="60" class="fieldWidth" data-validate="{'validate-email':true}"  aria-required="true"  value="" required/>
+                                <input type="text" name="email" maxlength="60" class="fieldWidth" data-validate="{'validate-email':true}"  aria-required="true"  value="<?php echo $IncCapData['email'];?>" required/>
                                 <p class="fieldWidth" data-validate="{'validate-email':true}" aria-required="true"  style="font-size:10px">
                                     <?php echo __('A copy of this regisdivationform will be sent to the e-mail address provided for reference.');?>
                                 </p>
@@ -227,15 +239,15 @@
                             <div class="dt" id="sq_div" >*<?php echo __('Security question') ?></div>
                             <div class="dd">
                                 <select name="question_type" id="sQuest" class="fieldWidth" data-validate="{'validate-select':true}" aria-required="true" >
-                                    <option value="none"><?php echo __('Select One')?></option>
-                                    <option value="1" ><?php echo __('Who is your favourite singer?');?></option>
-                                    <option value="2" ><?php echo __('What is your favourite pastime?');?></option>
-                                    <option value="3" ><?php echo __('What is your favourite sports team?');?></option>
-                                    <option value="4" ><?php echo __('What is the name of your primary school?');?></option>
-                                    <option value="5" ><?php echo __("What is your pet's name?");?></option>
-                                    <option value="6" ><?php echo __('What colour do you like best?');?></option>
-                                    <option value="7" ><?php echo __('Which is your favourite festival?');?></option>
-                                    <option value="8" ><?php echo __('What is your favourite fruit?');?></option>
+                                    <option value="none" <?php if($IncCapData['question_type']=='none'){ print 'selected'; }?>><?php echo __('Select One')?></option>
+                                    <option value="1" <?php if($IncCapData['question_type']=='1'){ print 'selected'; }?>><?php echo __('Who is your favourite singer?');?></option>
+                                    <option value="2" <?php if($IncCapData['question_type']=='2'){ print 'selected'; }?>><?php echo __('What is your favourite pastime?');?></option>
+                                    <option value="3" <?php if($IncCapData['question_type']=='3'){ print 'selected'; }?>><?php echo __('What is your favourite sports team?');?></option>
+                                    <option value="4" <?php if($IncCapData['question_type']=='4'){ print 'selected'; }?>><?php echo __('What is the name of your primary school?');?></option>
+                                    <option value="5" <?php if($IncCapData['question_type']=='5'){ print 'selected'; }?>><?php echo __("What is your pet's name?");?></option>
+                                    <option value="6" <?php if($IncCapData['question_type']=='6'){ print 'selected'; }?>><?php echo __('What colour do you like best?');?></option>
+                                    <option value="7" <?php if($IncCapData['question_type']=='7'){ print 'selected'; }?>><?php echo __('Which is your favourite festival?');?></option>
+                                    <option value="8" <?php if($IncCapData['question_type']=='8'){ print 'selected'; }?>><?php echo __('What is your favourite fruit?');?></option>
                                 </select>
                             </div>
                         </div>
@@ -248,7 +260,7 @@
                         <div>
                             <div class="dt"><font id="sAnswer_sp" >*<?php echo __('Your answer') ?></font></div>
                             <div class="dd">
-                                <input type="text" name="answer" id="sAnswer" maxlength="30" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value=""/>
+                                <input type="text" name="answer" id="sAnswer" maxlength="30" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value="<?php echo $IncCapData['answer'];?>"/>
                             </div>
                         </div>
                         <div>
@@ -261,7 +273,7 @@
                             <div class="dt">
                                 <font id="dealer_sp" >*<?php echo __('Date of Birth') ?></font></div>
                             <div class="dd">
-                                <input type="text" class="date-pick" readonly='true' name="date_of_birth" maxlength="20" data-validate="{'validate-date':true, 'required-entry':true}" class="fieldWidth"  autocomplete="off" />
+                                <input type="text" class="date-pick" readonly='true' name="date_of_birth" maxlength="20" data-validate="{'validate-date':true, 'required-entry':true}" class="fieldWidth"  autocomplete="off" value="<?php echo $IncCapData['date_of_birth'];?>"/>
                             </div>
                         </div>
 
@@ -290,11 +302,11 @@
                                 *<?php echo __('Product Category') ?></div>
                             <div class="dd">
                                 <select name="product_type" class="fieldWidth" data-validate="{'validate-select':true}" aria-required="true" >
-                                    <option value="none"><?php echo __("Select One");?></option>
-                                    <option value="1" ><?php echo __("Auxiliary Lock");?></option>
-                                    <option value="2" ><?php echo __("Cylinder");?></option>
-                                    <option value="3" ><?php echo __("Endivance Lockset");?></option>
-                                    <option value="4" ><?php echo __("Others");?></option>
+                                    <option value="none" <?php if($IncCapData['product_type']=='none'){ print 'selected'; }?>><?php echo __("Select One");?></option>
+                                    <option value="1" <?php if($IncCapData['product_type']=='1'){ print 'selected'; }?>><?php echo __("Auxiliary Lock");?></option>
+                                    <option value="2" <?php if($IncCapData['product_type']=='2'){ print 'selected'; }?>><?php echo __("Cylinder");?></option>
+                                    <option value="3" <?php if($IncCapData['product_type']=='3'){ print 'selected'; }?>><?php echo __("Endivance Lockset");?></option>
+                                    <option value="4" <?php if($IncCapData['product_type']=='4'){ print 'selected'; }?>><?php echo __("Others");?></option>
                                 </select>
                             </div>
                         </div>
@@ -311,22 +323,22 @@
                                     <div>
                                         <div width="110"><font id="sn_sp" color="#9999CC" size="-2">
                                                 <b>1. <?php echo __("Serial Number")?></b></font></div>
-                                        <div><input style="" name="serial_num" type="text" maxlength="5" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value=""/></div>
+                                        <div><input style="" name="serial_num" type="text" maxlength="5" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value="<?php echo $IncCapData['serial_num'];?>"/></div>
                                     </div>
                                     <div>
                                         <div><font id="pn_sp" color="#9999CC" size="-2">
                                                 <b>2. <?php echo __("Profile")?></b></font></div>
-                                        <div><input style="" name="profile" type="text" maxlength="4" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value=""/></div>
+                                        <div><input style="" name="profile" type="text" maxlength="4" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value="<?php echo $IncCapData['profile'];?>"/></div>
                                     </div>
                                     <div>
                                         <div><font id="pins_sp" color="#9999CC" size="-2">
                                                 <b><?php echo __("3. T-Combination")?></b></font></div>
-                                        <div><input style="" name="t_combination" type="text" maxlength="10" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value=""/></div>
+                                        <div><input style="" name="t_combination" type="text" maxlength="10" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value="<?php echo $IncCapData['t_combination'];?>"/></div>
                                     </div>
                                     <div>
                                         <div><font id="snake_sp" color="#9999CC" size="-2">
                                                 <b><?php echo __("4. FP-Combination")?></b></font></div>
-                                        <div><input style="" name="fp_combination" type="text" maxlength="5" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value=""/></div>
+                                        <div><input style="" name="fp_combination" type="text" maxlength="5" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value="<?php echo $IncCapData['fp_combination'];?>"/></div>
                                     </div>
                                 </div>
                                 <!--<div id="keyTable" width="500" height="300"cellpadding="0" cellspacing="0" border="0" background="mul_t.jpg">
@@ -363,7 +375,7 @@
                             <div class="dt">
                                 <font id="dealer_sp" >*<?php echo __('Date'); ?></font></div>
                             <div class="dd">
-                                <input type="text" class="date-pick" readonly='true' name="date_of_purchase" data-validate="{'validate-date':true, 'required-entry':true}" maxlength="20" class="fieldWidth"  autocomplete="off" />
+                                <input type="text" class="date-pick" value="<?php echo $IncCapData['date_of_purchase'];?>" readonly='true' name="date_of_purchase" data-validate="{'validate-date':true, 'required-entry':true}" maxlength="20" class="fieldWidth"  autocomplete="off" />
                             </div>
                         </div>
                         <div>
@@ -371,7 +383,7 @@
                             <div class="dt">
                                 <font id="dealer_sp" >*<?php echo __('Name of Dealer')?></font></div>
                             <div class="dd">
-                                <input type="text" name="name_of_dealer" maxlength="50" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value=""/>
+                                <input type="text" name="name_of_dealer" maxlength="50" class="fieldWidth" data-validate="{required:true}" aria-required="true"  value="<?php echo $IncCapData['name_of_dealer'];?>"/>
                             </div>
                         </div>
                         <div>
@@ -383,7 +395,7 @@
                             
                             <div class="dt">&nbsp;<?php echo __('Invoice No')?>.</div>
                             <div class="dd">
-                                <input type="text" name="invoice_no" maxlength="20" class="fieldWidth"  />
+                                <input type="text" name="invoice_no" maxlength="20" class="fieldWidth" value="<?php echo $IncCapData['invoice_no'];?>" />
                             </div>
                         </div>
                         <script>
