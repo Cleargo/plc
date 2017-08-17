@@ -44,6 +44,7 @@ class CheckWarrantyFormObserver implements ObserverInterface
 
     protected $formIdx;
 
+    protected $_war;
     /**
      * CheckCustomFormObserver constructor.
      * @param \Magento\Captcha\Helper\Data $helper
@@ -59,8 +60,10 @@ class CheckWarrantyFormObserver implements ObserverInterface
         \Magento\Framework\Message\ManagerInterface $messageManager,
         \Magento\Framework\App\Response\RedirectInterface $redirect,
         CaptchaStringResolver $captchaStringResolver,
-        \Cleargo\Warranty\Controller\Form\Index $formIdx
+        \Cleargo\Warranty\Controller\Form\Index $formIdx,
+        \Cleargo\Warranty\Block\Warranty $war
     ) {
+        $this->_war = $war;
         $this->_helper = $helper;
         $this->_actionFlag = $actionFlag;
         $this->messageManager = $messageManager;
@@ -85,9 +88,10 @@ class CheckWarrantyFormObserver implements ObserverInterface
             $controller = $this->formIdx;
 
             if (!$captcha->isCorrect($this->captchaStringResolver->resolve($controller->getRequest(), $formId))) {
-
                 $this->messageManager->addError(__('Incorrect CAPTCHA.'));
                 $this->getDataPersistor()->set($formId, $controller->getRequest()->getPostValue());
+                $this->_war->setIncCapStatus("IncCapStatus",1);
+                $this->_war->setIncCapData("IncCapData",$this->getDataPersistor()->get($formId));
                 $this->_actionFlag->set('', \Magento\Framework\App\Action\Action::FLAG_NO_DISPATCH, true);
                 $this->redirect->redirect($controller->getResponse(), 'warranty/form/index');
             }
