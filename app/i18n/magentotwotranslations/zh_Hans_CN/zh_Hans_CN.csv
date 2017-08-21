@@ -8478,4 +8478,5 @@ Dealer Network,经销商网络,module,Cleargo_DealerNetwork
 "Your coupon was successfully applied.","您的优惠券已成功移除",module,"Magento_Multishipping"
 "Gift Card:","礼品卡: ",module,"Magento_Multishipping"
 "Number","电话号码",module,"Cleargo_Warranty"
+"Gift Card","礼品卡",module,"Magento_Multishipping",,
 "Gift Card amount applied to order: ","已应用于订单的礼品卡金额: ",module,"Magento_Multishipping",,
