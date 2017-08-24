@@ -8472,7 +8472,7 @@ Dealer Network,经销商网络,module,Cleargo_DealerNetwork
 "Current Balance: ","目前余额：","module","Magento_GiftCardAccount",,
 "My billing and shipping address are the same","帐单地址和送货地址相同","module","Magento_Multishipping",,
 "Checkout out as a new customer","以游客身份结帐",module,"Magento_Customer",,
-"Checkout using your account","登入后结帐",module,"Magento_Customer",,
+"Checkout out using your account","使用您的帐户结帐",module,"Magento_Customer",,
 "Apply Gift Card","使用礼品卡","module","Magento_Multishipping",,
 "See Balance","查看结余","module","Magento_Multishipping",,
 "Your coupon was successfully applied.","您的优惠券已成功移除",module,"Magento_Multishipping"
@@ -8481,3 +8481,7 @@ Dealer Network,经销商网络,module,Cleargo_DealerNetwork
 "Gift Card","礼品卡",module,"Magento_Multishipping",,
 "Gift Card %1 was added.","已使用礼品卡 %1",module,"Magento_GiftCardAccount",,
 "Gift Card amount applied to order: ","已应用于订单的礼品卡金额: ",module,"Magento_Multishipping",,
+"Creating an account has many benefits:","建立帐户可享以下好处：",module,"Magento_Customer",,
+"See order and shipping status","查看订单和送货状态",module,"Magento_Customer",,
+"Track order history","查看过往订单记录",module,"Magento_Customer",,
+"Check out faster","更快速地完成结帐",module,"Magento_Customer",,
