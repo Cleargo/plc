@@ -8479,4 +8479,5 @@ Dealer Network,经销商网络,module,Cleargo_DealerNetwork
 "Gift Card:","礼品卡: ",module,"Magento_Multishipping"
 "Number","电话号码",module,"Cleargo_Warranty"
 "Gift Card","礼品卡",module,"Magento_Multishipping",,
+"Gift Card %1 was added.","已使用礼品卡 %1",module,"Magento_GiftCardAccount",,
 "Gift Card amount applied to order: ","已应用于订单的礼品卡金额: ",module,"Magento_Multishipping",,
