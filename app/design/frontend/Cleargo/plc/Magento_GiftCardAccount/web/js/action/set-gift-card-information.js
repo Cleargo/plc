@@ -64,8 +64,7 @@ define(
                         $.when(deferred).done(function () {
                             totals.isLoading(false);
                         });
-                        alert($.mage.__('Gift Card %1 was added.').replace('%1', giftCardCode));
-                        //messageList.addSuccessMessage({'message': $.mage.__(message)});
+                        messageList.addSuccessMessage({'message': $.mage.__('Gift Card %1 was added.').replace('%1', giftCardCode)});
                     }
                 }
             ).fail(
