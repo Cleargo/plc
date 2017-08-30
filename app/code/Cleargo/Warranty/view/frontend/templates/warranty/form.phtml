@@ -141,7 +141,7 @@
                                     <option value="2" <?php if($IncCapData['isHKID']=='2'){ print 'selected'; }?> ><?php echo __("Passport or other ID")?></option>
                                 </select><br>
 
-                                <div id="hkid" style="<?php if($IncCapData['isHKID']=='1' ){ print 'display:block'; } else {print  'display:none';}?>">
+                                <div id="hkid" style="<?php if($IncCapData['isHKID']=='1' || $IncCapData['isHKID'] == NULL ){ print 'display:block'; } else {print  'display:none';}?>">
                                     <input type="text" name="hkid" class="text id-num" data-validate="{'validate-hkid-passport':true}" maxlength="4" size="1" value="<?php echo $IncCapData['hkid'];?>"/>
                                     A123&nbsp;<br><?php echo __('first 4 digit, including the first letter)')?></div>
 
