@@ -8475,7 +8475,7 @@ Dealer Network,经销商网络,module,Cleargo_DealerNetwork
 "Checkout using your account","登入后结帐",module,"Magento_Customer",,
 "Apply Gift Card","使用礼品卡","module","Magento_Multishipping",,
 "See Balance","查看结余","module","Magento_Multishipping",,
-"Your coupon was successfully applied.","您的优惠券已成功移除",module,"Magento_Multishipping"
+"Your coupon was successfully applied.","您的优惠券已成功使用",module,"Magento_Multishipping"
 "Gift Card:","礼品卡: ",module,"Magento_Multishipping"
 "Number","电话号码",module,"Cleargo_Warranty"
 "Gift Card","礼品卡",module,"Magento_Multishipping",,
