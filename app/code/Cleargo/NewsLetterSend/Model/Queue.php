@@ -1,18 +1,133 @@
 <?php
 /**
  * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
  */
 namespace Cleargo\NewsLetterSend\Model;
 
 
-/**
- * District District Model
- *
- * @method \Cleargo\FindYourLock\Model\ResourceModel\District _getResource()
- * @method \Cleargo\FindYourLock\Model\ResourceModel\District getResource()
- */
+
 class Queue extends \Magento\Newsletter\Model\Queue
 {
+    /**
+     * Newsletter Template object
+     *
+     * @var \Magento\Newsletter\Model\Template
+     */
+    protected $_template;
+
+    /**
+     * Subscribers collection
+     *
+     * @var \Magento\Newsletter\Model\ResourceModel\Subscriber\Collection
+     */
+    protected $_subscribersCollection;
+
+    /**
+     * Save stores flag.
+     *
+     * @var boolean
+     */
+    protected $_saveStoresFlag = false;
+
+    /**
+     * Stores assigned to queue.
+     *
+     * @var array
+     */
+    protected $_stores = [];
+
+    const STATUS_NEVER = 0;
+
+    const STATUS_SENDING = 1;
+
+    const STATUS_CANCEL = 2;
+
+    const STATUS_SENT = 3;
+
+    const STATUS_PAUSE = 4;
+
+    /**
+     * Filter for newsletter text
+     *
+     * @var \Magento\Newsletter\Model\Template\Filter
+     */
+    protected $_templateFilter;
+
+    /**
+     * Date
+     *
+     * @var \Magento\Framework\Stdlib\DateTime\DateTime
+     */
+    protected $_date;
+
+    /**
+     * Problem factory
+     *
+     * @var \Magento\Newsletter\Model\ProblemFactory
+     */
+    protected $_problemFactory;
+
+    /**
+     * Template factory
+     *
+     * @var \Magento\Newsletter\Model\TemplateFactory
+     */
+    protected $_templateFactory;
+
+    /**
+     * @var \Magento\Newsletter\Model\Queue\TransportBuilder
+     */
+    protected $_transportBuilder;
+
+    /**
+     * @param \Magento\Framework\Model\Context $context
+     * @param \Magento\Framework\Registry $registry
+     * @param \Magento\Newsletter\Model\Template\Filter $templateFilter
+     * @param \Magento\Framework\Stdlib\DateTime\DateTime $date
+     * @param \Magento\Newsletter\Model\TemplateFactory $templateFactory
+     * @param \Magento\Newsletter\Model\ProblemFactory $problemFactory
+     * @param \Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory $subscriberCollectionFactory
+     * @param \Magento\Newsletter\Model\Queue\TransportBuilder $transportBuilder
+     * @param \Magento\Framework\Model\ResourceModel\AbstractResource $resource
+     * @param \Magento\Framework\Data\Collection\AbstractDb $resourceCollection
+     * @param array $data
+     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
+     */
+    public function __construct(
+        \Magento\Framework\Model\Context $context,
+        \Magento\Framework\Registry $registry,
+        \Magento\Newsletter\Model\Template\Filter $templateFilter,
+        \Magento\Framework\Stdlib\DateTime\DateTime $date,
+        \Magento\Newsletter\Model\TemplateFactory $templateFactory,
+        \Magento\Newsletter\Model\ProblemFactory $problemFactory,
+        \Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory $subscriberCollectionFactory,
+        \Magento\Newsletter\Model\Queue\TransportBuilder $transportBuilder,
+        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
+        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+        array $data = []
+    ) {
+        $this->_templateFilter = $templateFilter;
+        $this->_date = $date;
+        $this->_templateFactory = $templateFactory;
+        $this->_problemFactory = $problemFactory;
+        $this->_subscribersCollection = $subscriberCollectionFactory->create();
+        $this->_transportBuilder = $transportBuilder;
+        parent::__construct(
+            $context,
+            $registry,
+            $templateFilter,
+            $date,
+            $templateFactory,
+            $problemFactory,
+            $subscriberCollectionFactory,
+            $transportBuilder,
+            $resource,
+            $resourceCollection,
+            $data
+        );
+    }
+
     public function sendPerSubscriber($count = 20)
     {
         if ($this->getQueueStatus() != self::STATUS_SENDING &&
