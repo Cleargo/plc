@@ -1,0 +1,5 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Email\Model\Template">
+        <plugin name="mail_subject" type="Cleargo\GiftCardEmailGetTitleDecode\Plugin\Template" sortOrder="100" />
+    </type>
+</config>
