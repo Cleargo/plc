@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 CLEARgo. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Review\Test\Unit\Ui\DataProvider\Product\Form\Modifier\ReviewTest" type="Cleargo\DisableReviewBug\Test\Unit\Ui\DataProvider\Product\Form\Modifier\ReviewTest" />
+    <preference for="Magento\Review\Ui\DataProvider\Product\Form\Modifier\Review" type="Cleargo\DisableReviewBug\Ui\DataProvider\Product\Form\Modifier\Review" />
+</config>
