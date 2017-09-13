@@ -11468,7 +11468,7 @@ Please specify 8 symbols at the most. Range allowed (e.g. 3-5),請最多指定 8
 Symbols Used in CAPTCHA,在驗證碼中使用的符號,module,Magento_Captcha
 "
                         Please use only letters (a-z or A-Z) or numbers (0-9) in this field. No spaces or other characters are allowed.<br />Similar looking characters (e.g. ""i"", ""l"", ""1"") decrease chance of correct recognition by customer.
-                    ",請在該欄位中只使用字母（a-z 或 A-Z）或數字（0-9）。不允許空格或其他字元。,module,Magento_Captcha
+                    ",請在此欄位中使用字母 （a 到 z 或 A 到 Z），數位 (0-9) 。 不允許空格或其他字符。<br />相似的字符（例如“i”，“l”，“1”）會減少了客戶正確識別的機會。,module,Magento_Captcha
 Case Sensitive,區分大小寫,module,Magento_Captcha
 Enable CAPTCHA on Storefront,在店面啟用 CAPTCHA,module,Magento_Captcha
 "CAPTCHA for ""Create user"" and ""Forgot password"" forms is always enabled if chosen.",如果選擇，則「建立用戶」和「忘記密碼」會一直啟用驗證碼形式。,module,Magento_Captcha
@@ -12072,7 +12072,7 @@ Default Welcome Email Without Password,預設沒有密碼的歡迎電郵,module,
 "
                         This email will be sent instead of the Default Welcome Email, if a customer was created without password. <br /><br />
                         Email template chosen based on theme fallback when ""Default"" option is selected.
-                    ",#VALUE!,module,Magento_Customer
+                    ",如果客戶沒有建立密碼，將發送此電子郵件而不是預設的歡迎電子郵件。 <br /> <br />選擇「預設」後，電郵範本將根據佈景主題順序選擇。,module,Magento_Customer
 Email Sender,電郵寄件者,module,Magento_Customer
 Require Emails Confirmation,需要電郵確認,module,Magento_Customer
 Confirmation Link Email,確認連結的電郵,module,Magento_Customer
@@ -12824,7 +12824,7 @@ Enable PayPal Credit,啟用 PayPal Credit,module,Magento_Paypal
 "PayPal Express Checkout lets you give customers access to financing through PayPal Credit&#174; - at no additional cost to you.
                         You get paid up front, even though customers have more time to pay. A pre-integrated payment button lets customers pay quickly with PayPal Credit&#174;.
                         <a href=""https:/www.paypal.com/webapps/mpp/promotional-financing"" target=""_blank"">Learn More</a>
-                ",#VALUE!,module,Magento_Paypal
+                ",PayPal Express Checkout可讓您通過PayPalCredit®給客戶提供快速付款服務，無需額外付費。即使客戶有更多的時間還款，但你已即時收到款項。一個已預先連結銀行戶口的付款按鈕，便可讓客戶快速使用PayPalCredit®付款。<a href="https:/www.paypal.com/webapps/mpp/promotional-financing" target="_blank">了解詳情</a>,module,Magento_Paypal
 Sort Order PayPal Credit,PayPal Credit排序,module,Magento_Paypal
 Advertise PayPal Credit,推廣 PayPal Credit,module,Magento_Paypal
 "
