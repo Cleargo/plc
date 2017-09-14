@@ -10285,7 +10285,7 @@ Gift Card:,礼品卡：,module,Magento_GiftCardAccount
 Apply,套用,module,Magento_GiftCardAccount
 See Balance,查看余额,module,Magento_GiftCardAccount
 Gift Card amount applied to order: ,礼品卡金额适用于订单:,module,Magento_GiftCardAccount
-You've been sent a gift from %store_name,%store_name向您发送了一份礼物,module,Magento_GiftCard
+You've been sent a gift from %store_name,PLC线上商店向您发送了一份礼物,module,Magento_GiftCard
 "%name,","%name,",module,Magento_GiftCard
 "%sender has sent you a gift card for use at <a href=""%store_url"">%store_name</a> and it is now ready to be used for purchases.","您收到了一张礼物卡，可在 <a href=""%store_url"">%store_name</a> 使用，现在就可以开始选购。",module,Magento_GiftCard
 Gift Card Codes:,礼物卡代码：,module,Magento_GiftCard
