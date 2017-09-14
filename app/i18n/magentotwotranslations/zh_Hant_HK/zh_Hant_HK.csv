@@ -10274,9 +10274,9 @@ Currency Update Warnings,貨幣更新警告,module,Magento_Directory
 Footer,頁尾,module,Magento_Email
 "Thank you, %store_name",謝謝！%store_name,module,Magento_Email
 Header,頁首,module,Magento_Email
-You've been sent a gift from %store_name,%store_name向您傳送了一份禮物,module,Magento_GiftCardAccount
+You've been sent a gift from %store_name,PLC線上商店向您傳送了一份禮物,module,Magento_GiftCardAccount
 "%name,","%name,",module,Magento_GiftCardAccount
-You've been sent a gift card for use at %store_name and it is now ready to be used for purchases.,您收到了一張禮物卡，可在%store_name使用，現在就可以開始選購。,module,Magento_GiftCardAccount
+You've been sent a gift card for use at %store_name and it is now ready to be used for purchases.,您收到了一張禮物卡，可供在PLC線上商店使用，現在就可以開始選購。,module,Magento_GiftCardAccount
 Gift Card Code: %code,禮物卡代碼：%code,module,Magento_GiftCardAccount
 The card has a balance of %balance and can be used at ,此卡餘額為%balance，可用於,module,Magento_GiftCardAccount
 %store_name,%store_name,module,Magento_GiftCardAccount
@@ -10285,7 +10285,7 @@ Gift Card:,禮品卡：,module,Magento_GiftCardAccount
 Apply,套用,module,Magento_GiftCardAccount
 See Balance,查看餘額,module,Magento_GiftCardAccount
 Gift Card amount applied to order: ,禮品卡金額適用於訂單:,module,Magento_GiftCardAccount
-You've been sent a gift from %store_name,%store_name向您傳送了一份禮物,module,Magento_GiftCard
+You've been sent a gift from %store_name,PLC線上商店向您傳送了一份禮物,module,Magento_GiftCard
 "%name,","%name,",module,Magento_GiftCard
 "%sender has sent you a gift card for use at <a href=""%store_url"">%store_name</a> and it is now ready to be used for purchases.","您收到了一張禮物卡，可在 <a href=""%store_url"">%store_name</a> 使用，現在就可以開始選購。",module,Magento_GiftCard
 Gift Card Codes:,禮物卡代碼：,module,Magento_GiftCard

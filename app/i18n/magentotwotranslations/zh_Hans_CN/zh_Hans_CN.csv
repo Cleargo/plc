@@ -10274,12 +10274,12 @@ Currency Update Warnings,货币更新警告,module,Magento_Directory
 Footer,页尾,module,Magento_Email
 "Thank you, %store_name",谢谢！%store_name,module,Magento_Email
 Header,页首,module,Magento_Email
-You've been sent a gift from %store_name,%store_name向您发送了一份礼物,module,Magento_GiftCardAccount
+You've been sent a gift from %store_name,PLC线上商店向您发送了一份礼物,module,Magento_GiftCardAccount
 "%name,","%name,",module,Magento_GiftCardAccount
-You've been sent a gift card for use at %store_name and it is now ready to be used for purchases.,您收到了一张礼物卡，可在%store_name使用，现在就可以开始选购。,module,Magento_GiftCardAccount
+You've been sent a gift card for use at %store_name and it is now ready to be used for purchases.,您收到了一张礼物卡，可供在PLC线上商店使用，现在就可以开始选购。,module,Magento_GiftCardAccount
 Gift Card Code: %code,礼物卡代码：%code,module,Magento_GiftCardAccount
 The card has a balance of %balance and can be used at ,此卡余额为%balance，可用于 ,module,Magento_GiftCardAccount
-%store_name,%store_name,module,Magento_GiftCardAccount
+%store_name,PLC线上商店,module,Magento_GiftCardAccount
 Apply Gift Card,使用礼物卡,module,Magento_GiftCardAccount
 Gift Card:,礼品卡：,module,Magento_GiftCardAccount
 Apply,套用,module,Magento_GiftCardAccount
