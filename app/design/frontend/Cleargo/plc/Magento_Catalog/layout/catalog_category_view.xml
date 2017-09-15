@@ -9,7 +9,7 @@
     <body>
         <referenceBlock name="page.main.title" remove="true" />
         <!--referenceBlock name="breadcrumbs" remove="true" /-->
-
+        <referenceBlock name="category.image" remove="true"/>
         <referenceContainer name="top.container">
             <block class="Magento\Cms\Block\Block" name="category_top_navigation">
                 <arguments><argument name="block_id" xsi:type="string">category_top_navigation</argument></arguments>

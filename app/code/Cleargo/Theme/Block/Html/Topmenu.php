@@ -263,7 +263,7 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
 
                     $html .= '<li class="catWithImage">';
                     $html .= '<a href="' . $child->getUrl() . '" ' . $outermostClassCode . '>';
-                    $html .= '<span class="image"><img src="' . $category->getImageUrl() . '" alt="' . $this->escapeHtml($child->getName()) . '"></span>';
+                    $html .= '<span class="image"><img style="width: 120px;height: 120px;margin-top: 9px;" src="' . $category->getImageUrl() . '" alt="' . $this->escapeHtml($child->getName()) . '"></span>';
                     $html .= '<span class="text">' . $this->escapeHtml($child->getName()) . '</span>';
                     $html .= '</a>';
                     $html .= '</li>';
