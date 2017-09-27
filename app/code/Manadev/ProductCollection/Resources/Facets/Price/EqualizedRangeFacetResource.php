@@ -25,6 +25,8 @@ class EqualizedRangeFacetResource extends BaseFacetResource
         $db = $this->getConnection();
 
         if (($range = $this->getAppliedRange($facet)) === false) {
+			$newSelect=$this->statSelect($select);
+			$newSelect->joinLeft(['price_index'=>'catalog_product_index_price'],'e.entity_id=price_index.entity_id',[]);
             $stats = $db->fetchRow($this->statSelect($select));
             if (is_null($stats['max'])) {
                 return false;
