@@ -1,0 +1,25 @@
+{
+    "name": "cleargo/module-rma",
+    "description": "",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mage2Gen",
+            "email": "info@mage2gen.com"
+        },
+        {
+            "name": "Lumiere Chan",
+            "email": "lumiere.chan@cleargo.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Cleargo\\Rma\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}
