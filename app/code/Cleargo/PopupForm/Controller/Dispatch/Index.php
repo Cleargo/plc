@@ -8,9 +8,9 @@
     class Index extends Action
     {
         protected $_helper;
-        protected $_actionFlag;
-        protected $redirect;
-        protected $messageManager;
+      //  protected $_actionFlag;
+     //   protected $redirect;
+     //   protected $messageManager;
         protected $resultJsonFactory;
         protected $captchaStringResolver;
         /**
@@ -23,16 +23,16 @@
         public function __construct(
             Context $context,
             \Magento\Captcha\Helper\Data $helper,
-            \Magento\Framework\App\ActionFlag $actionFlag,
-            \Magento\Framework\Message\ManagerInterface $messageManager,
-            \Magento\Framework\App\Response\RedirectInterface $redirect,
+            //\Magento\Framework\App\ActionFlag $actionFlag,
+            //\Magento\Framework\Message\ManagerInterface $messageManager,
+            //\Magento\Framework\App\Response\RedirectInterface $redirect,
             \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
             \Magento\Captcha\Observer\CaptchaStringResolver $captchaStringResolver
         ) {
             $this->_helper = $helper;
-            $this->_actionFlag = $actionFlag;
-            $this->redirect = $redirect;
-            $this->messageManager = $messageManager;
+           // $this->_actionFlag = $actionFlag;
+           // $this->redirect = $redirect;
+          //  $this->messageManager = $messageManager;
             $this->resultJsonFactory = $resultJsonFactory;
             $this->captchaStringResolver = $captchaStringResolver;
             parent::__construct($context);

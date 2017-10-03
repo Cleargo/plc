@@ -54,14 +54,14 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
      */
     public function __construct(
         Template\Context $context,
-        NodeFactory $nodeFactory,
+        \Magento\Framework\Data\Tree\NodeFactory $nodeFactory,
         TreeFactory $treeFactory,
         Category $cus_att,
         Registry $registry,
         array $data = []
     ) {
         //parent::__construct($context, $data);
-        parent::__construct($context, $nodeFactory, $treeFactory, $data);
+
         $this->_menu = $nodeFactory->create(
             [
                 'data' => [],
@@ -71,6 +71,7 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
         );
         $this->registry =  $registry;
         $this->cus_att = $cus_att;
+        parent::__construct($context, $nodeFactory, $treeFactory, $data);
     }
 
     /**
