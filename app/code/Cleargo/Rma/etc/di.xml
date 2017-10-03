@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Magento\Rma\Helper\Data">
+		<plugin disabled="false" name="Cleargo_Rma_Plugin_Magento_Rma_Helper_Data" sortOrder="1" type="Cleargo\Rma\Plugin\Magento\Rma\Helper\Data"/>
+	</type>
+</config>
