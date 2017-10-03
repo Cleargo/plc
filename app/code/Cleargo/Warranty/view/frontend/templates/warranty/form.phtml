@@ -110,14 +110,15 @@
                                 $.validator.addMethod(
                                     'validate-hkid-passport', function (v,elm) {
                                         var inputs = $('.id-num');
-
                                         var error = 1;
                                         for(var i=0;i<inputs.length;i++) {
-                                            if(inputs[i].type == 'text'  && inputs[i].value !== "") {
-                                                error = 0;
-                                                if( i == 0 && inputs[i].value.length<4){
-                                                    error =1;
-                                                }
+                                            if(inputs[i].type == 'text'  &&
+                                                inputs[i].value !== "" &&
+                                                    inputs[i].value.match("^[a-zA-Z0-9]*$")) {
+                                                        error = 0;
+                                                            if( i == 0 && inputs[i].value.length<4){
+                                                                error =1;
+                                                            }
                                             }
                                         }
 
@@ -136,7 +137,7 @@
                             <div valign="top" class="dt"><font id="id_sp" >
                                     *<?php echo __('Hong Kong ID / Passport or<br>&nbsp;other ID') ?></font></div>
                             <div class="dd">
-                                <select name="isHKID" id="isHKID" onChange="changeID()" data-validate="{required:true}" aria-required="true" >
+                                <select name="isHKID" id="isHKID" onChange="changeID()" data-validate="{'required':true}" aria-required="true">
                                     <option value="1" <?php if($IncCapData['isHKID']=='1'){ print 'selected'; }?> ><?php echo __('HKID')?></option>
                                     <option value="2" <?php if($IncCapData['isHKID']=='2'){ print 'selected'; }?> ><?php echo __("Passport or other ID")?></option>
                                 </select><br>
@@ -354,7 +355,18 @@
                             <div class="dt">&nbsp;</div>
                             <div class="dd">&nbsp;</div>
                         </div>
-                        <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mt5_form_img_en')->toHtml();?>
+                        <?php
+                            if(\Magento\Framework\App\ObjectManager::getInstance()
+                                    ->get('\Magento\Store\Model\StoreManagerInterface')
+                                            ->getStore()->getCode() == 'zh_hant_hk')
+                                echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mt5_form_img_hk')->toHtml();
+                            else if(\Magento\Framework\App\ObjectManager::getInstance()
+                                    ->get('\Magento\Store\Model\StoreManagerInterface')
+                                        ->getStore()->getCode() == 'zh_hans_hk')
+                                echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mt5_form_img_cn')->toHtml();
+                            else
+                                echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mt5_form_img_en')->toHtml();
+                        ?>
                         <div>
 
                             <div>&nbsp;</div>
