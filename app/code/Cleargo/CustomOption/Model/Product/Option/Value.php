@@ -25,6 +25,7 @@ class Value extends \Magento\Catalog\Model\Product\Option\Value
     public function saveValues()
     {
         foreach ($this->getValues() as $value) {
+            //var_dump($value);
             $this->setData(
                 $value
             )->setData(
@@ -35,10 +36,8 @@ class Value extends \Magento\Catalog\Model\Product\Option\Value
                 $this->getOption()->getStoreId()
             );
             if ($this->getData('is_delete') == '1') {
-                if ($this->getId()) {
-                    $this->deleteValues($this->getId());
-                    $this->delete();
-                }
+                $this->deleteValues($this->getId());
+                //$this->delete();
             } else {
                 $this->save();
             }
