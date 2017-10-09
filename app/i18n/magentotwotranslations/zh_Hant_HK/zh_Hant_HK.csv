@@ -10090,7 +10090,7 @@ Our Customer Service team will be there for you as they take calls from ,我們�
 (excluding public holidays).,（公眾假期除外）。,theme,frontend/Cleargo/plc
 Have a great day! ,祝您有美好的一天！,theme,frontend/Cleargo/plc
 Footer,頁尾,theme,frontend/Cleargo/plc
-"To ensure our emails reach your inbox, add %store_email to your address book. We promise not to share your information. Click <a href='%store_url'>here</a> to view our privacy policy.",為了確保我們的電子郵件到達您的收件箱，請將％store_email添加到您的通訊錄。 我們承諾不分享您的信息。 點擊<a href='%store_url'>here</a>查看我們的隱私政策。,theme,frontend/Cleargo/plc
+"To ensure our emails reach your inbox, add %store_email to your address book. We promise not to share your information. Click <a href='%store_url'>here</a> to view our privacy policy.",為了確保我們的電子郵件到達您的收件箱，請將plc@plc.com.hk添加到您的通訊錄。 我們承諾不分享您的信息。 點擊<a href='%store_url'>這裡</a>查看我們的隱私政策。,theme,frontend/Cleargo/plc
 .  %store_hours.  %copyright,.  %store_hours.  %copyright,theme,frontend/Cleargo/plc
 Header,頁首,theme,frontend/Cleargo/plc
 LIGHTING,飾燈,theme,frontend/Cleargo/plc
