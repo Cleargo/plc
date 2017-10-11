@@ -10279,7 +10279,7 @@ You've been sent a gift from %store_name,PLC線上商店向您傳送了一份禮
 You've been sent a gift card for use at %store_name and it is now ready to be used for purchases.,您收到了一張禮物卡，可供在PLC線上商店使用，現在就可以開始選購。,module,Magento_GiftCardAccount
 Gift Card Code: %code,禮物卡代碼：%code,module,Magento_GiftCardAccount
 The card has a balance of %balance and can be used at ,此卡餘額為%balance，可用於,module,Magento_GiftCardAccount
-%store_name,%store_name,module,Magento_GiftCardAccount
+%store_name,PLC線上商店,module,Magento_GiftCardAccount
 Apply Gift Card,使用禮物卡,module,Magento_GiftCardAccount
 Gift Card:,禮品卡：,module,Magento_GiftCardAccount
 Apply,套用,module,Magento_GiftCardAccount
