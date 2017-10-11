@@ -40,9 +40,6 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
      *
      * @var Registry
      */
-    protected $registry;
-
-    protected $cus_att;
 
     protected $current_level_zero_cms_iden;
 
@@ -54,23 +51,12 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
      */
     public function __construct(
         Template\Context $context,
-        \Magento\Framework\Data\Tree\NodeFactory $nodeFactory,
+        NodeFactory $nodeFactory,
         TreeFactory $treeFactory,
         Category $cus_att,
         Registry $registry,
         array $data = []
     ) {
-        //parent::__construct($context, $data);
-
-        $this->_menu = $nodeFactory->create(
-            [
-                'data' => [],
-                'idField' => 'root',
-                'tree' => $treeFactory->create()
-            ]
-        );
-        $this->registry =  $registry;
-        $this->cus_att = $cus_att;
         parent::__construct($context, $nodeFactory, $treeFactory, $data);
     }
 
