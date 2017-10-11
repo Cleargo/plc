@@ -18,7 +18,7 @@ $groupCss = $block->getGroupCss();
 $groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"tabs":{"openedState":"active"}}';
 ?>
 <?php if ($detailedInfoGroup = $block->getGroupChildNames($group, 'getChildHtml')):?>
-    <div class="sections <?php /* @escapeNotVerified */ echo $groupCss ?>" style="position: static;">
+    <div class="sections <?php /* @escapeNotVerified */ echo $groupCss ?>">
         <?php $layout = $block->getLayout(); ?>
         <div class="section-items <?php /* @escapeNotVerified */ echo $groupCss ?>-items" data-mage-init='<?php /* @escapeNotVerified */ echo $groupBehavior ?>'>
             <?php foreach ($detailedInfoGroup as $name):?>
