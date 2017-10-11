@@ -19,7 +19,7 @@
 
 {{template config_path="design/email/header_template"}}
 
-<p class="greeting">{{trans "%name," name=$name}}</p>
+<p class="greeting">{{trans "Dear %name," name=$name}}</p>
 <p>{{trans "You've been sent a gift card for use at %store_name and it is now ready to be used for purchases." store_name=$store.getFrontendName()}}</p>
 <p>{{trans "Gift Card Code: %code" code=$code}}</p>
 <p>
