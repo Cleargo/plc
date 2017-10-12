@@ -375,6 +375,7 @@ Save and Continue Edit,储存并继续编辑,module,Cleargo_PopupForm
 Edit Inquiry '%1',编辑查询'％1',module,Cleargo_PopupForm
 New Inquiry,新增查询,module,Cleargo_PopupForm
 Inquiry Information,查询信息,module,Cleargo_PopupForm
+Inquiry Information From PLC,来自PLC的查询信息,module,Cleargo_PopupForm
 Product Information,产品信息,module,Cleargo_PopupForm
 Content Information,内容信息,module,Cleargo_PopupForm
 Content,内容,module,Cleargo_PopupForm
