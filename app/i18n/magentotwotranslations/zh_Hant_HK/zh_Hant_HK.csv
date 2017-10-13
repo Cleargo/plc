@@ -375,6 +375,7 @@ Save and Continue Edit,儲存並繼續編輯,module,Cleargo_PopupForm
 Edit Inquiry '%1',編輯查詢'％1',module,Cleargo_PopupForm
 New Inquiry,新增查詢,module,Cleargo_PopupForm
 Inquiry Information,查詢信息,module,Cleargo_PopupForm
+Inquiry Information From PLC,來自PLC的查詢信息,module,Cleargo_PopupForm
 Product Information,產品信息,module,Cleargo_PopupForm
 Content Information,內容信息,module,Cleargo_PopupForm
 Content,內容,module,Cleargo_PopupForm
@@ -9999,21 +10000,21 @@ Company: %email,公司：％電子郵件,module,Cleargo_Contactus
 Phone Number: %telephone,手機號：%電話號碼,module,Cleargo_Contactus
 Comment: %comment,留言:%comment,module,Cleargo_Contactus
 "%name,","%name,",module,Cleargo_Contactus
-Thank you for asking question to us.,感謝您向我們詢問。,module,Cleargo_Contactus
-Attached please kindly find a copy of your inquiry.,請附上您的查詢副本。,module,Cleargo_Contactus
+Thank you for asking question to us.,謝謝您向我們提問。,module,Cleargo_Contactus
+Attached please kindly find a copy of your inquiry.,現附上您的查詢副本可供參考。,module,Cleargo_Contactus
 Inquiry Information,查詢信息,module,Cleargo_Contactus
 Type,類型,module,Cleargo_Contactus
 Enquiry,查詢,module,Cleargo_Contactus
 Phone Number,電話號碼,module,Cleargo_Contactus
 Comment,意見,module,Cleargo_Contactus
 "Should you have any enquiries, please call our customer service hotline at <a href='tel:%store_phone'>%store_phone</a> for assistance.",如有任何疑問，請致電我們的客戶服務熱線：<a href='tel:%store_phone'>%store_phone</a> 尋求幫助。,module,Cleargo_Contactus
-"Yours faithfully,",您忠誠的，,module,Cleargo_Contactus
+"Yours faithfully,",The PLC Group 謹啟,module,Cleargo_Contactus
 The PLC Group,PLC集團,module,Cleargo_Contactus
 "%name,","%name,",module,Cleargo_PopupForm
-Thank you for asking question to us.,感謝您向我們詢問。,module,Cleargo_PopupForm
-Attached please kindly find a copy of your inquiry.,請附上您的查詢副本。,module,Cleargo_PopupForm
+Thank you for asking question to us.,謝謝您向我們提問。,module,Cleargo_PopupForm
+Attached please kindly find a copy of your inquiry.,現附上您的查詢副本可供參考。,module,Cleargo_PopupForm
 "Should you have any enquiries, please call our customer service hotline at 852-2765 9667 for assistance.",如有任何查詢，請致電我們的客服熱線852-2765 9667尋求協助。,module,Cleargo_PopupForm
-"Yours faithfully,",您忠誠的，,module,Cleargo_PopupForm
+"Yours faithfully,",The PLC Group 謹啟,module,Cleargo_PopupForm
 The PLC Group,PLC集團,module,Cleargo_PopupForm
 "Dear %name,","親愛的 %name,",module,Cleargo_Warranty
 Thank you for using our online registration service. Attached please kindly find a copy of your registration form for reference.,感謝您使用我們的在線申請服務。 請附上您的申請表副本作為參考。,module,Cleargo_Warranty
@@ -10026,7 +10027,7 @@ Mul-T-Lock MT5,MUL-T-Lock MT5,module,Cleargo_Warranty
 Key Information,主要信息,module,Cleargo_Warranty
 Purchase Information ,購買信息,module,Cleargo_Warranty
 "Should you have any enquiries, please call our customer service hotline at 852-2765 9667 for assistance.",如有任何查詢，請致電我們的客服熱線852-2765 9667尋求協助。,module,Cleargo_Warranty
-"Yours faithfully,",您忠誠的，,module,Cleargo_Warranty
+"Yours faithfully,",The PLC Group 謹啟,module,Cleargo_Warranty
 The PLC Group,PLC集團,module,Cleargo_Warranty
 My Cart,我的購物車,theme,frontend/Cleargo/plc
 Close,關閉,theme,frontend/Cleargo/plc
