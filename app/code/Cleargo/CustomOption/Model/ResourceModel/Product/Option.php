@@ -183,8 +183,8 @@ class Option extends OriginalResourceModel{
             );
 
             if ($object->getImage() && !$object->getDeleteImage()) {
-
                 if ($existInCurrentStore) {
+
                     if ($object->getStoreId() == $storeId) {
                         $data = $this->_prepareDataForTable(
                             new \Magento\Framework\DataObject(['image' => $object->getImage()]),
@@ -200,6 +200,7 @@ class Option extends OriginalResourceModel{
                         );
                     }
                 } else {
+
                     // we should insert record into non default store only of if it does not exist in default store
                     if (($storeId == \Magento\Store\Model\Store::DEFAULT_STORE_ID && !$existInDefaultStore)
                         || ($storeId != \Magento\Store\Model\Store::DEFAULT_STORE_ID && !$existInCurrentStore)
@@ -224,9 +225,8 @@ class Option extends OriginalResourceModel{
                     }
                 }
             } else {
-                if ($object->getId() && $object->getStoreId() > \Magento\Store\Model\Store::DEFAULT_STORE_ID
-                    && $storeId
-                ) {
+
+                if ($object->getId() &&/* $object->getStoreId() > \Magento\Store\Model\Store::DEFAULT_STORE_ID &&*/ $storeId != "") {
                     $connection->delete(
                         $imageTableName,
                         [

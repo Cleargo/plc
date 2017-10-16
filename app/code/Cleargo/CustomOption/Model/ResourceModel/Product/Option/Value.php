@@ -271,9 +271,10 @@ Class Value extends \Magento\Catalog\Model\ResourceModel\Product\Option\Value{
                     }
                 }
             } else {
-                if ($storeId
-                    && $optionTypeId
-                    && $object->getStoreId() > \Magento\Store\Model\Store::DEFAULT_STORE_ID
+                //var_dump($storeId);
+               // var_dump($optionTypeId);die();
+                if ((string)$storeId !="" && $optionTypeId
+                    /*&& $object->getStoreId() > \Magento\Store\Model\Store::DEFAULT_STORE_ID*/
                 ) {
                     $where = [
                         'option_type_id = ?' => (int)$optionTypeId,
