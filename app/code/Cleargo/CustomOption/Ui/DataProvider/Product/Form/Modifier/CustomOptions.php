@@ -111,6 +111,29 @@ class CustomOptions extends OriginalCustomOptions{
      * @param int $sortOrder
      * @return array
      */
+    protected function getPriceFieldConfig($sortOrder)
+    {
+        return [
+            'arguments' => [
+                'data' => [
+                    'config' => [
+                        'label' => __('Price'),
+                        'componentType' => Field::NAME,
+                        'formElement' => Input::NAME,
+                        'dataScope' => static::FIELD_PRICE_NAME,
+                        'dataType' => Number::NAME,
+                        'addbefore' => $this->getCurrencySymbol(),
+                        'sortOrder' => $sortOrder,
+                        'validation' => [
+                            'required-entry' => true,
+                            'validate-zero-or-greater' => true
+                        ],
+                    ],
+                ],
+            ],
+        ];
+    }
+
     protected function getIsDeleteImgFieldConfig($sortOrder)
     {
         return [

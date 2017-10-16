@@ -105,10 +105,13 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
 
     protected function transferFilesArr ($input , $optData){
 
+
         $returnArr = [];
         foreach($_FILES['product']['name']['options']  as $key =>$image){
             if($_FILES['product']['tmp_name']['options'][$key]["image"] == ''){
+
                 $_FILES['product']['tmp_name']['options'][$key]["image"] ='123';
+
             }
             $returnArr[$key] =  array(
                 'name' => $_FILES['product']['name']['options'][$key]["image"],
@@ -154,10 +157,12 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
     }
 
     protected function mapImageToOption($fieldArr,$data){
+
         if(gettype($fieldArr) != "array"){
             $fieldArr = [$fieldArr];
         }
         foreach ($fieldArr as $field){
+
             if (isset($_FILES[$field])
                 && isset($_FILES[$field]['name'])
                 && strlen($_FILES[$field]['name'])) {
@@ -239,8 +244,7 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
                     echo '<pre>';
                     var_dump($data['product']['options']);
                 }*/
-
-
+                
                 if(isset($data['product']['options'])){
                     $updatedOptions = [];
                     $deletedOptions = [];
@@ -248,10 +252,20 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
                         if(!isset($p['is_delete'])){
                             $tempOpt = $this->optionModel->create();
                             echo '<pre>';
-                            //var_dump($p); die();
-                            $p = $this->changeEmptyToNull($p);
-                            //var_dump($p);
-                            //var_dump('<--------------------------------------------------------------------->');
+
+                            foreach ($p['values'] as $key => $value){
+                                if($p['values'][$key]['price'] == '0'){
+                                    $p['values'][$key]['price'] = '0.00';
+                                }
+                            }
+                           // var_dump($p);die();
+                           //$p = $this->changeEmptyToNull($p);
+
+                           /* if($p['is_require'] == NULL){
+                                $p['is_require'] = '0';
+                            }else if($p['delete_image'] == NULL){
+                                $p['delete_image']  = '0';
+                            }*/
                             $tempOpt->setData($p);
                             $tempOpt->setProductSku( $product->getSku());
                             $tempOpt->setStoreId( $this->getRequest()->getParam('store') );
