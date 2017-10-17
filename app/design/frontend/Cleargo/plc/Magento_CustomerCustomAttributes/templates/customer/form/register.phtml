@@ -181,6 +181,11 @@
             </div>
         </div>
         <?php echo $block->getChildHtml('form_additional_info'); ?>
+        <script type="text/javascript">
+            require(["jquery"], function($) {
+                $("#dob").attr('readonly', true);
+            });
+        </script>
     </fieldset>
     <div class="actions-toolbar">
         <div class="primary">
