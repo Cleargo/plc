@@ -49,6 +49,7 @@ class District implements OptionSourceInterface
             $options[] = [
                 'label' => $district->getName(),
                 'value' => $district->getId(),
+                'store' => $district->getStores(),
             ];
         }
         return $options;
