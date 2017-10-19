@@ -21,8 +21,8 @@ class Data extends \Magento\Shipping\Helper\Data
             '_query' => ['hash' => $this->urlEncoder->encode($urlPart)]
         ];
 
-        $cur_storeid =  $this->_storeManager->getStore()->getStoreId();
-        $storeModel = $this->_storeManager->getStore($cur_storeid);
+        $currentStoreId =  $this->_storeManager->getStore()->getStoreId();
+        $storeModel = $this->_storeManager->getStore($currentStoreId);
         return $storeModel->getUrl('', $params);
     }
 }
