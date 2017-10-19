@@ -25,7 +25,7 @@ require(['jquery', 'jquery.mCustomScrollbar'], function($) {
     // Mobile : Nav Menu - Disable Submenu and Active Parent List item link 
     //--------------------------------------------------
     if ($(window).width() < 768){
-        $("#topnav .level0 a").click(function(e){
+        $("nav.navigation .level0 a").click(function(e){
             e.preventDefault();
             window.location = $(this).attr('href');
         });
