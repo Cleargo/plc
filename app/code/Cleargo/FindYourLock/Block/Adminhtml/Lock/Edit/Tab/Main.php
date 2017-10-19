@@ -78,47 +78,6 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
             $fieldset->addField('lock_id', 'hidden', ['name' => 'lock_id']);
         }
 
-        $fieldset->addField(
-            'name',
-            'text',
-            ['name' => 'name', 'label' => __('Lock Name'), 'title' => __('Lock Name'), 'required' => true]
-        );
-
-        $fieldset->addField(
-            'name2',
-            'text',
-            ['name' => 'name2', 'label' => __('Lock Name2'), 'title' => __('Lock Name2'), 'required' => false]
-        );
-        $fieldset->addField(
-            'address',
-            'text',
-            ['name' => 'address', 'label' => __('Lock Address'), 'title' => __('Lock Address'), 'required' => true]
-        );
-
-
-        $fieldset->addField(
-            'identifier',
-            'text',
-            [
-                'name' => 'identifier',
-                'label' => __('Identifier'),
-                'title' => __('Identifier'),
-                'required' => true,
-            ]
-        );
-
-        $fieldset->addField(
-            'district_id',
-            'select',
-            [
-                'label' => __('District'),
-                'title' => __('District'),
-                'name' => 'district_id',
-                'required' => true,
-                'options' => $this->_getDistrictOptions()
-            ]
-        );
-
         /* Check is single store mode */
         if (!$this->_storeManager->isSingleStoreMode()) {
             $field = $fieldset->addField(
@@ -144,6 +103,46 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
             );
             $model->setStoreId($this->_storeManager->getStore(true)->getId());
         }
+
+        $fieldset->addField(
+            'district_id',
+            'select',
+            [
+                'label' => __('District'),
+                'title' => __('District'),
+                'name' => 'district_id',
+                'required' => true,
+                'options' => $this->_getDistrictOptions()
+            ]
+        );
+
+        $fieldset->addField(
+            'name',
+            'text',
+            ['name' => 'name', 'label' => __('Lock Name'), 'title' => __('Lock Name'), 'required' => true]
+        );
+
+        $fieldset->addField(
+            'name2',
+            'text',
+            ['name' => 'name2', 'label' => __('Lock Name2'), 'title' => __('Lock Name2'), 'required' => false]
+        );
+        $fieldset->addField(
+            'address',
+            'text',
+            ['name' => 'address', 'label' => __('Lock Address'), 'title' => __('Lock Address'), 'required' => true]
+        );
+
+        $fieldset->addField(
+            'identifier',
+            'text',
+            [
+                'name' => 'identifier',
+                'label' => __('Identifier'),
+                'title' => __('Identifier'),
+                'required' => true,
+            ]
+        );
 
         $fieldset->addField(
             'sort_order',
@@ -237,7 +236,8 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
         $availableOptions = $this->_districtSource->toOptionArray();
         $options = [];
         foreach($availableOptions as $availableOption) {
-            $options[$availableOption['value']] = __($availableOption['label']);
+            $store_id = implode($availableOption['store']);
+            $options[$availableOption['value']] = __($availableOption['label']) . " (" . $this->_systemStore->getStoreName($store_id) . ")";
         }
         return $options;
     }
