@@ -22,16 +22,23 @@ class District implements OptionSourceInterface
     protected $searchCriteriaBuilder;
 
     /**
+     * @var \Magento\Store\Model\System\Store
+     */
+    protected $_systemStore;
+
+    /**
      * Constructor
      * @param \Cleargo\FindYourLock\Model\DistrictRepository $districtRepository
      * @param \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder
      */
     public function __construct(
         \Cleargo\FindYourLock\Model\DistrictRepository $districtRepository,
-        \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder
+        \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder,
+        \Magento\Store\Model\System\Store $systemStore
     ) {
         $this->districtRepository = $districtRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+        $this->_systemStore = $systemStore;
     }
 
     /**
@@ -46,10 +53,10 @@ class District implements OptionSourceInterface
         $countries = $this->districtRepository->getList($searchCriteria);
         $options = [];
         foreach ($countries->getItems() as $district) {
+            $store_id = implode($district->getStores());
             $options[] = [
-                'label' => $district->getName(),
-                'value' => $district->getId(),
-                'store' => $district->getStores(),
+                'label' => $district->getName() . " (" . $this->_systemStore->getStoreName($store_id) .")",
+                'value' => $district->getId()
             ];
         }
         return $options;

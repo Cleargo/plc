@@ -236,8 +236,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
         $availableOptions = $this->_districtSource->toOptionArray();
         $options = [];
         foreach($availableOptions as $availableOption) {
-            $store_id = implode($availableOption['store']);
-            $options[$availableOption['value']] = __($availableOption['label']) . " (" . $this->_systemStore->getStoreName($store_id) . ")";
+            $options[$availableOption['value']] = __($availableOption['label']);
         }
         return $options;
     }
