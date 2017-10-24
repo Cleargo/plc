@@ -10557,6 +10557,7 @@ Save,儲存,lib,lib/web/mage/translate-inline-vde.js
 Translate,翻譯,lib,lib/web/mage/translate-inline.js
 Submit,提交,lib,lib/web/mage/translate-inline.js
 Close,關閉,lib,lib/web/mage/translate-inline.js
+Please select one of the option.,請選擇一個選項,lib,lib/web/mage/validation.js
 Please enter a value less than or equal to %s.,請輸入一個小於或等於 %s 的值。,lib,lib/web/mage/validation.js
 Please enter a value greater than or equal to %s.,請輸入一個大於或等於 %s 的值。,lib,lib/web/mage/validation.js
 Maximum length of this field must be equal or less than %1 symbols.,此欄位的最大長度必須小於或等於 %1 個符號。,lib,lib/web/mage/validation.js
