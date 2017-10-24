@@ -53,13 +53,10 @@
 
                 <?php $options = $block->getCheckBox(); ?>
                 <div class="field enquiry required">
-                    <div class="control">
                         <?php foreach ($options as $key => $opt): ?>
-                            <input name="question_type_id[]" id="question_type_id_<?php echo $key ?>" title="<?php /* @escapeNotVerified */ echo $opt['label'] ?>" value="<?php echo $opt['value']?>" class="input-checkbox" data-validate="{'validate-one-required-by-name': true}" type="checkbox" />
-                            <label for="question_type_id_<?php echo $key ?>" ><?php /* @escapeNotVerified */ echo $opt['label'] ?></label>
+                                <input name="question_type_id[]" id="question_type_id_<?php echo $key ?>" title="<?php /* @escapeNotVerified */ echo $opt['label'] ?>" value="<?php echo $opt['value']?>" class="input-checkbox" data-validate="{'validate-one-required-by-name': true}" type="checkbox" />
+                                <label for="question_type_id_<?php echo $key ?>" ><?php /* @escapeNotVerified */ echo $opt['label'] ?></label>
                         <?php endforeach; ?>
-                    </div>
-
                 </div>
 
                 <div class="field content">
@@ -121,7 +118,7 @@
                     formLayer.removeClass('active');
                     hiddenHeight = $('.fixed_bottom .form-wrapper').height();
                     $('.fixed_bottom').css('bottom', "-" + hiddenHeight + "px");
-                    $('.fixed_bottom').css('right', 55 + "px");
+                    //$('.fixed_bottom').css('right', 55 + "px");
                     $('.arrow').attr('src','<?php echo $block->getViewFileUrl('Cleargo_PopupForm/images/arrow.png'); ?>');
 
                     $('.fixed_bottom').show();
@@ -129,11 +126,16 @@
                     if($(window).width() == mobileDefinition){
                         $('.fixed_bottom').hide();
                     }
+
+                    if($('.nested').prev().attr('id') !== 'errmsg'){
+                        $('#errmsg').insertBefore($('.nested'));
+                    }
+
                     $('.fixed_bottom').addClass('mobile');
                     $('.fixed_bottom').removeClass('desktop');
                     mobileBottomMargin = $(window).height() - $('.fixed_bottom').height();
                     $('.fixed_bottom').css('bottom', mobileBottomMargin/2 + "px");
-                    $('.fixed_bottom').css('right', mobileRightMargin/2 + "px");
+                    //$('.fixed_bottom').css('right', mobileRightMargin/2 + "px");
                 }
             };
 
@@ -180,9 +182,11 @@
                 $('#popupform-fade-wrapper').fadeIn();
             });
 
-            $('.fixed_bottom .form-wrapper form .submit').click(function(e){
 
-                console.log("sunny");
+            $('.fixed_bottom .form-wrapper form .submit').click(function(e){
+                $('.fixed_bottom.mobile #popupForm .field .control div#name-error').appendTo('#popupForm .field.name');
+                $('.fixed_bottom.mobile #popupForm .field .control div#telephone-error').appendTo('#popupForm .field.telephone');
+                $(".fixed_bottom.mobile #popupForm .field.enquiry .control div.mage-error[generated]").appendTo('#popupForm .field.enquiry .control');
                 $(".form.popup-form").find('#errmsg').html("");
                 var formToValidate = $('#popupForm');
                 var check = $(formToValidate).validation({
@@ -217,6 +221,8 @@
                         })
                     },
                     invalidHandler: function () {
+                        $(".fixed_bottom.mobile").css('left',0);
+
                         setTimeout(function () {
                             //addDeviceClassToContainer();
                         },10)

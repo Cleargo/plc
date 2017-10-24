@@ -133,7 +133,7 @@
     margin: 0 0 10px;
 }
 .fixed_bottom.mobile .form-wrapper .popup-form fieldset .field{
-    max-width: 250px;
+    /*max-width: 250px;*/
 }
 .fixed_bottom .form-wrapper .popup-form fieldset .field .control{
     display: inline-block;
@@ -146,7 +146,8 @@
     resize: none;
 }
 .fixed_bottom.mobile .form-wrapper .popup-form fieldset .field .control{
-    display: block;
+    width: 100%;
+    /*display: block;*/
 }
 .fixed_bottom .form-wrapper .popup-form fieldset .field .checkbox-wrapper{
     display: inline-block;
@@ -179,7 +180,7 @@
 }
 .fixed_bottom.mobile .form-wrapper .popup-form fieldset .field .input-text{
     border-radius:2px;
-    width:250px;
+    /*width:250px;*/
     height:31px;
 }
 .fixed_bottom .form-wrapper .popup-form fieldset .field .label {
@@ -191,10 +192,16 @@
     .field.captcha.required
         .control.captcha
             #captcha_popupform{
-    width: 190px;
+    width: 180px;
     vertical-align: top;
     margin-top: 30px;
 }
+
+#popupForm .control .question_type{
+    padding-right: 30px;
+    display: inline-block;
+}
+
 
 #popupForm
     .field.captcha.required
@@ -227,13 +234,40 @@
 
 
 @media (max-width: 768px) {
+    #popupForm .fieldset .field .label{
+        display: block;
+    }
+
+    #popupForm .control.captcha .nested{
+
+    }
+
+    #popupForm .field.captcha.required .control.captcha #captcha_popupform{
+        width: 100%;
+    }
+
+    .fixed_bottom .form-wrapper .popup-form fieldset .field .input-text{
+        width:100%;
+        height: 19.5px;
+        float: right;
+    }
+
     .popup-question-mark{
         display: block;
     }
     .fixed_bottom{
+        height: 100%;
+        margin: 15px;
+        right: 0;
+        left: 0;
+        top: 0;
+        overflow-y: auto;
         display: none;
     }
+
+    .fixed_bottom::-webkit-scrollbar { width: 0 !important }
 }
+
 
 @media screen and (min-width:767px){
     #popupForm .control.captcha .nested{
