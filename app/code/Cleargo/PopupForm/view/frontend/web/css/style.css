@@ -220,17 +220,30 @@
         color: red;
     }
 
-#popupForm
-    .nested
-        a
-            {
-                background:  url('../images/reload.png') no-repeat  30px center ;
-                margin-bottom:40px;
-                cursor: pointer;
-                display: block;
-                text-align: center;
-                text-decoration: none;
-            }
+#popupForm .nested a {
+    /*background:  url('../images/reload.png') no-repeat  30px center ;*/
+    margin-bottom:40px;
+    cursor: pointer;
+    /*display: block;*/
+    text-decoration: none;
+}
+
+#popupForm .nested .ReloadCapImage{
+    text-align: center;
+}
+
+#popupForm .nested .ReloadCapImage .reloadImg{
+    vertical-align: text-bottom;
+    padding-right: 4px;
+}
+
+#popupForm .field.enquiry.required .input-checkbox{
+    background-color: white;
+}
+
+#popupForm .field.enquiry.required label[for=question_type_id_0],label[for=question_type_id_1]{
+    padding-right: 24px;
+}
 
 
 @media (max-width: 768px) {
@@ -239,7 +252,7 @@
     }
 
     #popupForm .control.captcha .nested{
-
+        margin-bottom: 15px;
     }
 
     #popupForm .field.captcha.required .control.captcha #captcha_popupform{
