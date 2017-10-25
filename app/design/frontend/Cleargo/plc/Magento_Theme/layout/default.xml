@@ -10,6 +10,7 @@
         <script type="text/javascript" src="js/jQuery.fn.js"></script>
         <script type="text/javascript" src="js/jquery.touchwipe.1.1.1.js"></script>
         <script type="text/javascript" src="js/product_slider.js"></script>
+        <script type="text/javascript" src="Magento_Theme::js/minicart.js"></script>
         <css src="js/fancybox/jquery.fancybox.css"/>
         <css src="js/mCustomScrollbar/jquery.mCustomScrollbar.css"/>
     </head>
