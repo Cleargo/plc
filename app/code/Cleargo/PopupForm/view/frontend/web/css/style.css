@@ -268,6 +268,19 @@
     .fixed_bottom::-webkit-scrollbar { width: 0 !important }
 }
 
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .fixed_bottom{
+        margin: 140px;
+    }
+    #popupForm .field.captcha.required .control.captcha #captcha_popupform{
+        width:240px;
+    }
+
+    .fixed_bottom.mobile .form-wrapper .popup-form .actions-toolbar .primary {
+        float: right;
+    }
+}
+
 
 @media screen and (min-width:767px){
     #popupForm .control.captcha .nested{
