@@ -50,12 +50,11 @@
                     </div>
                 </div>
 
-
                 <?php $options = $block->getCheckBox(); ?>
                 <div class="field enquiry required">
                         <?php foreach ($options as $key => $opt): ?>
-                                <input name="question_type_id[]" id="question_type_id_<?php echo $key ?>" title="<?php /* @escapeNotVerified */ echo $opt['label'] ?>" value="<?php echo $opt['value']?>" class="input-checkbox" data-validate="{'validate-one-required-by-name': true}" type="checkbox" />
-                                <label for="question_type_id_<?php echo $key ?>" ><?php /* @escapeNotVerified */ echo $opt['label'] ?></label>
+                            <input name="question_type_id[]" id="question_type_id_<?php echo $key ?>" title="<?php /* @escapeNotVerified */ echo $opt['label'] ?>" value="<?php echo $opt['value']?>" class="input-checkbox" data-validate="{'validate-one-required-by-name': true}" type="checkbox" />
+                            <label for="question_type_id_<?php echo $key ?>" ><?php /* @escapeNotVerified */ echo $opt['label'] ?></label>
                         <?php endforeach; ?>
                 </div>
 
@@ -127,6 +126,10 @@
                         $('.fixed_bottom').hide();
                     }
 
+                    if($(window).width() == 320){
+                        $("#popupForm .field.enquiry.required label[for=question_type_id_1]").after('<br>');
+                    }
+
                     if($('.nested').prev().attr('id') !== 'errmsg'){
                         $('#errmsg').insertBefore($('.nested'));
                     }
@@ -182,8 +185,18 @@
                 $('#popupform-fade-wrapper').fadeIn();
             });
 
+            $(".control.captcha-image" ).append("<div class='ReloadCapImage'></div>");
+            $(".action.reload.captcha-reload").appendTo(".ReloadCapImage");
+            $(".action.reload.captcha-reload").prepend("<img class='reloadImg'/>");
+            $('.reloadImg').attr('src','<?php echo $block->getViewFileUrl('Cleargo_PopupForm/images/reload.png')?>');
 
             $('.fixed_bottom .form-wrapper form .submit').click(function(e){
+
+               /* if($('.nested').prev().attr('id') !== 'errmsg'){
+                    $('div').insertBefore($('.nested'));
+                }
+                action reload captcha-reload*/
+
                 $('.fixed_bottom.mobile #popupForm .field .control div#name-error').appendTo('#popupForm .field.name');
                 $('.fixed_bottom.mobile #popupForm .field .control div#telephone-error').appendTo('#popupForm .field.telephone');
                 $(".fixed_bottom.mobile #popupForm .field.enquiry .control div.mage-error[generated]").appendTo('#popupForm .field.enquiry .control');
