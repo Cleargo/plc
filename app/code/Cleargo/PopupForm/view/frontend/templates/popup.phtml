@@ -185,10 +185,10 @@
                 $('#popupform-fade-wrapper').fadeIn();
             });
 
-            $(".control.captcha-image" ).append("<div class='ReloadCapImage'></div>");
-            $(".action.reload.captcha-reload").appendTo(".ReloadCapImage");
-            $(".action.reload.captcha-reload").prepend("<img class='reloadImg'/>");
-            $('.reloadImg').attr('src','<?php echo $block->getViewFileUrl('Cleargo_PopupForm/images/reload.png')?>');
+            $("#popupForm .control.captcha-image" ).append("<div class='ReloadCapImage'></div>");
+            $("#popupForm .action.reload.captcha-reload").appendTo(".ReloadCapImage");
+            $("#popupForm .action.reload.captcha-reload").prepend("<img class='reloadImg'/>");
+            $('#popupForm .reloadImg').attr('src','<?php echo $block->getViewFileUrl('Cleargo_PopupForm/images/reload.png')?>');
 
             $('.fixed_bottom .form-wrapper form .submit').click(function(e){
 
