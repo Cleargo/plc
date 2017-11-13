@@ -1,0 +1,21 @@
+{
+    "name": "cleargo/module-magentobug",
+    "description": "",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mage2Gen",
+            "email": "info@mage2gen.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Cleargo\\MagentoBug\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}
