@@ -64,15 +64,24 @@ Class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Option\Val
         $this->addImageToResult($storeId);
         $this->addDescriptionToResult($storeId);
 
+        /*$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+        $connection = $resource->getConnection();
+
+        $current_store_image_query = "select image from catalog_product_option_type_image where store_id = $storeId";
+        $current_store_image = $connection->fetchAll($current_store_image_query);
+
+        $current_store_image = isset($current_store_image['image'])?$current_store_image['image']: '';*/
+
+        if($storeId =='1' || $storeId == '2' || $storeId =='3'){
+            foreach ($this->getData() as $data){
+                $this->getItemById($data['option_type_id'])->setData('store_image',$data['default_image']);
+            }
+        }
         return $this;
     }
 
-    /**
-     * Add price, image to result
-     *
-     * @param int $storeId
-     * @return $this
-     */
+
 
     public function getValues($storeId)
     {
@@ -107,8 +116,9 @@ Class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Option\Val
             ['store_value_image' => $optionImageTable],
             $joinExpr,
             ['store_image' => 'image', 'image' => $imageExpr]
-        )
+        )->group("option_type_id");
         ;
+
         return $this;
     }
     /**
