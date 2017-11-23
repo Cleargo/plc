@@ -59,6 +59,7 @@ Class Value extends \Magento\Catalog\Model\ResourceModel\Product\Option\Value{
     }
 
     protected function mapImageToOption($fieldArr,$data){
+
         if(gettype($fieldArr) != "array"){
             $fieldArr = [$fieldArr];
         }
@@ -111,10 +112,8 @@ Class Value extends \Magento\Catalog\Model\ResourceModel\Product\Option\Value{
                     }
                 }
             }
+
         }
-
-
-
         return $data;
     }
 
@@ -132,7 +131,7 @@ Class Value extends \Magento\Catalog\Model\ResourceModel\Product\Option\Value{
 
                 }
                 if(isset($temp['image'])){
-                    var_dump($temp['image']);
+                   // var_dump($temp['image']);
                 }
             }
         };
@@ -228,7 +227,7 @@ Class Value extends \Magento\Catalog\Model\ResourceModel\Product\Option\Value{
      */
     protected function _saveValueImage(\Magento\Framework\Model\AbstractModel $object)
     {
-        foreach ([\Magento\Store\Model\Store::DEFAULT_STORE_ID, $object->getStoreId()] as $storeId) {
+       foreach ([\Magento\Store\Model\Store::DEFAULT_STORE_ID, $object->getStoreId()] as $storeId) {
             $imageTable = $this->getTable('catalog_product_option_type_image');
             $select = $this->getConnection()->select()->from(
                 $imageTable,
@@ -238,7 +237,7 @@ Class Value extends \Magento\Catalog\Model\ResourceModel\Product\Option\Value{
                 (int)$object->getId()
             )->where(
                 'store_id = ?',
-                (int)$storeId
+                (int) $object->getStoreId()
             );
             $optionTypeId = $this->getConnection()->fetchOne($select);
             $existInCurrentStore = $this->getOptionIdFromOptionTable($imageTable, (int)$object->getId(), (int)$storeId);
@@ -253,34 +252,59 @@ Class Value extends \Magento\Catalog\Model\ResourceModel\Product\Option\Value{
                         $this->getConnection()->update($imageTable, $bind, $where);
                     }
                 } else {
-                    $existInDefaultStore = $this->getOptionIdFromOptionTable(
+                    /*$existInDefaultStore = $this->getOptionIdFromOptionTable(
                         $imageTable,
                         (int)$object->getId(),
                         \Magento\Store\Model\Store::DEFAULT_STORE_ID
-                    );
+                    );*/
                     // we should insert record into not default store only of if it does not exist in default store
-                    if (($storeId == \Magento\Store\Model\Store::DEFAULT_STORE_ID && !$existInDefaultStore)
+                    /*if (($storeId == \Magento\Store\Model\Store::DEFAULT_STORE_ID && !$existInDefaultStore)
                         || ($storeId != \Magento\Store\Model\Store::DEFAULT_STORE_ID && !$existInCurrentStore)
-                    ) {
-                        $bind = [
-                            'option_type_id' => (int)$object->getId(),
-                            'store_id' => $storeId,
-                            'image' => $object->getImage(),
-                        ];
-                        $this->getConnection()->insert($imageTable, $bind);
-                    }
+                    ) {*/
+                            $bind = [
+                                'option_type_id' => (int)$object->getId(),
+                                'store_id' => $storeId,
+                                'image' => $object->getImage(),
+                            ];
+                            $this->getConnection()->insert($imageTable, $bind);
+                   // }
                 }
             } else {
                 //var_dump($storeId);
                // var_dump($optionTypeId);die();
-                if ((string)$storeId !="" && $optionTypeId
-                    /*&& $object->getStoreId() > \Magento\Store\Model\Store::DEFAULT_STORE_ID*/
-                ) {
+                if ($storeId!=""  && $optionTypeId) {
                     $where = [
                         'option_type_id = ?' => (int)$optionTypeId,
-                        'store_id = ?' => $storeId,
+                        'store_id = ?' => $object->getStoreId(),
                     ];
-                    $this->getConnection()->delete($imageTable, $where);
+
+                   $this->getConnection()->delete($imageTable, $where);
+                      /*  $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                        $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+                        $connection = $resource->getConnection();
+
+                        $real_delete_store_id = $object->getStoreId();
+
+                        $current_store_image_query = "select image from catalog_product_option_type_image where store_id = $real_delete_store_id";
+                        $current_store_image = $connection->fetchAll($current_store_image_query);
+                        if (count($current_store_image)>0){
+                            $current_store_image = $current_store_image[0];
+                        }
+                        $current_store_image_url = isset($current_store_image['image'])?$current_store_image['image']: '';
+
+                        if ($current_store_image_url) {
+                            $where = [
+                                'option_type_id = ?' => (int)$optionTypeId,
+                                'store_id = ?' => $real_delete_store_id,
+                            ];
+                            $this->getConnection()->delete($imageTable, $where);
+                        } else {
+                            $where = [
+                                'option_type_id = ?' => (int)$optionTypeId,
+                                'store_id = ?' => 0,
+                            ];
+                            $this->getConnection()->delete($imageTable, $where);
+                        }*/
                 }
             }
         }

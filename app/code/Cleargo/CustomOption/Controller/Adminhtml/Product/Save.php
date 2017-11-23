@@ -105,14 +105,17 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
 
     protected function transferFilesArr ($input , $optData){
 
+       //\Zend_Debug::dump($optData);
+       // \Zend_Debug::dump('====================================================');
+       // \Zend_Debug::dump($optData);
+       //\Zend_Debug::dump('-------------------------------------------------------------------------------');
+       //\Zend_Debug::dump($_FILES['product']['name']['options']);
 
         $returnArr = [];
         foreach($_FILES['product']['name']['options']  as $key =>$image){
-            if($_FILES['product']['tmp_name']['options'][$key]["image"] == ''){
-
-                $_FILES['product']['tmp_name']['options'][$key]["image"] ='123';
-
-            }
+            /*if($_FILES['product']['tmp_name']['options'][$key]["image"] == ''){
+                                $_FILES['product']['tmp_name']['options'][$key]["image"] ='123';
+                        }*/
             $returnArr[$key] =  array(
                 'name' => $_FILES['product']['name']['options'][$key]["image"],
                 'type' => $_FILES['product']['type']['options'][$key]["image"],
@@ -121,13 +124,14 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
                 'size' => $_FILES['product']['size']['options'][$key]["image"]
             );
 
-            $returnArr[$key]['delete_image'] = $optData[$key]['delete_image'];
+           // \Zend_Debug::dump($returnArr);die();
 
+            $returnArr[$key]['delete_image'] = $optData[$key]['delete_image'];
 
             if(
                 isset($_FILES['product']['name']['options'][$key]['values'])
             ){
-                //$returnArr[$key]['values'] = $_FILES['product']['name']['options'][$key]['values'];
+                $returnArr[$key]['values'] = $_FILES['product']['name']['options'][$key]['values'];
 
                 $valueArr = [] ;
                 foreach ($_FILES['product']['name']['options'][$key]['values'] as $key2 => $value2 ){
@@ -157,7 +161,6 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
     }
 
     protected function mapImageToOption($fieldArr,$data){
-
         if(gettype($fieldArr) != "array"){
             $fieldArr = [$fieldArr];
         }
@@ -200,9 +203,7 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
                 }
             }
         }
-
-
-
+        
         return $data;
     }
 
@@ -225,6 +226,7 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
         $data = $this->getRequest()->getPostValue();
         $productAttributeSetId = $this->getRequest()->getParam('set');
         $productTypeId = $this->getRequest()->getParam('type');
+
         if ($data) {
             try {
                 if(isset($_FILES['product'])&& isset($data['product']['options'] ) ){
@@ -232,6 +234,7 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
                 }
 
                 $tempRequest = $this->getRequest()->getParams();
+
                 if(isset($data['product']['options'])){
                     $tempRequest['options'] = $data['product']['options'];
                     $this->getRequest()->setParams($tempRequest);
@@ -240,15 +243,12 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
                 $product = $this->initializationHelper->initialize(
                     $this->productBuilder->build($this->getRequest())
                 );
-               /*foreach ( $product->getOptions() as $p){
-                    echo '<pre>';
-                    var_dump($data['product']['options']);
-                }*/
-                
+
                 if(isset($data['product']['options'])){
                     $updatedOptions = [];
                     $deletedOptions = [];
                     foreach ($data['product']['options'] as $p ){
+
                         if(!isset($p['is_delete'])){
                             $tempOpt = $this->optionModel->create();
                             echo '<pre>';
@@ -257,17 +257,12 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
                                 if($p['values'][$key]['price'] == '0'){
                                     $p['values'][$key]['price'] = '0.00';
                                 }
-                            }
-                           // var_dump($p);die();
-                           //$p = $this->changeEmptyToNull($p);
 
-                           /* if($p['is_require'] == NULL){
-                                $p['is_require'] = '0';
-                            }else if($p['delete_image'] == NULL){
-                                $p['delete_image']  = '0';
-                            }*/
+                                $p['values'][$key]['sort_order'] = (string)($key+1);
+                            }
+
                             $tempOpt->setData($p);
-                            $tempOpt->setProductSku( $product->getSku());
+                            $tempOpt->setProductSku($product->getSku());
                             $tempOpt->setStoreId( $this->getRequest()->getParam('store') );
                             $updatedOptions[] =  $tempOpt;
                         } else {  // delete product option
@@ -283,12 +278,6 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
                     $product->setDeletedOptions($deletedOptions);
                 }
 
-
-
-               /*foreach ( $product->getDeletedOptions() as $p){
-                   echo "<pre>";
-                    var_dump($p->getData());
-                }*/
                 $this->productTypeManager->processProduct($product);
 
                 if (isset($data['product'][$product->getIdFieldName()])) {
@@ -296,11 +285,7 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
                 }
                 $originalSku = $product->getSku();
                 $product->save();
-                /*var_dump("just after product save");
-               die();*/
 
-                // finish product save
-                //die();
                 $this->handleImageRemoveError($data, $product->getId());
                 $this->getCategoryLinkManagement()->assignProductToCategories(
                     $product->getSku(),
