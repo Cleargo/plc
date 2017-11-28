@@ -247,6 +247,7 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
                 if(isset($data['product']['options'])){
                     $updatedOptions = [];
                     $deletedOptions = [];
+                    echo '<pre>';
                     foreach ($data['product']['options'] as $p ){
 
                         if(!isset($p['is_delete'])){
@@ -257,10 +258,9 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
                                 if($p['values'][$key]['price'] == '0'){
                                     $p['values'][$key]['price'] = '0.00';
                                 }
-
-                                $p['values'][$key]['sort_order'] = (string)($key+1);
                             }
 
+                            $p = $this->changeEmptyToNull($p);
                             $tempOpt->setData($p);
                             $tempOpt->setProductSku($product->getSku());
                             $tempOpt->setStoreId( $this->getRequest()->getParam('store') );
@@ -351,6 +351,7 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product
         } else {
             $resultRedirect->setPath('catalog/*/', ['store' => $storeId]);
         }
+        //die("end of save controller");
         return $resultRedirect;
     }
 
