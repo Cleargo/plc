@@ -93,7 +93,13 @@
                         <div valign="top" class="dt"><font id="id_sp" >
                                 *<?php echo __('ID Type') ?></font></div>
                         <div class="dd">
-                            <?php echo $inputed['isHKID']? __('Hong Kong ID'): __('Passport or other ID') ?>
+                            <?php
+                                if($inputed['isHKID'] == '1'){
+                                    echo __('Hong Kong ID');
+                                }else{
+                                    echo __('Passport or other ID');
+                                }
+                            ?>
                         </div>
                     </div>
 
@@ -101,7 +107,13 @@
                         <div valign="top" class="dt"><font id="id_sp" >
                                 *<?php echo __('ID Number') ?></font></div>
                         <div class="dd">
-                            <?php echo $inputed['isHKID']?  $inputed['hkid']:  $inputed['passport_num'] ?>
+                            <?php
+                            if($inputed['isHKID'] == '1'){
+                                echo $inputed['hkid'];
+                            }else{
+                                echo $inputed['passport_num'];
+                            }
+                            ?>
                         </div>
                     </div>
 
