@@ -30,7 +30,7 @@
                                     <input type="radio" class="radio" id="bundle-option-3-5" data-validate="{'validate-one-required-by-name':true}"
                                            name="salutation" value="Mr"
                                         <?php
-                                            if(array_key_exists('salutation',$IncCapData)){
+                                            if( $IncCapData && array_key_exists('salutation',$IncCapData)){
                                                 if($IncCapData['salutation'] == 'Mr') {
                                                     echo 'checked';
                                                 }
@@ -43,7 +43,7 @@
                                     <input type="radio" class="radio" id="bundle-option-3-6" data-validate="{'validate-one-required-by-name':true}"
                                            name="salutation" value="Mrs"
                                         <?php
-                                        if(array_key_exists('salutation',$IncCapData)){
+                                        if(  $IncCapData && array_key_exists('salutation',$IncCapData)){
                                             if($IncCapData['salutation'] == 'Mrs') {
                                                 echo 'checked';
                                             }
@@ -57,7 +57,7 @@
                                            data-validate="{'validate-one-required-by-name':true}"
                                            name="salutation" value="Miss"
                                         <?php
-                                            if(array_key_exists('salutation',$IncCapData)){
+                                            if(  $IncCapData && array_key_exists('salutation',$IncCapData)){
                                                 if($IncCapData['salutation'] == 'Miss') {
                                                     echo 'checked';
                                                 }
@@ -179,7 +179,7 @@
                             <div valign="top" class="dt"><font id="id_sp" >
                                     *<?php echo __('Hong Kong ID / Passport or<br>&nbsp;other ID') ?></font></div>
                             <div class="dd">
-                                <select name="isHKID" id="isHKID" onChange="changeID()" data-validate="{'required':true}" aria-required="true">
+                                <select name="isHKID" id="isHKID" onChange="changeID()" data-validate="{'required':true}" aria-required="true" >
                                     <option value="1" <?php if($IncCapData['isHKID']=='1'){ print 'selected'; }?> ><?php echo __('HKID')?></option>
                                     <option value="2" <?php if($IncCapData['isHKID']=='2'){ print 'selected'; }?> ><?php echo __("Passport or other ID")?></option>
                                 </select><br>
