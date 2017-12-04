@@ -30,7 +30,7 @@
                                     <input type="radio" class="radio" id="bundle-option-3-5" data-validate="{'validate-one-required-by-name':true}"
                                            name="salutation" value="Mr"
                                         <?php
-                                            if(array_key_exists('salutation',$IncCapData)){
+                                            if( $IncCapData && array_key_exists('salutation',$IncCapData)){
                                                 if($IncCapData['salutation'] == 'Mr') {
                                                     echo 'checked';
                                                 }
@@ -43,7 +43,7 @@
                                     <input type="radio" class="radio" id="bundle-option-3-6" data-validate="{'validate-one-required-by-name':true}"
                                            name="salutation" value="Mrs"
                                         <?php
-                                        if(array_key_exists('salutation',$IncCapData)){
+                                        if(  $IncCapData && array_key_exists('salutation',$IncCapData)){
                                             if($IncCapData['salutation'] == 'Mrs') {
                                                 echo 'checked';
                                             }
@@ -57,7 +57,7 @@
                                            data-validate="{'validate-one-required-by-name':true}"
                                            name="salutation" value="Miss"
                                         <?php
-                                            if(array_key_exists('salutation',$IncCapData)){
+                                            if(  $IncCapData && array_key_exists('salutation',$IncCapData)){
                                                 if($IncCapData['salutation'] == 'Miss') {
                                                     echo 'checked';
                                                 }
