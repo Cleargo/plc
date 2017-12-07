@@ -92,6 +92,37 @@ Class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Option\Val
     }
 
     /**
+     * Get SQL for get record count
+     *
+     * @return Select
+     */
+    public function getSelectCountSql()
+    {
+        $this->_renderFilters();
+
+        $countSelect = clone $this->getSelect();
+        $countSelect->reset(\Magento\Framework\DB\Select::ORDER);
+        $countSelect->reset(\Magento\Framework\DB\Select::LIMIT_COUNT);
+        $countSelect->reset(\Magento\Framework\DB\Select::LIMIT_OFFSET);
+        $countSelect->reset(\Magento\Framework\DB\Select::COLUMNS);
+
+        if (!count($this->getSelect()->getPart(\Magento\Framework\DB\Select::GROUP))) {
+            $countSelect->columns(new \Zend_Db_Expr('COUNT(*)'));
+            return $countSelect;
+        }
+
+        $countSelect->reset(\Magento\Framework\DB\Select::GROUP);
+        $group = $this->getSelect()->getPart(\Magento\Framework\DB\Select::GROUP);
+        //var_dump($group);die();
+        $group = array(
+            "main_table.option_type_id",
+            "main_table.option_type_id"
+        );
+        $countSelect->columns(new \Zend_Db_Expr(("COUNT(DISTINCT ".implode(", ", $group).")")));
+        return $countSelect;
+    }
+
+    /**
      * Add image result
      *
      * @param int $storeId
