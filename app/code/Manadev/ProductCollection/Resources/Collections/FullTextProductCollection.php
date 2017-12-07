@@ -259,11 +259,13 @@ class FullTextProductCollection extends \Magento\CatalogSearch\Model\ResourceMod
         if ($attribute == 'relevance') {
             // sort by relevance fix
             $class = new \ReflectionClass('Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection');
-            $property = $class->getProperty('order');
+            $property = $class->getProperty('relevanceOrderDirection');
             $property->setAccessible(true);
             $order = $property->getValue($this);
-            if ($order && 'relevance' === $order['field']) {
-                $this->getSelect()->order('search_result.'. TemporaryStorage::FIELD_SCORE . ' ' . $order['dir']);
+            if ($order) {
+                $this->getSelect()->order(
+                    'search_result.'. TemporaryStorage::FIELD_SCORE . ' ' . $order
+                );
             }
         }
 
