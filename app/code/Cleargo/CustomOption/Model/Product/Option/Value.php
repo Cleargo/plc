@@ -69,15 +69,16 @@ class Value extends \Magento\Catalog\Model\Product\Option\Value
                 'store_id',
                 $this->getOption()->getStoreId()
             );
-            if ($this->getData('is_delete') == '1') {
-                $this->deleteValues($this->getId());
-                //$this->delete();
+            if ( isset($value['is_delete']) && $value['is_delete'] == '1') {
+                if(isset($value['option_type_id'])){
+                    $valueInstance->load($value['option_type_id']);
+                    $valueInstance->delete();
+                }
             } else {
             }
             $valueInstance->save();
             $valueInstance->clearInstance();
         }
-        //die();
         //eof foreach()
         return $this;
     }
