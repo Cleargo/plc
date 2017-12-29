@@ -48,7 +48,7 @@ class Value extends \Magento\Catalog\Model\Product\Option\Value
             $context,
             $registry,
             $valueCollectionFactory,
-            $resource,
+            $resource, 
             $resourceCollection,
             $data
         );
