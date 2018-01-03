@@ -446,7 +446,7 @@
             function (value) {
                 return ((value !== "none") && (value != null) && (value.length !== 0));
             },
-            'Please select an option.'
+            $.mage.__('Please select an option.')
         ],
         "validate-no-empty": [
             function (value) {

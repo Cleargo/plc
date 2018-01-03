@@ -10560,6 +10560,9 @@ Please enter a value less than or equal to %s.,請輸入一個小於或等於 %s
 Please enter a value greater than or equal to %s.,請輸入一個大於或等於 %s 的值。,lib,lib/web/mage/validation.js
 Maximum length of this field must be equal or less than %1 symbols.,此欄位的最大長度必須小於或等於 %1 個符號。,lib,lib/web/mage/validation.js
 This is a required field.,這是必填的欄位。,lib,lib/web/mage/validation.js
+Please select one of the option.,這是必選的欄位。,lib,lib/web/mage/validation.js
+Please select an option.,這是必選的欄位。,lib,lib/web/mage/validation.js
+Please select an option.,這是必選的欄位。,lib,lib/web/prototype/validation.js
 Please enter a date between %min and %max.,請輸入一個在%min和%max之間的有效日期。,lib,lib/web/mage/validation/validation.js
 Please enter a valid year (1900-%1).,請輸入一個有效年份（1900-%1）。,lib,lib/web/mage/validation/validation.js
 Please enter a valid day (1-%1).,請輸入一個有效天數（1-%1）。,lib,lib/web/mage/validation/validation.js
@@ -10759,6 +10762,8 @@ Please enter a value less than or equal to {0}.,請輸入一個小於或等於 {
 Please enter a value greater than or equal to {0}.,請輸入一個大於或等於 {0} 的值。,module,Magento_Ui
 Please enter issue number or start date for switch/solo card type.,請輸入問題編號或切換/單個卡類型的開始日期。,module,Magento_Ui
 This is a required field.,這是必填的欄位。,module,Magento_Ui
+Please select one of the option.,這是必選的欄位。,module,Magento_Ui
+Please select an option.,這是必選的欄位。,module,Magento_Ui
 Please enter positive number in this field.,請在此欄位中輸入正數。,module,Magento_Ui
 "Please enter a valid value, ex: 10,20,30","請輸入有效值，例如：10,20,30",module,Magento_Ui
 We don't recognize or support this file extension type.,我們未能識別或不支援該檔擴展類型。,module,Magento_Ui
