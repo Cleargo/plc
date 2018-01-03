@@ -25,12 +25,18 @@ $mediaUrl = $block->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) 
         <?php if($_option->getImage()):?>
             <div class="option-img" style="display:inline-block;"><img class="option-img" src="<?php echo $mediaUrl.$_option->getImage() ?>"></div>
         <?php endif; ?>
+        <?php
+            $count = 1;
+        ?>
         <?php foreach ($values as $key => $val):?>
+            <?php
+            $count++;
+            ?>
             <div class="option-button-wrapper">
                 <?php if($val->getImage()):?>
                     <img class="value-img" src="<?php echo $mediaUrl.$val->getImage() ?>" />
                 <?php endif; ?>
-                <div class="option-button" target-option="#options_<?php echo $_option->getId()?>_<?php echo ($val->getSortOrder() + 1)?>">
+                <div class="option-button" target-option="#options_<?php echo $_option->getId()?>_<?php echo $count ?>">
                     <div class="title">
                         <?php echo $val->getTitle(); ?>
                     </div>
@@ -88,6 +94,9 @@ $mediaUrl = $block->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) 
             $(this).closest('.control').find('.option-button').removeClass('chosen');
             $(this).addClass('chosen');
             $(option_id).trigger('click');
+            
+            console.log(option_id);
+            console.log($(option_id));
         });
     }));
 </script>
