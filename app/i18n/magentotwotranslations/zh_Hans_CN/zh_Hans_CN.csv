@@ -14011,3 +14011,5 @@ Account Dashboard,帐户控制面板,theme,frontend/Magento/luma
 Account Information,帐户信息,theme,frontend/Magento/luma
 Address Book,地址簿,theme,frontend/Magento/luma
 Inquiry Information From PLC,来自PLC的查询信息,module,Cleargo_PopupForm
+Please select one of the option.,这是必选的栏位。,lib,lib/web/mage/validation.js
+Please select one of the option.,这是必选的栏位。,module,Magento_Ui
